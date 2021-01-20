@@ -11,8 +11,24 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.js('resources/js/app.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+        //
+    ]);
+
+mix.js('node_modules/@coreui/chartjs/dist/js/coreui-chartjs.bundle.js', 'public/js/coreui')
+    .js('node_modules/@coreui/utils/dist/coreui-utils.js', 'public/js/coreui')
+    .js('node_modules/@coreui/icons/js/svgxuse.min.js', 'public/js/coreui')
+    .js('node_modules/@coreui/coreui/dist/js/coreui.bundle.min.js', 'public/js/coreui')
+    .postCss('node_modules/@coreui/chartjs/dist/css/coreui-chartjs.css', 'public/css/coreui');
+
+
+     
+
+
+    
+
+
+
+
+    
