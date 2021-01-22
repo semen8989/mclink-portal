@@ -39,7 +39,7 @@
                       <button class="btn btn-primary px-4" type="submit">Login</button>
                     </div>
                     <div class="col-6 text-right">
-                      <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                      <a class="btn btn-link px-0" type="button" href="{{ url('/password/reset') }}">Forgot password?</a>
                     </div>
                   </div>
                 </form>
