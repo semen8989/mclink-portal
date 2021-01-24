@@ -64,10 +64,18 @@
             <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
               <svg class="c-icon mr-2">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-lock-locked') }}"></use>
-              </svg> Lock Account</a><a class="dropdown-item" href="#">
+              </svg> Lock Account
+              </a>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
               <svg class="c-icon mr-2">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-account-logout') }}"></use>
-              </svg> Logout</a>
+              </svg> Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
           </div>
         </li>
       </ul>
