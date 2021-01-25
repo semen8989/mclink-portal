@@ -15,7 +15,7 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('service_report_id');
+            $table->foreignId('service_report_id');
             $table->string('service_details');
             $table->softDeletes();
             $table->timestamps();

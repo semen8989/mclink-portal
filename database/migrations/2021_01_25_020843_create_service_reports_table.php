@@ -21,7 +21,7 @@ class CreateServiceReportsTable extends Migration
             $table->string('customer_email')->nullable();
             $table->string('address');
             $table->string('call_status')->nullable();
-            $table->unsignedInteger('engineer_id');
+            $table->foreignId('engineer_id');
             $table->string('engineer_remark')->nullable();
             $table->string('status_after_service')->nullable();
             $table->dateTime('event');
