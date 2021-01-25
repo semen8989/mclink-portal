@@ -7,6 +7,7 @@
                         <div class="fade-in">
                             <div class="row">
                                 <div class="col-md-12">
+                                    @include('layout.flash')
                                     <div class="card">
                                         <!-- Content -->
                                         @yield('content')
