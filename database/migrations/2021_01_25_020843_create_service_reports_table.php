@@ -29,7 +29,7 @@ class CreateServiceReportsTable extends Migration
             $table->dateTime('service_end')->nullable();
             $table->string('used_it_credit');
             $table->string('signature_image')->nullable();
-            $table->date('signed_date');
+            $table->date('signed_date')->nullable();
             $table->string('customer_comments')->nullable();
             $table->softDeletes();
             $table->timestamps();
