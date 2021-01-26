@@ -14,7 +14,7 @@ class CreateServiceReportsTable extends Migration
     public function up()
     {
         Schema::create('service_reports', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
             $table->integer('csr_no');
             $table->date('date');
             $table->string('customer_name');
