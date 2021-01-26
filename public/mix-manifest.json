@@ -1,9 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/coreui/coreui-chartjs.bundle.js": "/js/coreui/coreui-chartjs.bundle.js",
-    "/js/coreui/coreui-utils.js": "/js/coreui/coreui-utils.js",
-    "/js/coreui/svgxuse.min.js": "/js/coreui/svgxuse.min.js",
-    "/js/coreui/coreui.bundle.min.js": "/js/coreui/coreui.bundle.min.js",
-    "/css/coreui/coreui-chartjs.css": "/css/coreui/coreui-chartjs.css",
     "/css/app.css": "/css/app.css"
 }

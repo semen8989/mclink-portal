@@ -36,4 +36,6 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Main styles for this application-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Page specific style-->
+    @stack('stylesheet')
   </head>

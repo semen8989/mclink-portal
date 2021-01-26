@@ -4,16 +4,10 @@
             <div class="c-body">
                 <main class="c-main">
                     <div class="container-fluid">
-                        <div class="fade-in">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <!-- Content -->
-                                        @yield('content')
-                                        <!--./ Content -->
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="fade-in">           
+                            <!-- Content -->
+                            @yield('content')
+                            <!--./ Content -->                                   
                         </div>
                     </div>
                 </main>
