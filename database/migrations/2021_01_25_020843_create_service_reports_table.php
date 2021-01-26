@@ -24,7 +24,6 @@ class CreateServiceReportsTable extends Migration
             $table->foreignId('engineer_id');
             $table->string('engineer_remark')->nullable();
             $table->string('status_after_service')->nullable();
-            $table->dateTime('event');
             $table->dateTime('service_start')->nullable();
             $table->dateTime('service_end')->nullable();
             $table->string('used_it_credit');
