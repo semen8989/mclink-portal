@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServiceFormController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,15 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware('auth');
 
-Route::get('/service-form', [ServiceFormController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    // Service Form Routes
+    Route::get('/service-forms', [ServiceFormController::class, 'index']);
+    Route::get('/service-forms/create', [ServiceFormController::class, 'create']);
+    Route::post('/service-forms', [ServiceFormController::class, 'store']);
+
+    // Customer Routes
+    Route::get('/get/customers/typeahead', [CustomerController::class, 'get']);
+});
 
 Auth::routes(['register' => false]);
 
