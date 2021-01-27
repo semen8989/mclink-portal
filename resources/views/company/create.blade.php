@@ -2,32 +2,49 @@
 
 @section('content')
 <div class="card-header">Add New Company</div>
-<form>
+<form method="POST" action="{{ route('company.store') }}">
+    @csrf
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="company_name">Company Name</label>
-                    <input class="form-control" placeholder="Company Name" name="name" type="text">
+                    <input class="form-control @error('company_name') is-invalid @enderror" placeholder="Company Name" 
+                        name="company_name" value="{{ old('company_name') }}" type="text">
+                    @error('company_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="email">Company Type</label>
-                            <select class="form-control" name="company_type" data-plugin="xin_select"
+                            <select class="form-control @error('company_type') is-invalid @enderror" name="company_type"
                                 data-placeholder="Company Type">
-                                <option value="">Select One</option>
-                                <option value="1"> Corporation</option>
-                                <option value="2"> Exempt Organization</option>
-                                <option value="3"> Partnership</option>
-                                <option value="4"> Private Foundation</option>
-                                <option value="5"> Limited Liability Company</option>
+                                <option value="" disabled selected>Select One</option>
+                                <option value="1" {{ old('company_type') == "1" ? 'selected' : '' }}> Corporation</option>
+                                <option value="2" {{ old('company_type') == "2" ? 'selected' : '' }}> Exempt Organization</option>
+                                <option value="3" {{ old('company_type') == "3" ? 'selected' : '' }}> Partnership</option>
+                                <option value="4" {{ old('company_type') == "4" ? 'selected' : '' }}> Private Foundation</option>
+                                <option value="5" {{ old('company_type') == "5" ? 'selected' : '' }}> Limited Liability Company</option>
                             </select>
+                            @error('company_type')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="trading_name">Legal / Trading Name</label>
-                            <input class="form-control" placeholder="Legal / Trading Name" name="trading_name"
-                                type="text">
+                            <input class="form-control @error('trading_name') is-invalid @enderror" placeholder="Legal / Trading Name" 
+                                name="trading_name" value="{{ old('trading_name') }}" type="text">
+                            @error('trading_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -35,13 +52,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="registration_no">Registration Number</label>
-                            <input class="form-control" placeholder="Registration Number" name="registration_no"
-                                type="text">
+                            <input class="form-control @error('registration_no') is-invalid @enderror" placeholder="Registration Number" 
+                                name="registration_no" value="{{ old('registration_no') }}" type="text">
+                            @error('registration_no')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="contact_number">Contact Number</label>
-                            <input class="form-control" placeholder="Contact Number" name="contact_number"
-                                type="number">
+                            <input class="form-control @error('contact_number') is-invalid @enderror" placeholder="Contact Number" 
+                                name="contact_number" value="{{ old('contact_number') }}" type="number">
+                            @error('contact_number')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -49,11 +76,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="email">Email</label>
-                            <input class="form-control" placeholder="Email" name="email" type="email">
+                            <input class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" 
+                                value="{{ old('email') }}" type="email">
+                            @error('contact_number')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="website">Website</label>
-                            <input class="form-control" placeholder="Website URL" name="website" type="text">
+                            <input class="form-control @error('website') is-invalid @enderror" placeholder="Website URL" 
+                                name="website" value="{{ old('website') }}" type="text">
+                            @error('website')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -61,43 +100,96 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="xin_gtax">Tax Number / EIN</label>
-                    <input class="form-control" placeholder="Tax Number / EIN" name="xin_gtax" type="text">
+                    <input class="form-control  @error('xin_gtax') is-invalid @enderror" placeholder="Tax Number / EIN" 
+                        name="xin_gtax" value="{{ old('xin_gtax') }}" type="text">
+                    @error('xin_gtax')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input class="form-control" placeholder="Address Line 1" name="address_1" type="text">
+                    <input class="form-control @error('address_1') is-invalid @enderror" placeholder="Address Line 1" 
+                        name="address_1" value="{{ old('address_1') }}" type="text">
+                    @error('address_1')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <br>
-                    <input class="form-control" placeholder="Address Line 2" name="address_2" type="text">
+                    <input class="form-control @error('address_2') is-invalid @enderror" placeholder="Address Line 2" 
+                        name="address_2" value="{{ old('address_2') }}" type="text">
+                    @error('address_2')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <br>
                     <div class="row">
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="City" name="city" type="text">
+                            <input class="form-control @error('city') is-invalid @enderror" placeholder="City" 
+                                name="city" value="{{ old('city') }}" type="text">
+                            @error('city')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="State / Province" name="state" type="text">
+                            <input class="form-control @error('state') is-invalid @enderror" placeholder="State / Province" 
+                                name="state" value="{{ old('state') }}" type="text">
+                            @error('state')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="Zip Code / Postal Code" name="zipcode" type="text">
+                            <input class="form-control @error('zip_code') is-invalid @enderror" placeholder="Zip Code / Postal Code" 
+                                name="zip_code" value="{{ old('zip_code') }}" type="text">
+                            @error('zip_code')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <br>
-                    <select class="form-control" data-placeholder="Country">
+                    <select class="form-control @error('country') is-invalid @enderror" data-placeholder="Country" name="country">
                         <option value="" disabled selected>Select One</option>
-                        <option value="1"> Afghanistan</option>
-                        <option value="2"> Albania</option>
-                        <option value="3"> Algeria</option>
+                        <option value="1" {{ old('country') == "1" ? 'selected' : '' }}> Afghanistan</option>
+                        <option value="2" {{ old('country') == "2" ? 'selected' : '' }}> Albania</option>
+                        <option value="3" {{ old('country') == "3" ? 'selected' : '' }}> Algeria</option>
                     </select>
+                    @error('country')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label for="email">Username</label>
-                <input class="form-control" placeholder="Username" name="username" type="text">
+                <label for="username">Username</label>
+                <input class="form-control @error('username') is-invalid @enderror" placeholder="Username" 
+                    name="username" value="{{ old('username') }}" type="text">
+                @error('username')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="col-md-3">
-                <label for="website">Password</label>
-                <input class="form-control" placeholder="Password" name="password" type="text">
+                <label for="password">Password</label>
+                <input class="form-control @error('password') is-invalid @enderror" placeholder="Password" 
+                    name="password" value="{{ old('password') }}" type="text">
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="col-md-6">
                 <fieldset class="form-group">

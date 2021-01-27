@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -34,7 +36,31 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validating fields before insert
+        $validatedData = $request->validate([
+            'company_name' => 'required',
+            'company_type' => 'required',
+            'trading_name' => 'required',
+            'registration_no' => 'required',
+            'contact_number' => 'required',
+            'email' => 'required|email',
+            'website' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'xin_gtax' => 'required',
+            'address_1' => 'required',
+            'address_2' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip_code' => 'required',
+            'country' => 'required',
+        ]);
+        //Inserting new data
+        $validatedData['user_id'] = Auth::user()->id;
+        Company::create($validatedData);
+        //Redirect after success
+        return redirect()->route('company.index')->with('success', 'Company created successfully.');
+        
     }
 
     /**
