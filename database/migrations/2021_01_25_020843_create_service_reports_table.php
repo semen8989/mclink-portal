@@ -17,9 +17,8 @@ class CreateServiceReportsTable extends Migration
             $table->uuid('id');
             $table->integer('csr_no');
             $table->date('date');
-            $table->string('customer_name');
-            $table->string('customer_email')->nullable();
-            $table->string('address');
+            $table->foreignId('customer_id')->references('id')->on('customers');
+            $table->string('ticket_reference')->nullable();
             $table->string('call_status')->nullable();
             $table->foreignId('engineer_id')->references('id')->on('users');
             $table->foreignId('current_user_id')->references('id')->on('users');

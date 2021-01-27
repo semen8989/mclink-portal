@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -21,8 +22,7 @@ class ServiceReportSeeder extends Seeder
             'id' => Str::uuid(),
             'csr_no' => Carbon::now()->format('Ymd'),
             'date' => Carbon::now()->format('Y-m-d'),
-            'customer_name' => Str::random(10),
-            'address' => Str::random(20),
+            'customer_id' => Customer::find(1)->id,
             'engineer_id' => User::find(1)->id,
             'current_user_id' => User::find(1)->id,
             'service_rendered' => Str::random(100),
