@@ -30,28 +30,28 @@
                             <input class="form-control-plaintext" readonly value="{{ $company->registration_no }}">
                         </div>
                         <div class="col-md-6">
-                            <strong><label for="contact_number">Contact Number</label></strong>
-                            <input class="form-control-plaintext" readonly value="0232312312">
+                            <strong><label>Contact Number</label></strong>
+                            <input class="form-control-plaintext" readonly value="{{ $company->contact_number }}">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong><label for="email">Email</label></strong>
-                            <input class="form-control-plaintext" readonly value="kass@mclinkgroup.com">
+                            <strong><label>Email</label></strong>
+                            <input class="form-control-plaintext" readonly value="{{ $company->email }}">
                         </div>
                         <div class="col-md-6">
-                            <strong><label for="website">Website</label></strong>
-                            <input class="form-control-plaintext" readonly value="mclinkgroup.com">
+                            <strong><label>Website</label></strong>
+                            <input class="form-control-plaintext" readonly value="{{ $company->website }}">
                         </div>
                         <div class="col-md-6 mt-3">
                             <strong><label>Username</label></strong>
-                            <input class="form-control-plaintext" readonly value="kass">
+                            <input class="form-control-plaintext" readonly value="{{ $company->username }}">
                         </div>
                         <div class="col-md-6 mt-3">
                             <strong><label>Password</label></strong>
-                            <input class="form-control-plaintext" readonly value="kass">
+                            <input class="form-control-plaintext" readonly value="{{ $company->password }}">
                         </div>
                     </div>
                 </div>
@@ -59,36 +59,36 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <strong><label>Tax Number / EIN</label></strong>
-                    <input class="form-control-plaintext" readonly value="TIN 0239324902">
+                    <input class="form-control-plaintext" readonly value="{{ $company->xin_gtax }}">
                 </div>
                 <div class="form-group">
                     <strong><label>Address Line 1</label></strong>
-                    <input class="form-control-plaintext" readonly value="80 P. Tupaz St.">
+                    <input class="form-control-plaintext" readonly value="{{ $company->address_1 }}">
                     <strong><label class="mt-3">Address Line 2</label></strong>
-                    <input class="form-control-plaintext" readonly value="BLK 12 Lot 20">
+                    <input class="form-control-plaintext" readonly value="{{ $company->address_2 }}">
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <strong><label>City</label></strong>
-                            <input class="form-control-plaintext" readonly value="Quezon City">
+                            <input class="form-control-plaintext" readonly value="{{ $company->city }}">
                         </div>
                         <div class="col-md-4">
                             <strong><label>State / Province</label></strong>
-                            <input class="form-control-plaintext" readonly value="NCR">
+                            <input class="form-control-plaintext" readonly value="{{ $company->state }}">
                         </div>
                         <div class="col-md-4">
                             <strong><label>Zip Code</label></strong>
-                            <input class="form-control-plaintext" readonly value="1123">
+                            <input class="form-control-plaintext" readonly value="{{ $company->zip_code }}">
                         </div>
                         <div class="col-md-4 mt-3">
                             <strong><label>Country</label></strong>
-                            <input class="form-control-plaintext" readonly value="Philippines">
+                            <input class="form-control-plaintext" readonly value="{{ $company->country }}">
                         </div>
                         <div class="col-md-4 mt-3">
                             <strong><label>Company Logo</label></strong>
                         </div>
                         <div class="col-md-4 mt-3">
                             <strong><label>Added By</label></strong>
-                            <input class="form-control-plaintext" readonly value="Francis Toh">
+                            <input class="form-control-plaintext" readonly value="{{ $company->name }}">
                         </div>
                     </div>
                     <br>

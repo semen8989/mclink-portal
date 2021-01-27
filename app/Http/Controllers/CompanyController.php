@@ -78,7 +78,12 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $company = Company::find($id);
+        $company = DB::table('company')
+                ->join('users','company.user_id','=','users.id')
+                ->select('company.*','users.name')
+                ->where('company.company_id','=',$id)
+                ->first();
+
         return view('company.view',compact('company'));
     }
 
