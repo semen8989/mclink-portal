@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
@@ -15,7 +16,13 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('company.index');
+        $companies = DB::table('company')
+                ->join('users','company.user_id','=','users.id')
+                ->select('company.*','users.name')
+                ->latest()
+                ->paginate(5);
+
+        return view('company.index', compact('companies'));
     }
 
     /**
@@ -71,7 +78,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+        return view('company.view',compact('company'));
     }
 
     /**

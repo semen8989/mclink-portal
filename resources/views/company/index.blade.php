@@ -19,9 +19,19 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($companies as $company)
             <tr>
-                
+                <td>
+                    <a class="btn btn-primary" href="{{ route('company.show', $company->company_id) }}">View</a>
+                </td>
+                <td>{{ $company->company_name }}</td>
+                <td>{{ $company->email }}</td>
+                <td>{{ $company->website }}</td>
+                <td>{{ $company->city }}</td>
+                <td>{{ $company->country }}</td>
+                <td>{{ $company->name }}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
