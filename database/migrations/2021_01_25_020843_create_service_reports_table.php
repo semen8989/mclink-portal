@@ -15,13 +15,10 @@ class CreateServiceReportsTable extends Migration
     {
         Schema::create('service_reports', function (Blueprint $table) {
             $table->uuid('id');
-            $table->integer('csr_no');
-            $table->date('date');
-            $table->foreignId('customer_id')->references('id')->on('customers');
+            $table->string('csr_no');
+            $table->date('date');         
             $table->string('ticket_reference')->nullable();
-            $table->string('call_status')->nullable();
-            $table->foreignId('engineer_id')->references('id')->on('users');
-            $table->foreignId('current_user_id')->references('id')->on('users');
+            $table->string('call_status')->nullable();         
             $table->string('engineer_remark')->nullable();
             $table->string('status_after_service')->nullable();
             $table->text('service_rendered');
@@ -31,6 +28,10 @@ class CreateServiceReportsTable extends Migration
             $table->string('signature_image')->nullable();
             $table->date('signed_date')->nullable();
             $table->string('customer_comments')->nullable();
+            $table->foreignId('customer_id')->references('id')->on('customers');
+            $table->foreignId('engineer_id')->references('id')->on('users');
+            $table->foreignId('current_user_id')->references('id')->on('users');
+            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });
