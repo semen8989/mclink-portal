@@ -23,12 +23,9 @@
                             <label for="company_type">Company Type</label>
                             <select class="form-control @error('company_type') is-invalid @enderror" name="company_type"
                                 data-placeholder="Company Type">
-                                <option value="" disabled selected>Select One</option>
-                                <option value="1" {{ old('company_type') == "1" ? 'selected' : '' }}> Corporation</option>
-                                <option value="2" {{ old('company_type') == "2" ? 'selected' : '' }}> Exempt Organization</option>
-                                <option value="3" {{ old('company_type') == "3" ? 'selected' : '' }}> Partnership</option>
-                                <option value="4" {{ old('company_type') == "4" ? 'selected' : '' }}> Private Foundation</option>
-                                <option value="5" {{ old('company_type') == "5" ? 'selected' : '' }}> Limited Liability Company</option>
+                                <option value="" disabled selected>Select Company Type</option>
+                                <option value="Private" {{ old('company_type') == "Private" ? 'selected' : '' }}> Private</option>
+                                <option value="Corporation" {{ old('company_type') == "Corporation" ? 'selected' : '' }}> Corporation</option>
                             </select>
                             @error('company_type')
                                 <div class="invalid-feedback">
@@ -157,10 +154,10 @@
                     </div>
                     <br>
                     <select class="form-control @error('country') is-invalid @enderror" data-placeholder="Country" name="country">
-                        <option value="" disabled selected>Select One</option>
-                        <option value="1" {{ old('country') == "1" ? 'selected' : '' }}> Afghanistan</option>
-                        <option value="2" {{ old('country') == "2" ? 'selected' : '' }}> Albania</option>
-                        <option value="3" {{ old('country') == "3" ? 'selected' : '' }}> Algeria</option>
+                        <option value="" disabled selected>Select Country</option>
+                        <option value="Philippines" {{ old('country') == "Philippines" ? 'selected' : '' }}> Philippines</option>
+                        <option value="Singapore" {{ old('country') == "Singapore" ? 'selected' : '' }}> Singapore</option>
+                        <option value="Malaysia" {{ old('country') == "Malaysia" ? 'selected' : '' }}> Malaysia</option>
                     </select>
                     @error('country')
                         <div class="invalid-feedback">
