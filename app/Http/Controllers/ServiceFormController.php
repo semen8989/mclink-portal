@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ServiceReport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ServiceFormController extends Controller
@@ -24,7 +26,25 @@ class ServiceFormController extends Controller
      */
     public function create()
     {
-        return view('service_form.create');
+        $currentDate = Carbon::now()->format('Ymd');
+
+        $recentServiceReport = ServiceReport::select('csr_no')
+            ->where('date', $currentDate)
+            ->orderByDesc('created_at')
+            ->first();
+
+        $runningNum = 1;
+             
+        if ($recentServiceReport) {
+            $csrNo = $recentServiceReport->csr_no;
+
+            $numIndex = strrpos($csrNo, '-') + 1;
+            $runningNum = substr($csrNo, $numIndex);
+        }
+        
+        $fullCsrNo = $currentDate . '-' . $runningNum;
+        
+        return view('service_form.create', ['csrNo' => $fullCsrNo]);
     }
 
 
