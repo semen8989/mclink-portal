@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use app\Models\User;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
     /**
-     * Fetch the list of active customers.
+     * Fetch the list of active service engineer users.
      *
      * @return \Illuminate\Http\Response
      */
-    public function get(Request $request)
+    public function getEngineers(Request $request)
     {            
-        $customers = Customer::select('id','name','email','address')
-            ->withTrashed(false)
+        $engineers = User::select('id','name')
             ->where([['name', 'like', '%'.$request->query('search').'%']])
             ->orderBy('name', 'asc')
             ->paginate(10);
-
-        return response()->json($customers);
+            
+        return response()->json($engineers);
     }
 }
