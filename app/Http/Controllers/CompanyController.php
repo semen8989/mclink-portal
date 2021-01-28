@@ -45,20 +45,12 @@ class CompanyController extends Controller
     {
         //Validating fields before insert
         $validatedData = $request->validate([
-            'company_name' => 'required',
+            'company_name' => 'required|string|max:50',
             'company_type' => 'required',
-            'trading_name' => 'required',
-            'registration_no' => 'required',
             'contact_number' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|filter',
             'website' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'xin_gtax' => 'required',
-            'address_1' => 'required',
-            'address_2' => 'required',
             'city' => 'required',
-            'state' => 'required',
             'zip_code' => 'required',
             'country' => 'required',
         ]);
@@ -110,20 +102,12 @@ class CompanyController extends Controller
     {
         //Validating fields before update
         $validatedData = $request->validate([
-            'company_name' => 'required',
+            'company_name' => 'required|string|max:50',
             'company_type' => 'required',
-            'trading_name' => 'required',
-            'registration_no' => 'required',
             'contact_number' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|filter',
             'website' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'xin_gtax' => 'required',
-            'address_1' => 'required',
-            'address_2' => 'required',
             'city' => 'required',
-            'state' => 'required',
             'zip_code' => 'required',
             'country' => 'required',
         ]);
