@@ -311,7 +311,7 @@
           $('#address').val('');
         }
 
-        $('.select2-container').css('display',  this.checked ? 'none' : 'block');
+        $('#custName').next().css('display',  this.checked ? 'none' : 'block');
         $('#newCustName').attr('type', this.checked ? 'text' : 'hidden');
         $('#newCustName').prop('disabled', !this.checked);
       });
