@@ -108,7 +108,30 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validating fields before update
+        $validatedData = $request->validate([
+            'company_name' => 'required',
+            'company_type' => 'required',
+            'trading_name' => 'required',
+            'registration_no' => 'required',
+            'contact_number' => 'required',
+            'email' => 'required|email',
+            'website' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'xin_gtax' => 'required',
+            'address_1' => 'required',
+            'address_2' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip_code' => 'required',
+            'country' => 'required',
+        ]);
+        Company::where('company_id',$id)
+                ->update($validatedData);
+
+        return redirect()->route('company.index')->with('success', 'Company updated successfully.');
+
     }
 
     /**
@@ -119,6 +142,10 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $company->delete();
+
+        return redirect()->route('company.index')->with('success', 'Company deleted successfully.');
+
     }
 }

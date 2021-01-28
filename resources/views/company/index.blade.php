@@ -24,6 +24,11 @@
                 <td>
                     <a class="btn btn-sm btn-primary" href="{{ route('company.show', $company->company_id) }}">View</a>
                     <a class="btn btn-sm btn-warning" href="{{ route('company.edit', $company->company_id) }}">Update</a>
+                    <form action="{{ route('company.destroy', $company->company_id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger mt-2 ml-4">Delete</button>
+                    </form>
                 </td>
                 <td>{{ $company->company_name }}</td>
                 <td>{{ $company->email }}</td>

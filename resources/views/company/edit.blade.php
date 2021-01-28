@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="card-header">Edit Company Information</div>
-<form method="POST" action="{{ route('company.edit', $company->company_id) }}">
+<form method="POST" action="{{ route('company.update', $company->company_id) }}">
     @csrf
+    @method('PATCH')
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
