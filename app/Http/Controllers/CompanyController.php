@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,22 +41,11 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request)
     {
-        //Validating fields before insert
-        $validatedData = $request->validate([
-            'company_name' => 'required|string|max:50',
-            'company_type' => 'required',
-            'contact_number' => 'required',
-            'email' => 'required|email|filter',
-            'website' => 'required',
-            'city' => 'required',
-            'zip_code' => 'required',
-            'country' => 'required',
-        ]);
         //Inserting new data
-        $validatedData['user_id'] = Auth::user()->id;
-        Company::create($validatedData);
+        $request['user_id'] = Auth::user()->id;
+        Company::create($request->all());
         //Redirect after success
         return redirect()->route('company.index')->with('success', 'Company created successfully.');
         
@@ -98,21 +87,10 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCompanyRequest $request, $id)
     {
-        //Validating fields before update
-        $validatedData = $request->validate([
-            'company_name' => 'required|string|max:50',
-            'company_type' => 'required',
-            'contact_number' => 'required',
-            'email' => 'required|email|filter',
-            'website' => 'required',
-            'city' => 'required',
-            'zip_code' => 'required',
-            'country' => 'required',
-        ]);
         Company::where('company_id',$id)
-                ->update($validatedData);
+                ->update($request->except(['_token','_method']));
 
         return redirect()->route('company.index')->with('success', 'Company updated successfully.');
 
@@ -130,6 +108,5 @@ class CompanyController extends Controller
         $company->delete();
 
         return redirect()->route('company.index')->with('success', 'Company deleted successfully.');
-
     }
 }

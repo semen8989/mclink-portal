@@ -46,21 +46,15 @@
                             <input class="form-control-plaintext" readonly value="{{ $company->website }}">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <strong><label>Username</label></strong>
-                            <input class="form-control-plaintext" readonly value="{{ $company->username }}">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <strong><label>Password</label></strong>
-                            <input class="form-control-plaintext" readonly value="{{ $company->password }}">
+                            <div class="form-group">
+                                <strong><label>Tax Number / EIN</label></strong>
+                                <input class="form-control-plaintext" readonly value="{{ $company->xin_gtax }}">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
-                    <strong><label>Tax Number / EIN</label></strong>
-                    <input class="form-control-plaintext" readonly value="{{ $company->xin_gtax }}">
-                </div>
                 <div class="form-group">
                     <strong><label>Address Line 1</label></strong>
                     <input class="form-control-plaintext" readonly value="{{ $company->address_1 }}">

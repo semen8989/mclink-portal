@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Add New Company</div>
-<form method="POST" action="{{ route('company.store') }}">
+<form method="POST" action="{{ route('company.store') }}" novalidate>
     @csrf
     <div class="card-body">
         <div class="row">
@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="email">Company Type</label>
+                            <label for="company_type">Company Type</label>
                             <select class="form-control @error('company_type') is-invalid @enderror" name="company_type"
                                 data-placeholder="Company Type">
                                 <option value="" disabled selected>Select One</option>
@@ -78,7 +78,7 @@
                             <label for="email">Email</label>
                             <input class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" 
                                 value="{{ old('email') }}" type="email">
-                            @error('contact_number')
+                            @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -171,26 +171,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <label for="username">Username</label>
-                <input class="form-control @error('username') is-invalid @enderror" placeholder="Username" 
-                    name="username" value="{{ old('username') }}" type="text">
-                @error('username')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="col-md-3">
-                <label for="password">Password</label>
-                <input class="form-control @error('password') is-invalid @enderror" placeholder="Password" 
-                    name="password" value="{{ old('password') }}" type="text">
-                @error('password')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
             <div class="col-md-6">
                 <fieldset class="form-group">
                     <label for="logo">Company Logo</label>
