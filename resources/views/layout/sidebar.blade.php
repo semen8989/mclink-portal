@@ -19,7 +19,9 @@
               </svg> Organizations</a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('company.index') }}"><span
-                                class="c-sidebar-nav-icon"></span> Company</a></li>
+                        class="c-sidebar-nav-icon"></span> Company</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('department.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> Department</a></li>
                 </ul>
             </li>
         </ul>
