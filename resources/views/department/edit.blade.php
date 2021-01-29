@@ -23,7 +23,7 @@
                     <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" data-placeholder="Company">
                             <option value="" disabled selected>Select Company</option>
                         @foreach ($companies as $company)
-                            <option value="{{ $company->id }}" {{ old('company_id',$department->id) == $company->id ? 'selected' : '' }}>
+                            <option value="{{ $company->id }}" {{ old('company_id',$department->company_id) == $company->id ? 'selected' : '' }}>
                                 {{ $company->company_name }}
                             </option>        
                         @endforeach 
