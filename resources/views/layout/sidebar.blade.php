@@ -22,6 +22,8 @@
                         class="c-sidebar-nav-icon"></span> Company</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('department.index') }}"><span
                         class="c-sidebar-nav-icon"></span> Department</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('announcement.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> Announcement</a></li>
                 </ul>
             </li>
         </ul>

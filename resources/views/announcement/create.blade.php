@@ -1,0 +1,132 @@
+@extends('layout.master')
+
+@section('content')
+<div class="card-header">Add new Announcement</div>
+<form method="POST" action="{{ route('announcement.store') }}">
+    @csrf
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input class="form-control  @error('title') is-invalid @enderror" placeholder="Enter Title" 
+                        name="title" type="text" value="{{ old('title') }}">
+                    @error('title')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="start_date">Start Date</label>
+                            <input class="form-control date @error('start_date') is-invalid @enderror" placeholder="Start Date" 
+                                readonly name="start_date" type="text" value="{{ old('start_date') }}">
+                            @error('start_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="end_date">End Date</label>
+                            <input class="form-control date @error('end_date') is-invalid @enderror" placeholder="End Date" 
+                                readonly name="end_date" type="text" value="">
+                            @error('end_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="company_id" class="control-label">Company</label>
+                            <select class="form-control @error('company_id') is-invalid @enderror dynamic" name="company_id" id="company_id"
+                                data-placeholder="Company">
+                                    <option value="" disabled selected>Select Company</option>
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('company_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" id="department_ajax">
+                            <label for="department" class="control-label">Department</label>
+                            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
+                                <option value="" disabled selected>Select Department</option>
+                            </select>
+                            @error('department_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control textarea" placeholder="Description" name="description" cols="8"
+                        rows="6" id="description"></textarea>
+                     @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="summary">Summary</label>
+            <textarea class="form-control @error('summary') is-invalid @enderror" placeholder="Summary" name="summary" cols="30" rows="3"
+                id="summary"></textarea>
+            @error('summary')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+    <div class="card-footer text-right">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+<script>
+    $(document).ready(function (){
+        //Datepicker
+        $('.date').datepicker();
+        //Dynamic Company Dropdown
+        $('.dynamic').change(function(){
+            var value = $(this).val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{ route('fetch_department') }}",
+                method: "POST",
+                data: {
+                    value: value,
+                    _token:_token
+                },
+                success:function(result){
+                    $('#department_id').html(result);
+                }
+            })
+        })
+    })
+    
+</script>
+@endsection

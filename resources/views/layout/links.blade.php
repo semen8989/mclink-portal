@@ -36,4 +36,8 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Main styles for this application-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Bootstrap Datepicker -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+    <script type="text/javascript" src="{{ asset('js/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
   </head>
