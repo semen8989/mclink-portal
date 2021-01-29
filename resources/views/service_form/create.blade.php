@@ -1,94 +1,94 @@
 @extends('layout.master')
 
 @section('content')
+<form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
+  @csrf
   <!-- /.row-->
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <h5 class="card-header font-weight-bold text-center">CUSTOMER SERVICE REPORT</h5>
         <div class="card-body">
-
-          <form class="form-horizontal" action="{{ route('service.form.store') }}" method="POST">
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label class="col-form-label font-weight-bold" for="csrNo">CSR No. <span class="font-weight-bold">*</span></label>
-                <div class="controls">
-                  <input class="form-control" name="csrNo" id="csrNo" type="text" value="{{ $csrNo }}">
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <label class="col-form-label font-weight-bold" for="date">Date <span class="font-weight-bold">*</span></label>
-                <div class="controls">
-                  <input class="form-control" name="date" id="date" type="text"> 
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
-              </div>
-            </div>
         
-            <div class="form-row">
-              <div class="form-group col-md-12">       
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" name="isNewCustomer"  id="isNewCustomer" val="true">
-                  <label class="custom-control-label" for="isNewCustomer">Add new customer</label>
-                </div>              
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="col-form-label font-weight-bold" for="csrNo">CSR No. <span class="font-weight-bold">*</span></label>
+              <div class="controls">
+                <input class="form-control" name="csrNo" id="csrNo" type="text" value="{{ $csrNo }}">
+                @error('csrNo')
+                  <p class="help-block">{{ $message }}</p>
+                @enderror         
               </div>
             </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label class="col-form-label font-weight-bold" for="custName">Customer Name <span class="font-weight-bold">*</span></label>
-                <div class="controls">
-                  <select class="form-control custom-select" name="custName" id="custName"></select>
-                  <input class="form-control" name="newCustName" id="newCustName" type="hidden" disabled> 
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <label class="col-form-label" for="custEmail">Customer Email</label>
-                <div class="controls">
-                  <input class="form-control" name="custEmail" id="custEmail" type="email"> 
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
+            <div class="form-group col-md-6">
+              <label class="col-form-label font-weight-bold" for="date">Date <span class="font-weight-bold">*</span></label>
+              <div class="controls">
+                <input class="form-control" name="date" id="date" type="text"> 
+                <!-- <p class="help-block">Here's some help text</p> -->
               </div>
             </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
-                <div class="controls">
-                  <textarea class="form-control" name="address" id="address" rows="3"></textarea>
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
-              </div>  
-              <div class="form-group col-md-6">
-                <label class="col-form-label" for="callStatus">Status of Call</label>
-                <div class="controls">
-                  <textarea class="form-control" name="callStatus" id="callStatus" rows="3"></textarea>
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
-              </div>    
+          </div>
+      
+          <div class="form-row">
+            <div class="form-group col-md-12">       
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="isNewCustomer"  id="isNewCustomer" value="true">
+                <label class="custom-control-label" for="isNewCustomer">Add new customer</label>
+              </div>              
             </div>
+          </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label class="col-form-label" for="engineerId">Service Engineer Name <span class="font-weight-bold">*</span></label>
-                <div class="controls">
-                  <select class="form-control custom-select" name="engineerId" id="engineerId"></select>
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <label class="col-form-label" for="ticketReference">Ticket No. Reference</label>
-                <div class="controls">
-                  <input class="form-control" name="ticketReference" id="ticketReference" type="text"> 
-                  <!-- <p class="help-block">Here's some help text</p> -->
-                </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="col-form-label font-weight-bold" for="customer">Customer Name <span class="font-weight-bold">*</span></label>
+              <div class="controls">
+                <select class="form-control custom-select" name="customer" id="customer"></select>
+                <input class="form-control" name="newCustomer" id="newCustomer" type="hidden" disabled> 
+                <!-- <p class="help-block">Here's some help text</p> -->
               </div>
             </div>
+            <div class="form-group col-md-6">
+              <label class="col-form-label" for="custEmail">Customer Email</label>
+              <div class="controls">
+                <input class="form-control" name="custEmail" id="custEmail" type="email"> 
+                <!-- <p class="help-block">Here's some help text</p> -->
+              </div>
+            </div>
+          </div>
 
-          </form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
+              <div class="controls">
+                <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                <!-- <p class="help-block">Here's some help text</p> -->
+              </div>
+            </div>  
+            <div class="form-group col-md-6">
+              <label class="col-form-label" for="callStatus">Status of Call</label>
+              <div class="controls">
+                <textarea class="form-control" name="callStatus" id="callStatus" rows="3"></textarea>
+                <!-- <p class="help-block">Here's some help text</p> -->
+              </div>
+            </div>    
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="col-form-label" for="engineerId">Service Engineer Name <span class="font-weight-bold">*</span></label>
+              <div class="controls">
+                <select class="form-control custom-select" name="engineerId" id="engineerId"></select>
+                <!-- <p class="help-block">Here's some help text</p> -->
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="col-form-label" for="ticketReference">Ticket No. Reference</label>
+              <div class="controls">
+                <input class="form-control" name="ticketReference" id="ticketReference" type="text"> 
+                <!-- <p class="help-block">Here's some help text</p> -->
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -104,9 +104,12 @@
 
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label class="col-form-label" for="serviceRendered">Service Rendered</label>
+              <label class="col-form-label" for="serviceRendered">Service Rendered <span class="font-weight-bold">*</span></label>
               <div class="controls">
                 <textarea class="form-control" name="serviceRendered" id="serviceRendered"></textarea>
+                @error('serviceRendered')
+                  <p class="help-block">{{ $message }}</p>
+                @enderror
                 <!-- <p class="help-block">Here's some help text</p> -->
               </div>
             </div>    
@@ -147,19 +150,29 @@
             <div class="form-group col-md-4">
               <label class="col-form-label" for="usedItCredit">IT Credit Used</label>
               <div class="controls">
-                <input class="form-control" name="usedItCredit" id="usedItCredit" data-decimals="1" min="0" max="1000" step="0.5" type="number"> 
+                <input class="form-control" placeholder="Not Applicable (NA)" name="usedItCredit" id="usedItCredit" data-decimals="1" min="0" max="1000" step="0.5" type="number"> 
                 <!-- <p class="help-block">Here's some help text</p> -->
               </div>
             </div>
           </div>
 
-          <button class="btn btn-secondary" name="action" value="draft" type="submit">Draft</button>
-          <button class="btn btn-primary" name="action" value="save" type="submit">Save</button>
-          <button class="btn btn-success" name="action" value="send" type="submit">Send</button       
+          <div class="btn-group float-right">
+            <button class="btn btn-success" name="action" value="send" type="submit">Send</button>
+            <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              <button class="dropdown-item" name="action" value="save" type="submit">Save</button>
+              <button class="dropdown-item" name="action" value="draft" type="submit">Save as Draft</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
+
+  </form>
   
 @stop
 
@@ -221,7 +234,7 @@
       $('#usedItCredit').inputSpinner();
 
       // init Customer Name select2
-      $('#custName').select2({
+      $('#customer').select2({
         theme: "bootstrap",
         ajax: {
             url: "{{ route('get.customers') }}",
@@ -298,24 +311,38 @@
         }
       });
 
-      $('#custName').on('select2:select', function (e) {
+      $('#customer').on('select2:select', function (e) {
         var data = e.params.data;
         $('#custEmail').val(data.email);
         $('#address').val(data.address);
       });
 
       $('#isNewCustomer').change(function() {
-        if(this.checked) {
-          $('#newCustName').val('');
+        if (this.checked) {
+          $('#newCustomer').val('');
           $('#custEmail').val('');
           $('#address').val('');
         }
 
-        $('#custName').next().css('display',  this.checked ? 'none' : 'block');
-        $('#newCustName').attr('type', this.checked ? 'text' : 'hidden');
-        $('#newCustName').prop('disabled', !this.checked);
+        $('#customer').next().css('display',  this.checked ? 'none' : 'block');
+        $('#newCustomer').attr('type', this.checked ? 'text' : 'hidden');
+        $('#newCustomer').prop('disabled', !this.checked);
       });
 
+      $('#usedItCredit').change(function() {
+        console.log($(this).val());
+        console.log($(this).val() == 0);
+        if ($(this).val() == 0) {
+          $(this).next().find('input').removeAttr('value');
+          // $('#usedItCredit').css('display', 'block');
+        }
+      });
+
+      $( "#serviceReportForm" ).submit(function( event ) {
+        // alert( "Handler for .submit() called." );
+        // console.log($('#engineerId').val());
+        // event.preventDefault();     
+      });
     });
   </script>
 @endpush
