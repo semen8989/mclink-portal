@@ -12,6 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ServiceReport extends Model
 {
     use HasFactory, SoftDeletes;
+
+    const STATUS = [
+        "send" => 1,
+        "save" => 2,
+        "draft" => 3,
+    ];
         
     /**
      * Indicates if the model's ID is auto-incrementing.
