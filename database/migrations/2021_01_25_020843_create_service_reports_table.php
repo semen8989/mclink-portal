@@ -24,7 +24,7 @@ class CreateServiceReportsTable extends Migration
             $table->text('service_rendered');
             $table->dateTime('service_start')->nullable();
             $table->dateTime('service_end')->nullable();
-            $table->string('used_it_credit');
+            $table->string('used_it_credit')->nullable();
             $table->string('signature_image')->nullable();
             $table->date('signed_date')->nullable();
             $table->string('customer_comments')->nullable();
