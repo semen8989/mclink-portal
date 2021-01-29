@@ -19,8 +19,8 @@
             @foreach ($departments as $department)
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-warning" href="{{ route('department.edit', $department->department_id) }}">Update</a>
-                    <form action="{{ route('department.destroy', $department->department_id) }}" method="post">
+                    <a class="btn btn-sm btn-warning" href="{{ route('department.edit', $department->id) }}">Update</a>
+                    <form action="{{ route('department.destroy', $department->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -28,7 +28,7 @@
                 </td>
                 <td>{{ $department->department_name }}</td>
                 <td>{{ $department->company_name }}</td>
-                <td>{{ $department->name }}</td>
+                <td>{{ $department->name }} </td>
             </tr>
             @endforeach
         </tbody>

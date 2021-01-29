@@ -19,11 +19,11 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = DB::table('department')
-                        ->join('users','department.employee_id','=','users.id')
-                        ->join('company','department.company_id','=','company.company_id')
+                        ->join('users','department.user_id','=','users.id')
+                        ->join('company','department.company_id','=','company.id')
                         ->select('department.*','company.company_name','users.name')
                         ->latest()
-                        ->paginate(5);
+                        ->paginate(10);
 
         return view('department.index',compact('departments'));
     }
@@ -35,7 +35,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $companies = Company::all('company_id','company_name');
+        $companies = Company::all('id','company_name');
         $users = User::all('id','name');
         return view('department.create',compact('companies','users'));
     }
@@ -74,7 +74,7 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
         
-        $companies = Company::all('company_id','company_name');
+        $companies = Company::all('id','company_name');
         $users = User::all('id','name');
         return view('department.edit',compact('department','companies','users'));
     }
@@ -88,8 +88,7 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, $id)
     {
-        Department::where('department_id',$id)
-                ->update($request->except(['_token','_method']));
+        Department::whereId($id)->update($request->except(['_token','_method']));
 
         return redirect()->route('department.index')->with('success', 'Department updated successfully.');
     }

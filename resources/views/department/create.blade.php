@@ -22,7 +22,7 @@
                     <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" data-placeholder="Company">
                             <option value="" disabled selected>Select Company</option>
                         @foreach ($companies as $company)
-                            <option value="{{ $company->company_id }}" {{ old('company_id') == $company->company_id ? 'selected' : '' }}>
+                            <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>
                                 {{ $company->company_name }}
                             </option>        
                         @endforeach 
@@ -34,16 +34,16 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="employee_id">Department Head</label>
-                    <select class="form-control @error('employee_id') is-invalid @enderror" name="employee_id" data-placeholder="Department Head">
+                    <label for="user_id">Department Head</label>
+                    <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" data-placeholder="Department Head">
                             <option value="" disabled selected>Select Department Head</option>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ old('employee_id') == $user->id ? 'selected' : '' }}>
+                            <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
                                 {{ $user->name }}
                             </option>        
                         @endforeach 
                     </select>
-                    @error('employee_id')
+                    @error('user_id')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
