@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreServiceFormRequest;
+use App\Models\Customer;
 use App\Models\ServiceReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ServiceFormController extends Controller
 {
@@ -39,7 +43,7 @@ class ServiceFormController extends Controller
             $csrNo = $recentServiceReport->csr_no;
 
             $numIndex = strrpos($csrNo, '-') + 1;
-            $runningNum = substr($csrNo, $numIndex);
+            $runningNum += intval(substr($csrNo, $numIndex));
         }
         
         $fullCsrNo = $currentDate . '-' . $runningNum;
@@ -48,20 +52,62 @@ class ServiceFormController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreServiceFormRequest  $request)
     {
-        switch ($request->input('action')) {
+        $validated = $request->validated();
+        // dd($validated);
+
+        switch ($request->action) {
+            case 'send':
+                
+                break;
+    
             case 'save':
-                // Save model
+                
                 break;
     
-            case 'preview':
-                // Preview model
-                break;
-    
-            case 'advanced_edit':
-                // Redirect to advanced edit
+            case 'draft':
+
                 break;
         }
+
+        if ($request->action == 'send') {
+
+        }
+
+        $serviceReport = new ServiceReport;
+    
+        $serviceReport->id = Str::uuid();
+        $serviceReport->csr_no = $request->csrNo;
+        $serviceReport->date = $request->date;
+        $serviceReport->ticket_reference = $request->ticketReference;
+        $serviceReport->call_status = $request->callStatus;
+        $serviceReport->engineer_remark = $request->engineerRemark;
+        $serviceReport->status_after_service = $request->statusAfterService;
+        $serviceReport->service_rendered = $request->serviceRendered;
+        $serviceReport->service_start = $request->serviceStart;
+        $serviceReport->service_end = $request->serviceEnd;
+        $serviceReport->used_it_credit = $request->usedItCredit;    
+        $serviceReport->engineer_id = $request->engineerId;
+        $serviceReport->current_user_id = auth()->user()->id;
+        $serviceReport->status = ServiceReport::STATUS[$request->action];
+
+        if ($request->isNewCustomer) {
+            $customer = new Customer;
+            $customer->name = $request->newCustomer;
+        } else {
+            $customer = Customer::find($request->customer);
+        }
+    
+        $customer->email = $request->custEmail;
+        $customer->address = $request->address;
+
+        DB::transaction(function () use ($serviceReport, $customer) {
+            $customer->save();
+            
+            $serviceReport->customer()->associate($customer);
+                  
+            $serviceReport->save();
+        });
     }
 }
