@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Edit Company Information</div>
-<form method="POST" action="{{ route('company.update', $company->company_id) }}" novalidate>
+<form method="POST" action="{{ route('company.update', $company->id) }}" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">

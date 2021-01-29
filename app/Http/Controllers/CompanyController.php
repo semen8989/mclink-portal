@@ -89,8 +89,7 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, $id)
     {
-        Company::where('company_id',$id)
-                ->update($request->except(['_token','_method']));
+        Company::whereId($id)->update($request->except(['_token','_method']));
 
         return redirect()->route('company.index')->with('success', 'Company updated successfully.');
 
