@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Announcements</div>
+<div class="card-header">Companies</div>
 <div class="card-body">
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('company.create') }}">Add New Company</a>
@@ -22,9 +22,9 @@
             @foreach ($companies as $company)
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="{{ route('company.show', $company->company_id) }}">View</a>
-                    <a class="btn btn-sm btn-warning" href="{{ route('company.edit', $company->company_id) }}">Update</a>
-                    <form action="{{ route('company.destroy', $company->company_id) }}" method="post">
+                    <a class="btn btn-sm btn-primary" href="{{ route('company.show', $company->id) }}">View</a>
+                    <a class="btn btn-sm btn-warning" href="{{ route('company.edit', $company->id) }}">Update</a>
+                    <form action="{{ route('company.destroy', $company->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger mt-2 ml-4">Delete</button>
