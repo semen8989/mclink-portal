@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
     }); 
 });
 
+// Guest Routes
+Route::get('service-form/acknowledgement/{uuid}', [ServiceFormController::class, 'getAcknowledgmentForm'])->name('service.form.acknowledgment');
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

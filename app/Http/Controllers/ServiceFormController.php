@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreServiceFormRequest;
+use App\Mail\ServiceAcknowledgmentSent;
 use App\Models\Customer;
 use App\Models\ServiceReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ServiceFormController extends Controller
@@ -19,8 +21,7 @@ class ServiceFormController extends Controller
      */
     public function index()
     {
-        return view('service_form.index', [
-        ]);
+        return view('service_form.index', []);
     }
 
     /**
@@ -55,25 +56,6 @@ class ServiceFormController extends Controller
     public function store(StoreServiceFormRequest  $request)
     {
         $validated = $request->validated();
-        // dd($validated);
-
-        switch ($request->action) {
-            case 'send':
-                
-                break;
-    
-            case 'save':
-                
-                break;
-    
-            case 'draft':
-
-                break;
-        }
-
-        if ($request->action == 'send') {
-
-        }
 
         $serviceReport = new ServiceReport;
     
@@ -109,5 +91,16 @@ class ServiceFormController extends Controller
                   
             $serviceReport->save();
         });
+
+        if ($request->action == 'send' && $request->custEmail) {
+            Mail::to($request->custEmail)->send(new ServiceAcknowledgmentSent($serviceReport));
+        }
+    }
+
+    public function getAcknowledgmentForm($uuid)
+    {   
+        ServiceReport::findOrFail($uuid);
+        
+        return view('service_form.acknowledgement.create', []);
     }
 }

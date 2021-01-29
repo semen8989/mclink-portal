@@ -16,7 +16,7 @@
               <div class="controls">
                 <input class="form-control" name="csrNo" id="csrNo" type="text" value="{{ $csrNo }}">
                 @error('csrNo')
-                  <p class="help-block">{{ $message }}</p>
+                  <p class="help-block text-danger">{{ $message }}</p>
                 @enderror         
               </div>
             </div>
@@ -24,7 +24,9 @@
               <label class="col-form-label font-weight-bold" for="date">Date <span class="font-weight-bold">*</span></label>
               <div class="controls">
                 <input class="form-control" name="date" id="date" type="text"> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('date')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror  
               </div>
             </div>
           </div>
@@ -44,14 +46,16 @@
               <div class="controls">
                 <select class="form-control custom-select" name="customer" id="customer"></select>
                 <input class="form-control" name="newCustomer" id="newCustomer" type="hidden" disabled> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                <!-- <p class="help-block text-danger">Here's some help text</p> -->
               </div>
             </div>
             <div class="form-group col-md-6">
               <label class="col-form-label" for="custEmail">Customer Email</label>
               <div class="controls">
                 <input class="form-control" name="custEmail" id="custEmail" type="email"> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('custEmail')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
           </div>
@@ -61,14 +65,18 @@
               <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
               <div class="controls">
                 <textarea class="form-control" name="address" id="address" rows="3"></textarea>
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('address')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>  
             <div class="form-group col-md-6">
               <label class="col-form-label" for="callStatus">Status of Call</label>
               <div class="controls">
                 <textarea class="form-control" name="callStatus" id="callStatus" rows="3"></textarea>
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('callStatus')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>    
           </div>
@@ -78,14 +86,16 @@
               <label class="col-form-label" for="engineerId">Service Engineer Name <span class="font-weight-bold">*</span></label>
               <div class="controls">
                 <select class="form-control custom-select" name="engineerId" id="engineerId"></select>
-                <!-- <p class="help-block">Here's some help text</p> -->
+                <!-- <p class="help-block text-danger">Here's some help text</p> -->
               </div>
             </div>
             <div class="form-group col-md-6">
               <label class="col-form-label" for="ticketReference">Ticket No. Reference</label>
               <div class="controls">
                 <input class="form-control" name="ticketReference" id="ticketReference" type="text"> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('ticketReference')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
           </div>
@@ -108,9 +118,8 @@
               <div class="controls">
                 <textarea class="form-control" name="serviceRendered" id="serviceRendered"></textarea>
                 @error('serviceRendered')
-                  <p class="help-block">{{ $message }}</p>
+                  <p class="help-block text-danger">{{ $message }}</p>
                 @enderror
-                <!-- <p class="help-block">Here's some help text</p> -->
               </div>
             </div>    
           </div>
@@ -120,14 +129,18 @@
               <label class="col-form-label" for="engineerRemark">Engineer's Remarks</label>
               <div class="controls">
                 <textarea class="form-control" name="engineerRemark" id="engineerRemark" rows="3"></textarea>
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('engineerRemark')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>  
             <div class="form-group col-md-6">
               <label class="col-form-label" for="statusAfterService">Status after Service</label>
               <div class="controls">
                 <textarea class="form-control" name="statusAfterService" id="statusAfterService" rows="3"></textarea>
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('statusAfterService')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>    
           </div>
@@ -137,21 +150,27 @@
               <label class="col-form-label" for="serviceStart">Start of Service</label>
               <div class="controls">
                 <input class="form-control" name="serviceStart" id="serviceStart" type="text"> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('serviceStart')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
             <div class="form-group col-md-4">
               <label class="col-form-label" for="serviceEnd">End of Service</label>
               <div class="controls">
                 <input class="form-control" name="serviceEnd" id="serviceEnd" type="text"> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('serviceEnd')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
             <div class="form-group col-md-4">
               <label class="col-form-label" for="usedItCredit">IT Credit Used</label>
               <div class="controls">
                 <input class="form-control" placeholder="Not Applicable (NA)" name="usedItCredit" id="usedItCredit" data-decimals="1" min="0" max="1000" step="0.5" type="number"> 
-                <!-- <p class="help-block">Here's some help text</p> -->
+                @error('usedItCredit')
+                  <p class="help-block text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
           </div>
@@ -172,8 +191,7 @@
     </div>
   </div>
 
-  </form>
-  
+</form>
 @stop
 
 @push('stylesheet')
@@ -329,20 +347,20 @@
         $('#newCustomer').prop('disabled', !this.checked);
       });
 
-      $('#usedItCredit').change(function() {
-        console.log($(this).val());
-        console.log($(this).val() == 0);
-        if ($(this).val() == 0) {
-          $(this).next().find('input').removeAttr('value');
-          // $('#usedItCredit').css('display', 'block');
-        }
-      });
+      // $('#usedItCredit').change(function() {
+      //   console.log($(this).val());
+      //   console.log($(this).val() == 0);
+      //   if ($(this).val() == 0) {
+      //     $(this).next().find('input').removeAttr('value');
+      //     // $('#usedItCredit').css('display', 'block');
+      //   }
+      // });
 
-      $( "#serviceReportForm" ).submit(function( event ) {
-        // alert( "Handler for .submit() called." );
-        // console.log($('#engineerId').val());
-        // event.preventDefault();     
-      });
+      // $( "#serviceReportForm" ).submit(function( event ) {
+      //   // alert( "Handler for .submit() called." );
+      //   // console.log($('#engineerId').val());
+      //   // event.preventDefault();     
+      // });
     });
   </script>
 @endpush
