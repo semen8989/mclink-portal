@@ -43,10 +43,10 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the service report that owns the user.
+     * Get the service reports that owns the user.
      */
-    public function servicereport()
+    public function servicereports()
     {
-        return $this->hasOne(ServiceReport::class);
+        return $this->hasMany(ServiceReport::class);
     }
 }

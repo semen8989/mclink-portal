@@ -12,10 +12,10 @@ class Customer extends Model
     use HasFactory, SoftDeletes;
 
     /**
-     * Get the service report that owns the customer.
+     * Get the service reports that owns the customer.
      */
-    public function servicereport()
+    public function servicereports()
     {
-        return $this->hasOne(ServiceReport::class);
+        return $this->hasMany(ServiceReport::class);
     }
 }
