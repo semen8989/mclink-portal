@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('auth');
-
 Route::middleware(['auth'])->group(function () {
+    // Dashboard Route
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
     // Service Form Routes
     Route::prefix('service-forms')->group(function () {

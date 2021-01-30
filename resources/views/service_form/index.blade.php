@@ -1,0 +1,1 @@
+<a href="{{ route('service.form.create') }}">Go to create page</a>
