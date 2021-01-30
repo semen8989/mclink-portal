@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreServiceFormRequest;
-use App\Mail\ServiceAcknowledgmentSent;
-use App\Models\Customer;
-use App\Models\ServiceReport;
 use Carbon\Carbon;
+use App\Models\Customer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\ServiceFormSent;
+use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use App\Mail\ServiceAcknowledgmentSent;
+use App\Http\Requests\StoreServiceFormRequest;
 
 class ServiceFormController extends Controller
 {
@@ -93,7 +94,7 @@ class ServiceFormController extends Controller
         });
 
         if ($request->action == 'send' && $request->custEmail) {
-            Mail::to($request->custEmail)->send(new ServiceAcknowledgmentSent($serviceReport));
+            Mail::to($request->custEmail)->queue(new ServiceFormSent($serviceReport));
         }
     }
 

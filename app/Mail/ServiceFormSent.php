@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ServiceAcknowledgmentSent extends Mailable
+class ServiceFormSent extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -36,6 +36,7 @@ class ServiceAcknowledgmentSent extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.service_form.sent');
+        return $this->markdown('emails.service_form.sent')
+            ->subject('Service Form Acknowledgment | ' . config('app.name'));
     }
 }
