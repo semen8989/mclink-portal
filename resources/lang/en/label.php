@@ -227,5 +227,7 @@ return [
     'assigned_to_me' => 'Assigned To Me',
     'assigned_to_you_by' => 'Assigned to you by',
     'valid_until' => 'Valid until',
-    'assigned_by' => 'Assigned by'
+    'assigned_by' => 'Assigned by',
+    'success' => 'Success',
+    'error' => 'Error'
 ];
