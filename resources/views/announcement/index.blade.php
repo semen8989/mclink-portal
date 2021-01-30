@@ -19,7 +19,17 @@
             </tr>
         </thead>
         <tbody>
-            
+            @foreach ($announcements as $item)
+                <tr>
+                    <td>---</td>
+                    <td>{{ $item->title }}</td>
+                    <td></td>
+                    <td>{{ $item->summary }}</td>
+                    <td></td>
+                    <td>{{ $item->start_date }}</td>
+                    <td>{{ $item->end_date }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

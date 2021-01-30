@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAnnouncementRequest;
+use App\Models\Announcement;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return view('announcement.index');
+        $announcements = Announcement::all();
+        return view('announcement.index',compact('announcements'));
     }
 
     /**
@@ -37,7 +39,10 @@ class AnnouncementController extends Controller
      */
     public function store(StoreAnnouncementRequest $request)
     {
-        
+        Announcement::create($request->all());
+        //Redirect after success
+        return redirect()->route('announcement.index')->with('success', 'Announcement created successfully.');
+
     }
 
     public function fetch_department(Request $request){

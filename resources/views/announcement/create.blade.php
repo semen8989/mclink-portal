@@ -109,7 +109,9 @@
 <script>
     $(document).ready(function (){
         //Datepicker
-        $('.date').datepicker();
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd'
+        });
         //Dynamic Company Dropdown
         $('.dynamic').change(function(){
             var value = $(this).val();
