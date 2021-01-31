@@ -56,7 +56,7 @@ class ServiceFormController extends Controller
 
     public function store(StoreServiceFormRequest  $request)
     {
-        $validated = $request->validated();
+        $request->validated();
 
         $serviceReport = new ServiceReport;
     
@@ -96,12 +96,12 @@ class ServiceFormController extends Controller
         if ($request->action == 'send' && $request->custEmail) {
             Mail::to($request->custEmail)->queue(new ServiceFormSent($serviceReport));
         }
+
+        return redirect()->route('service.form.index')->withInput();
     }
 
-    public function getAcknowledgmentForm($uuid)
+    public function getAcknowledgmentForm(ServiceReport $uuid)
     {   
-        ServiceReport::findOrFail($uuid);
-        
         return view('service_form.acknowledgement.create', []);
     }
 }
