@@ -4,11 +4,17 @@
             <div class="c-body">
                 <main class="c-main">
                     <div class="container-fluid">
-                        <div class="fade-in">   
-                            @include('layout.flash')        
-                            <!-- Content -->
-                            @yield('content')
-                            <!--./ Content -->                                   
+                        <div class="fade-in">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @include('layout.flash')
+                                    <div class="card">
+                                        <!-- Content -->
+                                        @yield('content')
+                                        <!--./ Content -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </main>

@@ -3,192 +3,174 @@
 @section('content')
 <form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
   @csrf
-  <!-- /.row-->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <h5 class="card-header font-weight-bold text-center">CUSTOMER SERVICE REPORT</h5>
-        <div class="card-body">
-        
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label class="col-form-label font-weight-bold" for="csrNo">CSR No. <span class="font-weight-bold">*</span></label>
-              <div class="controls">
-                <input class="form-control" name="csrNo" id="csrNo" type="text" value="{{ old('csrNo', $csrNo) }}">
-                @error('csrNo')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror         
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label class="col-form-label font-weight-bold" for="date">Date <span class="font-weight-bold">*</span></label>
-              <div class="controls">
-                <input class="form-control" name="date" id="date" type="text" value="{{ old('date') }}"> 
-                @error('date')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror  
-              </div>
-            </div>
-          </div>
-      
-          <div class="form-row">
-            <div class="form-group col-md-12">       
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="isNewCustomer"  id="isNewCustomer" value="true" @if (old('isNewCustomer')) checked @endif>
-                <label class="custom-control-label" for="isNewCustomer">Add new customer</label>
-              </div>              
-            </div>
-          </div>
 
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label class="col-form-label font-weight-bold" for="customer">Customer Name <span class="font-weight-bold">*</span></label>
-              <div class="controls">
-                <select class="form-control custom-select" name="customer" id="customer"></select>
-                <input class="form-control" name="newCustomer" id="newCustomer" type="hidden" value="{{ old('newCustomer') }}" disabled> 
-                <!-- <p class="help-block text-danger">Here's some help text</p> -->
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label class="col-form-label" for="custEmail">Customer Email</label>
-              <div class="controls">
-                <input class="form-control" name="custEmail" id="custEmail" type="email" value="{{ old('custEmail') }}"> 
-                @error('custEmail')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
-              <div class="controls">
-                <textarea class="form-control" name="address" id="address" rows="3">{{ old('address') }}</textarea>
-                @error('address')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>  
-            <div class="form-group col-md-6">
-              <label class="col-form-label" for="callStatus">Status of Call</label>
-              <div class="controls">
-                <textarea class="form-control" name="callStatus" id="callStatus" rows="3">{{ old('callStatus') }}</textarea>
-                @error('callStatus')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>    
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label class="col-form-label" for="engineerId">Service Engineer Name <span class="font-weight-bold">*</span></label>
-              <div class="controls">
-                <select class="form-control custom-select" name="engineerId" id="engineerId"></select>
-                <!-- <p class="help-block text-danger">Here's some help text</p> -->
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label class="col-form-label" for="ticketReference">Ticket No. Reference</label>
-              <div class="controls">
-                <input class="form-control" name="ticketReference" id="ticketReference" type="text" value="{{ old('ticketReference') }}"> 
-                @error('ticketReference')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+  <h5 class="card-header font-weight-bold text-center">CUSTOMER SERVICE REPORT</h5>
+  <div class="card-body">
   
-  <!-- /.row-->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <h5 class="card-header font-weight-bold text-center">SERVICE DETAILS</h5>
-        <div class="card-body">
-
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <label class="col-form-label" for="serviceRendered">Service Rendered <span class="font-weight-bold">*</span></label>
-              <div class="controls">
-                <textarea class="form-control" name="serviceRendered" id="serviceRendered">{{ old('serviceRendered') }}</textarea>
-                @error('serviceRendered')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>    
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label class="col-form-label" for="engineerRemark">Engineer's Remarks</label>
-              <div class="controls">
-                <textarea class="form-control" name="engineerRemark" id="engineerRemark" rows="3">{{ old('engineerRemark') }}</textarea>
-                @error('engineerRemark')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>  
-            <div class="form-group col-md-6">
-              <label class="col-form-label" for="statusAfterService">Status after Service</label>
-              <div class="controls">
-                <textarea class="form-control" name="statusAfterService" id="statusAfterService" rows="3">{{ old('statusAfterService') }}</textarea>
-                @error('statusAfterService')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>    
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label class="col-form-label" for="serviceStart">Start of Service</label>
-              <div class="controls">
-                <input class="form-control" name="serviceStart" id="serviceStart" type="text" value="{{ old('serviceStart') }}"> 
-                @error('serviceStart')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>
-            <div class="form-group col-md-4">
-              <label class="col-form-label" for="serviceEnd">End of Service</label>
-              <div class="controls">
-                <input class="form-control" name="serviceEnd" id="serviceEnd" type="text" value="{{ old('serviceEnd') }}"> 
-                @error('serviceEnd')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>
-            <div class="form-group col-md-4">
-              <label class="col-form-label" for="usedItCredit">IT Credit Used</label>
-              <div class="controls">
-                <input class="form-control" placeholder="Not Applicable (NA)" name="usedItCredit" id="usedItCredit" data-decimals="1" min="0" max="1000" step="0.5" type="number" value="{{ old('usedItCredit') }}"> 
-                @error('usedItCredit')
-                  <p class="help-block text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-            </div>
-          </div>
-
-          <div class="btn-group float-right">
-            <button class="btn btn-success" name="action" value="send" type="submit">Send</button>
-            <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu">
-              <button class="dropdown-item" name="action" value="save" type="submit">Save</button>
-              <button class="dropdown-item" name="action" value="draft" type="submit">Save as Draft</button>
-            </div>
-          </div>
-
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-form-label font-weight-bold" for="csrNo">CSR No. <span class="font-weight-bold">*</span></label>
+        <div class="controls">
+          <input class="form-control" name="csrNo" id="csrNo" type="text" value="{{ old('csrNo', $csrNo) }}">
+          @error('csrNo')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror         
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label class="col-form-label font-weight-bold" for="date">Date <span class="font-weight-bold">*</span></label>
+        <div class="controls">
+          <input class="form-control" name="date" id="date" type="text" value="{{ old('date') }}"> 
+          @error('date')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror  
         </div>
       </div>
     </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">       
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" name="isNewCustomer"  id="isNewCustomer" value="true" @if (old('isNewCustomer')) checked @endif>
+          <label class="custom-control-label" for="isNewCustomer">Add new customer</label>
+        </div>              
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-form-label font-weight-bold" for="customer">Customer Name <span class="font-weight-bold">*</span></label>
+        <div class="controls">
+          <select class="form-control custom-select" name="customer" id="customer"></select>
+          <input class="form-control" name="newCustomer" id="newCustomer" type="hidden" value="{{ old('newCustomer') }}" disabled> 
+          <!-- <p class="help-block text-danger">Here's some help text</p> -->
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label class="col-form-label" for="custEmail">Customer Email</label>
+        <div class="controls">
+          <input class="form-control" name="custEmail" id="custEmail" type="email" value="{{ old('custEmail') }}"> 
+          @error('custEmail')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
+        <div class="controls">
+          <textarea class="form-control" name="address" id="address" rows="3">{{ old('address') }}</textarea>
+          @error('address')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>  
+      <div class="form-group col-md-6">
+        <label class="col-form-label" for="callStatus">Status of Call</label>
+        <div class="controls">
+          <textarea class="form-control" name="callStatus" id="callStatus" rows="3">{{ old('callStatus') }}</textarea>
+          @error('callStatus')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>    
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-form-label" for="engineerId">Service Engineer Name <span class="font-weight-bold">*</span></label>
+        <div class="controls">
+          <select class="form-control custom-select" name="engineerId" id="engineerId"></select>
+          <!-- <p class="help-block text-danger">Here's some help text</p> -->
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label class="col-form-label" for="ticketReference">Ticket No. Reference</label>
+        <div class="controls">
+          <input class="form-control" name="ticketReference" id="ticketReference" type="text" value="{{ old('ticketReference') }}"> 
+          @error('ticketReference')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label class="col-form-label" for="serviceRendered">Service Rendered <span class="font-weight-bold">*</span></label>
+        <div class="controls">
+          <textarea class="form-control" name="serviceRendered" id="serviceRendered">{{ old('serviceRendered') }}</textarea>
+          @error('serviceRendered')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>    
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-form-label" for="engineerRemark">Engineer's Remarks</label>
+        <div class="controls">
+          <textarea class="form-control" name="engineerRemark" id="engineerRemark" rows="3">{{ old('engineerRemark') }}</textarea>
+          @error('engineerRemark')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>  
+      <div class="form-group col-md-6">
+        <label class="col-form-label" for="statusAfterService">Status after Service</label>
+        <div class="controls">
+          <textarea class="form-control" name="statusAfterService" id="statusAfterService" rows="3">{{ old('statusAfterService') }}</textarea>
+          @error('statusAfterService')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>    
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="col-form-label" for="serviceStart">Start of Service</label>
+        <div class="controls">
+          <input class="form-control" name="serviceStart" id="serviceStart" type="text" value="{{ old('serviceStart') }}"> 
+          @error('serviceStart')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label class="col-form-label" for="serviceEnd">End of Service</label>
+        <div class="controls">
+          <input class="form-control" name="serviceEnd" id="serviceEnd" type="text" value="{{ old('serviceEnd') }}"> 
+          @error('serviceEnd')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label class="col-form-label" for="usedItCredit">IT Credit Used</label>
+        <div class="controls">
+          <input class="form-control" placeholder="Not Applicable (NA)" name="usedItCredit" id="usedItCredit" data-decimals="1" min="0" max="1000" step="0.5" type="number" value="{{ old('usedItCredit') }}"> 
+          @error('usedItCredit')
+            <p class="help-block text-danger">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group float-right">
+      <button class="btn btn-success" name="action" value="send" type="submit">Send</button>
+      <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" name="action" value="save" type="submit">Save</button>
+        <button class="dropdown-item" name="action" value="draft" type="submit">Save as Draft</button>
+      </div>
+    </div>
+
   </div>
 
 </form>
