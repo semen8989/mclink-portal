@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="card-header">View Company Information</div>
-<form method="POST" action="{{ route('company.store') }}">
-    @csrf
+<form>
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">

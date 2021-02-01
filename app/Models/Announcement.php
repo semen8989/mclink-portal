@@ -19,11 +19,11 @@ class Announcement extends Model
         'summary'
     ];
 
-    public function companies(){
-        return $this->hasMany(Company::class);
+    public function company(){
+        return $this->belongsTo(Company::class);
     }
 
-    public function departments(){
-        return $this->hasMany(Department::class);
+    public function department(){
+        return $this->belongsTo(Department::class);
     }
 }

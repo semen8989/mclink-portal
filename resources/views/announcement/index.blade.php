@@ -19,15 +19,35 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($announcements as $item)
+            @foreach ($announcements as $announcement)
                 <tr>
-                    <td>---</td>
-                    <td>{{ $item->title }}</td>
-                    <td></td>
-                    <td>{{ $item->summary }}</td>
-                    <td></td>
-                    <td>{{ $item->start_date }}</td>
-                    <td>{{ $item->end_date }}</td>
+                    <td>
+                        <a href="{{ route('announcement.edit',$announcement->id) }}" class="btn btn-sm btn-warning" title="Update">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
+                            </svg>
+                        </a>
+                        <a href="{{ route('announcement.show',$announcement->id) }}" class="btn btn-sm btn-primary" title="View">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
+                            </svg>
+                        </a>
+                        <form action="{{ route('announcement.destroy', $announcement->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="Submit" class="btn btn-sm btn-danger" title="Delete">
+                                <svg class="c-icon">
+                                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                    <td>{{ $announcement->title }}</td>
+                    <td>{{ $announcement->company->company_name }}</td>
+                    <td>{{ $announcement->summary }}</td>
+                    <td>{{ $announcement->department->department_name }}</td>
+                    <td>{{ $announcement->start_date }}</td>
+                    <td>{{ $announcement->end_date }}</td>
                 </tr>
             @endforeach
         </tbody>

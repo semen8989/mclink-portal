@@ -65,7 +65,8 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        //
+        $announcement = Announcement::find($id);
+        return view('announcement.view',compact('announcement'));
     }
 
     /**
@@ -76,7 +77,9 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $announcement = Announcement::find($id);
+        $companies = Company::all();
+        return view('announcement.edit',compact('announcement','companies'));
     }
 
     /**
@@ -86,9 +89,11 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAnnouncementRequest $request, $id)
     {
-        //
+        Announcement::whereId($id)->update($request->except(['_token','_method']));
+
+        return redirect()->route('announcement.index')->with('success', 'Announcement updated successfully.');
     }
 
     /**
@@ -99,6 +104,9 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $announcement = Announcement::findOrFail($id);
+        $announcement->delete();
+
+        return redirect()->route('announcement.index')->with('success', 'Announcement deleted successfully.');
     }
 }
