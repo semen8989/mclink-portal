@@ -102,6 +102,6 @@ class ServiceFormController extends Controller
 
     public function getAcknowledgmentForm(ServiceReport $uuid)
     {   
-        return view('service_form.acknowledgement.create', []);
+        return view('service_form.acknowledgement.create', ['serviceReport' => $uuid]);
     }
 }
