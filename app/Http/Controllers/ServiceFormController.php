@@ -97,7 +97,7 @@ class ServiceFormController extends Controller
             Mail::to($request->custEmail)->queue(new ServiceFormSent($serviceReport));
         }
 
-        return redirect()->route('service.form.index')->withInput();
+        return redirect()->route('service.form.index')->with('success', 'Service report successfully sent');
     }
 
     public function getAcknowledgmentForm(ServiceReport $uuid)
