@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Add New Department</div>
+<div class="card-header">Update Department</div>
 <form method="POST" action="{{ route('department.update',$department->id) }}" novalidate>
     @csrf
     @method('PUT')
