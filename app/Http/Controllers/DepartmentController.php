@@ -18,12 +18,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = DB::table('department')
-                        ->join('users','department.user_id','=','users.id')
-                        ->join('company','department.company_id','=','company.id')
-                        ->select('department.*','company.company_name','users.name')
-                        ->latest()
-                        ->paginate(10);
+        $departments = Department::all();
 
         return view('department.index',compact('departments'));
     }

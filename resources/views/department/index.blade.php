@@ -31,8 +31,14 @@
                     </a>
                 </td>
                 <td>{{ $department->department_name }}</td>
-                <td>{{ $department->company_name }}</td>
-                <td>{{ $department->name }} </td>
+                <td>{{ $department->company->company_name }}</td>
+                <td>
+                    @if(!empty($department->user->name))
+                        {{ $department->user->name }}
+                    @else
+                        -----
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>

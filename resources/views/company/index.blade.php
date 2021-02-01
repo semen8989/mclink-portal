@@ -43,7 +43,7 @@
                 <td>{{ $company->website }}</td>
                 <td>{{ $company->city }}</td>
                 <td>{{ $company->country }}</td>
-                <td>{{ $company->name }}</td>
+                <td>{{ $company->user->name }}</td>
             </tr>
             @endforeach
         </tbody>

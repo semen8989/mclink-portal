@@ -16,12 +16,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = DB::table('company')
-                ->join('users','company.user_id','=','users.id')
-                ->select('company.*','users.name')
-                ->latest()
-                ->paginate(5);
-
+        $companies = Company::all();
         return view('company.index', compact('companies'));
     }
 
