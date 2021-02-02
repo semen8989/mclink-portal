@@ -11,3 +11,19 @@
 .guest-form-data {
     font-size: 14px;
 }
+
+#signatureImage {
+    border: 2px dotted #CCCCCC;
+    border-radius: 15px;
+    cursor: crosshair;
+}
+
+.canvas-container {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+#signatureImage {
+    height: 100% !important;
+    width: 100% !important;
+}
