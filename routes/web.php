@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServiceFormController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AcknowledgementFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Guest Routes
-Route::get('service-form/acknowledgement/{uuid}', [ServiceFormController::class, 'getAcknowledgmentForm'])->name('service.form.acknowledgment');
+
+// Service Form Routes
+Route::prefix('service-form/acknowledgement')->group(function () {
+    Route::get('/{uuid}/create', [AcknowledgementFormController::class, 'create'])->name('service.form.acknowledgment.create');
+    Route::post('/{uuid}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
+});
 
 Auth::routes(['register' => false]);
 
