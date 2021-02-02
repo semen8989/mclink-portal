@@ -77,12 +77,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="summary" class="control-label">Summary</label>
+                            <textarea class="form-control @error('summary') is-invalid @enderror" placeholder="Summary" name="summary" cols="30" rows="3"
+                                id="summary">{{ old('summary') }}</textarea>
+                            @error('summary')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control textarea" placeholder="Description" name="description" cols="8"
-                        rows="6" id="description" value="{{ old('description') }}"></textarea>
+                        rows="6" id="description">{{ old('description') }}</textarea>
                      @error('description')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -90,16 +104,6 @@
                     @enderror
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="summary">Summary</label>
-            <textarea class="form-control @error('summary') is-invalid @enderror" placeholder="Summary" name="summary" cols="30" rows="3"
-                id="summary" old="{{ old('summary') }}"></textarea>
-            @error('summary')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
     </div>
     <div class="card-footer text-right">
@@ -114,7 +118,7 @@
         });
         //Check if company has old selected value
         if($('#company_id').val()){
-            var value = $('#company_id').val()
+            var value = $('#company_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{ route('fetch_department') }}",
@@ -144,6 +148,22 @@
                 }
             })
         })
+        //TinyMCE
+        tinymce.init({
+            selector: 'textarea#description',
+            height: 400,
+            menubar: false,
+            plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
     })
     
 </script>

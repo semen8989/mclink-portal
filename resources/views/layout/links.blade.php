@@ -40,4 +40,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
     <script type="text/javascript" src="{{ asset('js/jquery/dist/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <!-- TinyMCE Editor -->
+    <script src="https://cdn.tiny.cloud/1/yo73cb5kgrrh9v4jlpa391ee0axje0ckqg66pan5n8ksemva/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   </head>

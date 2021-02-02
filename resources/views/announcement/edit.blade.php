@@ -5,7 +5,6 @@
 <form method="POST" action="{{ route('announcement.update',$announcement->id) }}">
     @csrf
     @method('PUT')
-    <input type="hidden" name="announcement_id" id="announcement_id" value="{{ $announcement->id }}">
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
@@ -79,6 +78,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="summary">Summary</label>
+                            <textarea class="form-control @error('summary') is-invalid @enderror" placeholder="Summary" name="summary" cols="30" rows="3"
+                                id="summary">{{ old('summary',$announcement->summary) }}</textarea>
+                            @error('summary')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -92,16 +105,6 @@
                     @enderror
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="summary">Summary</label>
-            <textarea class="form-control @error('summary') is-invalid @enderror" placeholder="Summary" name="summary" cols="30" rows="3"
-                id="summary">{{ old('summary',$announcement->summary) }}</textarea>
-            @error('summary')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
     </div>
     <div class="card-footer text-right">
@@ -147,6 +150,22 @@
                 }
             })
         })
+         //TinyMCE
+         tinymce.init({
+            selector: 'textarea#description',
+            height: 400,
+            menubar: false,
+            plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
     })
     
 </script>
