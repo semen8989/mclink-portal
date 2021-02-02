@@ -161,7 +161,7 @@
     </div>
 
     <div class="btn-group float-right">
-      <button class="btn btn-success" name="action" value="send" type="submit">Send</button>
+      <button class="btn btn-success" name="action" value="send" type="submit">Send to Customer</button>
       <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
