@@ -52,7 +52,7 @@
                                 data-placeholder="Company">
                                     <option value="" disabled selected>Select Company</option>
                                 @foreach ($companies as $company)
-                                    <option value="{{ $company->id }}" {{ old('company_id',$company->id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
+                                    <option value="{{ $company->id }}" {{ old('company_id',$announcement->company_id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                                 @endforeach
                             </select>
                             @error('company_id')
@@ -117,7 +117,6 @@
         $('.date').datepicker({
             format: 'yyyy-mm-dd'
         });
-        //Check if company has old selected value
         if($('#company_id').val()){
             var value = $('#company_id').val();
             var _token = $('input[name="_token"]').val();
@@ -128,15 +127,19 @@
                     value: value,
                     _token:_token
                 },
+                dataType: 'json',
                 success:function(result){
-                    $('#department_id').html(result);
+                    $('#department_id').empty();
+                    $('#department_id').append('<option selected disabled>Select Department</option>');
+                    $.each(result, function (key, value) {
+                        $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
+                    });
                 }
             })
         }
         //Dynamic Company Dropdown
         $('#company_id').change(function(){
             var value = $(this).val();
-            var announcement_id = $('#announcement_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{ route('fetch_department') }}",
@@ -145,8 +148,13 @@
                     value: value,
                     _token:_token
                 },
+                dataType: 'json',
                 success:function(result){
-                    $('#department_id').html(result);
+                    $('#department_id').empty();
+                    $('#department_id').append('<option selected disabled>Select Department</option>');
+                    $.each(result, function (key, value) {
+                        $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
+                    });
                 }
             })
         })

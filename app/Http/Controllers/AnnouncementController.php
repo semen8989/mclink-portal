@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAnnouncementRequest;
 use App\Models\Announcement;
 use App\Models\Company;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -49,12 +50,7 @@ class AnnouncementController extends Controller
     {
         $value = $request->get('value');
         $data = Company::find($value)->departments;
-        $output = '<option value="" disabled selected>Select Department</option>';
-        foreach($data as $row)
-        {
-            $output .= '<option value="'.$row->id.'">'.$row->department_name.'</option>';
-        }
-        echo $output;
+        echo json_encode($data);
     }
     /**
      * Display the specified resource.
@@ -76,7 +72,7 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        $announcement = Announcement::find($id);
+        $announcement = Announcement::findOrFail($id);
         $companies = Company::all();
         return view('announcement.edit',compact('announcement','companies'));
     }
