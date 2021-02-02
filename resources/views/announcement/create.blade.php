@@ -67,7 +67,7 @@
                         <div class="form-group" id="department_ajax">
                             <label for="department" class="control-label">Department</label>
                             <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
-                                <option value="{{ old('department_id') }}" disabled selected>Select Department</option>
+                                <option disabled selected>Select Department</option>
                             </select>
                             @error('department_id')
                                 <div class="invalid-feedback">
@@ -112,8 +112,24 @@
         $('.date').datepicker({
             format: 'yyyy-mm-dd'
         });
+        //Check if company has old selected value
+        if($('#company_id').val()){
+            var value = $('#company_id').val()
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{ route('fetch_department') }}",
+                method: "POST",
+                data: {
+                    value: value,
+                    _token:_token
+                },
+                success:function(result){
+                    $('#department_id').html(result);
+                }
+            })
+        }
         //Dynamic Company Dropdown
-        $('.dynamic').change(function(){
+        $('#company_id').change(function(){
             var value = $(this).val();
             var _token = $('input[name="_token"]').val();
             $.ajax({

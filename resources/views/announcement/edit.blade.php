@@ -5,6 +5,7 @@
 <form method="POST" action="{{ route('announcement.update',$announcement->id) }}">
     @csrf
     @method('PUT')
+    <input type="hidden" name="announcement_id" id="announcement_id" value="{{ $announcement->id }}">
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
@@ -113,9 +114,26 @@
         $('.date').datepicker({
             format: 'yyyy-mm-dd'
         });
+        //Check if company has old selected value
+        if($('#company_id').val()){
+            var value = $('#company_id').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{ route('fetch_department') }}",
+                method: "POST",
+                data: {
+                    value: value,
+                    _token:_token
+                },
+                success:function(result){
+                    $('#department_id').html(result);
+                }
+            })
+        }
         //Dynamic Company Dropdown
-        $('.dynamic').change(function(){
+        $('#company_id').change(function(){
             var value = $(this).val();
+            var announcement_id = $('#announcement_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{ route('fetch_department') }}",

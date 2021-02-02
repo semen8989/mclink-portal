@@ -45,18 +45,17 @@ class AnnouncementController extends Controller
 
     }
 
-    public function fetch_department(Request $request){
-        
+    public function fetch_department(Request $request)
+    {
         $value = $request->get('value');
         $data = Company::find($value)->departments;
-        $output = '<option value="" disabled selected>Select Company</option>';
+        $output = '<option value="" disabled selected>Select Department</option>';
         foreach($data as $row)
         {
             $output .= '<option value="'.$row->id.'">'.$row->department_name.'</option>';
         }
         echo $output;
     }
-
     /**
      * Display the specified resource.
      *
