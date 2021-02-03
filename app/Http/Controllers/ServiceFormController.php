@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Customer;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Mail\ServiceFormSent;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ServiceAcknowledgmentSent;
 use App\Http\Requests\StoreServiceFormRequest;
 
 class ServiceFormController extends Controller
