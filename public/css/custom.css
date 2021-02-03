@@ -1,9 +1,11 @@
+/* customized checkbox */
 .custom-control-label::before, 
 .custom-control-label::after {
     width: 1.15rem;
     height: 1.15rem;
 }
 
+/* acknowledgment form fields */
 .guest-form-label {
     font-size: 16px;
 }
@@ -16,14 +18,4 @@
     border: 2px dotted #CCCCCC;
     border-radius: 15px;
     cursor: crosshair;
-}
-
-.canvas-container {
-    height: 100% !important;
-    width: 100% !important;
-}
-
-#signatureImage {
-    height: 100% !important;
-    width: 100% !important;
 }

@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Customer Email</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->customer->email }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->customer->email ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Status of Call</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->call_status }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->call_status ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -49,41 +49,37 @@
                     </div>
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Ticket No. Reference</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->ticket_reference }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->ticket_reference ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <p class="guest-form-label font-weight-bold mb-1">Service Rendered</p>
-                        {{-- <textarea class="guest-form-data" id="serviceRendered" readonly="true" > --}}
-                            {{-- {{  }} --}}
-                            {!! $serviceReport->service_rendered !!}
-                            {{-- {{ strip_tags($serviceReport->service_rendered) }} --}}
-                      
+                        {!! $serviceReport->service_rendered !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Engineer's Remarks</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->engineer_remark }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->engineer_remark ?? 'N/A' }}</p>
                     </div>
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Status after Service</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->status_after_service }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->status_after_service ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <p class="guest-form-label font-weight-bold mb-1">Start of Service</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->service_start }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->service_start ?? 'N/A' }}</p>
                     </div>
                     <div class="col-md-4">
                         <p class="guest-form-label font-weight-bold mb-1">End of Service</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->service_end }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->service_end ?? 'N/A' }}</p>
                     </div>
                     <div class="col-md-4">
                         <p class="guest-form-label font-weight-bold mb-1">IT Credit Used</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->used_it_credit }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->used_it_credit ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <hr>
@@ -105,100 +101,111 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-4 offset-md-1">
-                        <label class="col-form-label font-weight-bold" for="signedCust">Name / Designation <span class="font-weight-bold">*</span></label>
-                        <div class="controls">
-                            <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" disabled>
-                            
-                            {{-- @error('csrNo')
-                            <p class="help-block text-danger">{{ $message }}</p>
-                            @enderror          --}}
-                        </div>
+                            <label class="col-form-label font-weight-bold" for="signedCust">Name / Designation <span class="font-weight-bold">*</span></label>
+                            <div class="controls">
+                                <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" disabled>
+                                
+                                {{-- @error('csrNo')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                                @enderror          --}}
+                            </div>
                         </div>
                         <div class="form-group col-md-4 offset-md-1">
-                        <label class="col-form-label font-weight-bold" for="signedDate">Date </label>
-                        <div class="controls">
-                            <input class="form-control" id="signedDate" type="text" readonly disabled> 
-                            {{-- @error('date')
-                            <p class="help-block text-danger">{{ $message }}</p>
-                            @enderror   --}}
-                        </div>
+                            <label class="col-form-label font-weight-bold" for="signedDate">Date </label>
+                            <div class="controls">
+                                <input class="form-control" id="signedDate" type="text" value="{{ $currentDate }}" readonly disabled>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-9 offset-md-1">
-                        <label class="col-form-label font-weight-bold" for="signatureImage">Signature <span class="font-weight-bold">*</span></label>
-                        <div class="controls canvas-container">
-                            <canvas id="signatureImage" name="signatureImage" style="display: none;"></canvas>
-                            <textarea id="signatureDataUrl" name="signatureDataUrl" class="form-control" rows="5" style="display: none;"></textarea>
-                            
-                            {{-- <div class="row">
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
-                                    <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
-                                </div>
-                            </div> --}}
-                            {{-- <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h1>E-Signature</h1>
-                                        <p>Sign in the canvas below and save your signature as an image!</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
+                            <label class="col-form-label font-weight-bold" for="signatureImage">Signature <span class="font-weight-bold">*</span></label>
+                            <div class="controls">
+                                <canvas id="signatureImage" name="signatureImage"></canvas>
+                                <textarea id="signatureDataUrl" name="signatureDataUrl" class="form-control" rows="5" style="display: none;"></textarea>
+                                {{-- <div class="row">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
                                         <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <textarea id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
+                                </div> --}}
+                                {{-- <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h1>E-Signature</h1>
+                                            <p>Sign in the canvas below and save your signature as an image!</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <img id="sig-image" src="" alt="Your signature will go here!"/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            
+                                        </div>
                                     </div>
-                                </div>
-                            </div> --}}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
+                                            <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img id="sig-image" src="" alt="Your signature will go here!"/>
+                                        </div>
+                                    </div>
+                                </div> --}}
 
-                            {{-- <div id="signature-pad" class="signature-pad">
-                                <div class="signature-pad--body">
-                                <canvas></canvas>
-                                </div>
-                                <div class="signature-pad--footer">
-                                <div class="description">Sign above</div>
-                            
-                                <div class="signature-pad--actions">
-                                    <div>
-                                    <button type="button" class="button clear" data-action="clear">Clear</button>
-                                    <button type="button" class="button" data-action="change-color">Change color</button>
-                                    <button type="button" class="button" data-action="undo">Undo</button>
-                            
+                                {{-- <div id="signature-pad" class="signature-pad">
+                                    <div class="signature-pad--body">
+                                    <canvas></canvas>
                                     </div>
-                                    <div>
-                                    <button type="button" class="button save" data-action="save-png">Save as PNG</button>
-                                    <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
-                                    <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+                                    <div class="signature-pad--footer">
+                                    <div class="description">Sign above</div>
+                                
+                                    <div class="signature-pad--actions">
+                                        <div>
+                                        <button type="button" class="button clear" data-action="clear">Clear</button>
+                                        <button type="button" class="button" data-action="change-color">Change color</button>
+                                        <button type="button" class="button" data-action="undo">Undo</button>
+                                
+                                        </div>
+                                        <div>
+                                        <button type="button" class="button save" data-action="save-png">Save as PNG</button>
+                                        <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
+                                        <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+                                        </div>
                                     </div>
-                                </div>
-                                </div>
-                            </div> --}}
-                            {{-- <input class="form-control" name="signatureImage" id="signatureImage" type="text" value="{{ old('signatureImage') }}" readonly disabled>  --}}
-                            {{-- @error('date')
-                            <p class="help-block text-danger">{{ $message }}</p>
-                            @enderror   --}}
-                        </div>
+                                    </div>
+                                </div> --}}
+                                {{-- <input class="form-control" name="signatureImage" id="signatureImage" type="text" value="{{ old('signatureImage') }}" readonly disabled>  --}}
+                                {{-- @error('date')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                                @enderror   --}}
+                            </div>
                         </div>
                     </div>
-                    <button type="submit">Submit</button>
+                    <div class="form-row">
+                        <div class="form-group col-md-9 offset-md-1">
+                            <button id="submitBtn" class="btn btn-success float-right" type="submit" disabled>Submit</button>
+                        </div>
+                    </div>
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
                 </form>
 
               </div>
@@ -229,7 +236,8 @@
     <!-- TinyMCE js dependency -->
     <script src="https://cdn.tiny.cloud/1/g3nqaa9be2i3wr7kdbzetf4y0iqrzwvbeia890tk3263yb08/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     
-    <script> 
+    <script>
+ 
         (function() {
             window.requestAnimFrame = (function(callback) {
                 return window.requestAnimationFrame ||
@@ -241,6 +249,13 @@
                     window.setTimeout(callback, 1000 / 60);
                 };
             })();
+
+            function fitToContainer(canvas) {
+                canvas.style.width='100%';
+                canvas.style.height='100%';
+                canvas.width  = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
 
             var canvas = document.getElementById("signatureImage");
             var ctx = canvas.getContext("2d");
@@ -254,13 +269,6 @@
                 y: 0
             };
             var lastPos = mousePos;
-
-            function fitToContainer(canvas) {
-                canvas.style.width='100%';
-                canvas.style.height='100%';
-                canvas.width  = canvas.offsetWidth;
-                canvas.height = canvas.offsetHeight;
-            }
 
             canvas.addEventListener("mousedown", function(e) {
                 drawing = true;
@@ -344,44 +352,20 @@
             (function drawLoop() {
                 requestAnimFrame(drawLoop);
                 renderCanvas();
-            })();
+            })();     
 
             $('#acknowledgementForm').submit(function(e) {
-                var sigText = $('#signatureDataUrl');
-                sigText.innerHTML = canvas.toDataURL();
-            });
+                var sigData = $('#signatureDataUrl');
+                sigData.val(canvas.toDataURL());
+            }); 
 
             $('#isAcknowledged').change(function() {
-                // if (this.checked) {
-                //     $('#signedCust').prop('');
-                //     $('#custEmail').val('');
-                //     $('#address').val('');
-                // }
-
-                // $('#customer').next().css('display',  this.checked ? 'none' : 'block');
-                // $('#newCustomer').attr('type', this.checked ? 'text' : 'hidden');
-
-
-                $('#signatureImage').css('display', this.checked ? 'block' : 'none');
                 $('#signedCust').prop('disabled', !this.checked);
-            });
-
-            
-            // $('#signatureImage').prop('disabled', true);
-            console.log($('#signatureImage'));
-            // Set up the UI
-            // var sigText = document.getElementById("sig-dataUrl");
-            // var sigImage = document.getElementById("sig-image");
-            // var clearBtn = document.getElementById("sig-clearBtn");
-            // var submitBtn = document.getElementById("sig-submitBtn");
-            // submitBtn.addEventListener("click", function(e) {
-            //     var dataUrl = canvas.toDataURL();
-            //     sigText.innerHTML = dataUrl;
-            //     sigImage.setAttribute("src", dataUrl);
-            // }, false);
-            
+                $('#submitBtn').prop('disabled', !this.checked);
+                // $('#signatureImage').css('display', this.checked ? 'block' : 'none');
+            });    
         })();
-        
+
         // var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         //     backgroundColor: 'rgba(255, 255, 255, 0)',
         //     penColor: 'rgb(0, 0, 0)'
