@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Models\ServiceReport;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\AcknowledgmentFormSubmitted;
 use App\Http\Requests\StoreAcknowledgmentFormRequest;
 
 class AcknowledgementFormController extends Controller
@@ -25,16 +26,22 @@ class AcknowledgementFormController extends Controller
 
     public function store(StoreAcknowledgmentFormRequest $request, ServiceReport  $uuid)
     {
-	    $image_parts = explode(";base64,", $request->signatureDataUrl);        
+        $validated = $request->validated();
+
+	    $image_parts = explode(";base64,", $validated['signatureDataUrl']);        
 	    $image_type_aux = explode("image/", $image_parts[0]);
 	    $image_type = $image_type_aux[1];
 	    $image_base64 = base64_decode($image_parts[1]);    
         $file = uniqid() . '.'.$image_type;
 
-        // $request->signatureDataUrl = $image_base64;
-
         Storage::put('service_report\signature\\' . $file, $image_base64);
-      
-        $request->validated();
+
+        $uuid->signature_image = $file;
+        $uuid->signed_customer = $validated['signedCust'];
+        $uuid->signed_date = Carbon::now();
+
+        if ($uuid->save()) {
+            Mail::to($uuid->user->email)->queue(new AcknowledgmentFormSubmitted($uuid));
+        }
     }
 }
