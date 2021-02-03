@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\ServiceReport;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreAcknowledgmentFormRequest;
 
 class AcknowledgementFormController extends Controller
 {
@@ -14,53 +17,24 @@ class AcknowledgementFormController extends Controller
      */
     public function create(ServiceReport $uuid)
     {
-        return view('service_form.acknowledgement.create', ['serviceReport' => $uuid]);
+        return view('service_form.acknowledgement.create', [
+            'serviceReport' => $uuid,
+            'currentDate' => Carbon::now()->format('d-m-Y')
+        ]);
     }
 
-    public function store(Request $request, ServiceReport  $uuid)
+    public function store(StoreAcknowledgmentFormRequest $request, ServiceReport  $uuid)
     {
-        dd($request->input());
-        // $request->validated();
+	    $image_parts = explode(";base64,", $request->signatureDataUrl);        
+	    $image_type_aux = explode("image/", $image_parts[0]);
+	    $image_type = $image_type_aux[1];
+	    $image_base64 = base64_decode($image_parts[1]);    
+        $file = uniqid() . '.'.$image_type;
 
-        // $serviceReport = new ServiceReport;
-    
-        // $serviceReport->id = Str::uuid();
-        // $serviceReport->csr_no = $request->csrNo;
-        // $serviceReport->date = $request->date;
-        // $serviceReport->ticket_reference = $request->ticketReference;
-        // $serviceReport->call_status = $request->callStatus;
-        // $serviceReport->engineer_remark = $request->engineerRemark;
-        // $serviceReport->status_after_service = $request->statusAfterService;
-        // $serviceReport->service_rendered = $request->serviceRendered;
-        // $serviceReport->service_start = $request->serviceStart;
-        // $serviceReport->service_end = $request->serviceEnd;
-        // $serviceReport->used_it_credit = $request->usedItCredit;    
-        // $serviceReport->engineer_id = $request->engineerId;
-        // $serviceReport->current_user_id = auth()->user()->id;
-        // $serviceReport->status = ServiceReport::STATUS[$request->action];
+        // $request->signatureDataUrl = $image_base64;
 
-        // if ($request->isNewCustomer) {
-        //     $customer = new Customer;
-        //     $customer->name = $request->newCustomer;
-        // } else {
-        //     $customer = Customer::find($request->customer);
-        // }
-    
-        // $customer->email = $request->custEmail;
-        // $customer->address = $request->address;
-
-        // DB::transaction(function () use ($serviceReport, $customer) {
-        //     $customer->save();
-            
-        //     $serviceReport->customer()->associate($customer);
-                  
-        //     $serviceReport->save();
-        // });
-
-        // if ($request->action == 'send' && $request->custEmail) {
-        //     Mail::to($request->custEmail)->queue(new ServiceFormSent($serviceReport));
-        // }
-
-        // return redirect()->route('service.form.index')->with('success', 'Service report successfully sent');
+        Storage::put('service_report\signature\\' . $file, $image_base64);
+      
+        $request->validated();
     }
 }
