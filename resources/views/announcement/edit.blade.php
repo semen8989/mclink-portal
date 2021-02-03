@@ -67,8 +67,10 @@
                     <div class="col-md-12">
                         <div class="form-group" id="department_ajax">
                             <label for="department" class="control-label">Department</label>
-                            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
+                            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id"
+                                data-selected-department="{{ old('department_id') }}">
                                 <option disabled selected>Select Department</option>
+
                             </select>
                             @error('department_id')
                                 <div class="invalid-feedback">
@@ -117,7 +119,10 @@
         $('.date').datepicker({
             format: 'yyyy-mm-dd'
         });
-        if($('#company_id').val()){
+        //Call on load
+        department_dropdown();
+        //Dynamic Company Dropdown
+        $('#company_id').change(function(){
             var value = $('#company_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -136,10 +141,10 @@
                     });
                 }
             })
-        }
-        //Dynamic Company Dropdown
-        $('#company_id').change(function(){
-            var value = $(this).val();
+        })
+        //Function
+        function department_dropdown(){
+            var value = $('#company_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{ route('fetch_department') }}",
@@ -155,9 +160,17 @@
                     $.each(result, function (key, value) {
                         $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
                     });
+                    var department_selected = $("#department_id").attr("data-selected-department");
+                    var current_company = '{{ $announcement->company_id }}';
+                    var current_department = '{{ $announcement->department_id }}';
+                    if(department_selected !== ''){                    
+                        $("#department_id").val(department_selected);
+                    }else{
+                        $("#department_id").val(current_department);
+                    }
                 }
             })
-        })
+        }
          //TinyMCE
          tinymce.init({
             selector: 'textarea#description',

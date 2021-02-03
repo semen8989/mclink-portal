@@ -66,7 +66,8 @@
                     <div class="col-md-12">
                         <div class="form-group" id="department_ajax">
                             <label for="department" class="control-label">Department</label>
-                            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
+                            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id"
+                                data-selected-department="{{ old('department_id') }}">
                                 <option disabled selected>Select Department</option>
                             </select>
                             @error('department_id')
@@ -116,8 +117,10 @@
         $('.date').datepicker({
             format: 'yyyy-mm-dd'
         });
-        //Check if company has old selected value
-        if($('#company_id').val()){
+        //Call function on load
+        department_dropdown();
+        //Dynamic Company Dropdown
+        $('#company_id').change(function(){
             var value = $('#company_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -127,14 +130,19 @@
                     value: value,
                     _token:_token
                 },
+                dataType: 'json',
                 success:function(result){
-                    $('#department_id').html(result);
+                    $('#department_id').empty();
+                    $('#department_id').append('<option selected disabled>Select Department</option>');
+                    $.each(result, function (key, value) {
+                        $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
+                    });
                 }
             })
-        }
-        //Dynamic Company Dropdown
-        $('#company_id').change(function(){
-            var value = $(this).val();
+        })
+        //Function
+        function department_dropdown(){
+            var value = $('#company_id').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{ route('fetch_department') }}",
@@ -143,11 +151,20 @@
                     value: value,
                     _token:_token
                 },
+                dataType: 'json',
                 success:function(result){
-                    $('#department_id').html(result);
+                    $('#department_id').empty();
+                    $('#department_id').append('<option selected disabled>Select Department</option>');
+                    $.each(result, function (key, value) {
+                        $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
+                    });
+                    var department_selected = $("#department_id").attr("data-selected-department");
+                    if(department_selected !== ''){                    
+                        $("#department_id").val(department_selected);
+                    }
                 }
             })
-        })
+        }
         //TinyMCE
         tinymce.init({
             selector: 'textarea#description',
