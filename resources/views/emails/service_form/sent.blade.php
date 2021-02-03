@@ -1,9 +1,9 @@
 @component('mail::message')
-# Hi {{ $serviceReport->user->name }},
+# Hi {{ $serviceReport->customer->name }},
 
-Follow the link to sign the acknowledgment form.
+Click the button to sign the acknowledgment form.
 
-@component('mail::button', ['url' => route('service.form.acknowledgment', ['uuid' => $serviceReport->id])])
+@component('mail::button', ['url' => route('service.form.acknowledgment.create', ['uuid' => $serviceReport->id])])
 View Details and Sign
 @endcomponent
 
