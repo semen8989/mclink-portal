@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Imageable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAcknowledgmentFormRequest extends FormRequest
@@ -26,7 +27,7 @@ class StoreAcknowledgmentFormRequest extends FormRequest
         return [
             'isAcknowledged' => 'bail|required|accepted',
             'signedCust' => 'bail|required',
-            'signatureDataUrl' => 'bail|required|image',
+            'signatureDataUrl' => ['bail', 'required', new Imageable],
         ];
     }
 }
