@@ -14,7 +14,7 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('department')->delete();
+        DB::table('departments')->delete();
         $departments = [
             [
                 'id' => 1, 
@@ -66,6 +66,6 @@ class DepartmentSeeder extends Seeder
             ],
 
         ];
-        DB::table('department')->insert($departments);
+        DB::table('departments')->insert($departments);
     }
 }

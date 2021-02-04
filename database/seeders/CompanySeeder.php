@@ -14,7 +14,7 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('company')->delete();
+        DB::table('companies')->delete();
         $companies = [
             [
                 'id' => 1, 
@@ -97,6 +97,6 @@ class CompanySeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ]
         ];
-        DB::table('company')->insert($companies);
+        DB::table('companies')->insert($companies);
     }
 }

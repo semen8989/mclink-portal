@@ -14,7 +14,7 @@ class AnnouncementSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('announcement')->delete();
+        DB::table('announcements')->delete();
         $announcement = [
             [
                 'title' => 'Sample announcement',
@@ -28,7 +28,7 @@ class AnnouncementSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ]
         ];
-        DB::table('announcement')->insert($announcement);
+        DB::table('announcements')->insert($announcement);
 
     }
 }
