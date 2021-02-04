@@ -19,9 +19,10 @@ class AcknowledgementFormController extends Controller
      */
     public function create(ServiceReport $serviceReport)
     {
+        // dd($serviceReport);
         return view('service_form.acknowledgement.create', [
             'serviceReport' => $serviceReport,
-            'currentDate' => Carbon::now()->format('d-m-Y')
+            'currentDate' => Carbon::now()->format('d/m/Y')
         ]);
     }
 

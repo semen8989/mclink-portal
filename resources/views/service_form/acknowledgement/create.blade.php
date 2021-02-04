@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
           <div class="my-4">
-            <h2 class="text-center">MPS Services Pte Ltd</h2>
+            <h2 class="text-center">MPS Solutions</h2>
           </div>
           <div class="card-group">
             <div class="card">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Date</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->date }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->date->format('d/m/Y') }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -33,13 +33,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <p class="guest-form-label font-weight-bold mb-1">Address</p>
                         <p class="guest-form-data mb-4">{{ $serviceReport->customer->address }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="guest-form-label font-weight-bold mb-1">Status of Call</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->call_status ?? 'N/A' }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -69,15 +65,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">Start of Service</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->service_start ?? 'N/A' }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->service_start ? $serviceReport->service_start->format('d/m/Y h:i:s A') : 'N/A' }}</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">End of Service</p>
-                        <p class="guest-form-data mb-4">{{ $serviceReport->service_end ?? 'N/A' }}</p>
+                        <p class="guest-form-data mb-4">{{ $serviceReport->service_end ? $serviceReport->service_end->format('d/m/Y h:i:s A') : 'N/A' }}</p>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <p class="guest-form-label font-weight-bold mb-1">IT Credit Used</p>
                         <p class="guest-form-data mb-4">{{ $serviceReport->used_it_credit ?? 'N/A' }}</p>
                     </div>
@@ -103,11 +101,10 @@
                         <div class="form-group col-md-4 offset-md-1">
                             <label class="col-form-label font-weight-bold" for="signedCust">Name / Designation <span class="font-weight-bold">*</span></label>
                             <div class="controls">
-                                <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" disabled>
-                                
-                                {{-- @error('csrNo')
-                                <p class="help-block text-danger">{{ $message }}</p>
-                                @enderror          --}}
+                                <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" disabled>                   
+                                @error('signedCust')
+                                    <p class="help-block text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group col-md-4 offset-md-1">
@@ -123,70 +120,9 @@
                             <div class="controls">
                                 <canvas id="signatureImage" name="signatureImage"></canvas>
                                 <textarea id="signatureDataUrl" name="signatureDataUrl" class="form-control" rows="5" style="display: none;"></textarea>
-                                {{-- <div class="row">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
-                                        <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h1>E-Signature</h1>
-                                            <p>Sign in the canvas below and save your signature as an image!</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
-                                            <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <textarea id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <img id="sig-image" src="" alt="Your signature will go here!"/>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- <div id="signature-pad" class="signature-pad">
-                                    <div class="signature-pad--body">
-                                    <canvas></canvas>
-                                    </div>
-                                    <div class="signature-pad--footer">
-                                    <div class="description">Sign above</div>
-                                
-                                    <div class="signature-pad--actions">
-                                        <div>
-                                        <button type="button" class="button clear" data-action="clear">Clear</button>
-                                        <button type="button" class="button" data-action="change-color">Change color</button>
-                                        <button type="button" class="button" data-action="undo">Undo</button>
-                                
-                                        </div>
-                                        <div>
-                                        <button type="button" class="button save" data-action="save-png">Save as PNG</button>
-                                        <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
-                                        <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div> --}}
-                                {{-- <input class="form-control" name="signatureImage" id="signatureImage" type="text" value="{{ old('signatureImage') }}" readonly disabled>  --}}
-                                {{-- @error('date')
-                                <p class="help-block text-danger">{{ $message }}</p>
-                                @enderror   --}}
+                                @error('signatureDataUrl')
+                                    <p class="help-block text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -195,16 +131,6 @@
                             <button id="submitBtn" class="btn btn-success float-right" type="submit" disabled>Submit</button>
                         </div>
                     </div>
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     
                 </form>
 

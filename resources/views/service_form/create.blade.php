@@ -58,24 +58,15 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
         <div class="controls">
-          <textarea class="form-control" name="address" id="address" rows="3">{{ old('address') }}</textarea>
+          <textarea class="form-control" name="address" id="address" rows="5">{{ old('address') }}</textarea>
           @error('address')
             <p class="help-block text-danger">{{ $message }}</p>
           @enderror
         </div>
-      </div>  
-      <div class="form-group col-md-6">
-        <label class="col-form-label" for="callStatus">Status of Call</label>
-        <div class="controls">
-          <textarea class="form-control" name="callStatus" id="callStatus" rows="3">{{ old('callStatus') }}</textarea>
-          @error('callStatus')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>    
+      </div>   
     </div>
 
     <div class="form-row">
@@ -160,13 +151,12 @@
       </div>
     </div>
 
-    <div class="btn-group float-right">
+    <div class="btn-group float-right mb-4 mt-3">
       <button class="btn btn-success" name="action" value="send" type="submit">Send to Customer</button>
       <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu">
-        <button class="dropdown-item" name="action" value="save" type="submit">Save</button>
         <button class="dropdown-item" name="action" value="draft" type="submit">Save as Draft</button>
       </div>
     </div>
@@ -199,18 +189,18 @@
     $( document ).ready(function() {
       // init Date field
       $('#date').datetimepicker({
-        format: 'YYYY-MM-DD',
+        format: 'DD/MM/YYYY',
         defaultDate: new Date()
       });
 
       // init Start of Service field
       $('#serviceStart').datetimepicker({
-        format: 'YYYY-MM-DD hh:mm A'
+        format: 'DD/MM/YYYY hh:mm A'
       });
 
       // init End of Service field
       $('#serviceEnd').datetimepicker({
-        format: 'YYYY-MM-DD hh:mm A'
+        format: 'DD/MM/YYYY hh:mm A'
       });
 
       // init Service Rendered field

@@ -18,6 +18,17 @@ class ServiceReport extends Model
         "save" => 2,
         "draft" => 3,
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'date' => 'date',
+        'service_start' => 'datetime',
+        'service_end' => 'datetime',
+    ];
         
     /**
      * Indicates if the model's ID is auto-incrementing.
