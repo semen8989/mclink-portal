@@ -87,7 +87,7 @@
                     <h4>CUSTOMER ACKNOWLEDGEMENT</h4>      
                 </div>
                 <hr>
-                <form id="acknowledgementForm" action="{{ route('service.form.acknowledgment.store', ['serviceRequest' => $serviceReport->id]) }}" method="POST">
+                <form id="acknowledgementForm" action="{{ route('service.form.acknowledgment.store', ['serviceReport' => $serviceReport->id]) }}" method="POST">
                     @csrf
 
                     <div class="form-row">

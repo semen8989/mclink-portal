@@ -44,8 +44,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Service Form Routes
 Route::prefix('service-form/acknowledgement')->group(function () {
-    Route::get('/{serviceRequest}/create', [AcknowledgementFormController::class, 'create'])->name('service.form.acknowledgment.create');
-    Route::post('/{serviceRequest}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
+    Route::get('/{serviceReport}/create', [AcknowledgementFormController::class, 'create'])->name('service.form.acknowledgment.create');
+    Route::post('/{serviceReport}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
 });
 
 Auth::routes(['register' => false]);
