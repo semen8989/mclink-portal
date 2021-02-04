@@ -68,6 +68,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('storage\service_report\signature') => storage_path('app/public/service_report/signature'),
+        public_path('storage\service_report\pdf') => storage_path('app/public/service_report/pdf'),
     ],
 
 ];

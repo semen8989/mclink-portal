@@ -27,28 +27,27 @@ class AcknowledgementFormController extends Controller
 
     public function store(StoreAcknowledgmentFormRequest $request, ServiceReport  $serviceReport)
     {
-        $pdf = PDF::loadView('pdf.service_report.form', [
-            'serviceReport' => $serviceReport,
-            'currentDate' => Carbon::now()
-        ]);
-        return $pdf->download('invoice.pdf');
-
-
         $validated = $request->validated();
 
 	    $image_parts = explode(";base64,", $validated['signatureDataUrl']);        
 	    $image_type_aux = explode("image/", $image_parts[0]);
 	    $image_type = $image_type_aux[1];
-	    $image_base64 = base64_decode($image_parts[1]);    
-        $file = uniqid() . '.'.$image_type;
+        $image_base64 = base64_decode($image_parts[1]);  
 
-        Storage::put('service_report\signature\\' . $file, $image_base64);
-
-        $serviceReport->signature_image = $file;
+        $imgFile = uniqid() . '.'.$image_type;        
+        $pdfFile = uniqid() . '.pdf';
+      
+        $serviceReport->report_pdf = $pdfFile;
+        $serviceReport->signature_image = $imgFile;
         $serviceReport->signed_customer = $validated['signedCust'];
         $serviceReport->signed_date = Carbon::now();
 
-        if ($serviceReport->save()) {
+        if ($serviceReport->save()) {           
+            $pdf = PDF::loadView('pdf.service_report.form', ['serviceReport' => $serviceReport]);       
+
+            Storage::put('service_report\signature\\' . $imgFile, $image_base64);
+            Storage::put('service_report\pdf\\' . $pdfFile, $pdf->output());
+
             Mail::to($serviceReport->user->email)
                 ->queue(new AcknowledgmentFormSubmitted($serviceReport));
         }
