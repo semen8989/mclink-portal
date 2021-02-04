@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\Mail;
@@ -26,6 +27,13 @@ class AcknowledgementFormController extends Controller
 
     public function store(StoreAcknowledgmentFormRequest $request, ServiceReport  $serviceReport)
     {
+        $pdf = PDF::loadView('pdf.service_report.form', [
+            'serviceReport' => $serviceReport,
+            'currentDate' => Carbon::now()
+        ]);
+        return $pdf->download('invoice.pdf');
+
+
         $validated = $request->validated();
 
 	    $image_parts = explode(";base64,", $validated['signatureDataUrl']);        
