@@ -20,7 +20,7 @@ class ServiceReportSeeder extends Seeder
     {
         DB::table('service_reports')->insert([
             'id' => Str::uuid(),
-            'csr_no' => Carbon::now()->format('Ymd').'-1',
+            'csr_no' => 100001,
             'date' => Carbon::now()->format('Y-m-d'),
             'customer_id' => Customer::find(1)->id,
             'engineer_id' => User::find(1)->id,

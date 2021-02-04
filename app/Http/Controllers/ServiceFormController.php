@@ -30,25 +30,14 @@ class ServiceFormController extends Controller
      */
     public function create()
     {
-        $currentDate = Carbon::now()->format('Ymd');
-
         $recentServiceReport = ServiceReport::select('csr_no')
-            ->where('date', $currentDate)
             ->orderByDesc('created_at')
             ->first();
 
-        $runningNum = 1;
-             
-        if ($recentServiceReport) {
-            $csrNo = $recentServiceReport->csr_no;
-
-            $numIndex = strrpos($csrNo, '-') + 1;
-            $runningNum += intval(substr($csrNo, $numIndex));
-        }
+        $csrNo = 1;
+        $csrNo += $recentServiceReport ? intval($recentServiceReport->csr_no) : 100000;
         
-        $fullCsrNo = $currentDate . '-' . $runningNum;
-        
-        return view('service_form.create', ['csrNo' => $fullCsrNo]);
+        return view('service_form.create', ['csrNo' => $csrNo]);
     }
 
 
