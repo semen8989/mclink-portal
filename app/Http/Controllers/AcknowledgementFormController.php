@@ -16,15 +16,15 @@ class AcknowledgementFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ServiceReport $uuid)
+    public function create(ServiceReport $serviceReport)
     {
         return view('service_form.acknowledgement.create', [
-            'serviceReport' => $uuid,
+            'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d-m-Y')
         ]);
     }
 
-    public function store(StoreAcknowledgmentFormRequest $request, ServiceReport  $uuid)
+    public function store(StoreAcknowledgmentFormRequest $request, ServiceReport  $serviceReport)
     {
         $validated = $request->validated();
 
@@ -36,12 +36,13 @@ class AcknowledgementFormController extends Controller
 
         Storage::put('service_report\signature\\' . $file, $image_base64);
 
-        $uuid->signature_image = $file;
-        $uuid->signed_customer = $validated['signedCust'];
-        $uuid->signed_date = Carbon::now();
+        $serviceReport->signature_image = $file;
+        $serviceReport->signed_customer = $validated['signedCust'];
+        $serviceReport->signed_date = Carbon::now();
 
-        if ($uuid->save()) {
-            Mail::to($uuid->user->email)->queue(new AcknowledgmentFormSubmitted($uuid));
+        if ($serviceReport->save()) {
+            Mail::to($serviceReport->user->email)
+                ->queue(new AcknowledgmentFormSubmitted($serviceReport));
         }
     }
 }
