@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi {{ $serviceReport->user->name }},
 
-Click the button to view the additional data that the customer submitted.
+The customer already submitted the signed service report form. You can click the button to view the details.
 
 @component('mail::button', ['url' => route('service.form.index', [])])
 View Service Report Details
