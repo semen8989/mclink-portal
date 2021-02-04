@@ -6,8 +6,6 @@ use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
 use App\Models\Company;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -54,7 +52,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Department $department)
     {
         //
     }
@@ -65,10 +63,8 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $department = Department::findOrFail($id);
-        
+    public function edit(Department $department)
+    {   
         $companies = Company::all('id','company_name');
         $users = User::all('id','name');
         return view('department.edit',compact('department','companies','users'));
@@ -81,9 +77,9 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreDepartmentRequest $request, $id)
+    public function update(StoreDepartmentRequest $request, Department $department)
     {
-        Department::whereId($id)->update($request->except(['_token','_method']));
+        Department::whereId($department->id)->update($request->except(['_token','_method']));
 
         return redirect()->route('department.index')->with('success', 'Department updated successfully.');
     }
@@ -94,11 +90,9 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Department $department)
     {
-        $department = Department::findOrFail($id);
-        $department->delete();
-
+        Department::whereId($department->id)->delete();
         return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
     }
 }

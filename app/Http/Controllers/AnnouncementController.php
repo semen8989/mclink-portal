@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAnnouncementRequest;
 use App\Models\Announcement;
 use App\Models\Company;
-use App\Models\Department;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -58,9 +57,8 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Announcement $announcement)
     {
-        $announcement = Announcement::find($id);
         return view('announcement.view',compact('announcement'));
     }
 
@@ -70,9 +68,8 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Announcement $announcement)
     {
-        $announcement = Announcement::findOrFail($id);
         $companies = Company::all();
         return view('announcement.edit',compact('announcement','companies'));
     }
@@ -84,9 +81,9 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreAnnouncementRequest $request, $id)
+    public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
-        Announcement::whereId($id)->update($request->except(['_token','_method']));
+        Announcement::whereId($announcement->id)->update($request->except(['_token','_method']));
 
         return redirect()->route('announcement.index')->with('success', 'Announcement updated successfully.');
     }
@@ -97,11 +94,9 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Announcement $announcement)
     {
-        $announcement = Announcement::findOrFail($id);
-        $announcement->delete();
-
+        Announcement::whereId($announcement->id)->delete();
         return redirect()->route('announcement.index')->with('success', 'Announcement deleted successfully.');
     }
 }

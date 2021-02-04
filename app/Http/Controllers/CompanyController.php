@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
@@ -52,9 +51,8 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        $company = Company::find($id);
         return view('company.view',compact('company'));
     }
 
@@ -64,9 +62,8 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
-        $company = Company::findOrFail($id);
         return view('company.edit',compact('company'));
     }
 
@@ -77,9 +74,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCompanyRequest $request, $id)
+    public function update(StoreCompanyRequest $request, Company $company)
     {
-        Company::whereId($id)->update($request->except(['_token','_method']));
+        Company::whereId($company->id)->update($request->except(['_token','_method']));
 
         return redirect()->route('company.index')->with('success', 'Company updated successfully.');
 
@@ -91,11 +88,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        $company = Company::findOrFail($id);
-        $company->delete();
-
+        Company::whereId($company->id)->delete();
         return redirect()->route('company.index')->with('success', 'Company deleted successfully.');
     }
 }
