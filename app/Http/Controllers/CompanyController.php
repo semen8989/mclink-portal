@@ -16,7 +16,8 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::all();
-        return view('company.index', compact('companies'));
+        $title = __('label.company');
+        return view('company.index', compact('companies','title'));
     }
 
     /**
@@ -26,7 +27,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        $title = __('label.add_company');
+        return view('company.create',compact('title'));
     }
 
     /**
@@ -53,7 +55,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return view('company.view',compact('company'));
+        $title = __('label.view_company');
+        return view('company.view',compact('company','title'));
     }
 
     /**
@@ -64,7 +67,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('company.edit',compact('company'));
+        $title = __('label.edit_company');
+        return view('company.edit',compact('company','title'));
     }
 
     /**
@@ -76,8 +80,7 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, Company $company)
     {
-        Company::whereId($company->id)->update($request->except(['_token','_method']));
-
+        $company->update($request->except(['_token','_method']));
         return redirect()->route('company.index')->with('success', 'Company updated successfully.');
 
     }
@@ -90,7 +93,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        Company::whereId($company->id)->delete();
+        $company->delete();
         return redirect()->route('company.index')->with('success', 'Company deleted successfully.');
     }
 }

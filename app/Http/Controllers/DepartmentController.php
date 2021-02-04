@@ -16,9 +16,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        $title = __('label.department');
         $departments = Department::all();
-
-        return view('department.index',compact('departments'));
+        return view('department.index',compact('departments','title'));
     }
 
     /**
@@ -28,9 +28,10 @@ class DepartmentController extends Controller
      */
     public function create()
     {
+        $title = __('label.add_department');
         $companies = Company::all('id','company_name');
         $users = User::all('id','name');
-        return view('department.create',compact('companies','users'));
+        return view('department.create',compact('companies','users','title'));
     }
 
     /**
@@ -65,9 +66,10 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {   
+        $title = __('label.edit_department');
         $companies = Company::all('id','company_name');
         $users = User::all('id','name');
-        return view('department.edit',compact('department','companies','users'));
+        return view('department.edit',compact('department','companies','users','title'));
     }
 
     /**
@@ -79,8 +81,7 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, Department $department)
     {
-        Department::whereId($department->id)->update($request->except(['_token','_method']));
-
+        $department->update($request->except(['_token','_method']));
         return redirect()->route('department.index')->with('success', 'Department updated successfully.');
     }
 
@@ -92,7 +93,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        Department::whereId($department->id)->delete();
+        $department->delete();
         return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
     }
 }

@@ -16,8 +16,9 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
+        $title = __('label.announcement');
         $announcements = Announcement::all();
-        return view('announcement.index',compact('announcements'));
+        return view('announcement.index',compact('announcements','title'));
     }
 
     /**
@@ -27,8 +28,9 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
+        $title = __('label.add_announcement');
         $companies = Company::all();
-        return view('announcement.create',compact('companies'));
+        return view('announcement.create',compact('companies','title'));
     }
 
     /**
@@ -59,7 +61,8 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        return view('announcement.view',compact('announcement'));
+        $title = __('label.view_announcement');
+        return view('announcement.view',compact('announcement','title'));
     }
 
     /**
@@ -70,8 +73,9 @@ class AnnouncementController extends Controller
      */
     public function edit(Announcement $announcement)
     {
+        $title = __('label.edit_announcement');
         $companies = Company::all();
-        return view('announcement.edit',compact('announcement','companies'));
+        return view('announcement.edit',compact('announcement','companies','title'));
     }
 
     /**
@@ -83,8 +87,7 @@ class AnnouncementController extends Controller
      */
     public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
-        Announcement::whereId($announcement->id)->update($request->except(['_token','_method']));
-
+        $announcement->update($request->except(['_token','_method']));
         return redirect()->route('announcement.index')->with('success', 'Announcement updated successfully.');
     }
 
@@ -96,7 +99,7 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        Announcement::whereId($announcement->id)->delete();
+        $announcement->delete();
         return redirect()->route('announcement.index')->with('success', 'Announcement deleted successfully.');
     }
 }
