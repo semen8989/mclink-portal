@@ -33,8 +33,8 @@ class StoreServiceFormRequest extends FormRequest
             'serviceRendered' => 'bail|required',
             'engineerRemark' => 'bail|nullable',
             'statusAfterService' => 'bail|nullable',
-            'serviceStart' => 'bail|nullable|date|after_or_equal:now',
-            'serviceEnd' => 'bail|nullable|date|before_or_equal:now',
+            'serviceStart' => 'bail|nullable|date',
+            'serviceEnd' => 'bail|nullable|date',
             'usedItCredit' => 'bail|nullable',
 
         ];
