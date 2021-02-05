@@ -4,7 +4,7 @@
 <div class="card-header">Announcement List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('announcement.create') }}">Add New Announcement</a>
+        <a class="btn btn-success" href="{{ route('announcements.create') }}">Add New Announcement</a>
     </div>
     <table class="table table-responsive-sm">
         <thead>
@@ -22,12 +22,12 @@
             @foreach ($announcements as $announcement)
                 <tr>
                     <td>
-                        <a href="{{ route('announcement.show',$announcement->id) }}" class="btn btn-sm btn-primary" title="View">
+                        <a href="{{ route('announcements.show',$announcement->id) }}" class="btn btn-sm btn-primary" title="View">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
                             </svg>
                         </a>
-                        <a href="{{ route('announcement.edit',$announcement->id) }}" class="btn btn-sm btn-warning" title="Update">
+                        <a href="{{ route('announcements.edit',$announcement->id) }}" class="btn btn-sm btn-warning" title="Update">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
@@ -77,7 +77,7 @@
 <script>
     $(document).on('click','.delete',function(){
         let id = $(this).attr('data-id');
-        var url = '{{ route("announcement.destroy",":id") }}'
+        var url = '{{ route("announcements.destroy",":id") }}'
         url = url.replace(':id',id)
         $('#delete_form').attr('action',url);
     });

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Update Department</div>
-<form method="POST" action="{{ route('department.update',$department->id) }}" novalidate>
+<form method="POST" action="{{ route('departments.update',$department->id) }}" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">

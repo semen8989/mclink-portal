@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Add New Department</div>
-<form method="POST" action="{{ route('department.store') }}" novalidate>
+<form method="POST" action="{{ route('departments.store') }}" novalidate>
     @csrf
     <div class="card-body">
         <div class="row">

@@ -43,7 +43,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->all());
-        return redirect()->route('department.index')->with('success', 'Department created successfully.');
+        return redirect()->route('departments.index')->with('success', 'Department created successfully.');
 
     }
 
@@ -82,7 +82,7 @@ class DepartmentController extends Controller
     public function update(StoreDepartmentRequest $request, Department $department)
     {
         $department->update($request->except(['_token','_method']));
-        return redirect()->route('department.index')->with('success', 'Department updated successfully.');
+        return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
     }
 
     /**
@@ -94,6 +94,6 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
+        return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
     }
 }

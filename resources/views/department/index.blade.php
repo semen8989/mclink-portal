@@ -4,7 +4,7 @@
 <div class="card-header">Department List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('department.create') }}">Add New Department</a>
+        <a class="btn btn-success" href="{{ route('departments.create') }}">Add New Department</a>
     </div>
     <table class="table table-responsive-sm">
         <thead>
@@ -19,7 +19,7 @@
             @foreach ($departments as $department)
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-warning" href="{{ route('department.edit', $department->id) }}" title="Update">
+                    <a class="btn btn-sm btn-warning" href="{{ route('departments.edit', $department->id) }}" title="Update">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                         </svg>
@@ -71,7 +71,7 @@
 <script>
     $(document).on('click','.delete',function(){
         let id = $(this).attr('data-id');
-        var url = '{{ route("department.destroy",":id") }}'
+        var url = '{{ route("departments.destroy",":id") }}'
         url = url.replace(':id',id)
         $('#delete_form').attr('action',url);
     });

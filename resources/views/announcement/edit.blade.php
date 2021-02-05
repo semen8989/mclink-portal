@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Update Announcement</div>
-<form method="POST" action="{{ route('announcement.update',$announcement->id) }}">
+<form method="POST" action="{{ route('announcements.update',$announcement->id) }}">
     @csrf
     @method('PUT')
     <div class="card-body">

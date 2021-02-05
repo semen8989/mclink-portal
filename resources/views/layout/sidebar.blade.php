@@ -18,11 +18,11 @@
                   <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-layers') }}"></use>
               </svg> Organizations</a>
                 <ul class="c-sidebar-nav-dropdown-items">
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('company.index') }}"><span
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('companies.index') }}"><span
                         class="c-sidebar-nav-icon"></span> Company</a></li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('department.index') }}"><span
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('departments.index') }}"><span
                         class="c-sidebar-nav-icon"></span> Department</a></li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('announcement.index') }}"><span
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('announcements.index') }}"><span
                         class="c-sidebar-nav-icon"></span> Announcement</a></li>
                 </ul>
             </li>

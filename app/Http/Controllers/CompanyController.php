@@ -43,7 +43,7 @@ class CompanyController extends Controller
         $request['user_id'] = Auth::user()->id;
         Company::create($request->all());
         //Redirect after success
-        return redirect()->route('company.index')->with('success', 'Company created successfully.');
+        return redirect()->route('companies.index')->with('success', 'Company created successfully.');
         
     }
 
@@ -81,7 +81,7 @@ class CompanyController extends Controller
     public function update(StoreCompanyRequest $request, Company $company)
     {
         $company->update($request->except(['_token','_method']));
-        return redirect()->route('company.index')->with('success', 'Company updated successfully.');
+        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
 
     }
 
@@ -94,6 +94,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect()->route('company.index')->with('success', 'Company deleted successfully.');
+        return redirect()->route('companies.index')->with('success', 'Company deleted successfully.');
     }
 }

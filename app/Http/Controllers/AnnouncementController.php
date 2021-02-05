@@ -43,7 +43,7 @@ class AnnouncementController extends Controller
     {
         Announcement::create($request->all());
         //Redirect after success
-        return redirect()->route('announcement.index')->with('success', 'Announcement created successfully.');
+        return redirect()->route('announcements.index')->with('success', 'Announcement created successfully.');
 
     }
 
@@ -88,7 +88,7 @@ class AnnouncementController extends Controller
     public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
         $announcement->update($request->except(['_token','_method']));
-        return redirect()->route('announcement.index')->with('success', 'Announcement updated successfully.');
+        return redirect()->route('announcements.index')->with('success', 'Announcement updated successfully.');
     }
 
     /**
@@ -100,6 +100,6 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement)
     {
         $announcement->delete();
-        return redirect()->route('announcement.index')->with('success', 'Announcement deleted successfully.');
+        return redirect()->route('announcements.index')->with('success', 'Announcement deleted successfully.');
     }
 }

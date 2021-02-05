@@ -26,9 +26,9 @@ Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Resource Controllers
 Route::resources([
-    'company' => CompanyController::class,
-    'department' => DepartmentController::class,
-    'announcement' => AnnouncementController::class
+    'companies' => CompanyController::class,
+    'departments' => DepartmentController::class,
+    'announcements' => AnnouncementController::class
 ]);
 //Department Data
-Route::post('/announcement/fetch_department', [AnnouncementController::class,'fetch_department'])->name('fetch_department');
+Route::post('/announcements/fetch_department', [AnnouncementController::class,'fetch_department'])->name('fetch_department');
