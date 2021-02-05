@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\AcknowledgmentFormSubmitted;
 use App\Http\Requests\StoreAcknowledgmentFormRequest;
+use App\Mail\ServiceReportCopyReceivedMail;
 
 class AcknowledgementFormController extends Controller
 {
@@ -19,7 +20,6 @@ class AcknowledgementFormController extends Controller
      */
     public function create(ServiceReport $serviceReport)
     {
-        // dd($serviceReport);
         return view('service_form.acknowledgement.create', [
             'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d/m/Y')
@@ -51,6 +51,9 @@ class AcknowledgementFormController extends Controller
 
             Mail::to($serviceReport->user->email)
                 ->queue(new AcknowledgmentFormSubmitted($serviceReport));
+
+            Mail::to($serviceReport->user->email)
+                ->queue(new ServiceReportCopyReceivedMail($serviceReport));
         }
     }
 }
