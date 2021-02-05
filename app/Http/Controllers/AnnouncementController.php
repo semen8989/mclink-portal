@@ -16,7 +16,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $title = __('label.announcement');
+        $title = __('label.announcements');
         $announcements = Announcement::all();
         return view('announcement.index',compact('announcements','title'));
     }
