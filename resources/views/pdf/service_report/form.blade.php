@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <td><b>CSR No: </b>{{ $serviceReport->csr_no }}</td>
-                    <td><b>Date: </b>{{ $serviceReport->date }}</td>
+                    <td><b>Date: </b>{{ $serviceReport->date->format('d/m/Y') }}</td>
                 </tr>
                 <tr>
                     <td><b>Customer Name: </b>{{ $serviceReport->customer->name }}</td>
@@ -84,8 +84,8 @@
                     <td class="medium-text"><b>Status after Service: </b>{{ $serviceReport->status_after_service }}</td>
                 </tr>
                 <tr>
-                    <td><b>Start of Service: </b>{{ $serviceReport->service_start }}</td>
-                    <td><b>End of Service: </b>{{ $serviceReport->service_end }}</td>
+                    <td><b>Start of Service: </b>{{ $serviceReport->service_start->format('d/m/Y h:i:s A') }}</td>
+                    <td><b>End of Service: </b>{{ $serviceReport->service_end->format('d/m/Y h:i:s A') }}</td>
                 </tr>
                 <tr>
                     <td colspan="2"><b>IT Credit Used: </b>{{ $serviceReport->used_it_credit ?? 'N/A' }}</td>
