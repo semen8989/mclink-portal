@@ -40,7 +40,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="guest-form-label font-weight-bold mb-1">Service Engineer Name</p>
+                        <p class="guest-form-label font-weight-bold mb-1">Engineer Name</p>
                         <p class="guest-form-data mb-4">{{ $serviceReport->user->name }}</p>
                     </div>
                     <div class="col-md-6">
