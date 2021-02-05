@@ -27,7 +27,7 @@
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
                             </svg>
                         </a>
-                        <a href="{{ route('announcements.edit',$announcement->id) }}" class="btn btn-sm btn-warning" title="Update">
+                        <a href="{{ route('announcements.edit',$announcement->id) }}" class="btn btn-sm btn-warning" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
@@ -83,4 +83,4 @@
     });
 
 </script>
-@endsection
+@stop

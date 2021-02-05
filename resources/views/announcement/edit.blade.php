@@ -190,4 +190,4 @@
     })
     
 </script>
-@endsection
+@stop

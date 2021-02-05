@@ -19,7 +19,7 @@
             @foreach ($departments as $department)
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-warning" href="{{ route('departments.edit', $department->id) }}" title="Update">
+                    <a class="btn btn-sm btn-warning" href="{{ route('departments.edit', $department->id) }}" title="Edit">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                         </svg>
@@ -77,4 +77,4 @@
     });
 
 </script>
-@endsection
+@stop
