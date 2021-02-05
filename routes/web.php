@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PolicyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resources([
     'companies' => CompanyController::class,
     'departments' => DepartmentController::class,
-    'announcements' => AnnouncementController::class
+    'announcements' => AnnouncementController::class,
+    'policies' => PolicyController::class
 ]);
 //Department Data
 Route::post('/announcements/fetch_department', [AnnouncementController::class,'fetch_department'])->name('fetch_department');

@@ -24,6 +24,8 @@
                         class="c-sidebar-nav-icon"></span> Department</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('announcements.index') }}"><span
                         class="c-sidebar-nav-icon"></span> Announcement</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('policies.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> Company Policy</a></li>
                 </ul>
             </li>
         </ul>
