@@ -187,19 +187,20 @@
   <!-- Page js codes -->
   <script>   
     $( document ).ready(function() {
+
       // init Date field
-      $('#date').datetimepicker({
+      $dateField = $('#date').datetimepicker({
         format: 'DD/MM/YYYY',
         defaultDate: new Date()
       });
 
       // init Start of Service field
-      $('#serviceStart').datetimepicker({
+      $serviceStartField = $('#serviceStart').datetimepicker({
         format: 'DD/MM/YYYY hh:mm A'
       });
 
       // init End of Service field
-      $('#serviceEnd').datetimepicker({
+      $serviceEndField = $('#serviceEnd').datetimepicker({
         format: 'DD/MM/YYYY hh:mm A'
       });
 
@@ -316,6 +317,12 @@
         $('#customer').next().css('display',  this.checked ? 'none' : 'block');
         $('#newCustomer').attr('type', this.checked ? 'text' : 'hidden');
         $('#newCustomer').prop('disabled', !this.checked);
+      });
+
+      $('#serviceReportForm').submit(function (event) {
+        $dateField.data("DateTimePicker").format('YYYY-MM-DD');
+        $serviceStartField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
+        $serviceEndField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
       });
 
       // $('#usedItCredit').change(function() {
