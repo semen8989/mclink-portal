@@ -12,18 +12,18 @@
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-speedometer') }}"></use>
                     </svg> Dashboard</a></li>
             </li>
-            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == strtolower(__('label.organizations'))) ? 'c-active c-show' : '' }}"><a
               class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
               <svg class="c-sidebar-nav-icon">
                   <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-layers') }}"></use>
               </svg> Organizations</a>
                 <ul class="c-sidebar-nav-dropdown-items">
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('companies.index') }}"><span
-                        class="c-sidebar-nav-icon"></span> Company</a></li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('departments.index') }}"><span
-                        class="c-sidebar-nav-icon"></span> Department</a></li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('announcements.index') }}"><span
-                        class="c-sidebar-nav-icon"></span> Announcement</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.companies'))) ? 'c-active c-show' : '' }}" href="{{ route('companies.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.company') }} </a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.departments'))) ? 'c-active c-show' : '' }}" href="{{ route('departments.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.department') }} </a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.announcements'))) ? 'c-active c-show' : '' }}" href="{{ route('announcements.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.announcement') }}</a></li>
                 </ul>
             </li>
         </ul>

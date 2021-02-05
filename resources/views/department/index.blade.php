@@ -19,12 +19,12 @@
             @foreach ($departments as $department)
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-warning" href="{{ route('departments.edit', $department->id) }}" title="Edit">
+                    <a href="{{ route('departments.edit', $department->id) }}" title="Edit">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                         </svg>
                     </a>
-                    <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $department->id }}" class="btn btn-sm btn-danger delete" title="Delete">
+                    <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $department->id }}" id="delete" href="" title="Delete">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                         </svg>
@@ -69,7 +69,7 @@
     </div>
 </div>
 <script>
-    $(document).on('click','.delete',function(){
+    $(document).on('click','#delete',function(){
         let id = $(this).attr('data-id');
         var url = '{{ route("departments.destroy",":id") }}'
         url = url.replace(':id',id)

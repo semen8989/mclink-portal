@@ -52,8 +52,8 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer text-left">
-            <button type="submit" class="btn btn-primary">Save</button>
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-success">Save</button>
         </div>
 </form>
 @stop

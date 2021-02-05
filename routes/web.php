@@ -25,10 +25,12 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Resource Controllers
-Route::resources([
-    'companies' => CompanyController::class,
-    'departments' => DepartmentController::class,
-    'announcements' => AnnouncementController::class
-]);
+Route::prefix('organizations')->group(function () {
+    Route::resources([
+        'companies' => CompanyController::class,
+        'departments' => DepartmentController::class,
+        'announcements' => AnnouncementController::class
+    ]); 
+});
 //Department Data
 Route::post('/announcements/fetch_department', [AnnouncementController::class,'fetch_department'])->name('fetch_department');
