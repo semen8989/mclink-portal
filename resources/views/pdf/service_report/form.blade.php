@@ -98,7 +98,7 @@
                 </tr>
                 <tr>
                     <td><b>Name Designation: </b>{{ $serviceReport->signed_customer }}</td>
-                    <td><b>Date: </b>{{ $serviceReport->signed_date }}</td> 
+                    <td><b>Date: </b>{{ $serviceReport->signed_date->format('d/m/Y') }}</td> 
                 </tr>
                 <tr>
                     <td colspan="2" class="large-text">
