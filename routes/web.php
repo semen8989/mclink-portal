@@ -18,7 +18,7 @@ use App\Http\Controllers\DepartmentController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard')->with('title',__('label.home'));
 })->middleware('auth');
 
 Auth::routes(['register' => false]);

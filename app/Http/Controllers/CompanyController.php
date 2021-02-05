@@ -56,7 +56,7 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         $title = __('label.view_company');
-        return view('company.view',compact('company','title'));
+        return view('company.show',compact('company','title'));
     }
 
     /**

@@ -36,6 +36,7 @@ return [
     'company_websites' => 'Company Website',
     'company_videos' => 'Company Videos',
     'profile' => 'Profile',
+    'login' => 'Login',
     'log_out' => 'Log Out',
     'employee_leave_schedule' => 'Employee Leave Schedule',
     'leave_from' => 'Leave from',

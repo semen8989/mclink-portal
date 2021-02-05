@@ -62,7 +62,7 @@ class AnnouncementController extends Controller
     public function show(Announcement $announcement)
     {
         $title = __('label.view_announcement');
-        return view('announcement.view',compact('announcement','title'));
+        return view('announcement.show',compact('announcement','title'));
     }
 
     /**

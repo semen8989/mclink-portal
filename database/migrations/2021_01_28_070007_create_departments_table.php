@@ -18,6 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->string('department_name');
             $table->integer('company_id');
             $table->integer('user_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

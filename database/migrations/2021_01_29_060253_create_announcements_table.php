@@ -22,6 +22,7 @@ class CreateAnnouncementsTable extends Migration
             $table->integer('department_id');
             $table->text('summary');
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
