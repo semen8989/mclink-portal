@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Add New Company</div>
-<form method="POST" action="{{ route('companies.store') }}" novalidate>
+<form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data" novalidate>
     @csrf
     <div class="card-body">
         <div class="row">
@@ -171,8 +171,13 @@
             <div class="col-md-6">
                 <fieldset class="form-group">
                     <label for="logo">Company Logo</label>
-                    <input type="file" class="form-control-file" id="logo" name="logo">
+                    <input type="file" class="form-control-file @error('logo') is-invalid @enderror" id="logo" name="logo">
                     <small>Upload files only: gif,png,jpg,jpeg</small>
+                    @error('logo')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </fieldset>
             </div>
         </div>

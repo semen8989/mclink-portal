@@ -39,9 +39,27 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
+        //File upload
+       if($request->hasFile('logo')){
+           //Get filename with extension
+           $filenameWithExt = $request->file('logo')->getClientOriginalName();
+           //Get just file name
+           $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+           //Get just extension
+           $extension = $request->file('logo')->getClientOriginalExtension();
+           //Filename to store
+           $fileNameToStore = $filename.'_'.time().'.'.$extension;
+           //Upload image
+           $path = $request->file('logo')->storeAs('public/company_logos',$fileNameToStore);
+       } else {
+            $fileNameToStore ='noimage.jpg';
+       }
         //Inserting new data
-        $request['user_id'] = Auth::user()->id;
-        Company::create($request->all());
+        $company = new Company($request->all());
+        $company->logo = $fileNameToStore;
+        $company->user_id = auth()->user()->id;
+        $company->save();
+        
         //Redirect after success
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
         
