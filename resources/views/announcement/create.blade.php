@@ -108,7 +108,7 @@
         </div>
     </div>
     <div class="card-footer text-right">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </div>
 </form>
 <script>
@@ -184,4 +184,4 @@
     })
     
 </script>
-@endsection
+@stop

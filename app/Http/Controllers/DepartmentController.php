@@ -16,7 +16,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $title = __('label.department');
+        $title = __('label.departments');
         $departments = Department::all();
         return view('department.index',compact('departments','title'));
     }
