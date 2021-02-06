@@ -20,17 +20,17 @@
             <tr>
                 @foreach ($policies as $policy)
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{ route('policies.show',$policy->id) }}" title="View">
+                        <a href="{{ route('policies.show',$policy->id) }}" title="View">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
                             </svg>
                         </a>
-                        <a class="btn btn-sm btn-warning" href="{{ route('policies.edit',$policy->id) }}" title="Edit">
+                        <a href="{{ route('policies.edit',$policy->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $policy->id }}" class="btn btn-sm btn-danger delete" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $policy->id }}" id="delete" href="" title="Delete">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
@@ -80,7 +80,7 @@
     </div>
 </div>
 <script>
-    $(document).on('click','.delete',function(){
+    $(document).on('click','#delete',function(){
         let id = $(this).attr('data-id');
         var url = '{{ route("policies.destroy",":id") }}'
         url = url.replace(':id',id)
