@@ -9,6 +9,7 @@ use App\Mail\ServiceFormSent;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\DataTables\ServiceReportDataTable;
 use App\Http\Requests\StoreServiceFormRequest;
 
 class ServiceFormController extends Controller
@@ -18,9 +19,9 @@ class ServiceFormController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(ServiceReportDataTable $dataTable)
     {
-        return view('service_form.index', []);
+        return $dataTable->render('service_form.index');
     }
 
     /**

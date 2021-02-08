@@ -47,7 +47,9 @@ class ServiceReport extends Model
     {
         $this->attributes['service_start'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d h:i:s');    
     }
-
+    if (!empty($request->all())) {
+        dd('test');
+    }
     /**
      * Set the service end datetime format.
      *
