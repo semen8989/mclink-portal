@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Edit Company Information</div>
-<form method="POST" action="{{ route('companies.update', $company->id) }}" novalidate>
+<form method="POST" action="{{ route('companies.update', $company->id) }}" enctype="multipart/form-data" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">
@@ -167,14 +167,27 @@
                     @enderror
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-6">
-                <fieldset class="form-group">
-                    <label for="logo">Company Logo</label>
-                    <input type="file" class="form-control-file" id="logo" name="logo">
-                    <small>Upload files only: gif,png,jpg,jpeg</small>
-                </fieldset>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <label for="logo">Company Logo</label>
+                            <img style="width: 100%" src="{{ asset('storage/company_logos/'.$company->logo) }}" alt="">
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <label for="logo">Update Company Logo</label>
+                            <input type="file" class="form-control-file @error('logo') is-invalid @enderror" id="logo" name="logo">
+                            <small>Upload files only: gif,png,jpg,jpeg</small>
+                            @error('logo')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </fieldset>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

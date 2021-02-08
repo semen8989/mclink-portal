@@ -78,10 +78,11 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <strong><label>Company Logo</label></strong>
+                            <img style="width: 100%" src="{{ asset('storage/company_logos/'.$company->logo) }}" alt="">
                         </div>
                         <div class="col-md-4 mt-3">
                             <strong><label>Added By</label></strong>
-                            <input class="form-control-plaintext" readonly value="{{ $company->name }}">
+                            <input class="form-control-plaintext" readonly value="{{ $company->user->name }}">
                         </div>
                     </div>
                     <br>
