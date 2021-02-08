@@ -33,7 +33,7 @@ class StoreCompanyRequest extends FormRequest
             'city' => 'required',
             'zip_code' => 'required',
             'country' => 'required',
-            'logo' => 'image|nullable|max:1999'
+            'logo' => 'image|nullable|max:1000'
         ];
     }
 }

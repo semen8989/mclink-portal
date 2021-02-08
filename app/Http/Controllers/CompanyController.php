@@ -41,25 +41,20 @@ class CompanyController extends Controller
     {
         //File upload
        if($request->hasFile('logo')){
-           //Get filename with extension
-           $filenameWithExt = $request->file('logo')->getClientOriginalName();
-           //Get just file name
-           $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-           //Get just extension
-           $extension = $request->file('logo')->getClientOriginalExtension();
-           //Filename to store
-           $fileNameToStore = $filename.'_'.time().'.'.$extension;
-           //Upload image
-           $path = $request->file('logo')->storeAs('public/company_logos',$fileNameToStore);
+            //Get just extension
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = time().'.'.$extension;
+            //Upload image
+            $path = $request->file('logo')->storeAs('public/company_logos',$fileNameToStore);
        } else {
-            $fileNameToStore ='noimage.jpg';
+            $fileNameToStore = '';
        }
         //Inserting new data
-        $company = new Company($request->all());
-        $company->logo = $fileNameToStore;
-        $company->user_id = auth()->user()->id;
-        $company->save();
-        
+        $data = $request->except('logo');
+        $data['user_id'] = auth()->user()->id;
+        $data['logo'] = $fileNameToStore;
+        Company::create($data);
         //Redirect after success
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
         
@@ -98,9 +93,7 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, Company $company)
     {
-        $company->update($request->except(['_token','_method']));
-        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
-
+        
     }
 
     /**
