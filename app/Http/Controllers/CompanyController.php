@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreCompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -93,7 +94,24 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, Company $company)
     {
-        
+        if($request->hasFile('logo')){
+            //Delete old image data
+            Storage::delete('public/cover_images/'.$company->logo);
+            //Get just extension
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = time().'.'.$extension;
+            //Upload image
+            $path = $request->file('logo')->storeAs('public/company_logos',$fileNameToStore);
+        }else{
+            //Remain existing logo
+            $fileNameToStore = $company->logo;
+        }
+        //Updating company data
+        $data = $request->except('logo');
+        $data['logo'] = $fileNameToStore;
+        $company->update($data);
+        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
     }
 
     /**
@@ -104,6 +122,9 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        //Delete old image
+        Storage::delete('public/company_logos/'.$company->logo);
+        //Delete company data
         $company->delete();
         return redirect()->route('companies.index')->with('success', 'Company deleted successfully.');
     }
