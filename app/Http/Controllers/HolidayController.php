@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Holiday;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreHolidayRequest;
 
 class HolidayController extends Controller
 {
@@ -15,7 +17,8 @@ class HolidayController extends Controller
     public function index()
     {
         $title = __('label.holidays');
-        return view('holiday.index',compact('title'));
+        $holidays = Holiday::all();
+        return view('holiday.index',compact('title','holidays'));
     }
 
     /**
@@ -36,9 +39,10 @@ class HolidayController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHolidayRequest $request)
     {
-        //
+        Holiday::create($request->all());
+        return redirect()->route('holidays.index')->with('success', 'Holiday created successfully.');
     }
 
     /**
@@ -47,9 +51,10 @@ class HolidayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Holiday $holiday)
     {
-        //
+        $title = __('label.view_holiday');
+        return view('holiday.show',compact('title','holiday'));
     }
 
     /**
@@ -58,9 +63,11 @@ class HolidayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Holiday $holiday)
     {
-        //
+        $title = __('label.edit_holiday');
+        $companies = Company::all();
+        return view('holiday.edit',compact('title','companies','holiday'));
     }
 
     /**
@@ -70,9 +77,10 @@ class HolidayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreHolidayRequest $request, Holiday $holiday)
     {
-        //
+        $holiday->update($request->all());
+        return redirect()->route('holidays.index')->with('success', 'Holiday updated successfully.');
     }
 
     /**

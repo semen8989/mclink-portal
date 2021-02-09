@@ -39,6 +39,8 @@ return [
     'holidays' => 'Holidays',
     'holiday' => 'Holiday',
     'add_holiday' => 'Add New Holiday',
+    'view_holiday' => 'View Holiday',
+    'edit_holiday' => 'Edit Holiday', 
     'dashboard' => 'Dashboard',
     'organizations' => 'Organizations',
     'profile' => 'Profile',

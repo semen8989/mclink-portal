@@ -18,7 +18,32 @@
                 </tr>
             </thead>
             <tbody>
-                
+                @foreach($holidays as $holiday)
+                    <tr>
+                        <td>
+                            <a href="{{ route('holidays.show',$holiday->id) }}" title="View">
+                                <svg class="c-icon">
+                                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
+                                </svg>
+                            </a>
+                            <a href="{{ route('holidays.edit',$holiday->id) }}" title="Edit">
+                                <svg class="c-icon">
+                                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
+                                </svg>
+                            </a>
+                            <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $holiday->id }}" id="delete" href="" title="Delete">
+                                <svg class="c-icon">
+                                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
+                                </svg>
+                            </a> 
+                        </td>
+                        <td>{{ $holiday->company->company_name }}</td>
+                        <td>{{ $holiday->event_name }}</td>
+                        <td>{{ ucfirst($holiday->status) }}</td>
+                        <td>{{ $holiday->start_date }}</td>
+                        <td>{{ $holiday->end_date }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
