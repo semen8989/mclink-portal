@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\AnnouncementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FetchController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,10 @@ Route::prefix('organizations')->group(function () {
     Route::resources([
         'companies' => CompanyController::class,
         'departments' => DepartmentController::class,
+        'designations' => DesignationController::class,
         'announcements' => AnnouncementController::class,
         'policies' => PolicyController::class
     ]); 
 });
 //Department Data
-Route::post('/announcements/fetch_department', [AnnouncementController::class,'fetch_department'])->name('fetch_department');
+Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');

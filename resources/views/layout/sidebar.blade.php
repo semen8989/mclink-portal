@@ -22,6 +22,8 @@
                         class="c-sidebar-nav-icon"></span> {{ __('label.company') }} </a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.departments'))) ? 'c-active c-show' : '' }}" href="{{ route('departments.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.department') }} </a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.designations'))) ? 'c-active c-show' : '' }}" href="{{ route('designations.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.designation') }} </a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.announcements'))) ? 'c-active c-show' : '' }}" href="{{ route('announcements.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.announcement') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.policies'))) ? 'c-active c-show' : '' }}" href="{{ route('policies.index') }}"><span

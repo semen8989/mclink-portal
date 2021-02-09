@@ -46,13 +46,6 @@ class AnnouncementController extends Controller
         return redirect()->route('announcements.index')->with('success', 'Announcement created successfully.');
 
     }
-
-    public function fetch_department(Request $request)
-    {
-        $value = $request->get('value');
-        $data = Company::find($value)->departments;
-        echo json_encode($data);
-    }
     /**
      * Display the specified resource.
      *
