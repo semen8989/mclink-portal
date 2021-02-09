@@ -82,6 +82,7 @@ return [
     'designation' => 'Designation',
     'designations' => 'Designations',
     'add_designation' => 'Add New Designation',
+    'edit_designation' => 'Edit Designation',
     'pic' => 'Pic',
     'name' => 'Name',
     'date_apply' => 'Date Apply',

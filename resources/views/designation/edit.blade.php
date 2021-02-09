@@ -1,15 +1,16 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Add new Designation</div>
-<form method="POST" action="{{ route('designations.store') }}">
+<div class="card-header">Edit Designation</div>
+<form method="POST" action="{{ route('designations.update',$designation->id) }}">
     @csrf
+    @method('PUT')
     <div class="card-body">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="designation_name">Designation</label>
                 <input class="form-control  @error('designation_name') is-invalid @enderror" placeholder="Enter Designation_Name" 
-                    name="designation_name" type="text" value="{{ old('designation_name') }}">
+                    name="designation_name" type="text" value="{{ old('designation_name',$designation->designation_name) }}">
                 @error('designation_name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -22,7 +23,7 @@
                     data-placeholder="Company">
                         <option value="" disabled selected>Select Company</option>
                         @foreach ($companies as $company)
-                            <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
+                            <option value="{{ $company->id }}" {{ old('company_id',$designation->company->id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                         @endforeach
                 </select>
                 @error('company_id')

@@ -16,28 +16,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <a href="" title="View">
-                        <svg class="c-icon">
-                            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
-                        </svg>
-                    </a>
-                    <a href="" title="Edit">
-                        <svg class="c-icon">
-                            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
-                        </svg>
-                    </a>
-                    <a data-toggle="modal" data-target="#delete_modal" data-id="" id="delete" href="" title="Delete">
-                        <svg class="c-icon">
-                            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
-                        </svg>
-                    </a> 
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @foreach ($designations as $designation)
+                <tr>
+                    <td>
+                        <a href="{{ route('designations.edit',$designation->id) }}" title="Edit">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
+                            </svg>
+                        </a>
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $designation->id }}" id="delete" href="" title="Delete">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
+                            </svg>
+                        </a> 
+                    </td>
+                    <td>{{ $designation->company->company_name }}</td>
+                    <td>{{ $designation->department->department_name }}</td>
+                    <td>{{ $designation->designation_name }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -67,7 +64,10 @@
 </div>
 <script>
     $(document).on('click','#delete',function(){
-       
+        let id = $(this).attr('data-id');
+        var url = '{{ route("designations.destroy",":id") }}'
+        url = url.replace(':id',id)
+        $('#delete_form').attr('action',url);
     });
 
 </script>

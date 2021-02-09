@@ -2,10 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Company;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Designation extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'designations';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'designation_name',
+        'company_id',
+        'department_id'
+    ];
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
+
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
 }

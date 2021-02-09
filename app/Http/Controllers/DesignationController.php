@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Designation;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDesignationRequest;
 
 class DesignationController extends Controller
 {
@@ -15,7 +17,8 @@ class DesignationController extends Controller
     public function index()
     {
         $title = __('label.designations');
-        return view('designation.index',compact('title'));
+        $designations = Designation::all();
+        return view('designation.index',compact('title','designations'));
     }
 
     /**
@@ -36,9 +39,10 @@ class DesignationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDesignationRequest $request)
     {
-        //
+        Designation::create($request->all());
+        return redirect()->route('designations.index')->with('success', 'Designation created successfully.');
     }
 
     /**
@@ -58,9 +62,12 @@ class DesignationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Designation $designation)
     {
-        //
+        $title = __('label.edit_designation');
+        $companies = Company::all();
+        return view('designation.edit',compact('title','companies','designation'));
+
     }
 
     /**
@@ -70,9 +77,10 @@ class DesignationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreDesignationRequest $request, Designation $designation)
     {
-        //
+        $designation->update($request->all());
+        return redirect()->route('designations.index')->with('success', 'Designation updated successfully.');
     }
 
     /**
@@ -81,8 +89,9 @@ class DesignationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Designation $designation)
     {
-        //
+        $designation->delete();
+        return redirect()->route('designations.index')->with('success', 'Designation deleted successfully.');
     }
 }
