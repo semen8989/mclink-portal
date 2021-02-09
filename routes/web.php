@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [ServiceFormController::class, 'index'])->name('service.form.index');
         Route::get('/create', [ServiceFormController::class, 'create'])->name('service.form.create');
         Route::post('/', [ServiceFormController::class, 'store'])->name('service.form.store');
+        Route::get('/{serviceReport}', [ServiceFormController::class, 'show'])->name('service.form.show');
+        Route::get('/{serviceReport}/edit', [ServiceFormController::class, 'edit'])->name('service.form.edit');
     });
 
     // Typeahead Routes

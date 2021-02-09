@@ -2,11 +2,10 @@
 
 namespace App\DataTables;
 
+use Illuminate\Support\Str;
 use App\Models\ServiceReport;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ServiceReportDataTable extends DataTable
@@ -20,8 +19,19 @@ class ServiceReportDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)
-            ->addColumn('action', 'servicereport.action');
+            ->eloquent($query)          
+            ->setRowId('csr_no')
+            ->addColumn('action', function(ServiceReport $serviceReport) {
+                return view('service_form.datatable.action', ['serviceReport' => $serviceReport]);
+            })
+            ->editColumn('service_start', function ($request) {
+                return $request->created_at->format('d/m/Y');
+            })
+            ->editColumn('status', function ($request) {
+                return Str::ucfirst(
+                    array_search($request->status, ServiceReport::STATUS)
+                );
+            });
     }
 
     /**
@@ -32,7 +42,7 @@ class ServiceReportDataTable extends DataTable
      */
     public function query(ServiceReport $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['customer:id,name']);
     }
 
     /**
@@ -49,11 +59,7 @@ class ServiceReportDataTable extends DataTable
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
+                        Button::make('create')
                     );
     }
 
@@ -65,15 +71,14 @@ class ServiceReportDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('csr_no')
+                ->title('CSR No.'),
+            Column::make('customer.name')
+                ->title('Customer Name'),
+            Column::make('service_start'),
+            Column::make('status'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->addClass('text-center'),
         ];
     }
 
