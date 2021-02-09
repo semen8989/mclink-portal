@@ -98,8 +98,11 @@
                         $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
                     });
                     var department_selected = $("#department_id").attr("data-selected-department");
+                    var current_department = '{{ $designation->department_id }}';
                     if(department_selected !== ''){                    
                         $("#department_id").val(department_selected);
+                    }else{
+                        $("#department_id").val(current_department);
                     }
                 }
             })
