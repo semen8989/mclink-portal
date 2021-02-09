@@ -28,6 +28,8 @@
                         class="c-sidebar-nav-icon"></span> {{ __('label.announcement') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.policies'))) ? 'c-active c-show' : '' }}" href="{{ route('policies.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.company_policy') }}</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.holidays'))) ? 'c-active c-show' : '' }}" href="{{ route('holidays.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.holiday') }}</a></li>
                 </ul>
             </li>
         </ul>
