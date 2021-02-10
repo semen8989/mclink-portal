@@ -28,10 +28,10 @@ class ServiceReportDataTable extends DataTable
                 return $request->created_at->format('d/m/Y');
             })
             ->editColumn('status', function ($request) {
-                return Str::ucfirst(
-                    array_search($request->status, ServiceReport::STATUS)
-                );
-            });
+                $status = Str::ucfirst(array_search($request->status, ServiceReport::STATUS));
+                return '<span class="badge badge-success px-2 py-1">' . $status . '</span>';
+            })
+            ->rawColumns(['status']);
     }
 
     /**
