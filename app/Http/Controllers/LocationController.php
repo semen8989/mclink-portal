@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Company;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreLocationRequest;
 
 class LocationController extends Controller
 {
@@ -15,7 +18,8 @@ class LocationController extends Controller
     public function index()
     {
         $title = __('label.locations');
-        return view('location.index',compact('title'));
+        $locations = Location::all();
+        return view('location.index',compact('title','locations'));
     }
 
     /**
@@ -25,8 +29,10 @@ class LocationController extends Controller
      */
     public function create()
     {
+        $companies = Company::all();
+        $users = User::all();
         $title = __('label.add_location');
-        return view('location.create',compact('title'));
+        return view('location.create',compact('title','companies','users'));
     }
 
     /**
@@ -35,9 +41,11 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLocationRequest $request)
     {
-        //
+        $request['added_by'] = auth()->user()->id;
+        Location::create($request->all());
+        return redirect()->route('locations.index')->with('success', 'Location created successfully.');
     }
 
     /**

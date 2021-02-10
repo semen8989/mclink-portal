@@ -18,6 +18,35 @@
                 <th>Added By</th>
             </tr>
         </thead>
+        <tbody>
+            @foreach($locations as $location)
+                <tr>
+                    <td>
+                        <a href="{{ route('locations.show',$location->id) }}" title="View">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
+                            </svg>
+                        </a>
+                        <a href="{{ route('locations.edit',$location->id) }}" title="Edit">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
+                            </svg>
+                        </a>
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $location->id }}" id="delete" href="" title="Delete">
+                            <svg class="c-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td>{{ $location->location_name }}</td>
+                    <td>{{ $location->company->company_name }}</td>
+                    <td>{{ $location->user->where('id',$location->user_id)->first()->name }}</td>
+                    <td>{{ $location->city }}</td>
+                    <td>{{ $location->country }}</td>
+                    <td>{{ $location->user->where('id',$location->added_by)->first()->name }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 @stop
