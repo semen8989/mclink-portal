@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $table = 'companies';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'company_name',
         'company_type',
