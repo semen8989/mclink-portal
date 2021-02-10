@@ -22,7 +22,11 @@ class ServiceReportDataTable extends DataTable
             ->eloquent($query)          
             ->setRowId('csr_no')
             ->addColumn('action', function(ServiceReport $serviceReport) {
-                return view('service_form.datatable.action', ['serviceReport' => $serviceReport]);
+                return view('components.datatables.action', [
+                    'editRouteName' => 'service.form.edit',
+                    'editRouteSlug' => 'serviceReport',
+                    'editRouteSlugValue' => $serviceReport->csr_no
+                ]);
             })
             ->editColumn('csr_no', function ($request) {
                 return '<a href="' . route('service.form.show', ['serviceReport' => $request->csr_no]) .

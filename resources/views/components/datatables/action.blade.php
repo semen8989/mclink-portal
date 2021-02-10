@@ -1,4 +1,4 @@
-<a href="{{ route('service.form.edit', ['serviceReport' => $serviceReport->csr_no]) }}" title="Edit">
+<a href="{{ route($editRouteName , [$editRouteSlug => $editRouteSlugValue]) }}" title="Edit">
     <svg class="c-icon">
         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
     </svg>
