@@ -24,14 +24,21 @@ class ServiceReportDataTable extends DataTable
             ->addColumn('action', function(ServiceReport $serviceReport) {
                 return view('service_form.datatable.action', ['serviceReport' => $serviceReport]);
             })
+            ->editColumn('csr_no', function ($request) {
+                return '<a href="' . route('service.form.show', ['serviceReport' => $request->csr_no]) .
+                    '">' . $request->csr_no . '</a>';
+            })
             ->editColumn('service_start', function ($request) {
                 return $request->created_at->format('d/m/Y');
             })
             ->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, ServiceReport::STATUS));
-                return '<span class="badge badge-success px-2 py-1">' . $status . '</span>';
+                $badgeType = $status != 'Draft' ? 'success' : 'primary';
+
+                return '<span class="badge badge-' . $badgeType .
+                    ' px-2 py-1">' . $status . '</span>';
             })
-            ->rawColumns(['status']);
+            ->rawColumns(['csr_no', 'status']);
     }
 
     /**
