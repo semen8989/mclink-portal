@@ -19,3 +19,43 @@
     border-radius: 15px;
     cursor: crosshair;
 }
+
+/* custom datatables design */
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+   
+.spinner:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    animation: spinner .6s linear infinite;
+}
+
+.dataTables_processing {
+    position: absolute;
+    top: -8vh;
+    right: 52%;
+}
+
+.dataTables_empty {
+    text-align: center;
+}
+
+.dataTables_filter {
+    float: right;
+    position: relative;
+    height: 35px;
+}
+
+.dataTables_filter > label {
+    height: 100%;
+}
+
+.dataTables_filter > label > input {
+    height: 100%;
+}
