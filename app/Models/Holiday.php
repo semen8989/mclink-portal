@@ -9,10 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Holiday extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $table = 'holidays';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'company_id',
         'event_name',
