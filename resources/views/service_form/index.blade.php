@@ -1,16 +1,19 @@
 @extends('layout.master')
 
 @section('content')
-    <h5 class="card-header font-weight-bold text-center">Service Report List</h5>
     <div class="card-body">
-        {{$dataTable->table()}}
+        {!! $dataTable->table() !!}
     </div>
     
     <a href="{{ route('service.form.create') }}">Go to create page</a>  
 @stop
 
 @push('scripts')
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+    
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-
-    {{$dataTable->scripts()}}
+    
+    <!-- dt script-->
+    {!! $dataTable->scripts() !!}
 @endpush

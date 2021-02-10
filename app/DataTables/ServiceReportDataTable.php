@@ -10,6 +10,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class ServiceReportDataTable extends DataTable
 {
+    // protected $actions = ['testAction'];
+
     /**
      * Build DataTable class.
      *
@@ -70,14 +72,26 @@ class ServiceReportDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('servicereport-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create')
-                    );
+            ->setTableId('servicereport-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                // 'buttons' => ['testAction'],
+                'language' => [
+                    'search' => '',
+                    'searchPlaceholder' => 'Search',
+                    'loadingRecords' => '&nbsp;',
+                    'processing' => '<div class="spinner"></div>'
+                ]
+            ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
+                "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
+                "<'row'<'col-sm-12 col-md-6'p>>"
+            )->orderBy(1);
+    }
+
+    public function testAction()
+    {
+        
     }
 
     /**
@@ -97,15 +111,5 @@ class ServiceReportDataTable extends DataTable
             Column::computed('action')
                 ->addClass('text-center'),
         ];
-    }
-
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    protected function filename()
-    {
-        return 'ServiceReport_' . date('YmdHis');
     }
 }
