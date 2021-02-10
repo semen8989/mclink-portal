@@ -89,8 +89,9 @@ class HolidayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Holiday $holiday)
     {
-        //
+        $holiday->delete();
+        return redirect()->route('holidays.index')->with('success', 'Holiday deleted successfully.');
     }
 }
