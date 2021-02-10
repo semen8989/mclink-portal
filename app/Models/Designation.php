@@ -10,10 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Designation extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $table = 'designations';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'designation_name',
         'company_id',
