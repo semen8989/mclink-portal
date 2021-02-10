@@ -44,30 +44,7 @@
         </tbody>
     </table>
 </div>
-<!-- Delete modal -->
-<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="delete_form" method="post">
-                <div class="modal-body">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="id" id="id">
-                    <h5 class="text-center">Are you sure you want to delete this data ?</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@include('layout.delete_modal')
 <script>
     $(document).on('click','#delete',function(){
         let id = $(this).attr('data-id');
