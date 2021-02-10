@@ -41,10 +41,12 @@ class ServiceReportDataTable extends DataTable
             })
             ->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, ServiceReport::STATUS));
-                $badgeType = $status != 'Draft' ? 'success' : 'primary';
+                $badgeColor = $status != 'Draft' ? 'success' : 'primary';
 
-                return '<span class="badge badge-' . $badgeType .
-                    ' px-2 py-1">' . $status . '</span>';
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
             })
             ->rawColumns(['csr_no', 'status']);
     }
