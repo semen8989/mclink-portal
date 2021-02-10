@@ -56,7 +56,8 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        $title = __('label.view_location');
+        return view('location.show',compact('title','location'));
     }
 
     /**
@@ -67,7 +68,10 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        $title = __('label.edit_location');
+        $companies = Company::all();
+        $users = User::all();
+        return view('location.edit',compact('title','location','companies','users'));
     }
 
     /**
@@ -77,9 +81,10 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(StoreLocationRequest $request, Location $location)
     {
-        //
+        $location->update($request->all());
+        return redirect()->route('locations.index')->with('success', 'Location updated successfully.');
     }
 
     /**
@@ -90,6 +95,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+        return redirect()->route('locations.index')->with('success', 'Location deleted successfully.');
     }
 }

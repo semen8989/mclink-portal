@@ -49,4 +49,14 @@
         </tbody>
     </table>
 </div>
+@include('layout.delete_modal')
+<script>
+    $(document).on('click','#delete',function(){
+        let id = $(this).attr('data-id');
+        var url = '{{ route("locations.destroy",":id") }}'
+        url = url.replace(':id',id)
+        $('#delete_form').attr('action',url);
+    });
+
+</script>
 @stop

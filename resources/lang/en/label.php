@@ -253,6 +253,8 @@ return [
     'update_at' => 'Update at',
     'sales_lead' => 'Sales Lead',
     'company_name' => 'Company name',
+    'view_location' => 'View Location',
+    'edit_location' => 'Edit Location',
     'assigned_sales' => 'Assigned Sales',
     'sales_manager' => 'Sales Manager',
     'created_at' => 'Created at',
