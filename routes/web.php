@@ -6,6 +6,7 @@ use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\AnnouncementController;
@@ -36,7 +37,8 @@ Route::prefix('organizations')->group(function () {
         'designations' => DesignationController::class,
         'announcements' => AnnouncementController::class,
         'policies' => PolicyController::class,
-        'holidays' => HolidayController::class
+        'holidays' => HolidayController::class,
+        'locations' => LocationController::class
     ]); 
 });
 //Department Data
