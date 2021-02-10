@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Announcement extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $table = 'announcements';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'start_date',
