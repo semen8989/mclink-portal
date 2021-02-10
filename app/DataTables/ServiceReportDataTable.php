@@ -29,8 +29,12 @@ class ServiceReportDataTable extends DataTable
                 ]);
             })
             ->editColumn('csr_no', function ($request) {
-                return '<a href="' . route('service.form.show', ['serviceReport' => $request->csr_no]) .
-                    '">' . $request->csr_no . '</a>';
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'service.form.show',
+                    'showRouteSlug' => 'serviceReport',
+                    'showRouteSlugValue' => $request->csr_no,
+                    'columnData' => $request->csr_no
+                ]);
             })
             ->editColumn('service_start', function ($request) {
                 return $request->created_at->format('d/m/Y');
