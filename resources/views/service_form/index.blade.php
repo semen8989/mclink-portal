@@ -4,6 +4,8 @@
     <div class="card-body">
         {!! $dataTable->table() !!}
     </div>
+
+    @include('layout.delete_modal')
 @stop
 
 @push('scripts')
