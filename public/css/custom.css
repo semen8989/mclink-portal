@@ -59,3 +59,11 @@
 .dataTables_filter > label > input {
     height: 100%;
 }
+
+table.dataTable th {
+    outline: none;
+}
+
+a.dt-action-btn:hover {
+    text-decoration: none;
+}

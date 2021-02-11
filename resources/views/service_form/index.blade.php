@@ -4,8 +4,6 @@
     <div class="card-body">
         {!! $dataTable->table() !!}
     </div>
-    
-    <a href="{{ route('service.form.create') }}">Go to create page</a>  
 @stop
 
 @push('scripts')

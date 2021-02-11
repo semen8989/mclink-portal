@@ -10,7 +10,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ServiceReportDataTable extends DataTable
 {
-    // protected $actions = ['testAction'];
+    protected $actions = ['create'];
 
     /**
      * Build DataTable class.
@@ -76,7 +76,9 @@ class ServiceReportDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->parameters([
-                // 'buttons' => ['testAction'],
+                'buttons' => [
+                    'create'
+                ],
                 'language' => [
                     'search' => '',
                     'searchPlaceholder' => 'Search',
@@ -87,11 +89,6 @@ class ServiceReportDataTable extends DataTable
                 "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"
             )->orderBy(1);
-    }
-
-    public function testAction()
-    {
-        
     }
 
     /**

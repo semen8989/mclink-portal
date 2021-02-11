@@ -255,10 +255,10 @@
     };
 
     DataTable.ext.buttons.create = {
-        className: 'buttons-create',
+        className: 'btn-success buttons-create',
 
         text: function (dt) {
-            return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'Create');
+            return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'New Record');
         },
 
         action: function (e, dt, button, config) {
