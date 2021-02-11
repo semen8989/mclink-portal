@@ -7,39 +7,39 @@ use Illuminate\View\Component;
 class Action extends Component
 {
     /**
-     * Route name.
+     * Edit route name.
      *
      * @var string
      */
     public $editRouteName;
 
     /**
-     * Route Slug Name.
+     * Item Slug Name.
      *
      * @var string
      */
-    public $editRouteSlug;
+    public $itemSlug;
 
     /**
-     * Route Slug Value.
+     * Item Slug Value.
      *
      * @var string
      */
-    public $editRouteSlugValue;
+    public $itemSlugValue;
 
     /**
      * Create a new component instance.
      *
      * @param  string  $editRouteName
-     * @param  string  $editRouteSlug
-     * @param  string  $editRouteSlugValue
+     * @param  string  $itemSlug
+     * @param  string  $itemSlugValue
      * @return void
      */
-    public function __construct($editRouteName, $editRouteSlug, $editRouteSlugValue)
+    public function __construct($editRouteName, $itemSlug, $itemSlugValue)
     {
         $this->editRouteName = $editRouteName;
-        $this->editRouteSlug = $editRouteSlug;
-        $this->editRouteSlugValue = $editRouteSlugValue;
+        $this->itemSlug = $itemSlug;
+        $this->itemSlugValue = $itemSlugValue;
     }
 
     /**
