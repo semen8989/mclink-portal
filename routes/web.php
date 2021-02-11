@@ -9,6 +9,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\AnnouncementController;
 
 /*
@@ -38,7 +39,8 @@ Route::prefix('organizations')->group(function () {
         'announcements' => AnnouncementController::class,
         'policies' => PolicyController::class,
         'holidays' => HolidayController::class,
-        'locations' => LocationController::class
+        'locations' => LocationController::class,
+        'office_shifts' => OfficeShiftController::class
     ]); 
 });
 //Department Data

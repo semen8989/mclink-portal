@@ -29,9 +29,11 @@
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.policies'))) ? 'c-active c-show' : '' }}" href="{{ route('policies.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.company_policy') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.holidays'))) ? 'c-active c-show' : '' }}" href="{{ route('holidays.index') }}"><span
-                        class="c-sidebar-nav-icon"></span> {{ __('label.holiday') }}</a></li>
+                        class="c-sidebar-nav-icon"></span> {{ __('label.holidays') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.locations'))) ? 'c-active c-show' : '' }}" href="{{ route('locations.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.location') }}</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.office_shifts'))) ? 'c-active c-show' : '' }}" href="{{ route('office_shifts.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.shifts') }}</a></li>
                 </ul>
             </li>
         </ul>
