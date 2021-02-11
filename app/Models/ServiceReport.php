@@ -26,6 +26,7 @@ class ServiceReport extends Model
      */
     protected $casts = [
         'date' => 'date',
+        'signed_date' => 'date',
         'service_start' => 'datetime',
         'service_end' => 'datetime',
     ];

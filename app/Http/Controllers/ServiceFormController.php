@@ -88,6 +88,25 @@ class ServiceFormController extends Controller
         return redirect()->route('service.form.index')->with('success', 'Service report successfully sent');
     }
 
+    public function show(ServiceReport  $serviceReport)
+    {
+        $serviceReport->status = Str::ucfirst(array_search($serviceReport->status, ServiceReport::STATUS));
+        
+        return view('service_form.show', ['serviceReport' => $serviceReport]);
+    }
+
+    public function edit(ServiceReport  $serviceReport)
+    {
+        dd('test');
+        return view('service_form.show', ['serviceReport' => $serviceReport]);
+    }
+
+
+    public function download(ServiceReport  $serviceReport)
+    {
+        return response()->download(public_path('storage\service_report\pdf\\' . $serviceReport->report_pdf), 'service_report.pdf');
+    }
+
     public function getAcknowledgmentForm(ServiceReport $uuid)
     {   
         return view('service_form.acknowledgement.create', ['serviceReport' => $uuid]);

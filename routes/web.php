@@ -28,8 +28,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [ServiceFormController::class, 'index'])->name('service.form.index');
         Route::get('/create', [ServiceFormController::class, 'create'])->name('service.form.create');
         Route::post('/', [ServiceFormController::class, 'store'])->name('service.form.store');
-        Route::get('/{serviceReport}', [ServiceFormController::class, 'show'])->name('service.form.show');
-        Route::get('/{serviceReport}/edit', [ServiceFormController::class, 'edit'])->name('service.form.edit');
+        Route::get('/{serviceReport:csr_no}', [ServiceFormController::class, 'show'])->name('service.form.show');
+        Route::get('/{serviceReport:csr_no}/edit', [ServiceFormController::class, 'edit'])->name('service.form.edit');
+
+        Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
     });
 
     // Typeahead Routes
