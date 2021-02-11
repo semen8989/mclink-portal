@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\OfficeShift;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreOfficeShiftRequest;
 
 class OfficeShiftController extends Controller
 {
@@ -15,7 +17,8 @@ class OfficeShiftController extends Controller
     public function index()
     {
         $title = __('label.shifts');
-        return view('office_shift.index',compact('title'));
+        $office_shifts = OfficeShift::all();
+        return view('office_shift.index',compact('title','office_shifts'));
     }
 
     /**
@@ -26,7 +29,8 @@ class OfficeShiftController extends Controller
     public function create()
     {
         $title = __('label.add_shift');
-        return view('office_shift.create',compact('title'));
+        $companies = Company::all();
+        return view('office_shift.create',compact('title','companies'));
     }
 
     /**
@@ -35,9 +39,10 @@ class OfficeShiftController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOfficeShiftRequest $request)
     {
-        //
+        OfficeShift::create($request->all());
+        return redirect()->route('office_shifts.index')->with('success', 'Office Shift created successfully.');
     }
 
     /**
@@ -59,7 +64,9 @@ class OfficeShiftController extends Controller
      */
     public function edit(OfficeShift $officeShift)
     {
-        //
+        $title = __('label.edit_shift');
+        $companies = Company::all();
+        return view('office_shift.edit',compact('title','companies','officeShift'));
     }
 
     /**
@@ -69,9 +76,10 @@ class OfficeShiftController extends Controller
      * @param  \App\Models\OfficeShift  $officeShift
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OfficeShift $officeShift)
+    public function update(StoreOfficeShiftRequest $request, OfficeShift $officeShift)
     {
-        //
+        $officeShift->update($request->all());
+        return redirect()->route('office_shifts.index')->with('success', 'Office Shift updated successfully.');
     }
 
     /**
@@ -82,6 +90,7 @@ class OfficeShiftController extends Controller
      */
     public function destroy(OfficeShift $officeShift)
     {
-        //
+        $officeShift->delete();
+        return redirect()->route('office_shifts.index')->with('success', 'Office Shift deleted successfully.');
     }
 }

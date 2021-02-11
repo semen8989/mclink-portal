@@ -195,6 +195,7 @@ return [
     'office_shifts' => 'office_shifts',
     'shifts' => 'Office Shifts',
     'add_shift' => 'Add New Office Shift',
+    'edit_shift' => 'Edit Office Shift',
     'items' => 'items',
     'item/s' => 'item/s',
     'pending_prf' => 'Pending PRF',
