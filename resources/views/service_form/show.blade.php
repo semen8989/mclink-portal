@@ -2,7 +2,7 @@
 
 @section('content')
     <h5 class="card-header font-weight-bold text-center">SERVICE REPORT DETAILS</h5>
-    <div class="card-body">
+    <div class="card-body px-5">
         <div class="row">
             <div class="col-md-6">
                 <p class="guest-form-label font-weight-bold mb-1">CSR No.</p>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 mb-2">
                 <p class="guest-form-label font-weight-bold mb-1">Service Rendered</p>
                 {!! $serviceReport->service_rendered !!}
             </div>
@@ -75,6 +75,24 @@
                 <p class="guest-form-data mb-4">{{ $serviceReport->status }}</p>
             </div>
         </div>
+
+        @if (empty($serviceReport->signed_date) && $serviceReport->status == 'Save')
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="guest-form-label font-weight-bold mb-2">Customer Acknowledgement Link</p>
+                    <div class="input-group mb-4">
+                        <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.create', [$serviceReport->id]) }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#inputLink">
+                                <svg class="c-icon">
+                                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-copy') }}"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+        @endif       
 
         @if (!empty($serviceReport->signed_date))
             <hr>
@@ -113,13 +131,6 @@
                         </svg>
                         Download
                     </a>
-                @elseif ($serviceReport->status == 'Save')
-                    <a class="btn btn-primary mr-1 font-weight-bold" href="">
-                        <svg class="c-icon">
-                            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-copy') }}"></use>
-                        </svg>
-                        Copy Link
-                    </a>
                 @endif
                 <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('service.form.edit', [$serviceReport->csr_no]) }}">
                     <svg class="c-icon">
@@ -134,5 +145,63 @@
 @stop
 
 @push('scripts')
-    
+    <!-- Clipboard js dependency -->
+    <script src="{{ asset('plugin/clipboard/js/clipboard.min.js') }}"></script>
+
+    <!-- Page js codes -->
+    <script>
+        var clipboard = new ClipboardJS('.btn-clipboard');
+        // console.log(document.getElementById('test').innerHTML)
+        // function copyToClipboard(text) {
+        //     window.prompt(text, text);
+        // }
+
+        // var copyBtn = $('#copyBtn');
+        // console.log(copyBtn);
+        // var acknowledgmentLink = "{{ route('service.form.acknowledgment.create', [$serviceReport->id]) }}";
+
+        // function fallbackCopyTextToClipboard(text) {
+        //     var input = document.createElement("INPUT");
+        //     input.value = text;
+
+        //     document.body.appendChild(input);
+        //     console.log(document.body);
+
+        //     try {
+        //         var successful = document.execCommand('copy');
+        //         var msg = successful ? 'successful' : 'unsuccessful';
+        //         console.log('Fallback: Copying text command was ' + msg);
+        //     } catch (err) {
+        //         console.error('Fallback: Oops, unable to copy', err);
+        //     }
+
+        //     document.body.removeChild(input);
+        // }
+
+        // function copyTextToClipboard(text) {
+        //     if (!navigator.clipboard) {
+        //         fallbackCopyTextToClipboard(text);
+        //         console.log('fail');
+        //         return;
+        //     }
+        //     navigator.clipboard.writeText(text).then(function() {
+        //         console.log('Async: Copying to clipboard was successful!');
+        //     }, function(err) {
+        //         console.error('Async: Could not copy text: ', err);
+        //     });
+        // }
+
+        // $('#copyBtn').on('click', function() {
+        //     // console.log( $( this ).text() );
+        //     event.preventDefault();
+        //     console.log(acknowledgmentLink);
+        //     copyTextToClipboard("hmmmmmmmmmm");
+        // });
+        
+        // .addEventListener('click', function(event) {
+        //     // copyTextToClipboard('Bob');
+        //     event.preventDefault();
+        //     console.log('test');
+        // });
+    </script>  
 @endpush

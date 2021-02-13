@@ -67,3 +67,9 @@ table.dataTable th {
 a.dt-action-btn:hover {
     text-decoration: none;
 }
+
+/* custom clipboard button */
+.btn-clipboard {
+    height: 35px;
+    color: #1f1f1f;
+}
