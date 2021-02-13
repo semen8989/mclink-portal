@@ -16,4 +16,14 @@
     
     <!-- dt script-->
     {!! $dataTable->scripts() !!}
+
+    <!-- Page js codes -->
+    <script>
+        $(document).on('click','#delete',function() {
+            let id = $(this).attr('data-id');
+            var url = '{{ route("service.form.destroy",":id") }}'
+            url = url.replace(':id', id)
+            $('#delete_form').attr('action',url);
+        });
+    </script>  
 @endpush

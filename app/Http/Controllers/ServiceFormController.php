@@ -101,6 +101,19 @@ class ServiceFormController extends Controller
         return view('service_form.show', ['serviceReport' => $serviceReport]);
     }
 
+    public function destroy(ServiceReport  $serviceReport)
+    {
+        $result = 'error';
+        $msg = 'There is a problem with deleting the record.';
+
+        if ($serviceReport->delete()) {
+            $result = 'success';
+            $msg = 'The record was successfully deleted.';
+        }
+
+        return back()->with($result, $msg);
+    }
+
 
     public function download(ServiceReport  $serviceReport)
     {
