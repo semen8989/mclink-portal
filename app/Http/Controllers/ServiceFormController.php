@@ -97,8 +97,7 @@ class ServiceFormController extends Controller
 
     public function edit(ServiceReport  $serviceReport)
     {
-        dd('test');
-        return view('service_form.show', ['serviceReport' => $serviceReport]);
+        return view('service_form.edit', ['serviceReport' => $serviceReport]);
     }
 
     public function destroy(ServiceReport  $serviceReport)
