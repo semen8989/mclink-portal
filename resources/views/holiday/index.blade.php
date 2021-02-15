@@ -48,13 +48,15 @@
     </table>
 </div>
 @include('layout.delete_modal')
-<script>
-    $(document).on('click','#delete',function(){
-        let id = $(this).attr('data-id');
-        var url = '{{ route("holidays.destroy",":id") }}'
-        url = url.replace(':id',id)
-        $('#delete_form').attr('action',url);
-    });
-
-</script>
 @stop
+
+@push('scripts')
+    <script>
+        $(document).on('click','#delete',function(){
+            let id = $(this).attr('data-id');
+            var url = '{{ route("holidays.destroy",":id") }}'
+            url = url.replace(':id',id)
+            $('#delete_form').attr('action',url);
+        });
+    </script>
+@endpush

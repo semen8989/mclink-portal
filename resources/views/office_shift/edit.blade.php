@@ -127,16 +127,30 @@
         <button type="submit" class="btn btn-success">Save</button>
     </div>
 </form>
-<script>
-    $(document).ready(function(){
-        $('.timepicker').datetimepicker({
-            ignoreReadonly: true,
-            format: 'HH:mm',
-        });
-        $(".clear-time").click(function(){
-            var clear_id  = $(this).data('clear-id');
-            $(".clear-"+clear_id).val('');
-        });
-    })
-</script>
 @stop
+
+@push('stylesheets')
+    <!-- Datetimepicker css dependency -->
+    <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <!-- Datetimepicker js dependency -->
+    <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('.timepicker').datetimepicker({
+                ignoreReadonly: true,
+                format: 'HH:mm',
+                widgetPositioning: {
+                    vertical: 'bottom'
+                }
+            });
+            $(".clear-time").click(function(){
+                var clear_id  = $(this).data('clear-id');
+                $(".clear-"+clear_id).val('');
+            });
+        })
+    </script>
+@endpush

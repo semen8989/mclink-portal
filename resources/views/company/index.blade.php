@@ -50,13 +50,16 @@
     </table>
 </div>
 @include('layout.delete_modal')
-<script>
-    $(document).on('click','#delete',function(){
-        let id = $(this).attr('data-id');
-        var url = '{{ route("companies.destroy",":id") }}'
-        url = url.replace(':id',id)
-        $('#delete_form').attr('action',url);
-    });
-
-</script>
 @stop
+
+@push('scripts')
+    <script type="text/javascript" src="{{ asset('plugin/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+        $(document).on('click','#delete',function(){
+            let id = $(this).attr('data-id');
+            var url = '{{ route("companies.destroy",":id") }}'
+            url = url.replace(':id',id)
+            $('#delete_form').attr('action',url);
+        });
+    </script>    
+@endpush

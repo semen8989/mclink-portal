@@ -34,17 +34,8 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
-     <!-- Links -->
-    <link rel="stylesheet" href="{{ asset('plugin/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
     <!-- Main styles for this application-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <!-- Scripts -->
-    <script type="text/javascript" src="{{ asset('js/jquery/dist/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
-    <!-- TinyMCE Editor -->
-    <script src="https://cdn.tiny.cloud/1/yo73cb5kgrrh9v4jlpa391ee0axje0ckqg66pan5n8ksemva/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Page specific style -->
+    @stack('stylesheets')
   </head>
