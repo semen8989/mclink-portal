@@ -24,7 +24,7 @@
         <tbody>
             @foreach($holidays as $holiday)
                 <tr>
-                    <td>
+                    <td style="width: 5%">
                         <a href="{{ route('holidays.edit',$holiday->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>

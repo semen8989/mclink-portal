@@ -23,7 +23,7 @@
         <tbody>
             <tr>
                 @foreach ($policies as $policy)
-                    <td>
+                    <td style="width: 5%">
                         <a href="{{ route('policies.edit',$policy->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>

@@ -28,7 +28,7 @@
         <tbody>
             @foreach($office_shifts as $office_shift)
                 <tr>
-                    <td>
+                    <td style="width: 5%">
                         <a href="{{ route('office_shifts.edit',$office_shift->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
