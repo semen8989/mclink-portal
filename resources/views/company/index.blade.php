@@ -6,7 +6,7 @@
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('companies.create') }}">Add New Company</a>
     </div>
-    <table class="table table-responsive-sm">
+    <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
                 <th>Action</th>

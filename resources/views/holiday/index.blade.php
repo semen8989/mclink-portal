@@ -6,7 +6,7 @@
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('holidays.create') }}">Add New Holiday</a>
     </div>
-    <table class="table table-responsive-sm">
+    <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
                 <th>Action</th>

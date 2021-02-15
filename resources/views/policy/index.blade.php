@@ -6,7 +6,7 @@
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('policies.create') }}">Add New Policy</a>
     </div>
-    <table class="table table-responsive-sm">
+    <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
                 <th>Action</th>
