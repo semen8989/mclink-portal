@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DepartmentController;
@@ -40,7 +41,8 @@ Route::prefix('organizations')->group(function () {
         'policies' => PolicyController::class,
         'holidays' => HolidayController::class,
         'locations' => LocationController::class,
-        'office_shifts' => OfficeShiftController::class
+        'office_shifts' => OfficeShiftController::class,
+        'expenses' => ExpenseController::class
     ]); 
 });
 //Department Data

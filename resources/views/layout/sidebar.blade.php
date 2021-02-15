@@ -34,6 +34,8 @@
                         class="c-sidebar-nav-icon"></span> {{ __('label.location') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.office_shifts'))) ? 'c-active c-show' : '' }}" href="{{ route('office_shifts.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.shifts') }}</a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.expenses'))) ? 'c-active c-show' : '' }}" href="{{ route('expenses.index') }}"><span
+                        class="c-sidebar-nav-icon"></span> {{ __('label.expense') }}</a></li>
                 </ul>
             </li>
         </ul>
