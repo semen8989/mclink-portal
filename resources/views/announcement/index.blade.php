@@ -4,7 +4,11 @@
 <div class="card-header">Announcement List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('announcements.create') }}">Add New Announcement</a>
+        <a class="btn btn-success" href="{{ route('announcements.create') }}">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
+            </svg> Add New Announcement
+        </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
@@ -22,24 +26,19 @@
             @foreach ($announcements as $announcement)
                 <tr>
                     <td>
-                        <a href="{{ route('announcements.show',$announcement->id) }}" title="View">
-                            <svg class="c-icon">
-                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
-                            </svg>
-                        </a>
                         <a href="{{ route('announcements.edit',$announcement->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $announcement->id }}" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $announcement->id }}" class="text-danger" id="delete" href="" title="Delete">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
                         </a>
                         
                     </td>
-                    <td>{{ $announcement->title }}</td>
+                    <td><a href="{{ route('announcements.show',$announcement->id) }}" title="View">{{ $announcement->title }}</a></td>
                     <td>{{ $announcement->company->company_name }}</td>
                     <td>{{ $announcement->summary }}</td>
                     <td>{{ $announcement->department->department_name }}</td>

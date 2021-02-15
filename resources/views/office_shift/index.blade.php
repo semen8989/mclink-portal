@@ -4,7 +4,11 @@
 <div class="card-header">Office Shift List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('office_shifts.create') }}">Add New Office Shift</a>
+        <a class="btn btn-success" href="{{ route('office_shifts.create') }}">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
+            </svg> Add New Office Shift
+        </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
@@ -30,7 +34,7 @@
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $office_shift->id }}" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $office_shift->id }}" class="text-danger" id="delete" href="" title="Delete">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>

@@ -4,7 +4,11 @@
 <div class="card-header">Holiday List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('holidays.create') }}">Add New Holiday</a>
+        <a class="btn btn-success" href="{{ route('holidays.create') }}">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
+            </svg> Add New Holiday
+        </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
@@ -21,23 +25,18 @@
             @foreach($holidays as $holiday)
                 <tr>
                     <td>
-                        <a href="{{ route('holidays.show',$holiday->id) }}" title="View">
-                            <svg class="c-icon">
-                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
-                            </svg>
-                        </a>
                         <a href="{{ route('holidays.edit',$holiday->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $holiday->id }}" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $holiday->id }}" class="text-danger" id="delete" href="" title="Delete">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
                         </a> 
                     </td>
-                    <td>{{ $holiday->company->company_name }}</td>
+                    <td><a href="{{ route('holidays.show',$holiday->id) }}">{{ $holiday->company->company_name }}</a></td>
                     <td>{{ $holiday->event_name }}</td>
                     <td>{{ ucfirst($holiday->status) }}</td>
                     <td>{{ $holiday->start_date }}</td>

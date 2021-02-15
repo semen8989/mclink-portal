@@ -4,7 +4,11 @@
 <div class="card-header">Department List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('departments.create') }}">Add New Department</a>
+        <a class="btn btn-success" href="{{ route('departments.create') }}">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
+            </svg> Add New Department
+        </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
@@ -24,7 +28,7 @@
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                         </svg>
                     </a>
-                    <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $department->id }}" id="delete" href="" title="Delete">
+                    <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $department->id }}" class="text-danger" id="delete" href="" title="Delete">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                         </svg>

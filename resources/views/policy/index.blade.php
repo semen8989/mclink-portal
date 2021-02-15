@@ -4,7 +4,11 @@
 <div class="card-header">Policy List</div>
 <div class="card-body">
     <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('policies.create') }}">Add New Policy</a>
+        <a class="btn btn-success" href="{{ route('policies.create') }}">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
+            </svg> Add New Policy
+        </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
@@ -20,23 +24,18 @@
             <tr>
                 @foreach ($policies as $policy)
                     <td>
-                        <a href="{{ route('policies.show',$policy->id) }}" title="View">
-                            <svg class="c-icon">
-                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-zoom') }}"></use>
-                            </svg>
-                        </a>
                         <a href="{{ route('policies.edit',$policy->id) }}" title="Edit">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $policy->id }}" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $policy->id }}" class="text-danger" id="delete" href="" title="Delete">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
                         </a>
                     </td>
-                    <td>{{ $policy->title }}</td>
+                    <td><a href="{{ route('policies.show',$policy->id) }}" title="View">{{ $policy->title }}</a></td>
                     <td>
                         @if(!@empty($policy->company->company_name))
                             {{ $policy->company->company_name }}
