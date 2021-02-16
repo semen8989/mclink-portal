@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MakeExpenseTypesTable extends Migration
+class CreateExpenseTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class MakeExpenseTypesTable extends Migration
             $table->id();
             $table->integer('company_id');
             $table->string('expense_type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
