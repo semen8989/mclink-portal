@@ -27,7 +27,7 @@ class ServiceReportSeeder extends Seeder
             'current_user_id' => User::find(1)->id,
             'service_rendered' => Str::random(100),
             'used_it_credit' => Str::random(10),
-            'status' => 1,
+            'status' => 3,
             'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
             
