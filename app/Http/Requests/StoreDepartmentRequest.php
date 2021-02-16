@@ -25,7 +25,16 @@ class StoreDepartmentRequest extends FormRequest
     {
         return [
             'department_name' => 'required|string|max:50',
-            'company_id' => 'required'
+            'company_id' => 'required',
+            'user_id' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'company_id.required' => 'The company field is required.',
+            'user_id.required' => 'The department head field is required.'
         ];
     }
 }

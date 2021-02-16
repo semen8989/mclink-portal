@@ -57,8 +57,7 @@
             <label for="department" class="control-label">Department</label>
             <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id"
                 data-selected-department="{{ old('department_id') }}">
-                <option disabled selected>Select Department</option>
-
+                <option disabled selected>Select Company</option>
             </select>
             @error('department_id')
                 <div class="invalid-feedback">
@@ -157,7 +156,6 @@
                             $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
                         });
                         var department_selected = $("#department_id").attr("data-selected-department");
-                        var current_company = '{{ $announcement->company_id }}';
                         var current_department = '{{ $announcement->department_id }}';
                         if(department_selected !== ''){                    
                             $("#department_id").val(department_selected);

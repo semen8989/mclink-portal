@@ -223,7 +223,7 @@ return [
     'announcement' => 'Announcement',
     'add_announcement' => 'Add New Announcement',
     'view_announcement' => 'View Announcement',
-    'update_announcement' => 'Update Announcement',
+    'edit_announcement' => 'Edit Announcement',
     'amount_before_tax' => 'AMOUNT BEFORE TAX',
     'tax_amount' => 'TAX AMOUNT',
     'total' => 'TOTAL',

@@ -31,4 +31,11 @@ class StoreHolidayRequest extends FormRequest
             'status' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'company_id.required' => 'The company field is required.'
+        ];
+    }
 }

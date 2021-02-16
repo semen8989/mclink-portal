@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="location_head">Location Head</label>
                     <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
-                        <option value="">Select Location</option>
+                        <option selected disabled>Select Location</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                         @endforeach
