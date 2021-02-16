@@ -42,6 +42,7 @@ class AcknowledgementFormController extends Controller
         $serviceReport->signature_image = $imgFile;
         $serviceReport->signed_customer = $validated['signedCust'];
         $serviceReport->signed_date = Carbon::now();
+        $serviceReport->status = 1;
 
         if ($serviceReport->save()) {           
             $pdf = PDF::loadView('pdf.service_report.form', ['serviceReport' => $serviceReport]);       
@@ -55,5 +56,10 @@ class AcknowledgementFormController extends Controller
             Mail::to($serviceReport->user->email)
                 ->queue(new ServiceReportCopyReceivedMail($serviceReport));
         }
+    }
+
+    public function feedback()
+    {
+        return view('service_form.acknowledgement.feedback');
     }
 }

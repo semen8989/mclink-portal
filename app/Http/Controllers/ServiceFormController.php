@@ -10,7 +10,8 @@ use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\DataTables\ServiceReportDataTable;
-use App\Http\Requests\StoreServiceFormRequest;
+use App\Http\Requests\StoreServiceReportRequest;
+use App\Http\Requests\UpdateServiceReportRequest;
 
 class ServiceFormController extends Controller
 {
@@ -25,6 +26,19 @@ class ServiceFormController extends Controller
     }
 
     /**
+     * Show the data related to a specific service form.
+     *
+     * @param  ServiceReport  $serviceReport
+     * @return \Illuminate\Http\Response
+     */
+    public function show(ServiceReport  $serviceReport)
+    {
+        $serviceReport->status = Str::ucfirst(array_search($serviceReport->status, ServiceReport::STATUS));
+        
+        return view('service_form.show', ['serviceReport' => $serviceReport]);
+    }
+
+    /**
      * Show the form for creating a new service form.
      *
      * @return \Illuminate\Http\Response
@@ -36,63 +50,67 @@ class ServiceFormController extends Controller
             ->first();
 
         $csrNo = 1;
-        $csrNo += $recentServiceReport ? intval($recentServiceReport->csr_no) : 100000;
+        $csrNo += $recentServiceReport
+            ? intval($recentServiceReport->csr_no)
+            : ServiceReport::MODEL_START;
         
         return view('service_form.create', ['csrNo' => $csrNo]);
     }
 
-
-    public function store(StoreServiceFormRequest  $request)
+    public function store(StoreServiceReportRequest  $request)
     {
-        $request->validated();
+        $validated = $request->validated();
 
         $serviceReport = new ServiceReport;
     
         $serviceReport->id = Str::uuid();
-        $serviceReport->csr_no = $request->csrNo;
-        $serviceReport->date = $request->date;
-        $serviceReport->ticket_reference = $request->ticketReference;
-        $serviceReport->call_status = $request->callStatus;
-        $serviceReport->engineer_remark = $request->engineerRemark;
-        $serviceReport->status_after_service = $request->statusAfterService;
-        $serviceReport->service_rendered = $request->serviceRendered;
-        $serviceReport->service_start = $request->serviceStart;
-        $serviceReport->service_end = $request->serviceEnd;
-        $serviceReport->used_it_credit = $request->usedItCredit;    
-        $serviceReport->engineer_id = $request->engineerId;
+        $serviceReport->csr_no = $validated['csrNo'];
+        $serviceReport->date = $validated['date'];
+        $serviceReport->ticket_reference = $validated['ticketReference'];
+        $serviceReport->service_rendered = $validated['serviceRendered'];
+        $serviceReport->engineer_remark = $validated['engineerRemark'];
+        $serviceReport->status_after_service = $validated['statusAfterService'];
+        $serviceReport->service_start = $validated['serviceStart'];
+        $serviceReport->service_end = $validated['serviceEnd'];
+        $serviceReport->used_it_credit = $validated['usedItCredit'];
         $serviceReport->current_user_id = auth()->user()->id;
-        $serviceReport->status = ServiceReport::STATUS[$request->action];
+        $serviceReport->engineer_id = $validated['engineerId'];
+        $serviceReport->status = ServiceReport::STATUS[$validated['action']];
 
         if ($request->isNewCustomer) {
             $customer = new Customer;
-            $customer->name = $request->newCustomer;
+            $customer->name = $validated['newCustomer'];
         } else {
-            $customer = Customer::find($request->customer);
+            $customer = Customer::find($validated['customer']);
         }
     
-        $customer->email = $request->custEmail;
-        $customer->address = $request->address;
+        $customer->email = $validated['custEmail'];
+        $customer->address = $validated['address'];
 
-        DB::transaction(function () use ($serviceReport, $customer) {
-            $customer->save();
+        $result = true;
+
+        try {
+            DB::transaction(function () use ($serviceReport, $customer) {
+                $customer->save();
             
-            $serviceReport->customer()->associate($customer);
-                  
-            $serviceReport->save();
-        });
-
-        if ($request->action == 'send' && $request->custEmail) {
-            Mail::to($request->custEmail)->queue(new ServiceFormSent($serviceReport));
+                $serviceReport->customer()->associate($customer);                  
+                $serviceReport->save();
+            });
+        } catch (\Exception $e) {
+            $result = false;
         }
 
-        return redirect()->route('service.form.index')->with('success', 'Service report successfully sent');
-    }
+        if ($result && ServiceReport::STATUS[$validated['action']] == 2) {
+            Mail::to($validated['custEmail'])->queue(new ServiceFormSent($serviceReport));
+        }
 
-    public function show(ServiceReport  $serviceReport)
-    {
-        $serviceReport->status = Str::ucfirst(array_search($serviceReport->status, ServiceReport::STATUS));
-        
-        return view('service_form.show', ['serviceReport' => $serviceReport]);
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result 
+            ? 'Service report successfully created.' 
+            : 'There is a problem with creating the record.';
+
+        return redirect()->route('service.form.index')->with($resultStatus, $msg);
     }
 
     public function edit(ServiceReport  $serviceReport)
@@ -100,27 +118,86 @@ class ServiceFormController extends Controller
         return view('service_form.edit', ['serviceReport' => $serviceReport]);
     }
 
-    public function destroy(ServiceReport  $serviceReport)
+    public function update(UpdateServiceReportRequest  $request, ServiceReport  $serviceReport)
     {
-        $result = 'error';
-        $msg = 'There is a problem with deleting the record.';
+        $validated = $request->validated();
 
-        if ($serviceReport->delete()) {
-            $result = 'success';
-            $msg = 'The record was successfully deleted.';
+        $serviceReport->id = Str::uuid();
+        $serviceReport->csr_no = $validated['csrNo'];
+        $serviceReport->date = $validated['date'];
+        $serviceReport->ticket_reference = $validated['ticketReference'];
+        $serviceReport->service_rendered = $validated['serviceRendered'];
+        $serviceReport->engineer_remark = $validated['engineerRemark'];
+        $serviceReport->status_after_service = $validated['statusAfterService'];
+        $serviceReport->service_start = $validated['serviceStart'];
+        $serviceReport->service_end = $validated['serviceEnd'];
+        $serviceReport->used_it_credit = $validated['usedItCredit'];
+        $serviceReport->current_user_id = auth()->user()->id;
+        $serviceReport->engineer_id = $validated['engineerId'];
+
+        if ($request->isNewCustomer) {
+            $customer = new Customer;
+            $customer->name = $validated['newCustomer'];           
+        } else {
+            $serviceReport->customer_id = $validated['customer'];
+            $customer = $serviceReport->customer;
         }
 
-        return back()->with($result, $msg);
+        $customer->email = $validated['custEmail'];
+        $customer->address = $validated['address'];
+
+        $currentStatus = $serviceReport->status;
+
+        if ($currentStatus == 1) {
+            $serviceReport->report_pdf = null;
+            $serviceReport->signature_image = null;
+            $serviceReport->signed_customer = null;
+            $serviceReport->signed_date = null;
+        }
+
+        $serviceReport->status = $validated['status'];
+      
+        $result = true;
+
+        try {
+            DB::transaction(function () use ($serviceReport, $customer) {
+                $customer->save();
+                
+                $serviceReport->customer()->associate($customer);                
+                $serviceReport->save();
+            });
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        if ($result && $validated['status'] == 2) {
+            Mail::to($validated['custEmail'])->queue(new ServiceFormSent($serviceReport));
+        }
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result 
+            ? 'Service report successfully updated.' 
+            : 'There is a problem with updating the record.';
+
+        return redirect()->route('service.form.show', [$serviceReport->csr_no])->with($resultStatus, $msg);
     }
 
+    public function destroy(ServiceReport  $serviceReport)
+    {
+        $result = $serviceReport->delete();
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result
+            ? 'The record was successfully deleted.'
+            : 'There is a problem with deleting the record.';
+
+        return back()->with($resultStatus, $msg);
+    }
 
     public function download(ServiceReport  $serviceReport)
     {
         return response()->download(public_path('storage\service_report\pdf\\' . $serviceReport->report_pdf), 'service_report.pdf');
-    }
-
-    public function getAcknowledgmentForm(ServiceReport $uuid)
-    {   
-        return view('service_form.acknowledgement.create', ['serviceReport' => $uuid]);
     }
 }
