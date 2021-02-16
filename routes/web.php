@@ -45,5 +45,5 @@ Route::prefix('organizations')->group(function () {
         'expenses' => ExpenseController::class
     ]); 
 });
-//Department Data
 Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
+Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');

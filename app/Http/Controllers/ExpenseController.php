@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Expense;
 use App\Models\ExpenseType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreExpenseRequest;
 
 class ExpenseController extends Controller
@@ -106,6 +107,11 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        
+    }
+
+    public function downloadFile($expense)
+    {
+        return Storage::disk('public')->download('bill_copies/'.$expense);
     }
 }

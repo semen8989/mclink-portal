@@ -29,7 +29,7 @@
             </div>
             <fieldset class="form-group col-md-4">
                 <strong><label>Bill Copy</label></strong>
-                <a href="" class="form-control-plaintext">Download File</a>
+                <a href="{{ route('downloadFile',$expense->bill_copy) }}" class="form-control-plaintext">Download File</a>
             </fieldset>
         </div>
         <div class="form-group">
