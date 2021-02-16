@@ -13,9 +13,11 @@ class ServiceReport extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const MODEL_START = 100000;
+
     const STATUS = [
-        "send" => 1,
-        "save" => 2,
+        "signed" => 1,
+        "send" => 2,
         "draft" => 3,
     ];
 
