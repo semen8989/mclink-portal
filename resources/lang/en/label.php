@@ -243,6 +243,7 @@ return [
     'expenses' => 'Expenses',
     'add_expense' => 'Add New Expense',
     'view_expense' => 'View Expense',
+    'edit_expense' => 'Edit Expense',
     'no_of_cassette' => 'No of cassette',
     'period_of_contract' => 'Period of contract',
     'special_requirement' => 'Special requirement',

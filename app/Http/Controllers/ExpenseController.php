@@ -84,7 +84,11 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        $title = __('label.edit_expense');
+        $expense_types = ExpenseType::all();
+        $companies = Company::all();
+        $users = User::all();
+        return view('expense.edit',compact('expense','title','expense_types','companies','users'));
     }
 
     /**
@@ -94,9 +98,26 @@ class ExpenseController extends Controller
      * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expense $expense)
+    public function update(StoreExpenseRequest $request, Expense $expense)
     {
-        //
+        if($request->hasFile('bill_copy')){
+            //Delete old image data
+            Storage::delete('public/bill_copies/'.$expense->bill_copy);
+            //Get just extension
+            $extension = $request->file('bill_copy')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = time().'.'.$extension;
+            //Upload image
+            $path = $request->file('bill_copy')->storeAs('public/bill_copies',$fileNameToStore);
+        }else{
+            //Remain existing image
+            $fileNameToStore = $expense->bill_copy;
+        }
+        //Updating expense data
+        $data = $request->except('bill_copy');
+        $data['bill_copy'] = $fileNameToStore;
+        $expense->update($data);
+        return redirect()->route('expenses.index')->with('success', 'Expense updated successfully.');
     }
 
     /**
@@ -107,7 +128,11 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        
+        //Delete old image
+        Storage::delete('public/bill_copies/'.$expense->bill_copy);
+        //Delete expense data
+        $expense->delete();
+        return redirect()->route('expenses.index')->with('success', 'Expense deleted successfully.');
     }
 
     public function downloadFile($expense)
