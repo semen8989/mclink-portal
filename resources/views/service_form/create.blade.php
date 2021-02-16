@@ -7,149 +7,7 @@
   <h5 class="card-header font-weight-bold text-center">CUSTOMER SERVICE REPORT</h5>
   <div class="card-body">
   
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label class="col-form-label font-weight-bold" for="csrNo">CSR No. <span class="font-weight-bold">*</span></label>
-        <div class="controls">
-          <input class="form-control" name="csrNo" id="csrNo" type="text" value="{{ old('csrNo', $csrNo) }}">
-          @error('csrNo')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror         
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <label class="col-form-label font-weight-bold" for="date">Date <span class="font-weight-bold">*</span></label>
-        <div class="controls">
-          <input class="form-control" name="date" id="date" type="text" value="{{ old('date') }}"> 
-          @error('date')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror  
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-12">       
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" name="isNewCustomer"  id="isNewCustomer" value="true" @if (old('isNewCustomer')) checked @endif>
-          <label class="custom-control-label" for="isNewCustomer">Add new customer</label>
-        </div>              
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label class="col-form-label font-weight-bold" for="customer">Customer Name <span class="font-weight-bold">*</span></label>
-        <div class="controls">
-          <select class="form-control custom-select" name="customer" id="customer"></select>
-          <input class="form-control" name="newCustomer" id="newCustomer" type="hidden" value="{{ old('newCustomer') }}" disabled> 
-          <!-- <p class="help-block text-danger">Here's some help text</p> -->
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <label class="col-form-label" for="custEmail">Customer Email</label>
-        <div class="controls">
-          <input class="form-control" name="custEmail" id="custEmail" type="email" value="{{ old('custEmail') }}"> 
-          @error('custEmail')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label class="col-form-label font-weight-bold" for="address">Address <span class="font-weight-bold">*</span></label>
-        <div class="controls">
-          <textarea class="form-control" name="address" id="address" rows="5">{{ old('address') }}</textarea>
-          @error('address')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>   
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label class="col-form-label" for="engineerId">Engineer Name <span class="font-weight-bold">*</span></label>
-        <div class="controls">
-          <select class="form-control custom-select" name="engineerId" id="engineerId"></select>
-          <!-- <p class="help-block text-danger">Here's some help text</p> -->
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <label class="col-form-label" for="ticketReference">Ticket No. Reference</label>
-        <div class="controls">
-          <input class="form-control" name="ticketReference" id="ticketReference" type="text" value="{{ old('ticketReference') }}"> 
-          @error('ticketReference')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label class="col-form-label" for="serviceRendered">Service Rendered <span class="font-weight-bold">*</span></label>
-        <div class="controls">
-          <textarea class="form-control" name="serviceRendered" id="serviceRendered">{{ old('serviceRendered') }}</textarea>
-          @error('serviceRendered')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>    
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label class="col-form-label" for="engineerRemark">Engineer's Remarks</label>
-        <div class="controls">
-          <textarea class="form-control" name="engineerRemark" id="engineerRemark" rows="3">{{ old('engineerRemark') }}</textarea>
-          @error('engineerRemark')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>  
-      <div class="form-group col-md-6">
-        <label class="col-form-label" for="statusAfterService">Status after Service</label>
-        <div class="controls">
-          <textarea class="form-control" name="statusAfterService" id="statusAfterService" rows="3">{{ old('statusAfterService') }}</textarea>
-          @error('statusAfterService')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>    
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label class="col-form-label" for="serviceStart">Start of Service</label>
-        <div class="controls">
-          <input class="form-control" name="serviceStart" id="serviceStart" type="text" value="{{ old('serviceStart') }}"> 
-          @error('serviceStart')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-      <div class="form-group col-md-4">
-        <label class="col-form-label" for="serviceEnd">End of Service</label>
-        <div class="controls">
-          <input class="form-control" name="serviceEnd" id="serviceEnd" type="text" value="{{ old('serviceEnd') }}"> 
-          @error('serviceEnd')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-      <div class="form-group col-md-4">
-        <label class="col-form-label" for="usedItCredit">IT Credit Used</label>
-        <div class="controls">
-          <input class="form-control" placeholder="Not Applicable (NA)" name="usedItCredit" id="usedItCredit" data-decimals="1" min="0" max="1000" step="0.5" type="number" value="{{ old('usedItCredit') }}"> 
-          @error('usedItCredit')
-            <p class="help-block text-danger">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-    </div>
+    <x-service-report.form :csrNo="$csrNo"/>
 
     <div class="btn-group float-right mb-4 mt-3">
       <button class="btn btn-success" name="action" value="send" type="submit">Send to Customer</button>
@@ -191,7 +49,6 @@
       // init Date field
       $dateField = $('#date').datetimepicker({
         format: 'DD/MM/YYYY',
-        defaultDate: new Date()
       });
 
       // init Start of Service field
@@ -262,6 +119,8 @@
             cache: true
         }
       });
+      $('#customer').next().css('display', "{{ old('isNewCustomer') ? 'none' : 'block' }}");
+      $('#customer').prop('disabled', "{{ old('isNewCustomer') }}");
 
       // init Service Engineer Name select2
       $('#engineerId').select2({
@@ -315,7 +174,10 @@
         }
 
         $('#customer').next().css('display',  this.checked ? 'none' : 'block');
+        $('#customer').siblings('.help-block').css('display',  this.checked ? 'none' : 'block');
+        $('#customer').prop('disabled', this.checked);
         $('#newCustomer').attr('type', this.checked ? 'text' : 'hidden');
+        $('#newCustomer').siblings('.help-block').css('display',  this.checked ? 'block' : 'none');
         $('#newCustomer').prop('disabled', !this.checked);
       });
 
@@ -324,21 +186,6 @@
         $serviceStartField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
         $serviceEndField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
       });
-
-      // $('#usedItCredit').change(function() {
-      //   console.log($(this).val());
-      //   console.log($(this).val() == 0);
-      //   if ($(this).val() == 0) {
-      //     $(this).next().find('input').removeAttr('value');
-      //     // $('#usedItCredit').css('display', 'block');
-      //   }
-      // });
-
-      // $( "#serviceReportForm" ).submit(function( event ) {
-      //   // alert( "Handler for .submit() called." );
-      //   // console.log($('#engineerId').val());
-      //   // event.preventDefault();     
-      // });
     });
   </script>
 @endpush
