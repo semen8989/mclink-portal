@@ -3,7 +3,7 @@
 
 The customer already submitted the signed service report form. You can click the button to view the details.
 
-@component('mail::button', ['url' => route('service.form.index', [])])
+@component('mail::button', ['url' => route('service.form.show', [$serviceReport->csr_no])])
 View Service Report Details
 @endcomponent
 
