@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ServiceReport;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreServiceFormRequest extends FormRequest
+class UpdateServiceReportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +28,19 @@ class StoreServiceFormRequest extends FormRequest
         return [
             'csrNo' => 'bail|required',
             'date' => 'bail|required|date',
-            'custEmail' => 'bail|nullable|email:filter',
+            'newCustomer' => 'exclude_unless:isNewCustomer,true|bail|required',
+            'customer' => 'exclude_unless:isNewCustomer,null|bail|required|exists:customers,id',
+            'custEmail' => 'bail|nullable|email:filter|required_if:status,2',
             'address' => 'bail|required',
-            'callStatus' => 'bail|nullable',
+            'engineerId' => 'bail|required|exists:users,id',
             'ticketReference' => 'bail|nullable',
             'serviceRendered' => 'bail|required',
             'engineerRemark' => 'bail|nullable',
             'statusAfterService' => 'bail|nullable',
-            'serviceStart' => 'bail|nullable|date',
-            'serviceEnd' => 'bail|nullable|date',
-            'usedItCredit' => 'bail|nullable',
-
+            'serviceStart' => 'bail|nullable|date|before_or_equal:serviceEnd',
+            'serviceEnd' => 'bail|nullable|date|after_or_equal:serviceStart',
+            'usedItCredit' => 'bail|nullable|multiple_of:0.5',
+            'status' => ['bail', 'required', Rule::in(ServiceReport::STATUS)],
         ];
     }
 }
