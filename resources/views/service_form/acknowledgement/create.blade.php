@@ -2,16 +2,20 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-10">
-          <div class="my-4">
-            <h2 class="text-center">MPS Solutions</h2>
-          </div>
+        <div class="col-md-10">     
+          <div class="header-wrapper">
+            <img src="{{ asset('assets/brand/mps_logo.png') }}" alt="MPS Solutions Logo" class="form-logo">
+            <div class="info-wrapper mt-2">
+                <p>8 Kaki Bukit Road 2 #04-34, Ruby Warehouse Complex, Singapore 417841</p>
+                <p class="contact-wrapper"><span>Tel: +65 6846 8589</span><span>Fax: +65 6846 7123</span></p>                  
+            </div>
+          </div> 
           <div class="card-group">
             <div class="card">
               <div class="card-header text-center">
-                <h4>CUSTOMER SERVICE REPORT</h4>        
+                <h4 class="font-weight-bold">CUSTOMER SERVICE REPORT</h4>        
               </div>
-              <div class="card-body">
+              <div class="card-body px-5">
                 <div class="row">
                     <div class="col-md-6">
                         <p class="guest-form-label font-weight-bold mb-1">CSR No.</p>
@@ -49,7 +53,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-2">
                         <p class="guest-form-label font-weight-bold mb-1">Service Rendered</p>
                         {!! $serviceReport->service_rendered !!}
                     </div>
@@ -82,7 +86,7 @@
                 </div>
                 <hr>
                 <div class="text-center">
-                    <h4>CUSTOMER ACKNOWLEDGEMENT</h4>      
+                    <h4 class="font-weight-bold">CUSTOMER ACKNOWLEDGEMENT</h4>      
                 </div>
                 <hr>
                 <form id="acknowledgementForm" action="{{ route('service.form.acknowledgment.store', ['serviceReport' => $serviceReport->id]) }}" method="POST">
