@@ -39,11 +39,12 @@ class ServiceReportDataTable extends DataTable
                 ]);
             })
             ->editColumn('service_start', function ($request) {
-                return $request->created_at->format('d/m/Y');
+                return $request->service_start 
+                    ? $request->service_start->format('d/m/Y') : 'N/A';
             })
             ->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, ServiceReport::STATUS));
-                $badgeColor = $status != 'Draft' ? 'success' : 'primary';
+                $badgeColor = $status == 'Signed' ? 'success' : 'primary';
 
                 return view('components.datatables.status-column', [
                     'columnData' => $status,
@@ -76,6 +77,10 @@ class ServiceReportDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->parameters([
+                'order' => [
+                    0,
+                    'desc'
+                ],
                 'buttons' => [
                     'create'
                 ],
@@ -83,7 +88,8 @@ class ServiceReportDataTable extends DataTable
                     'search' => '',
                     'searchPlaceholder' => 'Search',
                     'loadingRecords' => '&nbsp;',
-                    'processing' => '<div class="spinner"></div>'
+                    'processing' => '<div class="text-center"><div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span></div></div>'
                 ]
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
                 "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
