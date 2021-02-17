@@ -81,9 +81,10 @@
                 <div class="col-md-12">
                     <p class="guest-form-label font-weight-bold mb-2">Customer Acknowledgement Link</p>
                     <div class="input-group mb-4">
-                        <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.create', [$serviceReport->id]) }}">
+                        <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.create', [$serviceReport->id]) }}" 
+                            data-clipboard-target="#inputLink" data-toggle="tooltip">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#inputLink">
+                            <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#inputLink" data-toggle="tooltip">
                                 <svg class="c-icon">
                                     <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-copy') }}"></use>
                                 </svg>
@@ -150,6 +151,33 @@
 
     <!-- Page js codes -->
     <script>
-        var clipboard = new ClipboardJS('.btn-clipboard');
-    </script>  
+        var clipboardBtn = new ClipboardJS('.btn-clipboard');
+        var clipboardInput = new ClipboardJS('#inputLink');
+
+        $('[data-toggle="tooltip"]').tooltip({
+            placement: "top",
+            trigger: "manual",
+            title: "Copied to clipboard"
+        });
+        
+        var btnTooltip = $('.btn-clipboard');
+        var inputTooltip = $('#inputLink');
+
+        btnTooltip.click(function() {
+            $(this).tooltip('show');
+
+            setTimeout(function() {
+                btnTooltip.tooltip('hide');
+            }, 1500);
+        });
+
+        inputTooltip.click(function() {
+            $(this).tooltip('show');
+
+            setTimeout(function() {
+                inputTooltip.tooltip('hide');
+            }, 1500);
+        });
+
+    </script>
 @endpush
