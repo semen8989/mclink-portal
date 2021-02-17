@@ -1,36 +1,36 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Holiday List</div>
+<div class="card-header">{{ __('label.holiday_list') }}</div>
 <div class="card-body">
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('holidays.create') }}">
             <svg class="c-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
-            </svg> Add New Holiday
+            </svg> {{ __('label.add_holiday') }}
         </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
-                <th>Action</th>
-                <th>Company</th>
-                <th>Event Name</th>
-                <th>Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>{{ __('label.action') }}</th>
+                <th>{{ __('label.company') }}</th>
+                <th>{{ __('label.event_name') }}</th>
+                <th>{{ __('label.status') }}</th>
+                <th>{{ __('label.start_date') }}</th>
+                <th>{{ __('label.end_date') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach($holidays as $holiday)
                 <tr>
                     <td style="width: 5%">
-                        <a href="{{ route('holidays.edit',$holiday->id) }}" title="Edit">
+                        <a href="{{ route('holidays.edit',$holiday->id) }}" title="{{ __('label.edit') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $holiday->id }}" class="text-danger" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $holiday->id }}" class="text-danger" id="delete" href="" title="{{ __('label.delete') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
