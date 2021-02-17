@@ -1,40 +1,40 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Office Shift List</div>
+<div class="card-header">{{ __('label.shift_list') }}</div>
 <div class="card-body">
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('office_shifts.create') }}">
             <svg class="c-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
-            </svg> Add New Office Shift
+            </svg> {{ __('label.add_shift') }}
         </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
-                <th>Action</th>
-                <th>Company</th>
-                <th>Day</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
+                <th>{{ __('label.action') }}</th>
+                <th>{{ __('label.company') }}</th>
+                <th>{{ __('label.day') }}</th>
+                <th>{{ __('label.monday') }}</th>
+                <th>{{ __('label.tuesday') }}</th>
+                <th>{{ __('label.wednesday') }}</th>
+                <th>{{ __('label.thursday') }}</th>
+                <th>{{ __('label.friday') }}</th>
+                <th>{{ __('label.saturday') }}</th>
+                <th>{{ __('label.sunday') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach($office_shifts as $office_shift)
                 <tr>
                     <td style="width: 5%">
-                        <a href="{{ route('office_shifts.edit',$office_shift->id) }}" title="Edit">
+                        <a href="{{ route('office_shifts.edit',$office_shift->id) }}" title="{{ __('label.edit') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $office_shift->id }}" class="text-danger" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $office_shift->id }}" class="text-danger" id="delete" href="" title="{{ __('label.delete') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
