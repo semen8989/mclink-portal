@@ -1,15 +1,14 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Add New Expense</div>
+<div class="card-header">{{ __('label.edit_expense') }}</div>
 <form action="{{ route('expenses.update',$expense->id) }}" method="post" enctype="multipart/form-data" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">
         <div class="form-group">
-            <label for="expense_type">Expense Type</label>
-            <select id="expense_type_id" name="expense_type_id" class="form-control @error('expense_type_id') is-invalid @enderror" 
-                value="{{ old('expense_type_id') }}">
+            <label for="expense_type">{{ __('label.expense_type') }}</label>
+            <select id="expense_type_id" name="expense_type_id" id="expense_type_id" class="form-control @error('expense_type_id') is-invalid @enderror" value="{{ old('expense_type_id') }}">
                 <option disabled selected>Select Expense Type</option>
                 @foreach ($expense_types as $type)
                     <option value="{{ $type->id }}" {{ old('expense_type_id',$expense->expense_type_id) == $type->id ? 'selected' : '' }}>{{ $type->expense_type }}</option>
@@ -23,9 +22,8 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="purchase_date">Purchase Date</label>
-                <input type="text" class="form-control date @error('purchase_date') is-invalid @enderror" id="purchase_date" 
-                    name="purchase_date" placeholder="Purchase Date" value="{{ old('purchase_date',$expense->purchase_date) }}" readonly>
+                <label for="purchase_date">{{ __('label.purchase_date') }}</label>
+                <input type="text" class="form-control date @error('purchase_date') is-invalid @enderror" id="purchase_date" name="purchase_date" value="{{ old('purchase_date',$expense->purchase_date) }}" readonly>
                 @error('purchase_date')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -33,9 +31,8 @@
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="amount">Amount</label>
-                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount" 
-                    placeholder="Amount" value="{{ old('amount',$expense->amount) }}">
+                <label for="amount">{{ __('label.amount') }}</label>
+                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount" value="{{ old('amount',$expense->amount) }}">
                 @error('amount')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -45,7 +42,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="company_id">Company</label>
+                <label for="company_id">{{ __('label.company') }}</label>
                 <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror">
                     <option selected disabled>Choose Company</option>
                     @foreach ($companies as $company)
@@ -59,7 +56,7 @@
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="user_id">Purchase By</label>
+                <label for="user_id">{{__('label.purchase_by') }}</label>
                 <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
                     <option selected disabled>Choose Employee</option>
                     @foreach ($users as $user)
@@ -75,7 +72,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="status">Company</label>
+                <label for="status">{{ __('label.company') }}</label>
                 <select id="status" name="status" class="form-control @error('status') is-invalid @enderror">
                     <option value="pending" {{ old('status',$expense->status) == 'pending' ? 'selected' : ''}}>Pending</option>
                     <option value="approved" {{ old('status',$expense->status) == 'approved' ? 'selected' : ''}}>Approved</option>
@@ -88,9 +85,9 @@
                 @enderror
             </div>
             <fieldset class="form-group col-md-6">
-                <label for="bill_copy">Update Bill Copy</label>
+                <label for="bill_copy">{{ __('label.update_bill_copy') }}</label>
                 <input type="file" class="form-control-file @error('bill_copy') is-invalid @enderror" id="bill_copy" name="bill_copy">
-                <small>Upload files only: gif,png,jpg,jpeg</small>
+                <small>{{ __('label.upload_format') }}</small>
                 @error('bill_copy')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -99,13 +96,12 @@
             </fieldset>
         </div>
         <div class="form-group">
-            <label for="remarks">Remarks</label>
-            <textarea class="form-control textarea" placeholder="Remarks" name="remarks" cols="8"
-                rows="6" id="remarks">{{ old('remarks',$expense->remarks) }}</textarea>
+            <label for="remarks">{{ __('label.remarks') }}</label>
+            <textarea class="form-control textarea" name="remarks" cols="8" rows="6" id="remarks">{{ old('remarks',$expense->remarks) }}</textarea>
         </div>
     </div>
     <div class="card-footer text-right">
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success">{{ __('label.save') }}</button>
     </div>
 </form>
 @stop
