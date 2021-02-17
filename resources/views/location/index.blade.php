@@ -1,37 +1,37 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Location List</div>
+<div class="card-header">{{ __('location_list') }}</div>
 <div class="card-body">
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('locations.create') }}">
             <svg class="c-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
-            </svg> Add New Location
+            </svg> {{ __('label.add_location') }}
         </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
-                <th>Action</th>
-                <th>Location Name</th>
-                <th>Company</th>
-                <th>Location Head</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Added By</th>
+                <th>{{ __('label.action') }}</th>
+                <th>{{ __('label.location_name') }}</th>
+                <th>{{ __('label.company') }}</th>
+                <th>{{ __('label.location_head') }}</th>
+                <th>{{ __('label.city') }}</th>
+                <th>{{ __('label.country') }}</th>
+                <th>{{ __('label.added_by') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach($locations as $location)
                 <tr>
                     <td style="width: 5%">
-                        <a href="{{ route('locations.edit',$location->id) }}" title="Edit">
+                        <a href="{{ route('locations.edit',$location->id) }}" title="{{ __('label.edit') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $location->id }}" class="text-danger" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $location->id }}" class="text-danger" id="delete" href="" title="{{ __('label.delete') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
