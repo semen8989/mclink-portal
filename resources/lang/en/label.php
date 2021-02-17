@@ -306,7 +306,7 @@ return [
     'trello' => 'Trello',
     'troubleshooting' => 'Troubleshooting',
     'tuesday' => 'Tuesday',
-    'unpublished' => 'upublished',
+    'unpublished' => 'Upublished',
     'upcoming_events_training' => 'Upcoming Events/Training',
     'update_at' => 'Update at',
     'update_bill_copy' => 'Update Bill Copy',
