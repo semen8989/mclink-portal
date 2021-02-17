@@ -1,15 +1,15 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Edit Policy</div>
+<div class="card-header">{{ __('label.edit_policy') }}</div>
 <form method="POST" action="{{ route('policies.update',$policy->id) }}" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">
         <div class="form-group">
-            <label for="company_id">Company</label>
-            <select class="form-control" name="company_id">
-                <option value="" {{ old('company_id') == '' ? 'selected' : '' }}>All Companies</option>
+            <label for="company_id">{{ __('label.company') }}</label>
+            <select class="form-control" name="company_id" id="company_id">
+                <option value="" {{ old('company_id') == '' ? 'selected' : '' }}>{{ __('label.all_companies') }}</option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}" {{ old('company_id',$policy->company_id) == $company->id ? 'selected' : '' }}>
                         {{ $company->company_name }}
@@ -18,9 +18,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="department_name">Title</label>
-            <input class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Enter Title" 
-                value="{{ old('title',$policy->title) }}">
+            <label for="title">{{ __('label.title') }}</label>
+            <input class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title',$policy->title) }}">
             @error('title')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -28,13 +27,12 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control textarea" placeholder="Description" name="description" cols="8"
-                rows="6" id="description">{{ old('description',$policy->description) }}</textarea>
+            <label for="description">{{ __('label.description') }}</label>
+            <textarea class="form-control textarea" name="description" id="description" cols="8" rows="6">{{ old('description',$policy->description) }}</textarea>
         </div>
     </div>
     <div class="card-footer text-right">
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success">{{ __('label.save') }}</button>
     </div>
 </form>
 @stop
