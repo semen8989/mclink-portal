@@ -1,22 +1,22 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Department List</div>
+<div class="card-header">{{ __('label.department_list') }}</div>
 <div class="card-body">
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('departments.create') }}">
             <svg class="c-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
-            </svg> Add New Department
+            </svg> {{ __('label.add_department') }}
         </a>
     </div>
     <table class="table table-responsive-sm table-bordered">
         <thead>
             <tr>
-                <th>Action</th>
-                <th>Department Name</th>
-                <th>Company</th>
-                <th>Department Head</th>
+                <th>{{ __('label.action') }}</th>
+                <th>{{ __('label.department_name') }}</th>
+                <th>{{ __('label.company') }}</th>
+                <th>{{ __('label.department_head') }}</th>
             </tr>
         </thead>
         <tbody>
