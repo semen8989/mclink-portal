@@ -151,7 +151,7 @@ return [
     'purpose' => 'Purpose',
     'published_for' => 'Published For',
     'published' => 'Published',
-    'Unpublished' => 'Unpublished',
+    'unpublished' => 'upublished',
     'holiday_list' => 'Holiday List',
     'location_name' => 'Location Name',
     'location_head' => 'Location Head',

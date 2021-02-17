@@ -62,8 +62,8 @@
             <label for="status">{{ __('label.status') }}</label>
             <select class="form-control @error('status') is-invalid @enderror" name="status" id="status">
                     <option value="" disabled selected>Select Status</option>
-                    <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
-                    <option value="unpublished" {{ old('status') == 'unpublished' ? 'selected' : '' }}>Unpublished</option>
+                    <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>{{ __('label.published') }}</option>
+                    <option value="unpublished" {{ old('status') == 'unpublished' ? 'selected' : '' }}>{{ __('label.unpublished') }}</option>
             </select>
             @error('status')
                 <div class="invalid-feedback">
