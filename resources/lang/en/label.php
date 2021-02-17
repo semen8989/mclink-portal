@@ -66,6 +66,8 @@ return [
     'department' => 'Department',
     'department_name' => 'Department Name',
     'department_list' => 'Department List',
+    'designation_list' => 'Designation List',
+    'designation_name' => 'Designation Name',
     'department_head' => 'Department Head',
     'add_department' => 'Add New Department',
     'edit_department' => 'Edit Department',

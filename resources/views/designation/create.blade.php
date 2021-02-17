@@ -1,14 +1,13 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Add new Designation</div>
+<div class="card-header">{{ __('label.add_designation') }}</div>
 <form method="POST" action="{{ route('designations.store') }}">
     @csrf
     <div class="card-body">
         <div class="form-group">
-            <label for="designation_name">Designation</label>
-            <input class="form-control  @error('designation_name') is-invalid @enderror" placeholder="Enter Designation_Name" 
-                name="designation_name" type="text" value="{{ old('designation_name') }}">
+            <label for="designation_name">{{ __('label.designation_name') }}</label>
+            <input class="form-control  @error('designation_name') is-invalid @enderror" name="designation_name" id="designation_name" type="text" value="{{ old('designation_name') }}">
             @error('designation_name')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -16,13 +15,12 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="company_id" class="control-label">Company</label>
-            <select class="form-control @error('company_id') is-invalid @enderror dynamic" name="company_id" id="company_id"
-                data-placeholder="Company">
-                    <option value="" disabled selected>Select Company</option>
-                    @foreach ($companies as $company)
-                        <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
-                    @endforeach
+            <label for="company_id" class="control-label">{{ __('label.company') }}</label>
+            <select class="form-control @error('company_id') is-invalid @enderror dynamic" name="company_id" id="company_id">
+                <option value="" disabled selected>Select Company</option>
+                @foreach ($companies as $company)
+                    <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
+                @endforeach
             </select>
             @error('company_id')
                 <div class="invalid-feedback">
@@ -31,9 +29,8 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="department_id" class="control-label">Department</label>
-            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id"
-                data-selected-department="{{ old('department_id') }}">
+            <label for="department_id" class="control-label">{{ __('label.department') }}</label>
+            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id" data-selected-department="{{ old('department_id') }}">
                 <option disabled selected>Select Department</option>
             </select>
             @error('department_id')
@@ -44,7 +41,7 @@
         </div>
     </div>
     <div class="card-footer text-right">
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success">{{ __('label.save') }}</button>
     </div>
 </form>
 @stop

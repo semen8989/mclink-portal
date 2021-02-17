@@ -23,12 +23,12 @@
             @foreach ($departments as $department)
             <tr>
                 <td style="width: 5%">
-                    <a href="{{ route('departments.edit', $department->id) }}" title="Edit">
+                    <a href="{{ route('departments.edit', $department->id) }}" title="{{ __('label.edit') }}">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                         </svg>
                     </a>
-                    <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $department->id }}" class="text-danger" id="delete" href="" title="Delete">
+                    <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $department->id }}" class="text-danger" id="delete" href="" title="{{ __('label.delete') }}">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                         </svg>
