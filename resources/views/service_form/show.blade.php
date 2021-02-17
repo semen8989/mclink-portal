@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        @if (empty($serviceReport->signed_date) && $serviceReport->status == 'Save')
+        @if (empty($serviceReport->signed_date) && $serviceReport->status == 'Draft')
             <div class="row">
                 <div class="col-md-12">
                     <p class="guest-form-label font-weight-bold mb-2">Customer Acknowledgement Link</p>
