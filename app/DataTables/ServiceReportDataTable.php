@@ -29,20 +29,23 @@ class ServiceReportDataTable extends DataTable
                     'itemSlug' => 'serviceReport',
                     'itemSlugValue' => $serviceReport->csr_no
                 ]);
-            })
-            ->editColumn('csr_no', function ($request) {
+            })->addColumn('link', function(ServiceReport $serviceReport) {
+                return view('components.datatables.copy', [
+                    'acknowledgementRouteName' => 'service.form.acknowledgment.create',
+                    'paramName' => 'serviceReport',
+                    'paramValue' => $serviceReport->id
+                ]);
+            })->editColumn('csr_no', function ($request) {
                 return view('components.datatables.show-column', [
                     'showRouteName' => 'service.form.show',
                     'showRouteSlug' => 'serviceReport',
                     'showRouteSlugValue' => $request->csr_no,
                     'columnData' => $request->csr_no
                 ]);
-            })
-            ->editColumn('service_start', function ($request) {
+            })->editColumn('service_start', function ($request) {
                 return $request->service_start 
                     ? $request->service_start->format('d/m/Y') : 'N/A';
-            })
-            ->editColumn('status', function ($request) {
+            })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, ServiceReport::STATUS));
                 $badgeColor = $status == 'Signed' ? 'success' : 'primary';
 
@@ -50,8 +53,7 @@ class ServiceReportDataTable extends DataTable
                     'columnData' => $status,
                     'badgeColor' => $badgeColor
                 ]);
-            })
-            ->rawColumns(['csr_no', 'status']);
+            })->rawColumns(['csr_no', 'status']);
     }
 
     /**
@@ -90,7 +92,10 @@ class ServiceReportDataTable extends DataTable
                     'loadingRecords' => '&nbsp;',
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span></div></div>'
-                ]
+                ],
+                'initComplete' => "function (settings, json) {" .              
+                    "$('.copy-btn').tooltip();" .
+                "}"
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
                 "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"
@@ -111,6 +116,8 @@ class ServiceReportDataTable extends DataTable
                 ->title('Customer Name'),
             Column::make('service_start'),
             Column::make('status'),
+            Column::computed('link')
+                ->addClass('text-center'),
             Column::computed('action')
                 ->addClass('text-center'),
         ];

@@ -14,6 +14,9 @@
     
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     
+    <!-- Clipboard js dependency -->
+    <script src="{{ asset('plugin/clipboard/js/clipboard.min.js') }}"></script>
+
     <!-- dt script-->
     {!! $dataTable->scripts() !!}
 
@@ -25,5 +28,18 @@
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });
-    </script>  
+
+        $( document ).ready(function() {           
+            var clipboard = new ClipboardJS('.copy-btn');
+            
+            $('.copy-btn').click(function() {
+                $(this).tooltip('show');
+
+                setTimeout(function() {
+                    btnTooltip.tooltip('hide');
+                }, 1500);
+            });
+        });
+        
+    </script> 
 @endpush
