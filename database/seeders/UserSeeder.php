@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Ability;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -17,12 +20,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@mclinkgroup.com',
+        //Create admin user
+        $user = User::create([
+            'name' => 'Root',
+            'email' => 'root@mclinkgroup.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        //Create Admin role
+        $admin = Role::create(['name' => 'Administrator']);
+        //Create ability
+        $allowAll = Ability::create(['name' => 'allow-all']);
+        //Assgin ability to a role
+        $admin->allowTo($allowAll);
+        //Assign role to a user
+        $user->assignRole($admin);
     }
 }
