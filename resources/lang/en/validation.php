@@ -134,6 +134,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'custEmail' => [
+            'required_if' => 'The :attribute field is required when sending to a customer.',
+        ],
     ],
 
     /*
