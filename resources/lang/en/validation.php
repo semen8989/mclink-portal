@@ -147,6 +147,23 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // service report fields
+        'csrNo' => 'csr number',
+        'newCustomer' => 'customer name',
+        'customer' => 'customer name',
+        'custEmail' => 'customer email',
+        'engineerId' => 'engineer name',
+        'ticketReference' => 'ticket no. reference',
+        'serviceRendered' => 'service rendered',
+        'engineerRemark' => 'engineer remarks',
+        'statusAfterService' => 'status after service',
+        'serviceStart' => 'service start',
+        'serviceEnd' => 'service end',
+        'usedItCredit' => 'used it credit',
+        // acknowledgement fields
+        'signedCust' => 'customer name or designation',
+        'signatureDataUrl' => 'customer signature'
+    ],
 
 ];
