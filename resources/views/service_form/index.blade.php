@@ -29,6 +29,10 @@
             $('#delete_form').attr('action',url);
         });
 
+        $('#delete_form').submit(function (event) {
+            $(this).find(':submit').prop('disabled', true);
+        });
+
         $( document ).ready(function() {           
             var clipboard = new ClipboardJS('.copy-btn');
         });
