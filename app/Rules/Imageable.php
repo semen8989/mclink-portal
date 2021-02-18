@@ -41,6 +41,6 @@ class Imageable implements Rule
      */
     public function message()
     {
-        return 'Signature must be a valid image';
+        return 'The :attribute must be a valid image';
     }
 }
