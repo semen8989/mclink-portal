@@ -51,4 +51,5 @@ Route::post('/fetch_department', [FetchController::class,'fetch_department'])->n
 Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
 
 //Modules
-Route::get('/hr_calendar',[HrCalendarController::class, 'index'])->name('hr_calendar.index');
+Route::get('/hr_calendar',[HrCalendarController::class, 'index'])->name('hr_calendar');
+Route::post('/hr_calendar/ajax',[HrCalendarController::class, 'ajax'])->name('hr_calendar.ajax');
