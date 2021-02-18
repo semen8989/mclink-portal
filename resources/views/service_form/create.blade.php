@@ -174,10 +174,10 @@
         }
 
         $('#customer').next().css('display',  this.checked ? 'none' : 'block');
-        $('#customer').siblings('.help-block').css('display',  this.checked ? 'none' : 'block');
+        $('#customer ~ .help-block').css('display',  this.checked ? 'none' : 'block');
         $('#customer').prop('disabled', this.checked);
         $('#newCustomer').attr('type', this.checked ? 'text' : 'hidden');
-        $('#newCustomer').siblings('.help-block').css('display',  this.checked ? 'block' : 'none');
+        $('#newCustomer ~ .help-block').css('display',  this.checked ? 'block' : 'none');
         $('#newCustomer').prop('disabled', !this.checked);
       });
       
