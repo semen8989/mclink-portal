@@ -1,6 +1,6 @@
-<a class="dt-action-btn" href="{{ route($editRouteName , [$itemSlug => $itemSlugValue]) }}" title="Edit">
+<a class="dt-action-btn text-primary" href="{{ route($editRouteName , [$itemSlug => $itemSlugValue]) }}" title="Edit">
     <svg class="c-icon">
-        <use style="background-color: blue;" xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
+        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
     </svg>
 </a>
 |
