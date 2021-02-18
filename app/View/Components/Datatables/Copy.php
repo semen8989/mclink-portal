@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Datatables;
 
+use App\Models\ServiceReport;
 use Illuminate\View\Component;
 
 class Copy extends Component
@@ -28,6 +29,13 @@ class Copy extends Component
     public $paramValue;
 
     /**
+     * Check if the status is Signed.
+     *
+     * @var boolean
+     */
+    public $isSigned;
+
+    /**
      * Create a new component instance.
      *
      * @param  string  $acknowledgementRouteName
@@ -35,11 +43,12 @@ class Copy extends Component
      * @param  string  $paramValue
      * @return void
      */
-    public function __construct($acknowledgementRouteName, $paramName, $paramValue)
+    public function __construct($acknowledgementRouteName, $paramName, $paramValue , $isSigned)
     {
         $this->acknowledgementRouteName = $acknowledgementRouteName;
         $this->paramName = $paramName;
         $this->paramValue = $paramValue;
+        $this->isSigned = $isSigned;
     }
 
     /**

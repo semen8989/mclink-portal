@@ -31,9 +31,10 @@ class ServiceReportDataTable extends DataTable
                 ]);
             })->addColumn('link', function(ServiceReport $serviceReport) {
                 return view('components.datatables.copy', [
-                    'acknowledgementRouteName' => 'service.form.acknowledgment.create',
+                    'acknowledgementRouteName' => 'service.form.acknowledgment.sign',
                     'paramName' => 'serviceReport',
-                    'paramValue' => $serviceReport->id
+                    'paramValue' => $serviceReport->id,
+                    'isSigned' => $serviceReport->status == 1
                 ]);
             })->editColumn('csr_no', function ($request) {
                 return view('components.datatables.show-column', [
@@ -93,9 +94,8 @@ class ServiceReportDataTable extends DataTable
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span></div></div>'
                 ],
-                'initComplete' => "function (settings, json) {" .              
-                    "$('.copy-btn').tooltip();" .
-                "}"
+                'drawCallback' => "function (settings, json) {" .
+                    "$('.copy-btn').tooltip();}"
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
                 "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"

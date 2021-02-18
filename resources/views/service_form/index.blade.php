@@ -31,14 +31,6 @@
 
         $( document ).ready(function() {           
             var clipboard = new ClipboardJS('.copy-btn');
-            
-            $('.copy-btn').click(function() {
-                $(this).tooltip('show');
-
-                setTimeout(function() {
-                    btnTooltip.tooltip('hide');
-                }, 1500);
-            });
         });
         
     </script> 
