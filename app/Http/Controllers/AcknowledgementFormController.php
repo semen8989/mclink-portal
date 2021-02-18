@@ -23,7 +23,7 @@ class AcknowledgementFormController extends Controller
         if ($serviceReport->status == 1) {
             abort(404);
         }
-        
+
         return view('service_form.acknowledgement.sign', [
             'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d/m/Y')
@@ -60,7 +60,9 @@ class AcknowledgementFormController extends Controller
             Mail::to($serviceReport->user->email)
                 ->queue(new ServiceReportCopyReceivedMail($serviceReport));
 
-            return view('service_form.acknowledgement.feedback', compact(['serviceReport']));
+            return redirect()
+                ->route('service.form.acknowledgment.feedback')
+                ->with(['serviceReport' => $serviceReport]);
         }
     }
 
