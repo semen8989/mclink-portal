@@ -20,6 +20,10 @@ class AcknowledgementFormController extends Controller
      */
     public function sign(ServiceReport $serviceReport)
     {
+        if ($serviceReport->status == 1) {
+            abort(404);
+        }
+        
         return view('service_form.acknowledgement.sign', [
             'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d/m/Y')
