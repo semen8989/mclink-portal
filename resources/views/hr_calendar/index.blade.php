@@ -10,16 +10,20 @@
 @stop
 
 @push('stylesheets')
-<link rel="stylesheet" href="{{ asset('plugin/fullcalendar/fullcalendar.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('plugin/fullcalendar/main.min.css') }}" />
 @endpush
 
 @push('scripts')
-<script src="{{ asset('plugin/fullcalendar/fullcalendar.min.js') }}"></script>    
+<script src="{{ asset('plugin/fullcalendar/main.min.js') }}"></script>    
 <script>
     $(document).ready(function (){
-
         var calendar = $('#calendar').fullCalendar({
             editable: true,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek'
+            },
             events: '{{ route("hr_calendar") }}',
             displayEventTime: false,
             editable: true,
