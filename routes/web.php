@@ -9,6 +9,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\AnnouncementController;
@@ -45,5 +46,9 @@ Route::prefix('organizations')->group(function () {
         'expenses' => ExpenseController::class
     ]); 
 });
+
 Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
 Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
+
+//Modules
+Route::get('/hr_calendar',[HrCalendarController::class, 'index'])->name('hr_calendar.index');
