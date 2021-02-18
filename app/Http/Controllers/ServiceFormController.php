@@ -46,6 +46,7 @@ class ServiceFormController extends Controller
     public function create()
     {
         $recentServiceReport = ServiceReport::select('csr_no')
+            ->withTrashed()
             ->orderByDesc('created_at')
             ->first();
 
