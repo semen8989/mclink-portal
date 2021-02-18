@@ -229,5 +229,26 @@ return [
     'valid_until' => 'Valid until',
     'assigned_by' => 'Assigned by',
     'success' => 'Success',
-    'error' => 'Error'
+    'error' => 'Error',
+    'general_text' => [
+        'na' => 'N/A'
+    ],
+    'service_report' => [
+        'datatable' => [
+            'column_header' => [
+                'csr_no' => 'CSR No.',
+                'cust_name' => 'Customer Name',
+                'service_start' => 'Service Start',
+                'status' => 'Status',
+                'link' => 'Link',
+                'action' => 'Action'
+            ],
+            'search' => [
+                'placeholder' => 'Search'
+            ],
+            'button' => [
+                'new' => 'New Record'
+            ]
+        ] 
+    ]
 ];
