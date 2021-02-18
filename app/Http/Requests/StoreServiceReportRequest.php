@@ -35,8 +35,8 @@ class StoreServiceReportRequest extends FormRequest
             'serviceRendered' => 'bail|required',
             'engineerRemark' => 'bail|nullable',
             'statusAfterService' => 'bail|nullable',
-            'serviceStart' => 'bail|nullable|date|before_or_equal:serviceEnd',
-            'serviceEnd' => 'bail|nullable|date|after_or_equal:serviceStart',
+            'serviceStart' => 'bail|nullable|date|before:serviceEnd',
+            'serviceEnd' => 'bail|nullable|date|after:serviceStart',
             'usedItCredit' => 'bail|nullable|multiple_of:0.5',
             'action' => 'bail|required|in:send,draft',
         ];
