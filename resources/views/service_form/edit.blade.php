@@ -175,7 +175,7 @@
       });
 
       $('#serviceReportForm').submit(function (event) {
-        $(':submit').prop('disabled', true);
+        $(this).find(':submit').prop('disabled', true);
 
         $dateField.data("DateTimePicker").format('YYYY-MM-DD');
         $serviceStartField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
