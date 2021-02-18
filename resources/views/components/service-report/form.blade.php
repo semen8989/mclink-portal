@@ -186,5 +186,7 @@
             @enderror
         </div>
     </div>
+    @else
+    <input type="hidden" id="action" name="action">
     @endif
 </div>

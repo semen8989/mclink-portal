@@ -10,12 +10,12 @@
     <x-service-report.form :csrNo="$csrNo"/>
 
     <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" name="action" value="send" type="submit">Send to Customer</button>
+      <button class="btn btn-success" value="send" type="submit">Send to Customer</button>
       <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu">
-        <button class="dropdown-item" name="action" value="draft" type="submit">Save as Draft</button>
+        <button class="dropdown-item" value="draft" type="submit">Save as Draft</button>
       </div>
     </div>
 
@@ -180,8 +180,14 @@
         $('#newCustomer').siblings('.help-block').css('display',  this.checked ? 'block' : 'none');
         $('#newCustomer').prop('disabled', !this.checked);
       });
+      
+      $('#serviceReportForm').find(':submit').click(function() {
+        $('#action').val($(this).val());
+      });
 
       $('#serviceReportForm').submit(function (event) {
+        $(this).find(':submit').prop('disabled', true);
+        
         $dateField.data("DateTimePicker").format('YYYY-MM-DD');
         $serviceStartField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
         $serviceEndField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
