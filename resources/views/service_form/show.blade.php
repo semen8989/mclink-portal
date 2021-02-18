@@ -157,7 +157,7 @@
         $('[data-toggle="tooltip"]').tooltip({
             placement: "top",
             trigger: "manual",
-            title: "Copied to clipboard"
+            title: "Copied link"
         });
         
         var btnTooltip = $('.btn-clipboard');
