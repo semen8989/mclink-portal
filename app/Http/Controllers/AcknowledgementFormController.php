@@ -18,9 +18,9 @@ class AcknowledgementFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ServiceReport $serviceReport)
+    public function sign(ServiceReport $serviceReport)
     {
-        return view('service_form.acknowledgement.create', [
+        return view('service_form.acknowledgement.sign', [
             'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d/m/Y')
         ]);

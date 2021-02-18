@@ -81,7 +81,7 @@
                 <div class="col-md-12">
                     <p class="guest-form-label font-weight-bold mb-2">Customer Acknowledgement Link</p>
                     <div class="input-group mb-4">
-                        <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.create', [$serviceReport->id]) }}" 
+                        <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.sign', [$serviceReport->id]) }}" 
                             data-clipboard-target="#inputLink" data-toggle="tooltip">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#inputLink" data-toggle="tooltip">
