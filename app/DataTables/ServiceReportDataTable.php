@@ -111,15 +111,19 @@ class ServiceReportDataTable extends DataTable
     {
         return [
             Column::make('csr_no')
-                ->title('CSR No.'),
+                ->title(__('label.service_report.datatable.column_header.csr_no')),
             Column::make('customer.name')
-                ->title('Customer Name'),
-            Column::make('service_start'),
-            Column::make('status'),
+                ->title(__('label.service_report.datatable.column_header.cust_name')),
+            Column::make('service_start')
+                ->title(__('label.service_report.datatable.column_header.service_start')),
+            Column::make('status')
+                ->title(__('label.service_report.datatable.column_header.status')),
             Column::computed('link')
-                ->addClass('text-center'),
+                ->addClass('text-center')
+                ->title(__('label.service_report.datatable.column_header.link')),
             Column::computed('action')
-                ->addClass('text-center'),
+                ->addClass('text-center')
+                ->title(__('label.service_report.datatable.column_header.action')),
         ];
     }
 }
