@@ -105,7 +105,7 @@
                         <div class="form-group col-md-4 offset-md-1">
                             <label class="col-form-label font-weight-bold" for="signedCust">Name / Designation <span class="font-weight-bold">*</span></label>
                             <div class="controls">
-                                <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" disabled>                   
+                                <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" {{ old('isAcknowledged') ? '' : 'disabled' }}>                   
                                 @error('signedCust')
                                     <p class="help-block text-danger">{{ $message }}</p>
                                 @enderror
@@ -132,7 +132,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-9 offset-md-1">
-                            <button id="submitBtn" class="btn btn-success float-right" type="submit" disabled>Submit</button>
+                            <button id="submitBtn" class="btn btn-success float-right" type="submit" {{ old('isAcknowledged') ? '' : 'disabled' }}>Submit</button>
                         </div>
                     </div>
                     
