@@ -56,7 +56,7 @@ class AcknowledgementFormController extends Controller
             Mail::to($serviceReport->user->email)
                 ->queue(new ServiceReportCopyReceivedMail($serviceReport));
 
-            return view('service_form.acknowledgement.feedback');
+            return view('service_form.acknowledgement.feedback', compact(['serviceReport']));
         }
     }
 
