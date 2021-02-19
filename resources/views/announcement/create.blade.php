@@ -37,7 +37,7 @@
         <div class="form-group">
             <label for="company_id" class="control-label">{{ __('label.company') }}</label>
             <select class="form-control @error('company_id') is-invalid @enderror dynamic" name="company_id" id="company_id">
-                <option value="" disabled selected>{{ __('label.select_company') }}</option>
+                <option value="" disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                 @endforeach
@@ -52,7 +52,7 @@
             <label for="department" class="control-label">{{ __('label.department') }}</label>
             <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id"
                 data-selected-department="{{ old('department_id') }}">
-                <option disabled selected>{{ __('label.select_department') }}</option>
+                <option disabled selected>{{ __('label.choose') }}</option>
             </select>
             @error('department_id')
                 <div class="invalid-feedback">
@@ -122,7 +122,7 @@
                     dataType: 'json',
                     success:function(result){
                         $('#department_id').empty();
-                        $('#department_id').append('<option selected disabled>Select Department</option>');
+                        $('#department_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
                         $.each(result, function (key, value) {
                             $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
                         });
@@ -143,7 +143,7 @@
                     dataType: 'json',
                     success:function(result){
                         $('#department_id').empty();
-                        $('#department_id').append('<option selected disabled>Select Department</option>');
+                        $('#department_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
                         $.each(result, function (key, value) {
                             $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
                         });

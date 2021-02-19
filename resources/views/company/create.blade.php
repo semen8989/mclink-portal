@@ -21,7 +21,7 @@
                         <div class="col-md-6">
                             <label for="company_type">{{ __('label.company_type') }}</label>
                             <select class="form-control @error('company_type') is-invalid @enderror" name="company_type" id="company_type">
-                                <option value="" disabled selected>Select Company Type</option>
+                                <option value="" disabled selected>{{ __('label.choose') }}</option>
                                 <option value="Private" {{ old('company_type') == "Private" ? 'selected' : '' }}> Private</option>
                                 <option value="Corporation" {{ old('company_type') == "Corporation" ? 'selected' : '' }}> Corporation</option>
                             </select>
@@ -147,7 +147,7 @@
                 <div class="form-group">
                     <label for="country">{{ __('label.country') }}</label>
                     <select class="form-control @error('country') is-invalid @enderror" name="country" id="country">
-                        <option value="" disabled selected>Select Country</option>
+                        <option value="" disabled selected>{{ __('label.choose') }}</option>
                         <option value="Philippines" {{ old('country') == "Philippines" ? 'selected' : '' }}> Philippines</option>
                         <option value="Singapore" {{ old('country') == "Singapore" ? 'selected' : '' }}> Singapore</option>
                         <option value="Malaysia" {{ old('country') == "Malaysia" ? 'selected' : '' }}> Malaysia</option>

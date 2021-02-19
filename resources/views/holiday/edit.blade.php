@@ -10,7 +10,7 @@
         <div class="form-group">
             <label for="company_id" class="control-label">{{ __('label.company') }}</label>
             <select class="form-control @error('company_id') is-invalid @enderror dynamic" name="company_id" id="company_id">
-                    <option value="" disabled selected>Select Company</option>
+                    <option value="" disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}" {{ old('company_id',$holiday->company_id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                 @endforeach

@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <label for="company_id">{{ __('label.company') }}</label>
                     <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
-                        <option value="" disabled selected>Select Company</option>
+                        <option value="" disabled selected>{{ __('label.choose') }}</option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                         @endforeach
@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label for="location_head">{{ __('label.location_head') }}</label>
                     <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
-                        <option selected disabled>Select Location</option>
+                        <option selected disabled>{{ __('label.choose') }}</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                         @endforeach
@@ -93,7 +93,7 @@
                 <div class="form-group">
                     <label for="country">Country</label>
                     <select name="country" id="country" class="form-control @error('country') is-invalid @enderror">
-                        <option value="" disabled selected>{{ __('label.country') }}</option>
+                        <option value="" disabled selected>{{ __('label.choose') }}</option>
                         <option value="Philippines" {{ old('country') == "Philippines" ? 'selected' : '' }}> Philippines</option>
                         <option value="Singapore" {{ old('country') == "Singapore" ? 'selected' : '' }}> Singapore</option>
                         <option value="Malaysia" {{ old('country') == "Malaysia" ? 'selected' : '' }}> Malaysia</option>

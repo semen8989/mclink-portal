@@ -12,7 +12,7 @@
                     <label for="time" class="col-md-2">{{ __('label.company') }}</label>
                     <div class="col-md-4">
                         <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
-                            <option value="" disabled selected>Select Company</option>
+                            <option value="" disabled selected>{{ __('label.choose') }}</option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->id }}" {{ old('company_id',$officeShift->company_id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                             @endforeach

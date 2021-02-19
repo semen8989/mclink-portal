@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for="expense_type">{{ __('label.expense_type') }}</label>
             <select id="expense_type_id" name="expense_type_id" id="expense_type_id" class="form-control @error('expense_type_id') is-invalid @enderror" value="{{ old('expense_type_id') }}">
-                <option disabled selected>Select Expense Type</option>
+                <option disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($expense_types as $type)
                     <option value="{{ $type->id }}" {{ old('expense_type_id',$expense->expense_type_id) == $type->id ? 'selected' : '' }}>{{ $type->expense_type }}</option>
                 @endforeach
@@ -23,7 +23,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="purchase_date">{{ __('label.purchase_date') }}</label>
-                <input type="text" class="form-control date @error('purchase_date') is-invalid @enderror" id="purchase_date" name="purchase_date" value="{{ old('purchase_date',$expense->purchase_date) }}" readonly>
+                <input type="text" class="form-control date @error('purchase_date') is-invalid @enderror" id="purchase_date" name="purchase_date" value="{{ old('purchase_date',$expense->purchase_date) }}">
                 @error('purchase_date')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -44,7 +44,7 @@
             <div class="form-group col-md-6">
                 <label for="company_id">{{ __('label.company') }}</label>
                 <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror">
-                    <option selected disabled>Choose Company</option>
+                    <option selected disabled>{{ __('label.choose') }}</option>
                     @foreach ($companies as $company)
                         <option value="{{ $company->id }}" {{ old('company_id',$expense->company_id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                     @endforeach
@@ -58,7 +58,7 @@
             <div class="form-group col-md-6">
                 <label for="user_id">{{__('label.purchase_by') }}</label>
                 <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-                    <option selected disabled>Choose Employee</option>
+                    <option selected disabled>{{ __('label.choose') }}</option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}" {{ old('user_id',$expense->user_id) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                     @endforeach
