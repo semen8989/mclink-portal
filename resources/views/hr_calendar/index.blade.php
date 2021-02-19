@@ -46,8 +46,16 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <label for="company_id">Company</label>
+                    <select class="form-control" name="company_id" id="company_id">
+                        @foreach ($companies as $company)
+                            <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" class="form-control" placeholder="Event Title">
+                    <input type="text" name="title" id="title" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="start">Start Date</label>
@@ -178,6 +186,7 @@
 
         $('#submit').on('click', function(e){
             //Initialize variables
+            var company_id = $('#company_id').val();
             var start = $('#start').val();
             var end = $('#end').val();
             var title = $('#title').val();
@@ -190,6 +199,7 @@
                 url: '{{ route("hr_calendar.ajax") }}',
                 data: {
                     _token: "{{ csrf_token() }}",
+                    company_id: company_id,
                     title: title,
                     start: start,
                     end: end,

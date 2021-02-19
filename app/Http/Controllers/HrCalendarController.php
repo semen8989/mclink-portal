@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class HrCalendarController extends Controller
 {
     public function index(Request $request)
     {
+        $companies = Company::all();
         if($request->ajax()){
 
             $data = Event::whereDate('start','>=',$request->start)
@@ -18,8 +20,7 @@ class HrCalendarController extends Controller
             return response()->json($data);
 
         }
-
-        return view('hr_calendar.index');
+        return view('hr_calendar.index',compact('companies'));
     }
 
     public function ajax(Request $request)
@@ -27,6 +28,7 @@ class HrCalendarController extends Controller
         switch ($request->type) {
            case 'add':
               $event = Event::create([
+                  'company_id' => $request->company_id,
                   'title' => $request->title,
                   'start' => $request->start,
                   'end' => $request->end,

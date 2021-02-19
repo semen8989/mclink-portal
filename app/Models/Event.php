@@ -11,8 +11,10 @@ class Event extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'company_id',
         'title',
         'start',
-        'end'
+        'end',
+        'event_note'
     ];
 }
