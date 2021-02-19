@@ -41,6 +41,6 @@ class Imageable implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be a valid image';
+        return trans('validation.imageable');
     }
 }
