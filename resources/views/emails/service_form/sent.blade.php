@@ -1,12 +1,12 @@
 @component('mail::message')
-# Hi {{ $serviceReport->customer->name }},
+# {{ __('label.global.email.greeting') . ' ' . $serviceReport->customer->name }},
 
-Click the button to sign the acknowledgment form.
+{{ __('label.service_report.email.sent.message') }}
 
 @component('mail::button', ['url' => route('service.form.acknowledgment.sign', ['serviceReport' => $serviceReport->id])])
-View Details and Sign
+{{ __('label.service_report.email.sent.button.view_details') }}
 @endcomponent
 
-Thanks,<br>
+{{ __('label.global.email.closing') }},<br>
 {{ config('app.name') }}
 @endcomponent

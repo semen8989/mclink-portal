@@ -108,8 +108,8 @@ class ServiceFormController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result 
-            ? 'Service report successfully created.' 
-            : 'There is a problem with creating the record.';
+            ? __('label.global.response.success.general', ['module' => 'Service report', 'action' => 'created'])
+            : __('label.global.response.error.general', ['action' => 'creating']);
 
         return redirect()->route('service.form.index')->with($resultStatus, $msg);
     }
@@ -178,8 +178,8 @@ class ServiceFormController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result 
-            ? 'Service report successfully updated.' 
-            : 'There is a problem with updating the record.';
+            ? __('label.global.response.success.general', ['module' => 'Service report', 'action' => 'updated'])
+            : __('label.global.response.error.general', ['action' => 'updating']);
 
         return redirect()->route('service.form.show', [$serviceReport->csr_no])->with($resultStatus, $msg);
     }
@@ -191,8 +191,8 @@ class ServiceFormController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result
-            ? 'The record was successfully deleted.'
-            : 'There is a problem with deleting the record.';
+            ? __('label.global.response.success.general', ['module' => 'Service report', 'action' => 'deleted'])
+            : __('label.global.response.error.general', ['action' => 'deleting']);
 
         return back()->with($resultStatus, $msg);
     }

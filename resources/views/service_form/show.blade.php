@@ -1,77 +1,77 @@
 @extends('layout.master')
 
 @section('content')
-    <h5 class="card-header font-weight-bold text-center">SERVICE REPORT DETAILS</h5>
+    <h5 class="card-header font-weight-bold text-center">{{ __('label.service_report.form.header.main') }}</h5>
     <div class="card-body px-5">
         <div class="row">
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">CSR No.</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.csr_no') }}</p>
                 <p class="guest-form-data mb-4">{{ $serviceReport->csr_no }}</p>
             </div>
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Date</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.date') }}</p>
                 <p class="guest-form-data mb-4">{{ $serviceReport->date->format('d/m/Y') }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Customer Name</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.cust_name') }}</p>
                 <p class="guest-form-data mb-4">{{ $serviceReport->customer->name }}</p>
             </div>
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Customer Email</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->customer->email ?? 'N/A' }}</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.cust_email') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->customer->email ?? __('label.global.text.na') }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p class="guest-form-label font-weight-bold mb-1">Address</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.address') }}</p>
                 <p class="guest-form-data mb-4">{{ $serviceReport->customer->address }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Engineer Name</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.engineer_name') }}</p>
                 <p class="guest-form-data mb-4">{{ $serviceReport->user->name }}</p>
             </div>
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Ticket No. Reference</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->ticket_reference ?? 'N/A' }}</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.ticket_reference') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->ticket_reference ?? __('label.global.text.na') }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 mb-2">
-                <p class="guest-form-label font-weight-bold mb-1">Service Rendered</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.service_rendered') }}</p>
                 {!! $serviceReport->service_rendered !!}
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Engineer's Remarks</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->engineer_remark ?? 'N/A' }}</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.engineer_remark') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->engineer_remark ?? __('label.global.text.na') }}</p>
             </div>
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Status after Service</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->status_after_service ?? 'N/A' }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Start of Service</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->service_start ? $serviceReport->service_start->format('d/m/Y h:i:s A') : 'N/A' }}</p>
-            </div>
-            <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">End of Service</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->service_end ? $serviceReport->service_end->format('d/m/Y h:i:s A') : 'N/A' }}</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.status_after_service') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->status_after_service ?? __('label.global.text.na') }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">IT Credit Used</p>
-                <p class="guest-form-data mb-4">{{ $serviceReport->used_it_credit ?? 'N/A' }}</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.service_start') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->service_start ? $serviceReport->service_start->format('d/m/Y h:i:s A') : __('label.global.text.na') }}</p>
             </div>
             <div class="col-md-6">
-                <p class="guest-form-label font-weight-bold mb-1">Status</p>
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.service_end') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->service_end ? $serviceReport->service_end->format('d/m/Y h:i:s A') : __('label.global.text.na') }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.used_it_credit') }}</p>
+                <p class="guest-form-data mb-4">{{ $serviceReport->used_it_credit ?? __('label.global.text.na') }}</p>
+            </div>
+            <div class="col-md-6">
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.service_report.form.label.status') }}</p>
                 <p class="guest-form-data mb-4">{{ $serviceReport->status }}</p>
             </div>
         </div>
@@ -79,7 +79,7 @@
         @if (empty($serviceReport->signed_date) && $serviceReport->status == 'Draft')
             <div class="row">
                 <div class="col-md-12">
-                    <p class="guest-form-label font-weight-bold mb-2">Customer Acknowledgement Link</p>
+                    <p class="guest-form-label font-weight-bold mb-2">{{ __('label.service_report.form.label.acknowledgement_link') }}</p>
                     <div class="input-group mb-4">
                         <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.sign', [$serviceReport->id]) }}" 
                             data-clipboard-target="#inputLink" data-toggle="tooltip">
@@ -157,7 +157,7 @@
         $('[data-toggle="tooltip"]').tooltip({
             placement: "top",
             trigger: "manual",
-            title: "Copied link"
+            title: {{ __('label.global.datatable.text.copy_link') }}
         });
         
         var btnTooltip = $('.btn-clipboard');

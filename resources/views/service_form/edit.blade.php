@@ -4,13 +4,13 @@
 <form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.update', ['serviceReport' => $serviceReport->csr_no]) }}" method="POST">
   @csrf
   @method('PUT')
-  <h5 class="card-header font-weight-bold text-center">CUSTOMER SERVICE REPORT</h5>
+  <h5 class="card-header font-weight-bold text-center">{{ __('label.service_report.form.header.main') }}</h5>
   <div class="card-body">
   
     <x-service-report.form :serviceReport="$serviceReport"/>
 
     <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-success" type="submit">{{ __('label.global.form.button.update') }}</button>
     </div>
 
   </div>

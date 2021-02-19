@@ -89,10 +89,10 @@ class ServiceReportDataTable extends DataTable
                 ],
                 'language' => [
                     'search' => '',
-                    'searchPlaceholder' => 'Search',
+                    'searchPlaceholder' => __('label.global.datatable.text.search_placeholder'),
                     'loadingRecords' => '&nbsp;',
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span></div></div>'
+                        <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
                 ],
                 'drawCallback' => "function (settings, json) {" .
                     "$('.copy-btn').tooltip();}"

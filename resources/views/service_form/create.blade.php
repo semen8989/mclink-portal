@@ -4,18 +4,18 @@
 <form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
   @csrf
 
-  <h5 class="card-header font-weight-bold text-center">CUSTOMER SERVICE REPORT</h5>
+  <h5 class="card-header font-weight-bold text-center">{{ __('label.service_report.form.header.main') }}</h5>
   <div class="card-body">
   
     <x-service-report.form :csrNo="$csrNo"/>
 
     <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" value="send" type="submit">Send to Customer</button>
+      <button class="btn btn-success" value="send" type="submit">{{ __('label.service_report.form.button.send') }}</button>
       <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu">
-        <button class="dropdown-item" value="draft" type="submit">Save as Draft</button>
+        <button class="dropdown-item" value="draft" type="submit">{{ __('label.service_report.form.button.draft') }}</button>
       </div>
     </div>
 

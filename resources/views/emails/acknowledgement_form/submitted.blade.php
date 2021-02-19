@@ -1,12 +1,12 @@
 @component('mail::message')
-# Hi {{ $serviceReport->user->name }},
+# {{ __('label.global.email.greeting') . ' ' . $serviceReport->user->name }},
 
-The customer already submitted the signed service report form. You can click the button to view the details.
+{{ __('label.service_report.email.submitted.message') }}
 
 @component('mail::button', ['url' => route('service.form.show', [$serviceReport->csr_no])])
-View Service Report Details
+{{ __('label.service_report.email.submitted.button.view_service_report') }}
 @endcomponent
 
-Thanks,<br>
+{{ __('label.global.email.closing') }},<br>
 {{ config('app.name') }}
 @endcomponent

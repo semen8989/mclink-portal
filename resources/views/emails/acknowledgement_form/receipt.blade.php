@@ -1,8 +1,8 @@
 @component('mail::message')
-# Hi {{ $serviceReport->customer->name }},
+# {{ __('label.global.email.greeting') . ' ' . $serviceReport->customer->name }},
 
-Thank you for submitting the signed acknowledgment form. Attached is your copy of service report in PDF format.
+{{ __('label.service_report.email.receipt.message') }}
 
-Thanks,<br>
+{{ __('label.global.email.closing') }},<br>
 {{ config('app.name') }}
 @endcomponent
