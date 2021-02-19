@@ -65,6 +65,36 @@
         </div>
     </div>
 </div>
+<!-- View Calendar Info Modal -->
+<div class="modal fade" id="viewEventModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Event Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <strong><label for="title">Title</label></strong>
+                    <input type="text" name="title_view" id="title_view" class="form-control-plaintext" readonly>
+                </div>
+                <div class="form-group">
+                    <strong><label for="start">Start Date</label></strong>
+                    <input type="text" name="start_view" id="start_view" class="form-control-plaintext" readonly>
+                </div>
+                <div class="form-group">
+                    <strong><label for="start">End Date</label></strong>
+                    <input type="text" name="end_view" id="end_view" class="form-control-plaintext" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @push('stylesheets')
@@ -139,22 +169,10 @@
             },
             //When u click an event in the calendar do the following:
             eventClick: function (event) {
-                var deleteMsg = confirm("Do you really want to delete?");
-                if (deleteMsg) {
-                    $.ajax({
-                        type: "POST",
-                        url: '{{ route("hr_calendar.ajax") }}',
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                            id: event.id,
-                            type: 'delete'
-                        },
-                        success: function (response) {
-                            calendar.fullCalendar('removeEvents', event.id);
-                            displayMessage("Event Deleted Successfully");
-                        }
-                    });
-                }
+                $('#title_view').val(event.title);
+                $('#start_view').val($.fullCalendar.formatDate(event.start, "Y-MM-DD"));
+                $('#end_view').val($.fullCalendar.formatDate(event.end, "Y-MM-DD"));
+                $('#viewEventModal').modal('show');
             }
         });
 
