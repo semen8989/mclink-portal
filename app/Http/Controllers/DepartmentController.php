@@ -81,7 +81,7 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, Department $department)
     {
-        $department->update($request->except(['_token','_method']));
+        $department->update($request->all());
         return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
     }
 

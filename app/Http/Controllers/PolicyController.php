@@ -81,7 +81,7 @@ class PolicyController extends Controller
      */
     public function update(StorePolicyRequest $request, Policy $policy)
     {
-        $policy->update($request->except(['_token','_method']));
+        $policy->update($request->all());
         return redirect()->route('policies.index')->with('success', 'Policy updated successfully.');
     }
 

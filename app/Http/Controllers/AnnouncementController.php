@@ -80,7 +80,7 @@ class AnnouncementController extends Controller
      */
     public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
-        $announcement->update($request->except(['_token','_method']));
+        $announcement->update($request->all());
         return redirect()->route('announcements.index')->with('success', 'Announcement updated successfully.');
     }
 
