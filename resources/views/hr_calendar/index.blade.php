@@ -50,9 +50,12 @@
                     <input type="text" name="title" id="title" class="form-control" placeholder="Event Title">
                 </div>
                 <div class="form-group">
-                    <label for="start">Selected Date</label>
+                    <label for="start">Start Date</label>
                     <input type="text" name="start" id="start" class="form-control" readonly>
-                    <input type="hidden" name="end" id="end" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="start">End Date</label>
+                    <input type="text" name="end" id="end" class="form-control" readonly>
                 </div>
             </div>
             <div class="modal-footer">
