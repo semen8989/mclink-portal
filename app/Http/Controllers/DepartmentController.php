@@ -30,8 +30,7 @@ class DepartmentController extends Controller
     {
         $title = __('label.add_department');
         $companies = Company::all('id','company_name');
-        $users = User::all('id','name');
-        return view('department.create',compact('companies','users','title'));
+        return view('department.create',compact('companies','title'));
     }
 
     /**

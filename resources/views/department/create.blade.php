@@ -34,11 +34,6 @@
             <label for="user_id">{{ __('label.department_head') }}</label>
             <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
                     <option value="" disabled selected>{{ __('label.choose') }}</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
-                        {{ $user->name }}
-                    </option>        
-                @endforeach 
             </select>
             @error('user_id')
                 <div class="invalid-feedback">
