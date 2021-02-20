@@ -2,21 +2,16 @@
 
 @section('content')
 <div class="card-header">{{ __('label.add_department') }}</div>
-<form method="POST" action="{{ route('departments.store') }}" novalidate>
+<form method="POST" id="department_form" action="{{ route('departments.store') }}" novalidate>
     @csrf
     <div class="card-body">
         <div class="form-group">
             <label for="department_name">{{ __('label.department_name') }}</label>
-            <input class="form-control @error('department_name') is-invalid @enderror" name="department_name" id="department_name" value="{{ old('department_name') }}" type="text">
-            @error('department_name')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+            <input class="form-control" name="department_name" id="department_name" value="{{ old('department_name') }}" type="text">
         </div>
         <div class="form-group">
             <label for="company_id">{{ __('label.company') }}</label>
-            <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
+            <select class="form-control" name="company_id" id="company_id">
                     <option value="" disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>
@@ -24,22 +19,12 @@
                     </option>        
                 @endforeach 
             </select>
-            @error('company_id')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="user_id">{{ __('label.department_head') }}</label>
-            <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
+            <select class="form-control" name="user_id" id="user_id">
                     <option value="" disabled selected>{{ __('label.choose') }}</option>
             </select>
-            @error('user_id')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
     </div>
     <div class="card-footer text-right">
@@ -72,6 +57,43 @@
                     }
                 })
             })
+            //Department form submit
+            $('#department_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+                
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    dataType: 'json',
+                    success: function (response){
+                        windows.location.href = '{{ route("departments.index") }}';
+                    },
+                    error: function(response) { 
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+								var id = $("#"+index);
+								id.closest('.form-control')
+								.removeClass('is-valid')
+								.removeClass('is-invalid')
+								.addClass(value.length > 0 ? 'is-invalid' : 'is-valid')
+                                .find('.invalid-feedback')
+                                .remove();
+                                
+								id.after('<div class="invalid-feedback">'+value+'</div>');
+						});
+                    }   
+                })
+            })
+
+            function clearErrors(){
+
+            }
+
         })
     </script>
 @endpush
