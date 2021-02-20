@@ -53,9 +53,6 @@
                     <label for="location_head">{{ __('label.location_head') }}</label>
                     <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
                         <option selected disabled>{{ __('label.choose') }}</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
-                        @endforeach
                     </select>
                     @error('user_id')
                         <div class="invalid-feedback">
@@ -107,3 +104,31 @@
     </div>
 </form>
 @stop
+
+@push('scripts')
+    <script>
+         $(document).ready(function(){
+            //Dynamic Company Dropdown
+            $('#company_id').change(function(){
+                var value = $('#company_id').val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ route('fetch_user') }}",
+                    method: "POST",
+                    data: {
+                        value: value,
+                        _token: _token
+                    },
+                    dataType: 'json',
+                    success: function(result){
+                        $('#user_id').empty();
+                        $('#user_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
+                        $.each(result, function (key, value) {
+                            $('#user_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                        });
+                    }
+                })
+            })
+        })
+    </script>
+@endpush

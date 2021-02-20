@@ -30,9 +30,8 @@ class LocationController extends Controller
     public function create()
     {
         $companies = Company::all();
-        $users = User::all();
         $title = __('label.add_location');
-        return view('location.create',compact('title','companies','users'));
+        return view('location.create',compact('title','companies'));
     }
 
     /**

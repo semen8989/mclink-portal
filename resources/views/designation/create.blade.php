@@ -49,7 +49,7 @@
 @push('scripts')
     <script>
         $(document).ready(function (){
-            //Call function on load
+            //his function retrieves old department value on page load
             department_dropdown();
             //Dynamic Company Dropdown
             $('#company_id').change(function(){
