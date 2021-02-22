@@ -14,9 +14,9 @@
         <thead>
             <tr>
                 <th>{{ __('label.action') }}</th>
+                <th>{{ __('label.designation_name') }}</th>
                 <th>{{ __('label.company') }}</th>
                 <th>{{ __('label.department') }}</th>
-                <th>{{ __('label.designation_name') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +34,9 @@
                             </svg>
                         </a> 
                     </td>
+                    <td>{{ $designation->designation_name }}</td>
                     <td>{{ $designation->company->company_name }}</td>
                     <td>{{ $designation->department->department_name }}</td>
-                    <td>{{ $designation->designation_name }}</td>
                 </tr>
             @endforeach
         </tbody>
