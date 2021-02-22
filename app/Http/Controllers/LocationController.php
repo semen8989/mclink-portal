@@ -44,7 +44,7 @@ class LocationController extends Controller
     {
         $request['added_by'] = auth()->user()->id;
         Location::create($request->all());
-        return redirect()->route('locations.index')->with('success', 'Location created successfully.');
+        return session()->flash('success', 'Location created successfully.');
     }
 
     /**
@@ -69,7 +69,7 @@ class LocationController extends Controller
     {
         $title = __('label.edit_location');
         $companies = Company::all();
-        $users = User::all();
+        $users = Company::find($location->company_id)->company_users;
         return view('location.edit',compact('title','location','companies','users'));
     }
 
@@ -83,7 +83,7 @@ class LocationController extends Controller
     public function update(StoreLocationRequest $request, Location $location)
     {
         $location->update($request->all());
-        return redirect()->route('locations.index')->with('success', 'Location updated successfully.');
+        return session()->flash('success', 'Location updated successfully.');
     }
 
     /**
