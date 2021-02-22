@@ -21,19 +21,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         //Create admin user
-        $user = User::create([
+        $admin = User::create([
             'name' => 'Root',
             'email' => 'root@mclinkgroup.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ]);
-        //Create Admin role
-        $admin = Role::create(['name' => 'Administrator']);
-        //Create ability
-        $allowAll = Ability::create(['name' => 'allow-all']);
-        //Assgin ability to a role
-        $admin->allowTo($allowAll);
-        //Assign role to a user
-        $user->assignRole($admin);
+        //Assign role
+        $admin->assignRole('Administrator');
     }
 }
