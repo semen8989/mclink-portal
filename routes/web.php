@@ -24,17 +24,10 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // Service Report Routes
-    Route::prefix('service-forms')->group(function () {
-        Route::get('/', [ServiceFormController::class, 'index'])->name('service.form.index');
-        Route::get('/create', [ServiceFormController::class, 'create'])->name('service.form.create');
-        Route::post('/', [ServiceFormController::class, 'store'])->name('service.form.store');
-        Route::get('/{serviceReport:csr_no}', [ServiceFormController::class, 'show'])->name('service.form.show');
-        Route::get('/{serviceReport:csr_no}/edit', [ServiceFormController::class, 'edit'])->name('service.form.edit');
-        Route::put('/{serviceReport:csr_no}', [ServiceFormController::class, 'update'])->name('service.form.update');
-        Route::delete('/{serviceReport:csr_no}', [ServiceFormController::class, 'destroy'])->name('service.form.destroy');
-
-        Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
-    });
+    Route::get('/service-forms/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service-forms.download');  
+    Route::resource('service-forms', ServiceFormController::class)->parameters([
+        'service-forms' => 'serviceReport:csr_no'
+    ]);
 
     // Typeahead Routes
     Route::prefix('get')->group(function () {
@@ -43,16 +36,16 @@ Route::middleware(['auth'])->group(function () {
 
         // User Route
         Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
-    }); 
+    });
 });
 
 // Guest Routes
 
 // Acknowledgement Routes
 Route::prefix('service-form/acknowledgement')->group(function () {
-    Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service.form.acknowledgment.sign');
-    Route::post('/{serviceReport}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
-    Route::get('/feedback', [AcknowledgementFormController::class, 'feedback'])->name('service.form.acknowledgment.feedback');
+    Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service-form.acknowledgment.sign');
+    Route::post('/{serviceReport}', [AcknowledgementFormController::class, 'store'])->name('service-form.acknowledgment.store');
+    Route::get('/feedback', [AcknowledgementFormController::class, 'feedback'])->name('service-form.acknowledgment.feedback');
 });
 
 Auth::routes(['register' => false]);
