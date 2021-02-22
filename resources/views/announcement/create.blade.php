@@ -2,81 +2,45 @@
 
 @section('content')
 <div class="card-header">{{ __('label.add_announcement') }}</div>
-<form method="POST" action="{{ route('announcements.store') }}">
+<form method="POST" id="announcement_form" action="{{ route('announcements.store') }}">
     @csrf
     <div class="card-body">
         <div class="form-group">
             <label for="title">{{ __('label.title') }}</label>
-            <input class="form-control  @error('title') is-invalid @enderror" name="title" type="text" value="{{ old('title') }}">
-            @error('title')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+            <input class="form-control" name="title" id="title" type="text">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="start_date">{{ __('label.start_date') }}</label>
-                <input class="form-control date @error('start_date') is-invalid @enderror" name="start_date" type="text" value="{{ old('start_date') }}">
-                @error('start_date')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                <input class="form-control date" name="start_date" id="start_date" type="text">
             </div>
             <div class="form-group col-md-6">
                 <label for="end_date">{{ __('label.end_date') }}</label>
-                <input class="form-control date @error('end_date') is-invalid @enderror" name="end_date" type="text" value="{{ old('end_date') }}">
-                @error('end_date')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                <input class="form-control date" name="end_date" id="end_date"  type="text">
             </div>
         </div>
         <div class="form-group">
             <label for="company_id" class="control-label">{{ __('label.company') }}</label>
-            <select class="form-control @error('company_id') is-invalid @enderror dynamic" name="company_id" id="company_id">
+            <select class="form-control dynamic" name="company_id" id="company_id">
                 <option value="" disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($companies as $company)
-                    <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
+                    <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                 @endforeach
             </select>
-            @error('company_id')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="department" class="control-label">{{ __('label.department') }}</label>
-            <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id"
-                data-selected-department="{{ old('department_id') }}">
+            <select class="form-control" name="department_id" id="department_id">
                 <option disabled selected>{{ __('label.choose') }}</option>
             </select>
-            @error('department_id')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
         <div class="form-group">
             <label for="summary" class="control-label">{{ __('label.summary') }}</label>
-            <textarea class="form-control @error('summary') is-invalid @enderror" name="summary" cols="30" rows="3" id="summary">{{ old('summary') }}</textarea>
-            @error('summary')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+            <textarea class="form-control" name="summary" cols="30" rows="3" id="summary"></textarea>
         </div>
         <div class="form-group">
             <label for="description">{{ __('label.description') }}</label>
-            <textarea class="form-control textarea" name="description" cols="8" rows="6" id="description">{{ old('description') }}</textarea>
-            @error('description')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+            <textarea class="form-control textarea" name="description" cols="8" rows="6" id="description"></textarea>
         </div>
     </div>
     <div class="card-footer text-right">
@@ -106,8 +70,22 @@
                     vertical: 'bottom'
                 }
             });
-            //Call function on load
-            department_dropdown();
+            //TinyMCE
+            tinymce.init({
+                selector: 'textarea#description',
+                height: 400,
+                menubar: false,
+                plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
             //Dynamic Company Dropdown
             $('#company_id').change(function(){
                 var value = $('#company_id').val();
@@ -129,47 +107,37 @@
                     }
                 })
             })
-            //Function
-            function department_dropdown(){
-                var value = $('#company_id').val();
-                var _token = $('input[name="_token"]').val();
+            //Announcement form submit
+            $('#announcement_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+                
                 $.ajax({
-                    url:"{{ route('fetch_department') }}",
-                    method: "POST",
-                    data: {
-                        value: value,
-                        _token:_token
+                    url: url,
+                    data: data,
+                    method: method,
+                    success: function(){
+                        window.location.href = '{{ route("announcements.index") }}';
                     },
-                    dataType: 'json',
-                    success:function(result){
-                        $('#department_id').empty();
-                        $('#department_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
-                        $.each(result, function (key, value) {
-                            $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
+                    error: function(response){
+                        //Clear previous error messages
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            id.after('<div class="invalid-feedback">'+value+'</div>');
                         });
-                        var department_selected = $("#department_id").attr("data-selected-department");
-                        if(department_selected !== ''){                    
-                            $("#department_id").val(department_selected);
-                        }
+                        
                     }
                 })
-            }
-            //TinyMCE
-            tinymce.init({
-                selector: 'textarea#description',
-                height: 400,
-                menubar: false,
-                plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-                ],
-                toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-            });
+            })
         })
         
     </script>

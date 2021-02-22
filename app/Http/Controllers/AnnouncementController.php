@@ -42,9 +42,8 @@ class AnnouncementController extends Controller
     public function store(StoreAnnouncementRequest $request)
     {
         Announcement::create($request->all());
-        //Redirect after success
-        return redirect()->route('announcements.index')->with('success', 'Announcement created successfully.');
-
+        //Success flash message
+        return session()->flash('success','Announcement created successfully.');
     }
     /**
      * Display the specified resource.
@@ -68,7 +67,8 @@ class AnnouncementController extends Controller
     {
         $title = __('label.edit_announcement');
         $companies = Company::all();
-        return view('announcement.edit',compact('announcement','companies','title'));
+        $departments = Company::find($announcement->company_id)->departments;
+        return view('announcement.edit',compact('announcement','companies','departments','title'));
     }
 
     /**
@@ -81,7 +81,8 @@ class AnnouncementController extends Controller
     public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
         $announcement->update($request->all());
-        return redirect()->route('announcements.index')->with('success', 'Announcement updated successfully.');
+        //Success flash message
+        return session()->flash('success','Announcement updated successfully.');
     }
 
     /**
