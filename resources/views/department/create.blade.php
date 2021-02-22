@@ -73,11 +73,11 @@
                         window.location.href = '{{ route("departments.index") }}';
                     },
                     error: function(response){
-                        var errors = response.responseJSON;
-                        //Remove error messages and class
+                        //Clear previous error messages
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");
                         //fetch and display error messages
+                        var errors = response.responseJSON;
                         $.each(errors.errors, function (index, value) {
                             var id = $("#"+index);
                             id.closest('.form-control')
@@ -88,10 +88,6 @@
                     }
                 })
             })
-
-            function clearErrors(){
-
-            }
 
         })
     </script>
