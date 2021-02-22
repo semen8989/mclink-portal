@@ -229,5 +229,124 @@ return [
     'valid_until' => 'Valid until',
     'assigned_by' => 'Assigned by',
     'success' => 'Success',
-    'error' => 'Error'
+    'error' => 'Error',
+    'global' => [
+        'text' => [
+            'na' => 'N/A',
+            'full_na' => 'Not Applicable (NA)'
+        ],
+        'form' => [
+            'button' => [
+                'back' => 'Back',
+                'edit' => 'Edit',
+                'update'=> 'Update',
+                'submit' => 'Submit',
+                'download' => 'Download'
+            ]
+        ],
+        'datatable' => [
+            'text' => [
+                'loading' => 'Loading...',
+                'search_placeholder' => 'Search',
+                'copy_link' => 'Copied link'
+            ],
+            'button' => [
+                'new' => 'New Record',
+            ],
+            'action' => [
+                'title' => [
+                    'edit' => 'Edit',
+                    'delete' => 'Delete'
+                ]
+            ]
+        ],
+        'email' => [
+            'greeting' => 'Hi',
+            'closing' => 'Thanks'
+        ],
+        'response' => [
+            'success' => [
+                'general' => ':module was successfully :action.'
+            ],
+            'error' => [
+                'general' => 'There is a problem in :action the record.'
+            ]
+        ]
+    ],
+    'service_report' => [
+        'datatable' => [
+            'column_header' => [
+                'csr_no' => 'CSR No.',
+                'cust_name' => 'Customer Name',
+                'service_start' => 'Service Start',
+                'status' => 'Status',
+                'link' => 'Link',
+                'action' => 'Action'
+            ]
+        ],
+        'email' => [
+            'receipt' => [
+                'message' => 'Thank you for submitting the signed acknowledgement form. Attached is your copy of service report in PDF format.',
+                'subject' => 'Service Report Customer Copy | :company'
+            ],
+            'submitted' => [
+                'message' => 'The customer already submitted the signed service report form. You can click the button to view the details.',
+                'button' => [
+                    'view_service_report' => 'View Service Report Details'
+                ],
+                'subject' => 'Service Report Customer Acknowledgement | :company'
+            ],
+            'sent' => [
+                'message' => 'Click the button to sign the acknowledgement form.',
+                'button' => [
+                    'view_details' => 'View Details and Sign'
+                ],
+                'subject' => 'Service Report Acknowledgment Form | :company'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'title' => 'Service Report',
+                'tel' => 'Tel',
+                'fax' => 'Fax',
+                'main' => 'CUSTOMER SERVICE REPORT',
+                'acknowledgement' => 'CUSTOMER ACKNOWLEDGEMENT',
+            ],
+            'label' => [
+                'csr_no' => 'CSR No',
+                'date' => 'Date',
+                'add_customer' => 'Add new customer',
+                'cust_name' => 'Customer Name',
+                'cust_email' => 'Customer Email',
+                'address' => 'Address',
+                'engineer_name' => 'Engineer Name',
+                'ticket_reference' => 'Ticket No. Reference',
+                'service_rendered' => 'Service Rendered',
+                'engineer_remark' => 'Engineer\'s Remark',
+                'status_after_service' => 'Status after Service',
+                'service_start' => 'Start of Service',
+                'service_end' => 'End of Service',
+                'used_it_credit' => 'IT Credit Used',
+                'name_designation' => 'Name / Designation',
+                'signature' => 'Signature',
+                'status' => 'Status',
+                'acknowledgement_link' => 'Customer Acknowledgement Link',
+                'acknowledge_check' => 'Check here to :openspan acknowledge :closespan the :openspan data :closespan and :openspan list of services :closespan that was shown above',
+            ],
+            'image' => [
+                'alt' => [
+                    'signature' => 'Customer Signature'
+                ]
+            ],
+            'button' => [
+                'send' => 'Send to Customer',
+                'draft' => 'Save as Draft'
+            ]
+        ],
+        'page_text' => [
+            'feedback_header' => 'An email has been sent to your email containing your copy of the service report',
+            'feedback_body' => 'Thank you for doing business with us. Can you take a couple of minutes to leave a feedback about your experience with us? Just go to this <a href="https://form.jotform.me/83401151973453?companyName=:customer" ' . 
+                'target="_blank">page</a>. Thanks for your help!'
+        ]
+    ]
 ];
