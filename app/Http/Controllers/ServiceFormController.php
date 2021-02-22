@@ -111,7 +111,7 @@ class ServiceFormController extends Controller
             ? __('label.global.response.success.general', ['module' => 'Service report', 'action' => 'created'])
             : __('label.global.response.error.general', ['action' => 'creating']);
 
-        return redirect()->route('service.form.index')->with($resultStatus, $msg);
+        return redirect()->route('service-forms.index')->with($resultStatus, $msg);
     }
 
     public function edit(ServiceReport  $serviceReport)
@@ -181,7 +181,7 @@ class ServiceFormController extends Controller
             ? __('label.global.response.success.general', ['module' => 'Service report', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('service.form.show', [$serviceReport->csr_no])->with($resultStatus, $msg);
+        return redirect()->route('service-forms.show', [$serviceReport->csr_no])->with($resultStatus, $msg);
     }
 
     public function destroy(ServiceReport  $serviceReport)

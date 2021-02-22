@@ -3,7 +3,7 @@
 
 {{ __('label.service_report.email.sent.message') }}
 
-@component('mail::button', ['url' => route('service.form.acknowledgment.sign', ['serviceReport' => $serviceReport->id])])
+@component('mail::button', ['url' => route('service-form.acknowledgment.sign', ['serviceReport' => $serviceReport->id])])
 {{ __('label.service_report.email.sent.button.view_details') }}
 @endcomponent
 

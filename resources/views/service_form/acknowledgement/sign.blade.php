@@ -89,7 +89,7 @@
                     <h4 class="font-weight-bold">{{ __('label.service_report.form.header.acknowledgement') }}</h4>
                 </div>
                 <hr>
-                <form id="acknowledgementForm" action="{{ route('service.form.acknowledgment.store', ['serviceReport' => $serviceReport->id]) }}" method="POST">
+                <form id="acknowledgementForm" action="{{ route('service-form.acknowledgment.store', ['serviceReport' => $serviceReport->id]) }}" method="POST">
                     @csrf
 
                     <div class="form-row">

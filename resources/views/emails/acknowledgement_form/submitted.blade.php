@@ -3,7 +3,7 @@
 
 {{ __('label.service_report.email.submitted.message') }}
 
-@component('mail::button', ['url' => route('service.form.show', [$serviceReport->csr_no])])
+@component('mail::button', ['url' => route('service-forms.show', [$serviceReport->csr_no])])
 {{ __('label.service_report.email.submitted.button.view_service_report') }}
 @endcomponent
 

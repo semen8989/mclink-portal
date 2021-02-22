@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.update', ['serviceReport' => $serviceReport->csr_no]) }}" method="POST">
+<form class="form-horizontal" id="serviceReportForm" action="{{ route('service-forms.update', ['serviceReport' => $serviceReport->csr_no]) }}" method="POST">
   @csrf
   @method('PUT')
   <h5 class="card-header font-weight-bold text-center">{{ __('label.service_report.form.header.main') }}</h5>

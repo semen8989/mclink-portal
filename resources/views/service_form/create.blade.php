@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
+<form class="form-horizontal" id="serviceReportForm" action="{{ route('service-forms.store') }}" method="POST">
   @csrf
 
   <h5 class="card-header font-weight-bold text-center">{{ __('label.service_report.form.header.main') }}</h5>

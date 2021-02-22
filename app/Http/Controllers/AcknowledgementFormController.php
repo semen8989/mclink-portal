@@ -61,7 +61,7 @@ class AcknowledgementFormController extends Controller
                 ->queue(new ServiceReportCopyReceivedMail($serviceReport));
 
             return redirect()
-                ->route('service.form.acknowledgment.feedback')
+                ->route('service-form.acknowledgment.feedback')
                 ->with(['serviceReport' => $serviceReport]);
         }
     }

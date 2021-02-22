@@ -11,7 +11,7 @@
             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-speedometer') }}"></use>
           </svg> Dashboard</a></li>
         </li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('service.form.index') }}">
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('service-forms.index') }}">
           <svg class="c-sidebar-nav-icon">
             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-notes') }}"></use>
           </svg> MPS Service Report</a></li>

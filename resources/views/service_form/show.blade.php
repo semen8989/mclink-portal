@@ -81,7 +81,7 @@
                 <div class="col-md-12">
                     <p class="guest-form-label font-weight-bold mb-2">{{ __('label.service_report.form.label.acknowledgement_link') }}</p>
                     <div class="input-group mb-4">
-                        <input id="inputLink" type="text" class="form-control" value="{{ route('service.form.acknowledgment.sign', [$serviceReport->id]) }}" 
+                        <input id="inputLink" type="text" class="form-control" value="{{ route('service-form.acknowledgment.sign', [$serviceReport->id]) }}" 
                             data-clipboard-target="#inputLink" data-toggle="tooltip">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#inputLink" data-toggle="tooltip">
@@ -119,21 +119,21 @@
 
         <div class="row float-right">
             <div class="col-md-12">
-                <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('service.form.index') }}">
+                <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('service-forms.index') }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
                     </svg>
                     Back
                 </a>
                 @if (!empty($serviceReport->signed_date))
-                    <a class="btn btn-primary mr-1 font-weight-bold" href="{{ route('service.form.download', [$serviceReport->csr_no]) }}">
+                    <a class="btn btn-primary mr-1 font-weight-bold" href="{{ route('service-forms.download', [$serviceReport->csr_no]) }}">
                         <svg class="c-icon">
                             <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-data-transfer-down') }}"></use>
                         </svg>
                         Download
                     </a>
                 @endif
-                <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('service.form.edit', [$serviceReport->csr_no]) }}">
+                <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('service-forms.edit', [$serviceReport->csr_no]) }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                     </svg>

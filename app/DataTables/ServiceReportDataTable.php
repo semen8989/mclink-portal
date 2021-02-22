@@ -25,20 +25,20 @@ class ServiceReportDataTable extends DataTable
             ->setRowId('csr_no')
             ->addColumn('action', function(ServiceReport $serviceReport) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'service.form.edit',
+                    'editRouteName' => 'service-forms.edit',
                     'itemSlug' => 'serviceReport',
                     'itemSlugValue' => $serviceReport->csr_no
                 ]);
             })->addColumn('link', function(ServiceReport $serviceReport) {
                 return view('components.datatables.copy', [
-                    'acknowledgementRouteName' => 'service.form.acknowledgment.sign',
+                    'acknowledgementRouteName' => 'service-form.acknowledgment.sign',
                     'paramName' => 'serviceReport',
                     'paramValue' => $serviceReport->id,
                     'isSigned' => $serviceReport->status == 1
                 ]);
             })->editColumn('csr_no', function ($request) {
                 return view('components.datatables.show-column', [
-                    'showRouteName' => 'service.form.show',
+                    'showRouteName' => 'service-forms.show',
                     'showRouteSlug' => 'serviceReport',
                     'showRouteSlugValue' => $request->csr_no,
                     'columnData' => $request->csr_no
