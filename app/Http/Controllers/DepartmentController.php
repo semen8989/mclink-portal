@@ -42,8 +42,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->all());
-        return redirect()->route('departments.index')->with('success', 'Department created successfully.');
-
+        return session()->flash('success', 'Department created successfully.');
     }
 
     /**

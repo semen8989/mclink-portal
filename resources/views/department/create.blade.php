@@ -69,24 +69,23 @@
                     url: url,
                     data: data,
                     method: method,
-                    dataType: 'json',
-                    success: function (response){
-                        windows.location.href = '{{ route("departments.index") }}';
+                    success: function(){
+                        window.location.href = '{{ route("departments.index") }}';
                     },
-                    error: function(response) { 
+                    error: function(response){
                         var errors = response.responseJSON;
+                        //Remove error messages and class
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
                         $.each(errors.errors, function (index, value) {
-								var id = $("#"+index);
-								id.closest('.form-control')
-								.removeClass('is-valid')
-								.removeClass('is-invalid')
-								.addClass(value.length > 0 ? 'is-invalid' : 'is-valid')
-                                .find('.invalid-feedback')
-                                .remove();
-                                
-								id.after('<div class="invalid-feedback">'+value+'</div>');
-						});
-                    }   
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                        });
+                        
+                    }
                 })
             })
 
