@@ -7,14 +7,14 @@
     <div class="card-body">
         <div class="form-group">
             <label for="department_name">{{ __('label.department_name') }}</label>
-            <input class="form-control" name="department_name" id="department_name" value="{{ old('department_name') }}" type="text">
+            <input class="form-control" name="department_name" id="department_name" type="text">
         </div>
         <div class="form-group">
             <label for="company_id">{{ __('label.company') }}</label>
             <select class="form-control" name="company_id" id="company_id">
                     <option value="" disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($companies as $company)
-                    <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>
+                    <option value="{{ $company->id }}">
                         {{ $company->company_name }}
                     </option>        
                 @endforeach 
