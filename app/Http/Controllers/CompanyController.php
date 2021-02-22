@@ -56,9 +56,8 @@ class CompanyController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['logo'] = $fileNameToStore;
         Company::create($data);
-        //Redirect after success
-        return redirect()->route('companies.index')->with('success', 'Company created successfully.');
-        
+        //Success flash message
+        return session()->flash('success', 'Company created successfully.');
     }
 
     /**
@@ -111,7 +110,8 @@ class CompanyController extends Controller
         $data = $request->except('logo');
         $data['logo'] = $fileNameToStore;
         $company->update($data);
-        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
+        //Success flash data
+        return session()->flash('success', 'Company updated successfully.');
     }
 
     /**
