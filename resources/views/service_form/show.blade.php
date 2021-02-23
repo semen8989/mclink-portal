@@ -157,7 +157,7 @@
         $('[data-toggle="tooltip"]').tooltip({
             placement: "top",
             trigger: "manual",
-            title: {{ __('label.global.datatable.text.copy_link') }}
+            title: "{{ __('label.global.datatable.text.copy_link') }}"
         });
         
         var btnTooltip = $('.btn-clipboard');
