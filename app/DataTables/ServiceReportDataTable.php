@@ -94,11 +94,11 @@ class ServiceReportDataTable extends DataTable
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
                 ],
-                'responsive' => 'true',
+                'responsive' => true,
                 'drawCallback' => "function (settings, json) {" .
                     "$('.copy-btn').tooltip();}"
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
-                "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
+                "<'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"
             )->orderBy(1);
     }
