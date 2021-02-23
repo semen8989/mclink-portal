@@ -10,7 +10,7 @@
     <x-service-report.form :csrNo="$csrNo"/>
 
     <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" value="send" type="submit">{{ __('label.service_report.form.button.send') }}</button>
+      <button class="btn btn-success" value="sent" type="submit">{{ __('label.service_report.form.button.send') }}</button>
       <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
