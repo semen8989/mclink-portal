@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
     // OKR KPI Maingoal Routes
     Route::prefix('performance/okr/kpi-maingoals')->group(function () {
         Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi-maingoals.index');
+        
+        Route::get('/{kpiMain}', [KpiMaingoalController::class, 'show'])->name('performance.okr.kpi-maingoals.show');
+        Route::get('/{kpiMain}/edit', [KpiMaingoalController::class, 'edit'])->name('performance.okr.kpi-maingoals.edit');
     });
 
     // Typeahead Routes
