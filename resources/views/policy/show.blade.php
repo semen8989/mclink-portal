@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <strong><label>{{ __('label.company') }}</label></strong>
-            <input class="form-control-plaintext" readonly value="{{ $policy->company->company_name }}">
+            <input class="form-control-plaintext" readonly value="{{ (!empty($policy->company->company_name) ? $policy->company->company_name : '---') }}">
         </div>
         <div class="form-group">
             <strong><label>{{ __('label.description') }}</label></strong>                    
