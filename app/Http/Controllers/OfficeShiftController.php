@@ -42,7 +42,8 @@ class OfficeShiftController extends Controller
     public function store(StoreOfficeShiftRequest $request)
     {
         OfficeShift::create($request->all());
-        return redirect()->route('office_shifts.index')->with('success', 'Office Shift created successfully.');
+        //Success flash message
+        return session()->flash('success', 'Office Shift created successfully.');
     }
 
     /**
@@ -53,7 +54,8 @@ class OfficeShiftController extends Controller
      */
     public function show(OfficeShift $officeShift)
     {
-        //
+        $title = __('label.view_shift');
+        return view('office_shift.show',compact('title','officeShift'));
     }
 
     /**
@@ -79,7 +81,8 @@ class OfficeShiftController extends Controller
     public function update(StoreOfficeShiftRequest $request, OfficeShift $officeShift)
     {
         $officeShift->update($request->all());
-        return redirect()->route('office_shifts.index')->with('success', 'Office Shift updated successfully.');
+        //Success flash message
+        return session()->flash('success', 'Office Shift updated successfully.');
     }
 
     /**

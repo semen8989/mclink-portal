@@ -16,13 +16,6 @@
                 <th>{{ __('label.action') }}</th>
                 <th>{{ __('label.company') }}</th>
                 <th>{{ __('label.day') }}</th>
-                <th>{{ __('label.monday') }}</th>
-                <th>{{ __('label.tuesday') }}</th>
-                <th>{{ __('label.wednesday') }}</th>
-                <th>{{ __('label.thursday') }}</th>
-                <th>{{ __('label.friday') }}</th>
-                <th>{{ __('label.saturday') }}</th>
-                <th>{{ __('label.sunday') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -40,15 +33,8 @@
                             </svg>
                         </a>
                     </td>
-                    <td>{{ $office_shift->company->company_name }}</td>
+                    <td><a href="{{ route('office_shifts.show',$office_shift->id) }}">{{ $office_shift->company->company_name }}</a></td>
                     <td>{{ $office_shift->shift_name }}</td>
-                    <td>{{ !empty($office_shift->monday_in_time) ? date('h:i a', strtotime($office_shift->monday_in_time)) .' - '. date('h:i a', strtotime($office_shift->monday_out_time)) : '--' }}</td>
-                    <td>{{ !empty($office_shift->tuesday_in_time) ? date('h:i a', strtotime($office_shift->tuesday_in_time)) .' - '. date('h:i a', strtotime($office_shift->tuesday_out_time)) : '--' }}</td>
-                    <td>{{ !empty($office_shift->wednesday_in_time) ? date('h:i a', strtotime($office_shift->wednesday_in_time)) .' - '. date('h:i a', strtotime($office_shift->wednesday_out_time)) : '--'  }}</td>
-                    <td>{{ !empty($office_shift->thursday_in_time) ? date('h:i a', strtotime($office_shift->thursday_in_time)) .' - '. date('h:i a', strtotime($office_shift->thursday_out_time)) : '--'}}</td>
-                    <td>{{ !empty($office_shift->friday_in_time) ? date('h:i a', strtotime($office_shift->friday_in_time)) .' - '. date('h:i a', strtotime($office_shift->friday_out_time)) : '--' }}</td>
-                    <td>{{ !empty($office_shift->saturday_in_time) ? date('h:i a', strtotime($office_shift->saturday_in_time)) .' - '. date('h:i a', strtotime($office_shift->saturday_out_time)) : '--' }}</td>
-                    <td>{{ !empty($office_shift->sunday_in_time) ? date('h:i a', strtotime($office_shift->sunday_in_time)) .' - '. date('h:i a', strtotime($office_shift->sunday_out_time)) : '--' }}</td>
                 </tr>
             @endforeach
         </tbody>

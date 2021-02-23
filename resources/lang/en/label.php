@@ -324,6 +324,7 @@ return [
     'view_location' => 'View Location',
     'view_machine_availability' => 'View machine availability',
     'view_policy' => 'View Policy',
+    'view_shift' => 'View Office Shift',
     'website' => 'Website',
     'wednesday' => 'Wednesday',
     'wii' => 'Wii',

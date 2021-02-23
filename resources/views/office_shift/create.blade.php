@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">{{ __('label.add_shift') }}</div>
-<form action="{{ route('office_shifts.store') }}" method="post">
+<form action="{{ route('office_shifts.store') }}" id="shift_form" method="post">
     @csrf
     <div class="card-body">
         <div class="row">
@@ -10,37 +10,27 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.company') }}</label>
                     <div class="col-md-4">
-                        <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
+                        <select class="form-control" name="company_id" id="company_id">
                             <option value="" disabled selected>{{ __('label.choose') }}</option>
                             @foreach ($companies as $company)
-                                <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
+                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                             @endforeach
                         </select>
-                        @error('company_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.shift_name') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control @error('shift_name') is-invalid @enderror" name="shift_name" type="text" value="{{ old('shift_name') }}" id="shift_name">
-                        @error('shift_name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <input class="form-control" name="shift_name" type="text" id="shift_name">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.monday') }}</label>
                     <div class="col-md-4">
-                    <input class="form-control timepicker clear-1" placeholder="{{ __('label.in_time') }}" name="monday_in_time" type="text" value="{{ old('monday_in_time') }}">
+                    <input class="form-control timepicker clear-1" placeholder="{{ __('label.in_time') }}" name="monday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                    <input class="form-control timepicker clear-1" placeholder="{{ __('label.out_time') }}" name="monday_out_time" type="text" value="{{ old('monday_out_time') }}">
+                    <input class="form-control timepicker clear-1" placeholder="{{ __('label.out_time') }}" name="monday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                     <button type="button" class="btn btn-primary clear-time" data-clear-id="1">{{ __('label.clear') }}</button>
@@ -49,10 +39,10 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.tuesday') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-2" placeholder="{{ __('label.in_time') }}" name="tuesday_in_time" type="text" value="{{ old('tuesday_in_time') }}">
+                        <input class="form-control timepicker clear-2" placeholder="{{ __('label.in_time') }}" name="tuesday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-2" placeholder="{{ __('label.out_time') }}" name="tuesday_out_time" type="text" value="{{ old('tuesday_out_time') }}">
+                        <input class="form-control timepicker clear-2" placeholder="{{ __('label.out_time') }}" name="tuesday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary clear-time" data-clear-id="2">{{ __('label.clear') }}</button>
@@ -61,10 +51,10 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.wednesday') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-3" placeholder="{{ __('label.in_time') }}" name="wednesday_in_time" type="text" value="{{ old('wednesday_in_time') }}">
+                        <input class="form-control timepicker clear-3" placeholder="{{ __('label.in_time') }}" name="wednesday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-3" placeholder="{{ __('label.out_time') }}" name="wednesday_out_time" type="text" value="{{ old('wednesday_out_time') }}">
+                        <input class="form-control timepicker clear-3" placeholder="{{ __('label.out_time') }}" name="wednesday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary clear-time" data-clear-id="3">{{ __('label.clear') }}</button>
@@ -73,10 +63,10 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.thursday') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-4" placeholder="{{ __('label.in_time') }}" name="thursday_in_time" type="text" value="{{ old('thursday_in_time') }}">
+                        <input class="form-control timepicker clear-4" placeholder="{{ __('label.in_time') }}" name="thursday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-4" placeholder="{{ __('label.out_time') }}" name="thursday_out_time" type="text" value="{{ old('thursday_out_time') }}">
+                        <input class="form-control timepicker clear-4" placeholder="{{ __('label.out_time') }}" name="thursday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary clear-time" data-clear-id="4">{{ __('label.clear') }}</button>
@@ -85,10 +75,10 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.friday') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-5" placeholder="{{ __('label.in_time') }}" name="friday_in_time" type="text" value="{{ old('friday_in_time') }}">
+                        <input class="form-control timepicker clear-5" placeholder="{{ __('label.in_time') }}" name="friday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-5" placeholder="{{ __('label.out_time') }}" name="friday_out_time" type="text" value="{{ old('friday_out_time') }}">
+                        <input class="form-control timepicker clear-5" placeholder="{{ __('label.out_time') }}" name="friday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary clear-time" data-clear-id="5">{{ __('label.clear') }}</button>
@@ -97,10 +87,10 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.saturday') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-6" placeholder="{{ __('label.in_time') }}" name="saturday_in_time" type="text" value="{{ old('saturday_in_time') }}">
+                        <input class="form-control timepicker clear-6" placeholder="{{ __('label.in_time') }}" name="saturday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-6" placeholder="{{ __('label.out_time') }}" name="saturday_out_time" type="text" value="{{ old('saturday_out_time') }}">
+                        <input class="form-control timepicker clear-6" placeholder="{{ __('label.out_time') }}" name="saturday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary clear-time" data-clear-id="6">{{ __('label.clear') }}</button>
@@ -109,10 +99,10 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.sunday') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-7" placeholder="{{ __('label.in_time') }}" name="sunday_in_time" type="text" value="{{ old('sunday_in_time') }}">
+                        <input class="form-control timepicker clear-7" placeholder="{{ __('label.in_time') }}" name="sunday_in_time" type="text">
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control timepicker clear-7" placeholder="{{ __('label.out_time') }}" name="sunday_out_time" type="text" value="{{ old('sunday_out_time') }}">
+                        <input class="form-control timepicker clear-7" placeholder="{{ __('label.out_time') }}" name="sunday_out_time" type="text">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary clear-time" data-clear-id="7">{{ __('label.clear') }}</button>
@@ -138,6 +128,7 @@
     <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script>
         $(document).ready(function(){
+            //Datetimepicker
             $('.timepicker').datetimepicker({
                 ignoreReadonly: true,
                 format: 'HH:mm',
@@ -145,10 +136,42 @@
                     vertical: 'bottom'
                 }
             });
+            //CLear time value fields
             $(".clear-time").click(function(){
                 var clear_id  = $(this).data('clear-id');
                 $(".clear-"+clear_id).val('');
             });
+            //Shift form
+            $('#shift_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+                
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    success: function(){
+                        window.location.href = '{{ route("office_shifts.index") }}';
+                    },
+                    error: function(response){
+                        //Clear previous error messages
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                        });
+                        
+                    }
+                })
+            })
         })
     </script>
 @endpush
