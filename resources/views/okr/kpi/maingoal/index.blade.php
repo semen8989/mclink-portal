@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="card-body">
-        {{-- {!! $dataTable->table() !!} --}}
-        test
+        {!! $dataTable->table() !!}
     </div>
 
     @include('layout.delete_modal')
@@ -21,7 +20,7 @@
     <script src="{{ asset('plugin/clipboard/js/clipboard.min.js') }}"></script>
 
     <!-- dt script-->
-    {{-- {!! $dataTable->scripts() !!} --}}
+    {!! $dataTable->scripts() !!}
 
     <!-- Page js codes -->
     <script>

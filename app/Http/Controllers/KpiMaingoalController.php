@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KpiMaingoalDataTable;
 use App\Models\KpiMaingoal;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class KpiMaingoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(KpiMaingoalDataTable $dataTable)
     {
-        return view('okr.kpi.maingoal.index');
+        return $dataTable->render('okr.kpi.maingoal.index');
     }
 
     /**
