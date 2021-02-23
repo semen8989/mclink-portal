@@ -255,6 +255,7 @@ return [
             ],
             'action' => [
                 'title' => [
+                    'show' => 'Show',
                     'edit' => 'Edit',
                     'delete' => 'Delete'
                 ]
