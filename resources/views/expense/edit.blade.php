@@ -2,102 +2,67 @@
 
 @section('content')
 <div class="card-header">{{ __('label.edit_expense') }}</div>
-<form action="{{ route('expenses.update',$expense->id) }}" method="post" enctype="multipart/form-data" novalidate>
+<form action="{{ route('expenses.update',$expense->id) }}" id="expense_form" method="post" enctype="multipart/form-data" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">
         <div class="form-group">
             <label for="expense_type">{{ __('label.expense_type') }}</label>
-            <select id="expense_type_id" name="expense_type_id" id="expense_type_id" class="form-control @error('expense_type_id') is-invalid @enderror" value="{{ old('expense_type_id') }}">
+            <select id="expense_type_id" name="expense_type_id" id="expense_type_id" class="form-control">
                 <option disabled selected>{{ __('label.choose') }}</option>
                 @foreach ($expense_types as $type)
-                    <option value="{{ $type->id }}" {{ old('expense_type_id',$expense->expense_type_id) == $type->id ? 'selected' : '' }}>{{ $type->expense_type }}</option>
+                    <option value="{{ $type->id }}" {{ $expense->expense_type_id == $type->id ? 'selected' : '' }}>{{ $type->expense_type }}</option>
                 @endforeach
             </select>
-            @error('expense_type_id')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="purchase_date">{{ __('label.purchase_date') }}</label>
-                <input type="text" class="form-control date @error('purchase_date') is-invalid @enderror" id="purchase_date" name="purchase_date" value="{{ old('purchase_date',$expense->purchase_date) }}">
-                @error('purchase_date')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                <input type="text" class="form-control date" id="purchase_date" name="purchase_date" value="{{ $expense->purchase_date }}">
             </div>
             <div class="form-group col-md-6">
                 <label for="amount">{{ __('label.amount') }}</label>
-                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount" value="{{ old('amount',$expense->amount) }}">
-                @error('amount')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                <input type="number" class="form-control" id="amount" name="amount" value="{{ $expense->amount }}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="company_id">{{ __('label.company') }}</label>
-                <select id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror">
+                <select id="company_id" name="company_id" class="form-control">
                     <option selected disabled>{{ __('label.choose') }}</option>
                     @foreach ($companies as $company)
-                        <option value="{{ $company->id }}" {{ old('company_id',$expense->company_id) == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
+                        <option value="{{ $company->id }}" {{ $expense->company_id == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                     @endforeach
                 </select>
-                @error('company_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="user_id">{{__('label.purchase_by') }}</label>
-                <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                <select id="user_id" name="user_id" class="form-control">
                     <option selected disabled>{{ __('label.choose') }}</option>
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}" {{ old('user_id',$expense->user_id) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                        <option value="{{ $user->id }}" {{ $expense->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                     @endforeach
                 </select>
-                @error('user_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="status">{{ __('label.company') }}</label>
-                <select id="status" name="status" class="form-control @error('status') is-invalid @enderror">
-                    <option value="pending" {{ old('status',$expense->status) == 'pending' ? 'selected' : ''}}>Pending</option>
-                    <option value="approved" {{ old('status',$expense->status) == 'approved' ? 'selected' : ''}}>Approved</option>
-                    <option value="cancelled" {{ old('status',$expense->status) == 'cancelled' ? 'selected' : ''}}>Cancelled</option>
+                <select id="status" name="status" class="form-control">
+                    <option value="pending" {{ $expense->status == 'pending' ? 'selected' : ''}}>Pending</option>
+                    <option value="approved" {{ $expense->status == 'approved' ? 'selected' : ''}}>Approved</option>
+                    <option value="cancelled" {{ $expense->status == 'cancelled' ? 'selected' : ''}}>Cancelled</option>
                 </select>
-                @error('status')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
             </div>
             <fieldset class="form-group col-md-6">
                 <label for="bill_copy">{{ __('label.update_bill_copy') }}</label>
-                <input type="file" class="form-control-file @error('bill_copy') is-invalid @enderror" id="bill_copy" name="bill_copy">
+                <input type="file" class="form-control-file" id="bill_copy" name="bill_copy">
                 <small>{{ __('label.upload_format') }}</small>
-                @error('bill_copy')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
             </fieldset>
         </div>
         <div class="form-group">
             <label for="remarks">{{ __('label.remarks') }}</label>
-            <textarea class="form-control textarea" name="remarks" cols="8" rows="6" id="remarks">{{ old('remarks',$expense->remarks) }}</textarea>
+            <textarea class="form-control textarea" name="remarks" cols="8" rows="6" id="remarks">{{ $expense->remarks }}</textarea>
         </div>
     </div>
     <div class="card-footer text-right">
@@ -143,6 +108,64 @@
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
+            //Dynamic Company Dropdown
+            $('#company_id').change(function(){
+
+                var value = $('#company_id').val();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url: "{{ route('fetch_user') }}",
+                    method: "POST",
+                    data: {
+                        value: value,
+                        _token: _token
+                    },
+                    dataType: 'json',
+                    success: function(result){
+                        $('#user_id').empty();
+                        $('#user_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
+                        $.each(result, function (key, value) {
+                            $('#user_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                        });
+                    }
+                })
+            });
+            //Expense form
+            $('#expense_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = new FormData(this);
+                
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    processData: false,
+                    contentType: false,
+                    success: function(){
+                        window.location.href = '{{ route("expenses.index") }}';
+                    },
+                    error: function(response){
+                        //Scroll up
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        //Clear previous error messages
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                        });
+                        
+                    }
+                })
             });
         });
     </script>
