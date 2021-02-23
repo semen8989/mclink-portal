@@ -3,10 +3,9 @@
 namespace App\DataTables;
 
 use App\Models\KpiMaingoal;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class KpiMaingoalDataTable extends DataTable
@@ -20,8 +19,21 @@ class KpiMaingoalDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)
-            ->addColumn('action', 'kpimaingoal.action');
+            ->eloquent($query)          
+            ->setRowId('id')
+            ->addColumn('action', function(KpiMaingoal $kpiMain) {
+                return view('components.datatables.action', [
+                    'actionRoutes' => [
+                        'show' => 'performance.okr.kpi-maingoals.show',
+                        'edit' => 'performance.okr.kpi-maingoals.edit',
+                        'delete' => ''
+                    ],
+                    'itemSlug' => 'kpiMain',
+                    'itemSlugValue' => $kpiMain->id
+                ]);
+            })->editColumn('status', function ($request) {
+                return Str::ucfirst(array_search($request->status, KpiMaingoal::COMPLETED_STATUS));
+            });
     }
 
     /**
@@ -61,10 +73,11 @@ class KpiMaingoalDataTable extends DataTable
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
                 ],
+                'responsive' => true,
                 'drawCallback' => "function (settings, json) {" .
                     "$('.copy-btn').tooltip();}"
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
-                "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
+                "<'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"
             )->orderBy(1);
     }
@@ -92,15 +105,5 @@ class KpiMaingoalDataTable extends DataTable
             Column::make('status')
                 ->title(__('label.kpi_main.datatable.column_header.completed')),
         ];
-    }
-
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    protected function filename()
-    {
-        // return 'KpiMaingoal_' . date('YmdHis');
     }
 }
