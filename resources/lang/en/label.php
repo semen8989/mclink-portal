@@ -348,5 +348,18 @@ return [
             'feedback_body' => 'Thank you for doing business with us. Can you take a couple of minutes to leave a feedback about your experience with us? Just go to this <a href="https://form.jotform.me/83401151973453?companyName=:customer" ' . 
                 'target="_blank">page</a>. Thanks for your help!'
         ]
+    ],
+    'kpi_main' => [
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'main_kpi' => 'Main KPI',
+                'q1' => 'Q1',
+                'q2' => 'Q2',
+                'q3' => 'Q3',
+                'q4' => 'Q4',
+                'completed' => 'Completed'
+            ]
+        ],
     ]
 ];
