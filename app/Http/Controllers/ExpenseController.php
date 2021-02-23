@@ -34,8 +34,7 @@ class ExpenseController extends Controller
         $title = __('label.add_expense');
         $expense_types = ExpenseType::all();
         $companies = Company::all();
-        $users = User::all();
-        return view('expense.create',compact('title','expense_types','companies','users'));
+        return view('expense.create',compact('title','expense_types','companies'));
     }
 
     /**
@@ -60,8 +59,8 @@ class ExpenseController extends Controller
        $data = $request->except('bill_copy');
        $data['bill_copy'] = $fileNameToStore;
        Expense::create($data);
-       //Redirect after success
-       return redirect()->route('expenses.index')->with('success', 'Expense created successfully.');
+       //Success flash message
+       return session()->flash('success', 'Expense created successfully.');
     }
 
     /**
@@ -87,7 +86,7 @@ class ExpenseController extends Controller
         $title = __('label.edit_expense');
         $expense_types = ExpenseType::all();
         $companies = Company::all();
-        $users = User::all();
+        $users = Company::find($expense->company_id)->company_users;
         return view('expense.edit',compact('expense','title','expense_types','companies','users'));
     }
 
@@ -117,7 +116,8 @@ class ExpenseController extends Controller
         $data = $request->except('bill_copy');
         $data['bill_copy'] = $fileNameToStore;
         $expense->update($data);
-        return redirect()->route('expenses.index')->with('success', 'Expense updated successfully.');
+        //Success flash message
+        return session()->flash('success', 'Expense updated successfully.');
     }
 
     /**

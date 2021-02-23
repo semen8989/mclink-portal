@@ -42,7 +42,8 @@ class HolidayController extends Controller
     public function store(StoreHolidayRequest $request)
     {
         Holiday::create($request->all());
-        return redirect()->route('holidays.index')->with('success', 'Holiday created successfully.');
+        //Success flash message
+        return session()->flash('success','Holiday created successfully.');
     }
 
     /**
@@ -80,7 +81,8 @@ class HolidayController extends Controller
     public function update(StoreHolidayRequest $request, Holiday $holiday)
     {
         $holiday->update($request->all());
-        return redirect()->route('holidays.index')->with('success', 'Holiday updated successfully.');
+        //Success flash message
+        return session()->flash('success','Holiday updated successfully.');
     }
 
     /**

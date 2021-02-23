@@ -2,32 +2,25 @@
 
 @section('content')
 <div class="card-header">{{ __('label.add_policy') }}</div>
-<form method="POST" action="{{ route('policies.store') }}" novalidate>
+<form method="POST" id="policy_form" action="{{ route('policies.store') }}" novalidate>
     @csrf
     <div class="card-body">
         <div class="form-group">
             <label for="company_id">{{ __('label.company') }}</label>
             <select class="form-control" name="company_id" id="company_id">
-                <option value="" {{ old('company_id') == '' ? 'selected' : '' }}>{{ __('label.all_companies') }}</option>
+                <option value="">{{ __('label.all_companies') }}</option>
                 @foreach ($companies as $company)
-                    <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>
-                        {{ $company->company_name }}
-                    </option> 
+                    <option value="{{ $company->id }}">{{ $company->company_name }}</option> 
                 @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="department_name">{{ __('label.title') }}</label>
-            <input class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') }}">
-            @error('title')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+            <input class="form-control" name="title" id="title">
         </div>
         <div class="form-group">
             <label for="description">{{ __('label.description') }}</label>
-            <textarea class="form-control textarea" name="description" id="description" cols="8" rows="6" id="description">{{ old('description') }}</textarea>
+            <textarea class="form-control textarea" name="description" id="description" cols="8" rows="6"></textarea>
         </div>
     </div>
     <div class="card-footer text-right">
@@ -57,6 +50,39 @@
                 'removeformat | help',
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             });
+            //Policy form submit
+            $('#policy_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+                
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    success: function(){
+                        window.location.href = '{{ route("policies.index") }}';
+                    },
+                    error: function(response){
+                        //Scroll up
+                        window.scrollTo({ top: 100, behavior: 'smooth' });
+                        //Clear previous error messages
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                        });
+                        
+                    }
+                })
+            })
         })
     </script>
 @endpush

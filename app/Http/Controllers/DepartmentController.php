@@ -30,8 +30,7 @@ class DepartmentController extends Controller
     {
         $title = __('label.add_department');
         $companies = Company::all('id','company_name');
-        $users = User::all('id','name');
-        return view('department.create',compact('companies','users','title'));
+        return view('department.create',compact('companies','title'));
     }
 
     /**
@@ -43,8 +42,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->all());
-        return redirect()->route('departments.index')->with('success', 'Department created successfully.');
-
+        return session()->flash('success', 'Department created successfully.');
     }
 
     /**
@@ -68,8 +66,8 @@ class DepartmentController extends Controller
     {   
         $title = __('label.edit_department');
         $companies = Company::all('id','company_name');
-        $users = User::all('id','name');
-        return view('department.edit',compact('department','companies','users','title'));
+        $users = Company::find($department->company_id)->company_users;
+        return view('department.edit',compact('department', 'companies', 'users', 'title'));
     }
 
     /**
@@ -81,8 +79,8 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, Department $department)
     {
-        $department->update($request->except(['_token','_method']));
-        return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
+        $department->update($request->all());
+        return session()->flash('success', 'Department updated successfully.');
     }
 
     /**

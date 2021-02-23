@@ -21,26 +21,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @foreach ($policies as $policy)
+            @foreach ($policies as $policy)
+                <tr>
                     <td style="width: 5%">
                         <a href="{{ route('policies.edit',$policy->id) }}" title="{{ __('label.edit') }}">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                             </svg>
                         </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $policy->id }}" class="text-danger" id="delete" href="" title="Delete">
+                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $policy->id }}" class="text-danger"
+                            id="delete" href="" title="Delete">
                             <svg class="c-icon">
                                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
                             </svg>
                         </a>
                     </td>
-                    <td><a href="{{ route('policies.show',$policy->id) }}" title="{{ __('label.view') }}">{{ $policy->title }}</a></td>
+                    <td><a href="{{ route('policies.show',$policy->id) }}"
+                            title="{{ __('label.view') }}">{{ $policy->title }}</a></td>
                     <td>
                         @if(!@empty($policy->company->company_name))
-                            {{ $policy->company->company_name }}
+                        {{ $policy->company->company_name }}
                         @else
-                            ---
+                        ---
                         @endif
                     </td>
                     <td>
@@ -49,8 +51,8 @@
                     <td>
                         {{ $policy->user->name }}
                     </td>
-                @endforeach
-            </tr>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -58,13 +60,13 @@
 @stop
 
 @push('scripts')
-    <script>
-        $(document).on('click','#delete',function(){
-            let id = $(this).attr('data-id');
-            var url = '{{ route("policies.destroy",":id") }}'
-            url = url.replace(':id',id)
-            $('#delete_form').attr('action',url);
-        });
+<script>
+    $(document).on('click', '#delete', function () {
+        let id = $(this).attr('data-id');
+        var url = '{{ route("policies.destroy",":id") }}'
+        url = url.replace(':id', id)
+        $('#delete_form').attr('action', url);
+    });
 
-    </script>
+</script>
 @endpush

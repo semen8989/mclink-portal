@@ -53,3 +53,7 @@ Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downlo
 //Modules
 Route::get('/hr_calendar',[HrCalendarController::class, 'index'])->name('hr_calendar');
 Route::post('/hr_calendar/ajax',[HrCalendarController::class, 'ajax'])->name('hr_calendar.ajax');
+//Basic Routes
+Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
+Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');
+Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');

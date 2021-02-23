@@ -44,7 +44,8 @@ class PolicyController extends Controller
     {
         $request['user_id'] = Auth::user()->id;
         Policy::create($request->all());
-        return redirect()->route('policies.index')->with('success', 'Policy created successfully.');
+        //Success flash message
+        return session()->flash('success','Policy created successfully.');
     }
 
     /**
@@ -81,8 +82,9 @@ class PolicyController extends Controller
      */
     public function update(StorePolicyRequest $request, Policy $policy)
     {
-        $policy->update($request->except(['_token','_method']));
-        return redirect()->route('policies.index')->with('success', 'Policy updated successfully.');
+        $policy->update($request->all());
+        //Success flash message
+        return session()->flash('success','Policy updated successfully.');
     }
 
     /**

@@ -38,4 +38,8 @@ class Company extends Model
     public function departments(){
         return $this->hasMany(Department::class);
     }
+
+    public function company_users(){
+        return $this->hasMany(User::class);
+    }
 }

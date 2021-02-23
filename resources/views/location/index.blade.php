@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">{{ __('location_list') }}</div>
+<div class="card-header">{{ __('label.location_list') }}</div>
 <div class="card-body">
     <div class="float-right mb-2">
         <a class="btn btn-success" href="{{ route('locations.create') }}">

@@ -42,7 +42,7 @@ class DesignationController extends Controller
     public function store(StoreDesignationRequest $request)
     {
         Designation::create($request->all());
-        return redirect()->route('designations.index')->with('success', 'Designation created successfully.');
+        return session()->flash('success', 'Designation created successfully.');
     }
 
     /**
@@ -66,7 +66,8 @@ class DesignationController extends Controller
     {
         $title = __('label.edit_designation');
         $companies = Company::all();
-        return view('designation.edit',compact('title','companies','designation'));
+        $departments = Company::find($designation->company_id)->departments;
+        return view('designation.edit',compact('title','companies','departments','designation'));
 
     }
 
@@ -80,7 +81,7 @@ class DesignationController extends Controller
     public function update(StoreDesignationRequest $request, Designation $designation)
     {
         $designation->update($request->all());
-        return redirect()->route('designations.index')->with('success', 'Designation updated successfully.');
+        return session()->flash('success', 'Designation created successfully.');
     }
 
     /**

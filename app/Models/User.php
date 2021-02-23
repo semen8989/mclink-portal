@@ -20,6 +20,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'employee_id',
+        'joining_date',
+        'company_id',
+        'department_id',
+        'designation_id',
+        'role_id',
+        'gender',
+        'shift_id',
+        'birth_date',
+        'contact_number'
     ];
 
     /**
@@ -41,9 +51,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function companies(){
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
 
-        return $this->hasMany(Company::class);
-    
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::whereName($role)->firstOrFail();
+        }
+
+        $this->roles()->sync($role, false); //add new records but won't drop anything
+    }
+
+    public function abilities()
+    {
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('name', 'Administrator')->exists();
     }
 }
