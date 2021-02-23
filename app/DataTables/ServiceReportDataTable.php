@@ -94,6 +94,7 @@ class ServiceReportDataTable extends DataTable
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
                 ],
+                'responsive' => 'true',
                 'drawCallback' => "function (settings, json) {" .
                     "$('.copy-btn').tooltip();}"
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
@@ -119,10 +120,8 @@ class ServiceReportDataTable extends DataTable
             Column::make('status')
                 ->title(__('label.service_report.datatable.column_header.status')),
             Column::computed('link')
-                ->addClass('text-center')
                 ->title(__('label.service_report.datatable.column_header.link')),
             Column::computed('action')
-                ->addClass('text-center')
                 ->title(__('label.service_report.datatable.column_header.action')),
         ];
     }
