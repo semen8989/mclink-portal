@@ -57,6 +57,7 @@ return [
         'array' => 'The :attribute must have :value items or more.',
     ],
     'image' => 'The :attribute must be an image.',
+    'imageable' => 'The :attribute must be a valid image',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
@@ -90,7 +91,7 @@ return [
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
     ],
-    'multiple_of' => 'The :attribute must be a multiple of :value',
+    'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
@@ -134,6 +135,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'custEmail' => [
+            'required_if' => 'The :attribute field is required when sending to a customer.',
+        ],
     ],
 
     /*
@@ -147,6 +151,23 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // service report fields
+        'csrNo' => 'csr number',
+        'newCustomer' => 'customer name',
+        'customer' => 'customer name',
+        'custEmail' => 'customer email',
+        'engineerId' => 'engineer name',
+        'ticketReference' => 'ticket no. reference',
+        'serviceRendered' => 'service rendered',
+        'engineerRemark' => 'engineer remarks',
+        'statusAfterService' => 'status after service',
+        'serviceStart' => 'service start',
+        'serviceEnd' => 'service end',
+        'usedItCredit' => 'used it credit',
+        // acknowledgement fields
+        'signedCust' => 'customer name or designation',
+        'signatureDataUrl' => 'customer signature'
+    ],
 
 ];

@@ -1,0 +1,1 @@
+<span class="badge badge-{{ $badgeColor }} px-2 py-1">{{ $columnData }}</span>
