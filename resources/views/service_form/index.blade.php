@@ -43,6 +43,12 @@
 
         $( document ).ready(function() {           
             var clipboard = new ClipboardJS('.copy-btn');
+            
+            var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 
+                '{{ asset("assets/icons/sprites/free.svg#cil-plus") }}' + 
+                '"></use></svg>';
+
+            $('.buttons-create').find('span').html(newIcon + "{{ __('label.global.datatable.button.new') }}");
         });
         
     </script> 
