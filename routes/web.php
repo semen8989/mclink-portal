@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KpiMaingoalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
@@ -34,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{serviceReport:csr_no}', [ServiceFormController::class, 'destroy'])->name('service.form.destroy');
 
         Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
+    });
+
+    // OKR KPI Maingoal Routes
+    Route::prefix('performance/okr/kpi-maingoals')->group(function () {
+        Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi-maingoals.index');
     });
 
     // Typeahead Routes
