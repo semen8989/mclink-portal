@@ -88,11 +88,11 @@
                         <option value="Malaysia">Malaysia</option>
                     </select>
                 </div>
-                <fieldset class="form-group">
+                <div class="form-group">
                     <label for="logo">{{ __('label.company_logo') }}</label>
                     <input type="file" class="form-control-file" id="logo" name="logo">
                     <small>{{ __('label.upload_format') }}</small>
-                </fieldset>
+                </div>
             </div>
         </div>
     </div>
@@ -123,6 +123,8 @@
                         window.location.href = '{{ route("companies.index") }}';
                     },
                     error: function(response){
+                        //Scroll up
+                        window.scrollTo({ top: 50, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -132,7 +134,7 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            id.after('<div class="invalid-feedback d-block">'+value+'</div>');
                         });
                         
                     }

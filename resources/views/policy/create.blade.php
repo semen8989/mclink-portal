@@ -66,6 +66,8 @@
                         window.location.href = '{{ route("policies.index") }}';
                     },
                     error: function(response){
+                        //Scroll up
+                        window.scrollTo({ top: 100, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");

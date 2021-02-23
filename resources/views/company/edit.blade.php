@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="contact_number">{{ __('label.contact_number') }}</label>
-                            <input class="form-control" name="contact_number" value="{{ $company->contact_number }}" type="number">
+                            <input class="form-control" name="contact_number" id="contact_number" value="{{ $company->contact_number }}" type="number">
                         </div>
                     </div>
                 </div>
@@ -91,17 +91,17 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <fieldset>
+                        <div class="form-group">
                             <label for="logo">{{ __('label.company_logo') }}</label>
                             <img style="width: 100%" src="{{ asset('storage/company_logos/'.$company->logo) }}" alt="">
-                        </fieldset>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <fieldset>
-                            <label for="logo">{{ __('label.update_company_logo') }}</label>
-                            <input type="file" class="form-control-file" name="logo" id="logo">
+                        <div class="form-group">
+                            <label for="logo">{{ __('label.company_logo') }}</label>
+                            <input type="file" class="form-control-file" id="logo" name="logo">
                             <small>{{ __('label.upload_format') }}</small>
-                        </fieldset>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,6 +134,8 @@
                         window.location.href = '{{ route("companies.index") }}';
                     },
                     error: function(response){
+                        //Scroll up
+                        window.scrollTo({ top: 50, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -143,7 +145,7 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            id.after('<div class="invalid-feedback d-block">'+value+'</div>');
                         });
                         
                     }
