@@ -34,7 +34,7 @@ class ServiceReportDataTable extends DataTable
                     'acknowledgementRouteName' => 'service.form.acknowledgment.sign',
                     'paramName' => 'serviceReport',
                     'paramValue' => $serviceReport->id,
-                    'isSigned' => $serviceReport->status == 1
+                    'isSend' => $serviceReport->status == 2
                 ]);
             })->editColumn('csr_no', function ($request) {
                 return view('components.datatables.show-column', [
