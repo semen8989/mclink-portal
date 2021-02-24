@@ -73,7 +73,7 @@
             //TinyMCE
             tinymce.init({
                 selector: 'textarea#description',
-                height: 400,
+                height: 200,
                 menubar: false,
                 plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
@@ -124,7 +124,7 @@
                     },
                     error: function(response){
                         //Scroll up
-                        window.scrollTo({ top: 100, behavior: 'smooth' });
+                        window.scrollTo({ top: 103, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");

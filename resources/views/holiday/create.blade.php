@@ -72,7 +72,7 @@
             //TinyMCE
             tinymce.init({
                 selector: 'textarea#description',
-                height: 300,
+                height: 200,
                 menubar: false,
                 plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
