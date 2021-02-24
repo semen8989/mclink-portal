@@ -90,5 +90,13 @@
             </div>
         </div>
     </div>
+    <div class="card-footer text-right">
+        <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('companies.index') }}">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
+            </svg>
+            Back
+        </a>
+    </div>
 </form>
 @stop

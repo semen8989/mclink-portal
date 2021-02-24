@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\DataTables\CompanyDataTable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCompanyRequest;
@@ -14,11 +15,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CompanyDataTable $dataTable)
     {
-        $companies = Company::all();
         $title = __('label.companies');
-        return view('company.index', compact('companies','title'));
+        return $dataTable->render('company.index',compact('title'));
     }
 
     /**
