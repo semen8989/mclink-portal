@@ -20,7 +20,7 @@ class AcknowledgementFormController extends Controller
      */
     public function sign(ServiceReport $serviceReport)
     {
-        if ($serviceReport->status == 1) {
+        if ($serviceReport->status != 2) {
             abort(404);
         }
 
@@ -57,7 +57,7 @@ class AcknowledgementFormController extends Controller
             Mail::to($serviceReport->user->email)
                 ->queue(new AcknowledgmentFormSubmitted($serviceReport));
 
-            Mail::to($serviceReport->user->email)
+            Mail::to($serviceReport->customer->email)
                 ->queue(new ServiceReportCopyReceivedMail($serviceReport));
 
             return redirect()

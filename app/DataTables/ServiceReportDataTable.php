@@ -34,7 +34,7 @@ class ServiceReportDataTable extends DataTable
                     'acknowledgementRouteName' => 'service.form.acknowledgment.sign',
                     'paramName' => 'serviceReport',
                     'paramValue' => $serviceReport->id,
-                    'isSigned' => $serviceReport->status == 1
+                    'isSend' => $serviceReport->status == 2
                 ]);
             })->editColumn('csr_no', function ($request) {
                 return view('components.datatables.show-column', [
@@ -94,10 +94,11 @@ class ServiceReportDataTable extends DataTable
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
                 ],
+                'responsive' => true,
                 'drawCallback' => "function (settings, json) {" .
                     "$('.copy-btn').tooltip();}"
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
-                "<'row'<'col-sm-12 col-md-12't><'col-sm-12 col-md-12'r>>" .
+                "<'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"
             )->orderBy(1);
     }
@@ -119,10 +120,8 @@ class ServiceReportDataTable extends DataTable
             Column::make('status')
                 ->title(__('label.service_report.datatable.column_header.status')),
             Column::computed('link')
-                ->addClass('text-center')
                 ->title(__('label.service_report.datatable.column_header.link')),
             Column::computed('action')
-                ->addClass('text-center')
                 ->title(__('label.service_report.datatable.column_header.action')),
         ];
     }
