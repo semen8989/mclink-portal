@@ -188,6 +188,7 @@ return [
     'new_employee' => 'New Employee',
     'no_of_cassette' => 'No of cassette',
     'no_of_days' => 'No. of days',
+    'none' => 'None',
     'not_approved' => 'Not Approved',
     'number_of_days' => 'Number of day/s',
     'number_of_items' => 'Number of Items',

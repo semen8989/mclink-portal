@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="user_id">{{ __('label.department_head') }}</label>
             <select class="form-control" name="user_id" id="user_id">
-                    <option value="" disabled selected>{{ __('label.choose') }}</option>
+                    <option value="" selected>{{ __('label.none') }}</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}" {{ $department->user_id == $user->id ? 'selected' : '' }}>
                         {{ $user->name }}
@@ -56,7 +56,7 @@
                     dataType: 'json',
                     success: function(result){
                         $('#user_id').empty();
-                        $('#user_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
+                        $('#user_id').append('<option selected disabled>{{ __("label.none") }}</option>');
                         $.each(result, function (key, value) {
                             $('#user_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
