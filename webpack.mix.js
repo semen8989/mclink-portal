@@ -11,6 +11,17 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps();
+mix.options({
+    terser: {
+        extractComments: false,
+    }
+});
+
+if (mix.inProduction()) {
+    mix.js('resources/js/app.js', 'public/js/app.min.js')
+        .sass('resources/sass/app.scss', 'public/css/app.min.css')
+        .postCss('public/css/custom.css', 'public/css/custom.min.css');
+} else {
+    mix.js('resources/js/app.js', 'public/js')
+        .sass('resources/sass/app.scss', 'public/css');
+}
