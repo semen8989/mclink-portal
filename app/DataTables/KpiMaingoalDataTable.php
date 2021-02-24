@@ -59,6 +59,14 @@ class KpiMaingoalDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->parameters([
+                // 'scrollX' => '100%',
+                // 'columnDefs' => [
+                //     [
+                //         'targets' => [0, 1],
+                //         'width' => "30%",
+                //     ]
+                // ],
+                'autoWidth' => false,
                 'order' => [
                     0,
                     'desc'
@@ -91,9 +99,11 @@ class KpiMaingoalDataTable extends DataTable
     {
         return [
             Column::computed('action')
-                ->title(__('label.kpi_main.datatable.column_header.action')),
+                ->title(__('label.kpi_main.datatable.column_header.action'))
+                ->width('35%'),
             Column::make('main_kpi')
-                ->title(__('label.kpi_main.datatable.column_header.main_kpi')),
+                ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
+                ->width('35%'),
             Column::make('q1')
                 ->title(__('label.kpi_main.datatable.column_header.q1')),
             Column::make('q2')

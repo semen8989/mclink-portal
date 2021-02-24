@@ -10,10 +10,12 @@
 
 @push('scripts')
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.2/css/fixedColumns.dataTables.min.css">
 @endpush
 
 @push('scripts')
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     
     <!-- Clipboard js dependency -->
