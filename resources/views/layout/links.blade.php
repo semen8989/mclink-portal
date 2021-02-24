@@ -35,9 +35,9 @@
     <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
     <!-- Main styles for this application-->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
      <!-- Custom styles for this application-->
-     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
     <!-- Page specific style-->
     @stack('stylesheet')
   </head>
