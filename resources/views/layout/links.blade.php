@@ -39,5 +39,5 @@
      <!-- Custom styles for this application-->
      <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <!-- Page specific style-->
-    @stack('stylesheets')
+    @stack('stylesheet')
   </head>

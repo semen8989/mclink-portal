@@ -11,6 +11,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class DesignationDataTable extends DataTable
 {
+    protected $actions = ['create'];
     /**
      * Build DataTable class.
      *
@@ -23,17 +24,16 @@ class DesignationDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Designation $designation) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'designation.edit',
+                    'editRouteName' => 'designations.edit',
                     'itemSlug' => 'designation',
                     'itemSlugValue' => $designation->id
                 ]);
-            })->editColumn('designation_name', function ($request) {
-                return view('components.datatables.show-column', [
-                    'showRouteName' => 'designation.show',
-                    'showRouteSlug' => 'designation',
-                    'showRouteSlugValue' => $designation->id,
-                    'columnData' => $designation->designation_name
-                ]);
+            })->editColumn('designation', function ($request) {
+                return $request->designation_name;
+            })->editColumn('company.company_name', function ($request) {
+                return $request->company->company_name;
+            })->editColumn('department.department_name', function ($request) {
+                return $request->department->department_name;
             });
             
     }
@@ -46,7 +46,7 @@ class DesignationDataTable extends DataTable
      */
     public function query(Designation $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['company:id,company_name','department:id,department_name']);
     }
 
     /**
@@ -57,31 +57,31 @@ class DesignationDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('designation-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->parameters([
-                        'order' => [
-                            0,
-                            'desc'
-                        ],
-                        'buttons' => [
-                            'create'
-                        ],
-                        'language' => [
-                            'search' => '',
-                            'searchPlaceholder' => 'search',
-                            'loadingRecords' => '&nbsp;',
-                            'processing' => '<div class="text-center"><div class="spinner-border" role="status">
-                                <span class="sr-only">loading</span></div></div>'
-                        ],
-                        'responsive' => true,
-                        'drawCallback' => "function (settings, json) {" .
-                            "$('.copy-btn').tooltip();}"
-                    ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
-                        "<'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>>" .
-                        "<'row'<'col-sm-12 col-md-6'p>>"
-                    )->orderBy(1);
+            ->setTableId('designation-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                'order' => [
+                    0,
+                    'desc'
+                ],
+                'buttons' => [
+                    'create'
+                ],
+                'language' => [
+                    'search' => '',
+                    'searchPlaceholder' => __('label.global.datatable.text.search_placeholder'),
+                    'loadingRecords' => '&nbsp;',
+                    'processing' => '<div class="text-center"><div class="spinner-border" role="status">
+                        <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
+                ],
+                'responsive' => true,
+                'drawCallback' => "function (settings, json) {" .
+                    "$('.copy-btn').tooltip();}"
+            ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
+                "<'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>>" .
+                "<'row'<'col-sm-12 col-md-6'p>>"
+            )->orderBy(1);
     }
 
     /**
@@ -94,22 +94,12 @@ class DesignationDataTable extends DataTable
         return [
             Column::make('designation_name')
                 ->title(__('label.designation_name')),
-            Column::make('company')
+            Column::make('company.company_name')
                 ->title(__('label.company')),
-            Column::make('department')
+            Column::make('department.department_name')
                 ->title(__('label.department')),
             Column::computed('action')
                 ->title(__('label.action'))
         ];
-    }
-
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    protected function filename()
-    {
-        return 'Designation_' . date('YmdHis');
     }
 }

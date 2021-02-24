@@ -10,6 +10,7 @@ use App\Http\Requests\StoreDesignationRequest;
 
 class DesignationController extends Controller
 {
+    protected $actions = ['create'];
     /**
      * Display a listing of the resource.
      *
