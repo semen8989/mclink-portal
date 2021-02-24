@@ -18,7 +18,8 @@ class DesignationController extends Controller
      */
     public function index(DesignationDataTable $dataTable)
     {
-        return $dataTable->render('designation.index');
+        $title = __('label.designations');
+        return $dataTable->render('designation.index',compact('title'));
     }
 
     /**
