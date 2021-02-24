@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Designation;
 use Illuminate\Http\Request;
+use App\DataTables\DesignationDataTable;
 use App\Http\Requests\StoreDesignationRequest;
 
 class DesignationController extends Controller
@@ -14,11 +15,9 @@ class DesignationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(DesignationDataTable $dataTable)
     {
-        $title = __('label.designations');
-        $designations = Designation::all();
-        return view('designation.index',compact('title','designations'));
+        return $dataTable->render('designation.index');
     }
 
     /**

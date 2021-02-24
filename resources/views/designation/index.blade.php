@@ -3,44 +3,7 @@
 @section('content')
 <div class="card-header">{{ __('label.designation_list') }}</div>
 <div class="card-body">
-    <div class="float-right mb-2">
-        <a class="btn btn-success" href="{{ route('designations.create') }}">
-            <svg class="c-icon">
-                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-plus') }}"></use>
-            </svg> {{ __('label.add_designation') }}
-        </a>
-    </div>
-    <table class="table table-responsive-sm table-bordered">
-        <thead>
-            <tr>
-                <th>{{ __('label.action') }}</th>
-                <th>{{ __('label.designation_name') }}</th>
-                <th>{{ __('label.company') }}</th>
-                <th>{{ __('label.department') }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($designations as $designation)
-                <tr>
-                    <td style="width: 5%">
-                        <a href="{{ route('designations.edit',$designation->id) }}" title="{{ __('label.edit') }}">
-                            <svg class="c-icon">
-                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
-                            </svg>
-                        </a>
-                        <a data-toggle="modal" data-target="#delete_modal" data-id="{{ $designation->id }}" class="text-danger" id="delete" href="" title="{{ __('label.delete') }}">
-                            <svg class="c-icon">
-                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-trash') }}"></use>
-                            </svg>
-                        </a> 
-                    </td>
-                    <td>{{ $designation->designation_name }}</td>
-                    <td>{{ $designation->company->company_name }}</td>
-                    <td>{{ $designation->department->department_name }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    {!! $dataTable->table() !!}
 </div>
 @include('layout.delete_modal')
 @stop
