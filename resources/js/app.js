@@ -1,6 +1,6 @@
-// require('popper.js');
 require('./bootstrap');
-// require('pace');
+
 require('perfect-scrollbar');
-
-
+// require('@coreui/coreui');
+// const coreui = require('@coreui/coreui');
+// window.chart = require('chart.js');

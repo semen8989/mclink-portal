@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CompanySeeder::class,
             DepartmentSeeder::class,
-            AnnouncementSeeder::class
+            AnnouncementSeeder::class,
+            CustomerSeeder::class,
+            ServiceReportSeeder::class,
         ]);
     }
 }
