@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAnnouncementRequest;
-use App\Models\Announcement;
 use App\Models\Company;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use App\DataTables\AnnouncementDataTable;
+use App\Http\Requests\StoreAnnouncementRequest;
 
 class AnnouncementController extends Controller
 {
@@ -14,11 +15,10 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AnnouncementDataTable $dataTable)
     {
         $title = __('label.announcements');
-        $announcements = Announcement::all();
-        return view('announcement.index',compact('announcements','title'));
+        return $dataTable->render('announcement.index',compact('title'));
     }
 
     /**
