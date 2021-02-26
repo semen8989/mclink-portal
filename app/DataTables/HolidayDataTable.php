@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Policy;
+use App\Models\Holiday;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class PolicyDataTable extends DataTable
+class HolidayDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,38 +21,39 @@ class PolicyDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', function(Policy $policy) {
+            ->addColumn('action', function(Holiday $holiday) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'policies.edit',
-                    'itemSlug' => 'policy',
-                    'itemSlugValue' => $policy->id
-                ]);
-            })->editColumn('title', function ($request) {
-                return view('components.datatables.show-column', [
-                    'showRouteName' => 'policies.show',
-                    'showRouteSlug' => 'policy',
-                    'showRouteSlugValue' => $request->id,
-                    'columnData' => $request->title
+                    'editRouteName' => 'holidays.edit',
+                    'itemSlug' => 'holiday',
+                    'itemSlugValue' => $holiday->id
                 ]);
             })->editColumn('company.company_name', function ($request) {
-                return (!empty($request->company->company_name)) ? $request->company->company_name : '---';
-            })->editColumn('created_at', function ($request) {
-                return $request->created_at->format('M d Y');
-            })->editColumn('user.name', function ($request) {
-                return $request->user->name;
+                return $request->company->company_name;
+            })->editColumn('event_name', function ($request) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'holidays.show',
+                    'showRouteSlug' => 'holiday',
+                    'showRouteSlugValue' => $request->id,
+                    'columnData' => $request->event_name
+                ]);
+            })->editColumn('status', function ($request) {
+                return ucfirst($request->status);
+            })->editColumn('start_date', function ($request) {
+                return date('M d Y', strtotime($request->start_date));
+            })->editColumn('end_date', function ($request) {
+                return date('M d Y', strtotime($request->end_date));
             });
-
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Policy $model
+     * @param \App\Models\Holiday $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Policy $model)
+    public function query(Holiday $model)
     {
-        return $model->newQuery()->with(['company:id,company_name','user:id,name']);
+        return $model->newQuery()->with(['company:id,company_name']);
     }
 
     /**
@@ -63,7 +64,7 @@ class PolicyDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('policy-table')
+            ->setTableId('holiday-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->parameters([
@@ -98,14 +99,16 @@ class PolicyDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('title')
-                ->title(__('label.title')),
+            Column::make('event_name')
+                ->title(__('label.event_name')),
             Column::make('company.company_name')
                 ->title(__('label.company')),
-            Column::make('created_at')
-                ->title(__('label.created_at')),
-            Column::make('user.name')
-            ->title(__('label.created_at')),
+            Column::make('status')
+                ->title(__('label.status')),
+            Column::make('start_date')
+            ->title(__('label.start_date')),
+            Column::make('end_date')
+            ->title(__('label.end_date')),
             Column::computed('action')
                 ->title(__('label.action')),
         ];

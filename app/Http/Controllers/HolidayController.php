@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Holiday;
 use Illuminate\Http\Request;
+use App\DataTables\HolidayDataTable;
 use App\Http\Requests\StoreHolidayRequest;
 
 class HolidayController extends Controller
@@ -14,11 +15,10 @@ class HolidayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(HolidayDataTable $dataTable)
     {
         $title = __('label.holidays');
-        $holidays = Holiday::all();
-        return view('holiday.index',compact('title','holidays'));
+        return $dataTable->render('holiday.index',compact('title'));
     }
 
     /**
