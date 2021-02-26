@@ -83,4 +83,5 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', 'Administrator')->exists();
     }
+    
 }

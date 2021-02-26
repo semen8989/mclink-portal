@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Expense;
 use App\Models\ExpenseType;
 use Illuminate\Http\Request;
+use App\DataTables\ExpenseDataTable;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreExpenseRequest;
 
@@ -17,11 +18,10 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ExpenseDataTable $dataTable)
     {
-        $expenses = Expense::all();
         $title = __('label.expenses');
-        return view('expense.index',compact('title','expenses'));
+        return $dataTable->render('expense.index',compact('title'));
     }
 
     /**
