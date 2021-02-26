@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Policy;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\DataTables\PolicyDataTable;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePolicyRequest;
 
@@ -15,11 +16,10 @@ class PolicyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PolicyDataTable $dataTable)
     {
-        $policies = Policy::all();
         $title = __('label.policies');
-        return view('policy.index',compact('policies','title'));
+        return $dataTable->render('policy.index',compact('title'));
     }
 
     /**
