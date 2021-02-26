@@ -28,7 +28,7 @@
     <script>
         $(document).on('click','#delete',function() {
             let id = $(this).attr('data-id');
-            var url = '{{ route("service.form.destroy",":id") }}'
+            var url = '{{ route("performance.okr.kpi-maingoals.destroy",":id") }}'
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });

@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('/{kpiMain}', [KpiMaingoalController::class, 'show'])->name('performance.okr.kpi-maingoals.show');
         Route::get('/{kpiMain}/edit', [KpiMaingoalController::class, 'edit'])->name('performance.okr.kpi-maingoals.edit');
+        Route::delete('/{kpiMain}', [KpiMaingoalController::class, 'destroy'])->name('performance.okr.kpi-maingoals.destroy');
     });
 
     // Typeahead Routes

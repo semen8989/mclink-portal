@@ -81,6 +81,14 @@ class KpiMaingoalController extends Controller
      */
     public function destroy(KpiMaingoal $kpiMaingoal)
     {
-        //
+        $result = $kpiMaingoal->delete();
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result
+            ? __('label.global.response.success.general', ['module' => 'KPI Main', 'action' => 'deleted'])
+            : __('label.global.response.error.general', ['action' => 'deleting']);
+
+        return back()->with($resultStatus, $msg);
     }
 }

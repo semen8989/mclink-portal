@@ -4,7 +4,6 @@ namespace App\DataTables;
 
 use App\Models\KpiMaingoal;
 use Illuminate\Support\Str;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -19,12 +18,17 @@ class KpiMaingoalDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)          
-            ->setRowId('id')
-            ->addColumn('action', function(KpiMaingoal $kpiMain) {
+            ->eloquent($query)
+            ->addIndexColumn()
+            ->addColumn('', function(KpiMaingoal $kpiMain) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'performance.okr.kpi-maingoals.show',
+                    'showRouteSlug' => 'kpiMain',
+                    'showRouteSlugValue' => $kpiMain->id
+                ]);
+            })->addColumn('action', function(KpiMaingoal $kpiMain) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
-                        'show' => 'performance.okr.kpi-maingoals.show',
                         'edit' => 'performance.okr.kpi-maingoals.edit',
                         'delete' => ''
                     ],
@@ -32,8 +36,14 @@ class KpiMaingoalDataTable extends DataTable
                     'itemSlugValue' => $kpiMain->id
                 ]);
             })->editColumn('status', function ($request) {
-                return Str::ucfirst(array_search($request->status, KpiMaingoal::COMPLETED_STATUS));
-            });
+                $status = Str::ucfirst(array_search($request->status, KpiMaingoal::COMPLETED_STATUS));
+                $badgeColor = $status == 'Yes' ? 'success' : 'danger';
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
+            })->rawColumns(['main_kpi', 'status']);
     }
 
     /**
@@ -59,13 +69,6 @@ class KpiMaingoalDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->parameters([
-                // 'scrollX' => '100%',
-                // 'columnDefs' => [
-                //     [
-                //         'targets' => [0, 1],
-                //         'width' => "30%",
-                //     ]
-                // ],
                 'autoWidth' => false,
                 'order' => [
                     0,
@@ -81,9 +84,7 @@ class KpiMaingoalDataTable extends DataTable
                     'processing' => '<div class="text-center"><div class="spinner-border" role="status">
                         <span class="sr-only">' . __('label.global.datatable.text.loading') . '</span></div></div>'
                 ],
-                'responsive' => true,
-                'drawCallback' => "function (settings, json) {" .
-                    "$('.copy-btn').tooltip();}"
+                'responsive' => true
             ])->dom("<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" .
                 "<'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>>" .
                 "<'row'<'col-sm-12 col-md-6'p>>"
@@ -98,22 +99,29 @@ class KpiMaingoalDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                ->title(__('label.kpi_main.datatable.column_header.action'))
-                ->width('35%'),
+            Column::computed('')
+                ->width('5%'),
             Column::make('main_kpi')
                 ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
-                ->width('35%'),
+                ->width('27%'),
             Column::make('q1')
-                ->title(__('label.kpi_main.datatable.column_header.q1')),
+                ->title(__('label.kpi_main.datatable.column_header.q1'))
+                ->width('12%'),
             Column::make('q2')
-                ->title(__('label.kpi_main.datatable.column_header.q2')),
+                ->title(__('label.kpi_main.datatable.column_header.q2'))
+                ->width('12%'),
             Column::make('q3')
-                ->title(__('label.kpi_main.datatable.column_header.q3')),
+                ->title(__('label.kpi_main.datatable.column_header.q3'))
+                ->width('12%'),
             Column::make('q4')
-                ->title(__('label.kpi_main.datatable.column_header.q4')),
+                ->title(__('label.kpi_main.datatable.column_header.q4'))
+                ->width('12%'),
             Column::make('status')
-                ->title(__('label.kpi_main.datatable.column_header.completed')),
+                ->title(__('label.kpi_main.datatable.column_header.completed'))
+                ->width('10%'),
+            Column::computed('action')
+                ->title(__('label.kpi_main.datatable.column_header.action'))
+                ->width('10%')
         ];
     }
 }
