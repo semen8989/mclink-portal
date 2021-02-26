@@ -117,7 +117,7 @@
 </form>
 @stop
 
-@push('stylesheets')
+@push('stylesheet')
     <!-- Datetimepicker css dependency -->
     <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">

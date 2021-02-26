@@ -2,8 +2,6 @@
 
 @section('content')
 <div class="card-header">{{ __('label.view_shift') }}</div>
-<form action="{{ route('office_shifts.store') }}" id="shift_form" method="post">
-    @csrf
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
@@ -114,10 +112,17 @@
             </div>
         </div>
     </div>
-</form>
+    <div class="card-footer text-right">
+        <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('office_shifts.index') }}">
+            <svg class="c-icon">
+                <use xlink:href="http://mclink-portal.test/assets/icons/sprites/free.svg#cil-arrow-circle-left"></use>
+            </svg>
+            Back
+        </a>
+    </div>
 @stop
 
-@push('stylesheets')
+@push('stylesheet')
     <style>
         .label{
             font-weight: bold;
