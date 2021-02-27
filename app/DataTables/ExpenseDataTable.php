@@ -55,7 +55,7 @@ class ExpenseDataTable extends DataTable
      */
     public function query(Expense $model)
     {
-        return $model->newQuery()->with(['company:id,company_name','user:id,name','expense_type:id,expense_type']);
+        return $model->with('company','user','expense_type')->select('expenses.*');
     }
 
     /**
