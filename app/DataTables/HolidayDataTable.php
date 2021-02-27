@@ -53,7 +53,7 @@ class HolidayDataTable extends DataTable
      */
     public function query(Holiday $model)
     {
-        return $model->newQuery()->with(['company:id,company_name']);
+        return $model->with('company')->select('holidays.*');
     }
 
     /**

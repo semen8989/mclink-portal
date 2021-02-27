@@ -28,14 +28,14 @@ class OfficeShiftDataTable extends DataTable
                     'itemSlugValue' => $officeShift->id
                 ]);
             })->editColumn('shift_name', function ($request) {
+                return $request->shift_name;
+            })->editColumn('company.company_name', function ($request) {
                 return view('components.datatables.show-column', [
                     'showRouteName' => 'office_shifts.show',
                     'showRouteSlug' => 'office_shift',
                     'showRouteSlugValue' => $request->id,
-                    'columnData' => $request->shift_name
+                    'columnData' => $request->company->company_name
                 ]);
-            })->editColumn('company.company_name', function ($request) {
-                return $request->company->company_name;
             });
     }
 
@@ -47,7 +47,7 @@ class OfficeShiftDataTable extends DataTable
      */
     public function query(OfficeShift $model)
     {
-        return $model->newQuery()->with(['company:id,company_name']);
+        return $model->with('company')->select('office_shifts.*');
     }
 
     /**
@@ -93,10 +93,10 @@ class OfficeShiftDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('shift_name')
-                ->title(__('label.day')),
             Column::make('company.company_name')
                 ->title(__('label.company_name')),
+            Column::make('shift_name')
+                ->title(__('label.day')),
             Column::computed('action')
                 ->title(__('label.action')),
         ];

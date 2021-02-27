@@ -55,7 +55,7 @@ class AnnouncementDataTable extends DataTable
      */
     public function query(Announcement $model)
     {
-        return $model->newQuery()->with(['company:id,company_name','department:id,department_name']);
+        return $model->with('company','department')->select('announcements.*');
     }
 
     /**

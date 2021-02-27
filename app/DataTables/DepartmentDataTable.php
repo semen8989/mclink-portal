@@ -45,7 +45,7 @@ class DepartmentDataTable extends DataTable
      */
     public function query(Department $model)
     {
-        return $model->newQuery()->with(['company:id,company_name','user:id,name']);
+        return $model->with('company','user')->select('departments.*');
     }
 
     /**

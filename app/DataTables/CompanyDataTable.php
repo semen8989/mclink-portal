@@ -56,7 +56,7 @@ class CompanyDataTable extends DataTable
      */
     public function query(Company $model)
     {
-        return $model->newQuery()->with(['user:id,name']);
+        return $model->with('user')->select('companies.*');
     }
 
     /**

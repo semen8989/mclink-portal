@@ -52,7 +52,7 @@ class PolicyDataTable extends DataTable
      */
     public function query(Policy $model)
     {
-        return $model->newQuery()->with(['company:id,company_name','user:id,name']);
+        return $model->with('company','user')->select('policies.*');
     }
 
     /**

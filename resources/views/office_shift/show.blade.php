@@ -115,7 +115,7 @@
     <div class="card-footer text-right">
         <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('office_shifts.index') }}">
             <svg class="c-icon">
-                <use xlink:href="http://mclink-portal.test/assets/icons/sprites/free.svg#cil-arrow-circle-left"></use>
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
             </svg>
             Back
         </a>
