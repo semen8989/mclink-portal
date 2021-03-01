@@ -82,12 +82,12 @@ class KpiMaingoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\KpiMaingoal  $kpiMaingoal
+     * @param  \App\Models\KpiMaingoal  $kpiMain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KpiMaingoal $kpiMaingoal)
+    public function destroy(KpiMaingoal $kpiMain)
     {
-        $result = $kpiMaingoal->delete();
+        $result = $kpiMain->delete();
 
         $resultStatus = $result ? 'success' : 'error';
 
