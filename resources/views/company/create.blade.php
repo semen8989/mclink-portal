@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="company_type">{{ __('label.company_type') }}</label>
-                            <select class="form-control" name="company_type" id="company_type">
+                            <select class="form-control custom-select" name="company_type" id="company_type">
                                 <option value="" disabled selected>{{ __('label.choose') }}</option>
                                 <option value="Private"> Private</option>
                                 <option value="Corporation"> Corporation</option>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="form-group">
                     <label for="country">{{ __('label.country') }}</label>
-                    <select class="form-control" name="country" id="country">
+                    <select class="form-control custom-select" name="country" id="country">
                         <option value="" disabled selected>{{ __('label.choose') }}</option>
                         <option value="Philippines">Philippines</option>
                         <option value="Singapore">Singapore</option>
@@ -102,9 +102,25 @@
 </form>
 @stop
 
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Page js codes -->
     <script>
         $(document).ready(function (){
+            //Select2
+            $('#company_type').select2({
+                theme: "bootstrap"
+            });
+            $('#country').select2({
+                theme: "bootstrap"
+            });
             //Company form submit
             $('#company_form').submit(function (e){
                 e.preventDefault();
@@ -134,7 +150,13 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
+                            
                         });
                         
                     }
