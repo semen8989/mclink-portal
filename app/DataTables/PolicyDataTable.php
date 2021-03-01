@@ -35,7 +35,7 @@ class PolicyDataTable extends DataTable
                     'columnData' => $request->title
                 ]);
             })->editColumn('company.company_name', function ($request) {
-                return (!empty($request->company->company_name)) ? $request->company->company_name : '---';
+                return ($request->company_id != 0) ? $request->company->company_name : __('label.all_companies');
             })->editColumn('created_at', function ($request) {
                 return $request->created_at->format('M d Y');
             })->editColumn('user.name', function ($request) {

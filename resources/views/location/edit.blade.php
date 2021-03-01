@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label for="company_id">{{ __('label.edit_company') }}</label>
                     <select class="form-control" name="company_id" id="company_id">
-                        <option value="" disabled selected>Select Company</option>
+                        <option></option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}" {{ $location->company_id == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                         @endforeach
@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <label for="location_head">{{ __('label.location_head') }}</label>
                     <select class="form-control" name="user_id" id="user_id">
-                        <option value="">Select Location</option>
+                        <option></option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}" {{ $location->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                         @endforeach
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label for="country">{{ __('label.country') }}</label>
                     <select name="country" id="country" class="form-control">
-                        <option value="" disabled selected>Select One</option>
+                        <option></option>
                         <option value="Philippines" {{ $location->country == "Philippines" ? 'selected' : '' }}> Philippines</option>
                         <option value="Singapore" {{ $location->country == "Singapore" ? 'selected' : '' }}> Singapore</option>
                         <option value="Malaysia" {{ $location->country == "Malaysia" ? 'selected' : '' }}> Malaysia</option>
@@ -84,9 +84,33 @@
 </form>
 @stop
 
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
          $(document).ready(function(){
+             //Select2
+            $('#company_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            $('#user_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            $('#country').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
             //Dynamic Company Dropdown
             $('#company_id').change(function(){
 
@@ -137,7 +161,12 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
                         });
                         
                     }

@@ -16,7 +16,7 @@
                         <div class="col-md-6">
                             <label for="company_type">{{ __('label.company_type') }}</label>
                             <select class="form-control custom-select" name="company_type" id="company_type">
-                                <option value="" disabled selected>{{ __('label.choose') }}</option>
+                                <option></option>
                                 <option value="Private"> Private</option>
                                 <option value="Corporation"> Corporation</option>
                             </select>
@@ -82,7 +82,7 @@
                 <div class="form-group">
                     <label for="country">{{ __('label.country') }}</label>
                     <select class="form-control custom-select" name="country" id="country">
-                        <option value="" disabled selected>{{ __('label.choose') }}</option>
+                        <option></option>
                         <option value="Philippines">Philippines</option>
                         <option value="Singapore">Singapore</option>
                         <option value="Malaysia">Malaysia</option>
@@ -116,10 +116,14 @@
         $(document).ready(function (){
             //Select2
             $('#company_type').select2({
-                theme: "bootstrap"
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             $('#country').select2({
-                theme: "bootstrap"
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             //Company form submit
             $('#company_form').submit(function (e){

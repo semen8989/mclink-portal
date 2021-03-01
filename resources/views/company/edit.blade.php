@@ -17,7 +17,7 @@
                         <div class="col-md-6">
                             <label for="company_type">{{ __('label.company_type') }}</label>
                             <select class="form-control custom-select" name="company_type" id="company_type">
-                                <option value="" disabled selected>{{ __('label.choose') }}</option>
+                                <option></option>
                                 <option value="Private" {{ $company->company_type == "Private" ? 'selected' : '' }}>Private</option>
                                 <option value="Corporation" {{ $company->company_type == "Corporation" ? 'selected' : '' }}>Corporation</option>
                             </select>
@@ -83,7 +83,7 @@
                 <div class="form-group">
                     <label for="state">{{ __('label.country') }}</label>
                     <select class="form-control custom-select" name="country" id="country">
-                        <option value="" disabled selected>{{ __('label.choose') }}</option>
+                        <option></option>
                         <option value="Philippines" {{ $company->country == "Philippines" ? 'selected' : '' }}>Philippines</option>
                         <option value="Singapore" {{ $company->country == "Singapore" ? 'selected' : '' }}>Singapore</option>
                         <option value="Malaysia" {{ $company->country == "Malaysia" ? 'selected' : '' }}>Malaysia</option>
@@ -126,10 +126,14 @@
         $(document).ready(function (){
             //Select2
             $('#company_type').select2({
-                theme: "bootstrap"
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             $('#country').select2({
-                theme: "bootstrap"
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             //Company form submit
             $('#company_form').submit(function (e){

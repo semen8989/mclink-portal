@@ -8,8 +8,8 @@
     <div class="card-body">
         <div class="form-group">
             <label for="company_id" class="control-label">{{ __('label.company') }}</label>
-            <select class="form-control dynamic" name="company_id" id="company_id">
-                    <option value="" disabled selected>{{ __('label.choose') }}</option>
+            <select class="form-control custom-select" name="company_id" id="company_id">
+                    <option></option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                 @endforeach
@@ -35,8 +35,8 @@
         </div>
         <div class="form-group">
             <label for="status">{{ __('label.status') }}</label>
-            <select class="form-control" name="status" id="status">
-                    <option value="" disabled selected>{{ __('label.choose') }}</option>
+            <select class="form-control custom-select" name="status" id="status">
+                    <option></option>
                     <option value="published">{{ __('label.published') }}</option>
                     <option value="unpublished">{{ __('label.unpublished') }}</option>
             </select>
@@ -52,6 +52,9 @@
     <!-- Datetimepicker css dependency -->
     <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -59,6 +62,8 @@
     <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/yo73cb5kgrrh9v4jlpa391ee0axje0ckqg66pan5n8ksemva/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function (){
            //Datetimepicker
@@ -84,6 +89,17 @@
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
+            //Select2
+            $('#company_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            $('#status').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             //Holiday form submit
             $('#holiday_form').submit(function (e){
@@ -112,7 +128,12 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
                         });
                         
                     }

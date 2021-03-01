@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePolicyRequest extends FormRequest
+class UpdateExpenseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,22 @@ class StorePolicyRequest extends FormRequest
     public function rules()
     {
         return [
+            'expense_type_id' => 'required',
+            'purchase_date' => 'required',
+            'amount' => 'required',
             'company_id' => 'required',
-            'title' => 'required|string|max:50'
+            'user_id' => 'required',
+            'status' => 'required',
+            'bill_copy' => 'image|nullable|max:1000'
         ];
     }
 
     public function messages()
     {
         return [
-            'company_id.required' => 'The company field is required.'
+            'expense_type_id.required' => 'The expense type field is required.',
+            'company_id.required' => 'The company field is required.',
+            'user_id.required' => 'The employee field is required.'
         ];
     }
 }

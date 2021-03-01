@@ -9,8 +9,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="company_id">{{ __('label.company') }}</label>
-                    <select class="form-control" name="company_id" id="company_id">
-                        <option value="" disabled selected>{{ __('label.choose') }}</option>
+                    <select class="form-control custom-select" name="company_id" id="company_id">
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
@@ -37,7 +36,7 @@
                 <div class="form-group">
                     <label for="location_head">{{ __('label.location_head') }}</label>
                     <select class="form-control" name="user_id" id="user_id">
-                        <option selected disabled>{{ __('label.choose') }}</option>
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -64,8 +63,8 @@
                 </div>
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <select name="country" id="country" class="form-control">
-                        <option value="" disabled selected>{{ __('label.choose') }}</option>
+                    <select name="country custom-select" id="country" class="form-control">
+                        <option></option>
                         <option value="Philippines">Philippines</option>
                         <option value="Singapore">Singapore</option>
                         <option value="Malaysia">Malaysia</option>
@@ -80,9 +79,33 @@
 </form>
 @stop
 
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
          $(document).ready(function(){
+             //Select2
+            $('#company_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            $('#user_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            $('#country').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
             //Dynamic Company Dropdown
             $('#company_id').change(function(){
 
@@ -133,7 +156,12 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
                         });
                         
                     }

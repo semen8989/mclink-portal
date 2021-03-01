@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\DataTables\ExpenseDataTable;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreExpenseRequest;
+use App\Http\Requests\UpdateExpenseRequest;
 
 class ExpenseController extends Controller
 {
@@ -97,7 +98,7 @@ class ExpenseController extends Controller
      * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreExpenseRequest $request, Expense $expense)
+    public function update(UpdateExpenseRequest $request, Expense $expense)
     {
         if($request->hasFile('bill_copy')){
             //Delete old image data

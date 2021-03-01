@@ -8,8 +8,9 @@
     <div class="card-body">
         <div class="form-group">
             <label for="company_id">{{ __('label.company') }}</label>
-            <select class="form-control" name="company_id" id="company_id">
-                <option value="">{{ __('label.all_companies') }}</option>
+            <select class="form-control custom-select" name="company_id" id="company_id">
+                <option></option>
+                <option value="0">{{ __('label.all_companies') }}</option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}" {{ $policy->company_id == $company->id ? 'selected' : '' }}>
                         {{ $company->company_name }}
@@ -32,9 +33,17 @@
 </form>
 @stop
 
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
     <!-- TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/yo73cb5kgrrh9v4jlpa391ee0axje0ckqg66pan5n8ksemva/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function (){
             //TinyMCE
@@ -52,6 +61,12 @@
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
+            //Select2
+            $('#company_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             //Policy form submit
             $('#policy_form').submit(function (e){
@@ -80,7 +95,12 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
                         });
                         
                     }
