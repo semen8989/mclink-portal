@@ -152,7 +152,7 @@
                     dataType: 'json',
                     success: function(result){
                         $('#user_id').empty();
-                        $('#user_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
+                        $('#user_id').append('<option></option>');
                         $.each(result, function (key, value) {
                             $('#user_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
