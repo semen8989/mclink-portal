@@ -4,10 +4,10 @@
         <svg class="c-icon c-icon-lg">
           <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-menu') }}"></use>
         </svg>
-      </button><a class="c-header-brand d-lg-none" href="#">
-        <svg width="118" height="46" alt="CoreUI Logo">
-          <use xlink:href="{{ asset('assets/brand/coreui.svg#full') }}"></use>
-        </svg></a>
+      </button>
+      <a class="c-header-brand d-lg-none" href="{{ route('dashboard') }}">
+        <img class="c-sidebar-brand-full" src="{{ asset('assets/brand/logo.png') }}" width="135" height="36" alt="McLink Logo">
+      </a>
       <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
         <svg class="c-icon c-icon-lg">
           <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-menu') }}"></use>

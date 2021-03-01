@@ -17,7 +17,7 @@ class ServiceReport extends Model
 
     const STATUS = [
         "signed" => 1,
-        "send" => 2,
+        "sent" => 2,
         "draft" => 3,
     ];
 
