@@ -19,7 +19,7 @@
                     <input class="form-control-plaintext" readonly value="{{ $location->email }}">
                 </div>
                 <div class="form-group">
-                    <strong><label>{{ __('label.phone') }}</label></strong>
+                    <strong><label>{{ __('label.phone_number') }}</label></strong>
                     <input class="form-control-plaintext" readonly value="{{ $location->phone }}">
                 </div>
                 <div class="form-group">

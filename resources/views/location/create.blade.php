@@ -10,6 +10,7 @@
                 <div class="form-group">
                     <label for="company_id">{{ __('label.company') }}</label>
                     <select class="form-control custom-select" name="company_id" id="company_id">
+                        <option></option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach

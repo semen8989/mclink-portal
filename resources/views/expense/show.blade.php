@@ -29,11 +29,17 @@
             </div>
             <fieldset class="form-group col-md-4">
                 <strong><label>{{ __('label.bill_copy') }}</label></strong>
-                <a href="{{ route('downloadFile',$expense->bill_copy) }}" class="form-control-plaintext">Download File</a>
+                @if(!empty($expense->bill_copy))
+                    <a href="{{ route('downloadFile',$expense->bill_copy) }}" class="form-control-plaintext">Download File</a>
+                @else
+                    <input type="text" class="form-control-plaintext" readonly value="No Fle">
+                @endif
+               
             </fieldset>
         </div>
         <div class="form-group">
             <strong><label>Remarks</label></strong>
+            <br>
             {!! $expense->remarks !!}
         </div>
     </div>
