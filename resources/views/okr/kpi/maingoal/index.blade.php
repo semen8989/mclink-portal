@@ -2,7 +2,55 @@
 
 @section('content')
     <div class="card-body">
-        {!! $dataTable->table() !!}
+        <div class="col-md-12">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="filterQuarter">Select Quarter</label>
+                    <div class="controls">
+                        <select class="form-control custom-select" id="filterQuarter">
+                            <option value="all" selected>All</option>
+                            <option value="first">First Quarter</option>
+                            <option value="second">Second Quarter</option>
+                            <option value="third">Third Quarter</option>
+                            <option value="fourth">Fourth Quarter</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="filterDate">Select Year</label>
+                    <div class="controls">
+                        <select class="form-control custom-select" id="filterDate">
+                            @foreach ($dateFilter as $date)
+                                <option value="{{ $date->created_at->format('Y') }}">{{ $date->created_at->format('Y') }}</option>               
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>       
+        </div>
+        <div class="col-md-12 mb-3">
+            <div class="nav-tabs-boxed">
+                <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="main">
+                    <svg class="c-icon mr-1">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart') }}"></use>
+                    </svg> All Main KPI</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="variable">
+                    <svg class="c-icon mr-1">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart-line') }}"></use>
+                    </svg> All Variable KPI</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="objective">
+                    <svg class="c-icon mr-1">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-paperclip') }}"></use>
+                    </svg> All Objective KPI</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel">
+                        {!! $dataTable->table() !!}
+                    </div>
+                </div>
+            </div>
+        </div>    
     </div>
 
     @include('layout.delete_modal')
@@ -37,8 +85,7 @@
             $(this).find(':submit').prop('disabled', true);
         });
 
-        $( document ).ready(function() {           
-            // var clipboard = new ClipboardJS('.copy-btn');
+        $( document ).ready(function() {
         });
         
     </script> 

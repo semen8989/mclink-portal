@@ -11,11 +11,17 @@ class KpiMaingoalController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\DataTables\KpiMaingoalDataTable  $dataTable
      * @return \Illuminate\Http\Response
      */
     public function index(KpiMaingoalDataTable $dataTable)
     {
-        return $dataTable->render('okr.kpi.maingoal.index');
+        $dateFilter = KpiMaingoal::select('created_at')
+            ->groupBy('created_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return $dataTable->render('okr.kpi.maingoal.index', compact('dateFilter'));
     }
 
     /**
