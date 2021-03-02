@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreDepartmentRequest;
-use App\Models\Department;
-use App\Models\Company;
 use App\Models\User;
+use App\Models\Company;
+use App\Models\Department;
+use App\DataTables\DepartmentDataTable;
+use App\Http\Requests\StoreDepartmentRequest;
 
 class DepartmentController extends Controller
 {
@@ -14,11 +15,10 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(DepartmentDataTable $dataTable)
     {
         $title = __('label.departments');
-        $departments = Department::all();
-        return view('department.index',compact('departments','title'));
+        return $dataTable->render('department.index',compact('title'));
     }
 
     /**

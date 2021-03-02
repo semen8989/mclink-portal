@@ -9,7 +9,7 @@
 </div>
 @stop
 
-@push('stylesheets')
+@push('stylesheet')
     <link rel="stylesheet" href="{{ asset('/plugin/fullcalendar-5.5.1/main.min.css') }}" />
     <!-- Datetimepicker css dependency -->
     <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">

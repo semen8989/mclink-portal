@@ -11,8 +11,8 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.company') }}</label>
                     <div class="col-md-4">
-                        <select class="form-control" name="company_id" id="company_id">
-                            <option value="" disabled selected>{{ __('label.choose') }}</option>
+                        <select class="form-control custom-select" name="company_id" id="company_id">
+                            <option></option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->id }}" {{ $officeShift->company_id == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
                             @endforeach
@@ -118,15 +118,22 @@
 </form>
 @stop
 
-@push('stylesheets')
+@push('stylesheet')
     <!-- Datetimepicker css dependency -->
     <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
     <!-- Datetimepicker js dependency -->
     <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function(){
             //Datetimepicker
@@ -141,6 +148,12 @@
             $(".clear-time").click(function(){
                 var clear_id  = $(this).data('clear-id');
                 $(".clear-"+clear_id).val('');
+            });
+            //Select2
+            $('#company_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
             });
             //Shift form
             $('#shift_form').submit(function (e){
@@ -158,6 +171,8 @@
                         window.location.href = '{{ route("office_shifts.index") }}';
                     },
                     error: function(response){
+                        //Scroll up
+                        window.scrollTo({ top: 70, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -167,7 +182,12 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
                         });
                         
                     }

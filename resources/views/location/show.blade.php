@@ -19,7 +19,7 @@
                     <input class="form-control-plaintext" readonly value="{{ $location->email }}">
                 </div>
                 <div class="form-group">
-                    <strong><label>{{ __('label.phone') }}</label></strong>
+                    <strong><label>{{ __('label.phone_number') }}</label></strong>
                     <input class="form-control-plaintext" readonly value="{{ $location->phone }}">
                 </div>
                 <div class="form-group">
@@ -65,6 +65,14 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="card-footer text-right">
+        <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('locations.index') }}">
+            <svg class="c-icon">
+                <use xlink:href="http://mclink-portal.test/assets/icons/sprites/free.svg#cil-arrow-circle-left"></use>
+            </svg>
+            Back
+        </a>
     </div>
 </form>
 @stop

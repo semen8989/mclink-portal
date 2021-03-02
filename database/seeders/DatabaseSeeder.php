@@ -15,9 +15,18 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            CustomerSeeder::class,
+            ServiceReportSeeder::class,
             CompanySeeder::class,
             DepartmentSeeder::class,
-            AnnouncementSeeder::class
+            DesignationSeeder::class,
+            AnnouncementSeeder::class,
+            PolicySeeder::class,
+            HolidaySeeder::class,
+            LocationSeeder::class,
+            OfficeShiftSeeder::class,
+            ExpenseTypeSeeder::class,
+            ExpenseSeeder::class
         ]);
     }
 }

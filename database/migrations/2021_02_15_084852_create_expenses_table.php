@@ -13,9 +13,17 @@ class CreateExpensesTable extends Migration
      */
     public function up()
     {
+        Schema::create('expense_types', function (Blueprint $table) {
+            $table->id();
+            $table->integer('company_id');
+            $table->string('expense_type');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+        
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('expense_type_id');
+            $table->integer('expense_type_id');
             $table->date('purchase_date');
             $table->double('amount');
             $table->integer('company_id');

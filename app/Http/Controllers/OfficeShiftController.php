@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\OfficeShift;
 use Illuminate\Http\Request;
+use App\DataTables\OfficeShiftDataTable;
 use App\Http\Requests\StoreOfficeShiftRequest;
 
 class OfficeShiftController extends Controller
@@ -14,11 +15,10 @@ class OfficeShiftController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OfficeShiftDataTable $dataTable)
     {
         $title = __('label.shifts');
-        $office_shifts = OfficeShift::all();
-        return view('office_shift.index',compact('title','office_shifts'));
+        return $dataTable->render('office_shift.index',compact('title'));
     }
 
     /**

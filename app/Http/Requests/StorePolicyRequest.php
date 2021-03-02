@@ -24,7 +24,15 @@ class StorePolicyRequest extends FormRequest
     public function rules()
     {
         return [
+            'company_id' => 'required',
             'title' => 'required|string|max:50'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'company_id.required' => 'The company field is required.'
         ];
     }
 }

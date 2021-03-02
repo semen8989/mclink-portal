@@ -12,7 +12,7 @@ class HrCalendarController extends Controller
     public function index(Request $request)
     {
         $events = [];
-        $events[] = \Calendar::event(
+        $events[] = Calendar::event(
             'Event One', //event title
             false, //full day event?
             '2021-02-11T0800', //start time (you can also use Carbon instead of DateTime)

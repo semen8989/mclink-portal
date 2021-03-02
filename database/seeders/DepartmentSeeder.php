@@ -26,7 +26,7 @@ class DepartmentSeeder extends Seeder
             ],
             [
                 'id' => 2, 
-                'department_name' => 'Administrator',
+                'department_name' => 'Admin',
                 'company_id' => 1,
                 'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -35,7 +35,7 @@ class DepartmentSeeder extends Seeder
             [
                 'id' => 3, 
                 'department_name' => 'Information Technology',
-                'company_id' => 2,
+                'company_id' => 1,
                 'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -51,7 +51,7 @@ class DepartmentSeeder extends Seeder
             [
                 'id' => 5, 
                 'department_name' => 'Operations Department',
-                'company_id' => 4,
+                'company_id' => 2,
                 'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -59,7 +59,7 @@ class DepartmentSeeder extends Seeder
             [
                 'id' => 6, 
                 'department_name' => 'Marketing & Web',
-                'company_id' => 3,
+                'company_id' => 2,
                 'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

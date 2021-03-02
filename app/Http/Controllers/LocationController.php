@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use App\DataTables\LocationDataTable;
 use App\Http\Requests\StoreLocationRequest;
 
 class LocationController extends Controller
@@ -15,11 +16,10 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(LocationDataTable $dataTable)
     {
         $title = __('label.locations');
-        $locations = Location::all();
-        return view('location.index',compact('title','locations'));
+        return $dataTable->render('location.index',compact('title'));
     }
 
     /**
