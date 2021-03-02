@@ -17,9 +17,9 @@
                     </div>
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="col-form-label" for="filterDate">Select Year</label>
+                    <label class="col-form-label" for="filterYear">Select Year</label>
                     <div class="controls">
-                        <select class="form-control custom-select" id="filterDate">
+                        <select class="form-control custom-select" id="filterYear">
                             @foreach ($dateFilter as $date)
                                 <option value="{{ $date->created_at->format('Y') }}">{{ $date->created_at->format('Y') }}</option>               
                             @endforeach
@@ -85,6 +85,12 @@
             $(this).find(':submit').prop('disabled', true);
         });
 
+        // event for handling changes before datatable send request
+        $("#kpimain-table").on('preXhr.dt', function (e, settings, data) {
+            data.filterQuarter = $('#filterQuarter').val();
+            data.filterYear = $('#filterYear').val();
+        });
+        
         $( document ).ready(function() {
             var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 
                 '{{ asset("assets/icons/sprites/free.svg#cil-plus") }}' + 
