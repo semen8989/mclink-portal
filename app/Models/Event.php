@@ -12,9 +12,10 @@ class Event extends Model
 
     protected $fillable = [
         'company_id',
-        'event_title',
-        'event_start',
-        'event_end',
-        'event_note'
+        'title',
+        'color',
+        'start_date',
+        'end_date',
+        'note'
     ];
 }

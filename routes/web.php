@@ -84,11 +84,14 @@ Route::prefix('organizations')->group(function () {
         'expenses' => ExpenseController::class
     ]); 
 });
+//HR Calendar Events Route
+Route::prefix('hr_calendar')->group(function (){
+    Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
+    Route::post('/store',[HrCalendarController::class, 'store'])->name('store_event');
+});
 
 Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
 Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
-//Modules
-Route::get('/hr_calendar',[HrCalendarController::class, 'index'])->name('hr_calendar');
 //Basic Routes
 Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
 Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');

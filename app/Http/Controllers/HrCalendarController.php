@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Event;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -11,40 +12,45 @@ class HrCalendarController extends Controller
 {
     public function index(Request $request)
     {
-        $events = [];
-        $events[] = Calendar::event(
-            'Event One', //event title
-            false, //full day event?
-            '2021-02-11T0800', //start time (you can also use Carbon instead of DateTime)
-            '2021-02-12T0800', //end time (you can also use Carbon instead of DateTime)
-            0 //optionally, you can specify an event ID
-        );
-
-        $events[] = \Calendar::event(
-            "Valentine's Day", //event title
-            true, //full day event?
-            new \DateTime('2021-02-14'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2021-02-14'), //end time (you can also use Carbon instead of DateTime)
-            'stringEventId' //optionally, you can specify an event ID
-        );
+       $events = Event::all();
+       $event = [];
+        foreach($events as $row) {
+            $end_date = $row->end_date."24:00:00";
+            $event[] = \Calendar::event(
+                $row->title, //event title
+                true, //full day event?
+                new DateTime($row->start_date), //start time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg)
+                new DateTime($row->end_date), //end time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg),
+                $row->id, //optional event ID
+                [
+                    'color' => $row->color
+                ]
+            );
+        }
         $calendar = new Calendar();
-                    $calendar->addEvents($events)
-                    ->setOptions([
-                        'locale' => 'En',
-                        'firstDay' => 0,
-                        'displayEventTime' => true,
-                        'selectable' => true,
-                        'initialView' => 'timeGridWeek',
-                        'headerToolbar' => [
-                            'end' => 'today prev,next dayGridMonth timeGridWeek timeGridDay'
-                        ]
-                    ]);
-                    $calendar->setId('1');
-                    $calendar->setCallbacks([
-                        'select' => 'function(selectionInfo){}',
-                        'eventClick' => 'function(event){}'
-                    ]);
-        return view('hr_calendar.index',compact('calendar'));
+            $calendar->addEvents($event)
+            ->setOptions([
+                'locale' => 'fr',
+                'firstDay' => 0,
+                'displayEventTime' => true,
+                'selectable' => true,
+                'initialView' => 'dayGridMonth',
+                'headerToolbar' => [
+                    'end' => 'today prev,next dayGridMonth timeGridWeek timeGridDay'
+                ]
+            ]);
+            $calendar->setId('1');
+            $calendar->setCallbacks([
+                'select' => 'function(selectionInfo){}',
+                'eventClick' => 'function(event){}'
+            ]);
+
+        return view('hr_calendar.index', compact('calendar'));
+    }
+
+    public function store(Request $request)
+    {
+        
     }
 
 }
