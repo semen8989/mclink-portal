@@ -229,5 +229,8 @@ return [
     'valid_until' => 'Valid until',
     'assigned_by' => 'Assigned by',
     'success' => 'Success',
-    'error' => 'Error'
+    'error' => 'Error',
+    'sign_in_to_your_account' => 'Sign In to your account',
+    'login' => 'Login',
+    'forgot_password' => 'Forgot password?',
 ];
