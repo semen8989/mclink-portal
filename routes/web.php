@@ -40,7 +40,8 @@ Route::middleware(['auth'])->group(function () {
     // OKR KPI Maingoal Routes
     Route::prefix('performance/okr/kpi-maingoals')->group(function () {
         Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi-maingoals.index');
-        
+        Route::get('/create', [KpiMaingoalController::class, 'create'])->name('performance.okr.kpi-maingoals.create');
+        Route::post('/', [KpiMaingoalController::class, 'store'])->name('performance.okr.kpi-maingoals.store');
         Route::get('/{kpiMain}', [KpiMaingoalController::class, 'show'])->name('performance.okr.kpi-maingoals.show');
         Route::get('/{kpiMain}/edit', [KpiMaingoalController::class, 'edit'])->name('performance.okr.kpi-maingoals.edit');
         Route::delete('/{kpiMain}', [KpiMaingoalController::class, 'destroy'])->name('performance.okr.kpi-maingoals.destroy');
