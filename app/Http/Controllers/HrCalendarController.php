@@ -30,7 +30,7 @@ class HrCalendarController extends Controller
         $calendar = new Calendar();
             $calendar->addEvents($event)
             ->setOptions([
-                'locale' => 'fr',
+                'locale' => 'En',
                 'firstDay' => 0,
                 'displayEventTime' => true,
                 'selectable' => true,
@@ -41,8 +41,12 @@ class HrCalendarController extends Controller
             ]);
             $calendar->setId('1');
             $calendar->setCallbacks([
-                'select' => 'function(selectionInfo){}',
-                'eventClick' => 'function(event){}'
+                'select' => 'function(selectionInfo){
+                    alert(FullCalendar.formatDate(selectionInfo.start))
+                }',
+                'eventClick' => 'function(event){
+                    alert(FullCalendar.formatDate(event.event.start))
+                }'
             ]);
 
         return view('hr_calendar.index', compact('calendar'));
