@@ -416,6 +416,13 @@ return [
                     'view_details' => 'View Details and Sign'
                 ],
                 'subject' => 'Service Report Acknowledgment Form | :company'
+            ],
+            'confirm' => [
+                'message' => 'The customer already submitted the signed service report form. You can click the button to view the details.',
+                'button' => [
+                    'view_service_report' => 'View Service Report Details'
+                ],
+                'subject' => 'Service Report Customer Acknowledgement | :company'
             ]
         ],
         'form' => [
