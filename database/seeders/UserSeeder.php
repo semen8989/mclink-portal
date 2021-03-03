@@ -31,7 +31,6 @@ class UserSeeder extends Seeder
             'company_id' => 1,
             'department_id' => 2,
             'designation_id' => 1,
-            'role_id' => 1,
             'gender' => 'female',
             'shift_id' => 1,
             'birth_date' => '1998-04-21',
