@@ -65,4 +65,19 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
 
+    public function view_event(Event $event){
+        $data = [
+            'id'        => $event->id,
+            'company'   => $event->company->company_name,
+            'title'     => $event->title,
+            'start'     => date('Y-m-d', strtotime($event->start_date)),
+            'end'       => date('Y-m-d', strtotime($event->end_date)),
+            'note'      => $event->note
+        ];
+
+        echo json_encode($data);
+    }
+
+
+
 }

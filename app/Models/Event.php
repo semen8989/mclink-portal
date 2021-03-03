@@ -18,4 +18,8 @@ class Event extends Model
         'end_date',
         'note'
     ];
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }

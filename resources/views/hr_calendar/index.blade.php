@@ -57,6 +57,66 @@
       </div>
     </div>
   </div>
+<!-- View event modal -->
+<div class="modal fade" id="viewEvent_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Event Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <input class="form-control-plaintext label" readonly value="Company">
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control-plaintext" id="view_company" name="view_company" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <input class="form-control-plaintext label" readonly value="Event Title">
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control-plaintext" id="view_title" name="view_title" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <input class="form-control-plaintext label" readonly value="Event Start Date">
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control-plaintext" id="view_start_date" name="view_start_date" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <input class="form-control-plaintext label" readonly value="Event End Date">
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control-plaintext" id="view_end_date" name="view_end_date" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <input class="form-control-plaintext label" readonly value="Event Note">
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control-plaintext" id="view_note" name="view_note" readonly>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @stop
 
 @push('stylesheet')
@@ -92,8 +152,27 @@
                         $('#start_date').val(FullCalendar.formatDate(selectionInfo.start));
                         $('#end_date').val(FullCalendar.formatDate(selectionInfo.end));
                     },
-                    eventClick:function(event){
-                        alert(event.event.title);
+                    eventClick:function(arg){
+                        var id = arg.event.id;
+                        var url = '{{ route("hr_calendar.view_event",":id") }}';
+                        url = url.replace(':id',id);
+                        $.ajax({
+                            url: url,
+                            type:"POST",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                    $('#view_company').val(data.company);
+                                    $('#view_title').val(data.title);
+                                    $('#view_start_date').val(data.start);
+                                    $('#view_end_date').val(data.end);
+                                    $('#view_note').val(data.note);
+                                    $('#viewEvent_modal').modal('show');
+                                }
+                        });
+
                     }
                 },
             );
@@ -129,10 +208,6 @@
                     }
                 })
             });
-        });
-         // so your code will be
-         $('#createEvent_modal').on('hidden.bs.modal', function () {
-            
         });
 
     </script>
