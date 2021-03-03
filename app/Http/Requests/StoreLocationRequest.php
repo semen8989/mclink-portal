@@ -36,7 +36,6 @@ class StoreLocationRequest extends FormRequest
     public function messages(){
         return [
             'user_id.required' => 'The location head field is required',
-            'company_id.required' => 'The company field is required'
         ];
     }
 }

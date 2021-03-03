@@ -36,8 +36,6 @@ class StoreExpenseRequest extends FormRequest
     public function messages()
     {
         return [
-            'expense_type_id.required' => 'The expense type field is required.',
-            'company_id.required' => 'The company field is required.',
             'user_id.required' => 'The employee field is required.'
         ];
     }
