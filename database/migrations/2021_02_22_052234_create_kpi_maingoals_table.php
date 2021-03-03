@@ -22,7 +22,6 @@ class CreateKpiMaingoalsTable extends Migration
             $table->mediumText('q4')->nullable();
             $table->mediumText('feedback')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('kpi_rating_id')->references('id')->on('kpi_ratings');
             $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();

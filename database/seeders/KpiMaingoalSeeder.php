@@ -25,7 +25,6 @@ class KpiMaingoalSeeder extends Seeder
             'q3' => Str::random(20),
             'q4' => Str::random(20),
             'user_id' => User::find(1)->id,
-            'kpi_rating_id' => KpiRating::find(1)->id,
             'status' => 0,
             'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
