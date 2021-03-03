@@ -1,4 +1,6 @@
-
+    <!-- Main js script-->
+    <script src="{{ asset('js/app.js') }}"></script>
+    
     <!-- CoreUI and necessary plugins-->
     <script src="{{ asset('js/coreui/coreui.bundle.min.js') }}"></script>
       <!--[if IE]><!-->
