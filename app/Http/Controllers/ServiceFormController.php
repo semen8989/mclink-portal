@@ -199,6 +199,6 @@ class ServiceFormController extends Controller
 
     public function download(ServiceReport  $serviceReport)
     {
-        return response()->download(public_path('storage\service_report\pdf\\' . $serviceReport->report_pdf), 'service_report.pdf');
+        return response()->download('storage\service_report\pdf\\' . $serviceReport->report_pdf, 'service_report.pdf');
     }
 }
