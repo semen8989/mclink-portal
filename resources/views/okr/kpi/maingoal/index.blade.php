@@ -9,15 +9,15 @@
                     <div class="controls">
                         <select class="form-control custom-select" id="filterYear">
                             @foreach ($dateFilter as $date)
-                                <option value="{{ $date->created_at->format('Y') }}" 
-                                    @if (request()->has('filterYear') && request()->filterYear == $date->created_at->format('Y')) selected @endif>
-                                    {{ $date->created_at->format('Y') }}
+                                <option value="{{ $date->year }}"
+                                    @if (request()->has('filterYear') && request()->filterYear == $date->year) selected @endif>
+                                    {{ $date->year }}
                                 </option>               
                             @endforeach
                         </select>
                     </div>
                 </div>
-            </div>       
+            </div>
         </div>
         <div class="col-md-12 mb-3">
             <div class="nav-tabs-boxed">
@@ -48,17 +48,18 @@
 @stop
 
 @push('scripts')
+    <!-- jquery datatable button and responsive extension css dependency -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.2/css/fixedColumns.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
 @endpush
 
 @push('scripts')
+    <!-- jquery datatable button and responsive extension js dependency -->
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+    <!-- laravel datatable button plugin js dependency -->
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-    
-    <!-- Clipboard js dependency -->
-    <script src="{{ asset('plugin/clipboard/js/clipboard.min.js') }}"></script>
 
     <!-- dt script-->
     {!! $dataTable->scripts() !!}
