@@ -17,6 +17,16 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CustomerSeeder::class,
             ServiceReportSeeder::class,
+            CompanySeeder::class,
+            DepartmentSeeder::class,
+            DesignationSeeder::class,
+            AnnouncementSeeder::class,
+            PolicySeeder::class,
+            HolidaySeeder::class,
+            LocationSeeder::class,
+            OfficeShiftSeeder::class,
+            ExpenseTypeSeeder::class,
+            ExpenseSeeder::class
         ]);
     }
 }
