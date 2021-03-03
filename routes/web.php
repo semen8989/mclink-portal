@@ -47,6 +47,16 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{kpiMain}', [KpiMaingoalController::class, 'destroy'])->name('performance.okr.kpi-maingoals.destroy');
     });
 
+    // OKR KPI Variable Routes
+    Route::prefix('performance/okr/kpi/variable')->group(function () {
+        Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi.variable.index');
+    });
+
+    // OKR KPI Objective Routes
+    Route::prefix('performance/okr/kpi/objective')->group(function () {
+        Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi.objective.index');
+    });
+
     // Typeahead Routes
     Route::prefix('get')->group(function () {
         // Customer Route
