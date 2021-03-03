@@ -6,7 +6,7 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <h1>{{ __('label.login') }}</h1>
+                <h1>{{ __('label.login') }} {{ __('label.to') }} {{ config('app.name') }}</h1>
                 <p class="text-muted">{{ __('label.sign_in_to_your_account') }}</p>
                 <form class="loginForm" id="loginForm" name="loginForm" role="form" method="POST" action="{{ route('login') }}" novalidate>
                   @csrf
@@ -45,9 +45,14 @@
                 </form>
                 
               </div>
-              <p class="mt-3 text-center">
-                <a href="{{ route('socialite.index') }}" class="btn btn-outline-success">Sign In with Google</a>
-              </p>
+              <div class="col-md-12">
+                <hr>
+              </div>
+              <div class="col-md-12">
+                <p class="mt-2 text-center">
+                  <a href="{{ route('socialite.index') }}" class="btn btn-outline-primary"><img src="https://img.icons8.com/color/20/000000/google-logo.png" class="mr-2"> {{ __('label.sign_in_with_google') }}</a>
+                </p>
+              </div>
             </div>  
           </div>
         </div>

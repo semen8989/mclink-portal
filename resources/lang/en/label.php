@@ -233,4 +233,8 @@ return [
     'sign_in_to_your_account' => 'Sign In to your account',
     'login' => 'Login',
     'forgot_password' => 'Forgot password?',
+    'sign_in_with_google' => 'Sign In with Google',
+    'verify_your_email_address' => 'Verify Your Email Address',
+    'fresh_verification_link_has_been_sent_to_your_email' => 'A fresh verification link has been sent to your email address.',
+    'to' => 'to',
 ];
