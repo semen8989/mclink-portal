@@ -87,7 +87,6 @@ Route::prefix('organizations')->group(function () {
 //HR Calendar Events Route
 Route::prefix('hr_calendar')->group(function (){
     Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
-    Route::post('/store',[HrCalendarController::class, 'store'])->name('store_event');
 });
 
 Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');

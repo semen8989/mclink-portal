@@ -10,51 +10,20 @@ use Acaronlex\LaravelCalendar\Calendar;
 
 class HrCalendarController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-       $events = Event::all();
-       $event = [];
-        foreach($events as $row) {
-            $end_date = $row->end_date."24:00:00";
-            $event[] = \Calendar::event(
-                $row->title, //event title
-                true, //full day event?
-                new DateTime($row->start_date), //start time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg)
-                new DateTime($row->end_date), //end time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg),
-                $row->id, //optional event ID
-                [
-                    'color' => $row->color
-                ]
-            );
+        $data = [];
+        $result = Event::all();
+        foreach($result as $row) {
+            $data[] = [
+                'id' => $row->id,
+                'title' => $row->title,
+                'start' => $row->start_date,
+                'end' => $row->end_date,
+                'color' => $row->color,
+            ];
         }
-        $calendar = new Calendar();
-            $calendar->addEvents($event)
-            ->setOptions([
-                'locale' => 'En',
-                'firstDay' => 0,
-                'displayEventTime' => true,
-                'selectable' => true,
-                'initialView' => 'dayGridMonth',
-                'headerToolbar' => [
-                    'end' => 'today prev,next dayGridMonth timeGridWeek timeGridDay'
-                ]
-            ]);
-            $calendar->setId('1');
-            $calendar->setCallbacks([
-                'select' => 'function(selectionInfo){
-                    alert(FullCalendar.formatDate(selectionInfo.start))
-                }',
-                'eventClick' => 'function(event){
-                    alert(FullCalendar.formatDate(event.event.start))
-                }'
-            ]);
-
-        return view('hr_calendar.index', compact('calendar'));
+        return view('hr_calendar.index',['events' => json_encode($data)]);
     }
-
-    public function store(Request $request)
-    {
-        
-    }
-
+    
 }
