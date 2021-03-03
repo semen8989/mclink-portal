@@ -11,12 +11,14 @@ class KpiMaingoalController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\DataTables\KpiMaingoalDataTable  $dataTable
      * @return \Illuminate\Http\Response
      */
-    public function index(KpiMaingoalDataTable $dataTable)
+    public function index(Request $request, KpiMaingoalDataTable $dataTable)
     {
         $dateFilter = KpiMaingoal::select('created_at')
+            ->where('user_id', auth()->user()->id)
             ->groupBy('created_at')
             ->orderBy('created_at', 'desc')
             ->get();

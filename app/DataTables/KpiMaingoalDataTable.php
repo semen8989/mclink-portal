@@ -43,7 +43,10 @@ class KpiMaingoalDataTable extends DataTable
                     'columnData' => $status,
                     'badgeColor' => $badgeColor
                 ]);
-            })->rawColumns(['main_kpi', 'status']);
+            })->filter(function ($instance) {
+                $instance->where('user_id', auth()->user()->id)
+                    ->whereYear('created_at', $this->request->filterYear);
+            }, true)->rawColumns(['main_kpi', 'status']);
     }
 
     /**

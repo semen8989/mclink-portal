@@ -5,23 +5,14 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="form-group col-md-3">
-                    <label class="col-form-label" for="filterQuarter">Select Quarter</label>
-                    <div class="controls">
-                        <select class="form-control custom-select" id="filterQuarter">
-                            <option value="all" selected>All</option>
-                            <option value="first">First Quarter</option>
-                            <option value="second">Second Quarter</option>
-                            <option value="third">Third Quarter</option>
-                            <option value="fourth">Fourth Quarter</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
                     <label class="col-form-label" for="filterYear">Select Year</label>
                     <div class="controls">
                         <select class="form-control custom-select" id="filterYear">
                             @foreach ($dateFilter as $date)
-                                <option value="{{ $date->created_at->format('Y') }}">{{ $date->created_at->format('Y') }}</option>               
+                                <option value="{{ $date->created_at->format('Y') }}" 
+                                    @if (request()->has('filterYear') && request()->filterYear == $date->created_at->format('Y')) selected @endif>
+                                    {{ $date->created_at->format('Y') }}
+                                </option>               
                             @endforeach
                         </select>
                     </div>
@@ -31,15 +22,15 @@
         <div class="col-md-12 mb-3">
             <div class="nav-tabs-boxed">
                 <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item"><a class="nav-link active" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="main">
+                <li class="nav-item"><a id="mainTabLink" class="nav-link active" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="main">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart') }}"></use>
                     </svg> All Main KPI</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="variable">
+                <li class="nav-item"><a id="variableTabLink" class="nav-link" href="{{ route('performance.okr.kpi.variable.index') }}" role="tab" aria-controls="variable">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart-line') }}"></use>
                     </svg> All Variable KPI</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="objective">
+                <li class="nav-item"><a id="objectiveTabLink" class="nav-link" href="{{ route('performance.okr.kpi.objective.index') }}" role="tab" aria-controls="objective">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-paperclip') }}"></use>
                     </svg> All Objective KPI</a></li>
@@ -50,7 +41,7 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 
     @include('layout.delete_modal')
@@ -76,7 +67,7 @@
     <script>
         $(document).on('click','#delete',function() {
             let id = $(this).attr('data-id');
-            var url = '{{ route("performance.okr.kpi-maingoals.destroy",":id") }}'
+            var url = "{{ route('performance.okr.kpi-maingoals.destroy', ':id') }}"
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });
@@ -87,11 +78,19 @@
 
         // event for handling changes before datatable send request
         $("#kpimain-table").on('preXhr.dt', function (e, settings, data) {
-            data.filterQuarter = $('#filterQuarter').val();
             data.filterYear = $('#filterYear').val();
         });
-        
+
         $( document ).ready(function() {
+            // refresh datatable and update url get parameter based on the year filter on change event
+            $('#filterYear').change(function() {
+                LaravelDataTables["kpimain-table"].ajax.reload();
+
+                $('#mainTabLink').attr('href', '{{ route("performance.okr.kpi-maingoals.index") }}' + '?filterYear=' + $(this).val());
+                $('#variableTabLink').attr('href', '{{ route("performance.okr.kpi.variable.index") }}' + '?filterYear=' + $(this).val());
+                $('#objectiveTabLink').attr('href', '{{ route("performance.okr.kpi.objective.index") }}' + '?filterYear=' + $(this).val());
+            });
+
             var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 
                 '{{ asset("assets/icons/sprites/free.svg#cil-plus") }}' + 
                 '"></use></svg>';
