@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ServiceReport;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,6 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'employee_id',
+        'joining_date',
+        'company_id',
+        'department_id',
+        'designation_id',
+        'role_id',
+        'gender',
+        'shift_id',
+        'birth_date',
+        'contact_number',
         'email_verified_at',
     ];
 
@@ -42,6 +53,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the service reports that owns the user.
+     */
+    public function servicereports()
+    {
+        return $this->hasMany(ServiceReport::class);
+    }
+  
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
@@ -65,4 +84,5 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', 'Administrator')->exists();
     }
+    
 }

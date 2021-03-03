@@ -1,0 +1,96 @@
+/* customized checkbox */
+.custom-control-label::before, 
+.custom-control-label::after {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+/* show page */
+.guest-form-label {
+    font-size: 16px;
+}
+
+.guest-form-data {
+    font-size: 14px;
+}
+
+#signatureImage {
+    border: 2px dotted #CCCCCC;
+    border-radius: 15px;
+    cursor: crosshair;
+}
+
+/* custom datatables design */
+.dataTables_processing {
+    position: absolute;
+    top: -8vh;
+    right: 52%;
+}
+
+.dataTables_empty {
+    text-align: center;
+}
+
+.dataTables_filter {
+    float: right;
+    position: relative;
+    height: 35px;
+}
+
+.dataTables_filter > label {
+    height: 100%;
+}
+
+.dataTables_filter > label > input {
+    height: 100%;
+}
+
+table.dataTable th {
+    outline: none;
+}
+
+a.dt-action-btn:hover {
+    text-decoration: none;
+}
+
+/* custom clipboard button */
+.btn-clipboard {
+    height: 35px;
+    color: #1f1f1f;
+}
+
+/* validation */
+.is-invalid ~ .select2 .select2-selection {
+    border: 1px solid #e55353;
+}
+
+.is-invalid ~ .tox-tinymce {
+    border: 1px solid #e55353 !important;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    background-image: none;
+}
+
+/* acknowledgement form header */
+.header-wrapper > img {
+    height: 120px;
+}
+
+.header-wrapper {
+    text-align: center;
+}
+
+.info-wrapper {
+    text-align: center;
+    font-size: 14px;
+    margin-top: -20px;
+}
+
+.contact-wrapper {
+    margin-top: -12px;
+}
+
+.contact-wrapper > span {
+    padding: 0 12px 0 12px;
+}
