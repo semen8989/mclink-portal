@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
@@ -18,16 +19,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AcknowledgementFormController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard Route
@@ -65,6 +56,11 @@ Route::prefix('service-form/acknowledgement')->group(function () {
     Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service.form.acknowledgment.sign');
     Route::post('/{serviceReport}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
     Route::get('/feedback', [AcknowledgementFormController::class, 'feedback'])->name('service.form.acknowledgment.feedback');
+});
+
+Route::prefix('auth')->group(function () {
+    Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
+    Route::get('/callback', [socialiteController::class, 'callBack']);
 });
 
 Auth::routes(['register' => false]);

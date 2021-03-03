@@ -14,16 +14,16 @@ class AddColumnsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('employee_id');
-            $table->date('joining_date');
-            $table->integer('company_id');
-            $table->integer('department_id');
-            $table->integer('designation_id');
-            $table->integer('role_id');
-            $table->string('gender');
-            $table->integer('shift_id');
-            $table->date('birth_date');
-            $table->string('contact_number');
+            $table->string('avatar')->nullable();
+            $table->string('employee_id')->nullable();
+            $table->date('joining_date')->nullable();
+            $table->integer('company_id')->nullable();
+            $table->integer('department_id')->nullable();
+            $table->integer('designation_id')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('shift_id')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('contact_number')->nullable();
         });
     }
 

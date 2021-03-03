@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         //Create admin user
-        $user = User::create([
+        $admin = User::create([
             'name' => 'Root',
             'email' => 'root@mclinkgroup.com',
             'email_verified_at' => now(),
@@ -31,20 +31,13 @@ class UserSeeder extends Seeder
             'company_id' => 1,
             'department_id' => 2,
             'designation_id' => 1,
-            'role_id' => 1,
             'gender' => 'female',
             'shift_id' => 1,
             'birth_date' => '1998-04-21',
             'contact_number' => '09274302437'
 
         ]);
-        //Create Admin role
-        $admin = Role::create(['name' => 'Administrator']);
-        //Create ability
-        $allowAll = Ability::create(['name' => 'allow-all']);
-        //Assgin ability to a role
-        $admin->allowTo($allowAll);
-        //Assign role to a user
-        $user->assignRole($admin);
+        //Assign role
+        $admin->assignRole('Administrator');
     }
 }

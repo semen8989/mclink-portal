@@ -30,7 +30,8 @@ class User extends Authenticatable
         'gender',
         'shift_id',
         'birth_date',
-        'contact_number'
+        'contact_number',
+        'email_verified_at',
     ];
 
     /**
