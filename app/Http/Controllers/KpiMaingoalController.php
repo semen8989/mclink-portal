@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\KpiMaingoalDataTable;
 use App\Models\KpiMaingoal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\DataTables\KpiMaingoalDataTable;
+use App\Http\Requests\StoreKpiMainRequest;
 
 class KpiMaingoalController extends Controller
 {
@@ -33,7 +35,7 @@ class KpiMaingoalController extends Controller
      */
     public function create()
     {
-        //
+        return view('okr.kpi.maingoal.create');
     }
 
     /**
@@ -42,9 +44,28 @@ class KpiMaingoalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreKpiMainRequest $request)
     {
-        //
+        $validated = $request->validated();    
+        $validated['user_id'] = auth()->user()->id;
+
+        $result = true;
+        
+        try {
+            DB::transaction(function () use ($validated) {
+                KpiMaingoal::create($validated);
+            });
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result
+            ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'created'])
+            : __('label.global.response.error.general', ['action' => 'creating']);
+        
+        return redirect()->route('performance.okr.kpi-maingoals.index')->with($resultStatus, $msg);
     }
 
     /**
