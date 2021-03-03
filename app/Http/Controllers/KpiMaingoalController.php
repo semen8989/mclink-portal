@@ -19,10 +19,10 @@ class KpiMaingoalController extends Controller
      */
     public function index(Request $request, KpiMaingoalDataTable $dataTable)
     {
-        $dateFilter = KpiMaingoal::select('created_at')
+        $dateFilter = KpiMaingoal::selectRaw("DATE_FORMAT(created_at, '%Y') AS year")
             ->where('user_id', auth()->user()->id)
-            ->groupBy('created_at')
-            ->orderBy('created_at', 'desc')
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
             ->get();
 
         return $dataTable->render('okr.kpi.maingoal.index', compact('dateFilter'));
