@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use App\Models\Event;
 use App\Models\Company;
+use App\Models\Holiday;
 use Illuminate\Http\Request;
 use Acaronlex\LaravelCalendar\Calendar;
 
@@ -35,8 +36,7 @@ class HrCalendarController extends Controller
                 'id' => $row->id,
                 'title' => $row->title,
                 'start' => $row->start_date,
-                'end' => $row->end_date,
-                'color' => $row->color,
+                'end' => $row->end_date
             ];
         }
 
@@ -74,6 +74,21 @@ class HrCalendarController extends Controller
             'end'       => date('Y-m-d', strtotime($event->end_date)),
             'note'      => $event->note
         ];
+
+        echo json_encode($data);
+    }
+    //Holidays
+    public function fetch_holidays(){
+        $data = [];
+        $result = Holiday::all();
+        foreach($result as $row) {
+            $data[] = [
+                'id' => $row->id,
+                'title' => $row->event_name,
+                'start' => date('Y-m-d', strtotime($row->start_date)),
+                'end' => date('Y-m-d', strtotime($row->end_date)),
+            ];
+        }
 
         echo json_encode($data);
     }

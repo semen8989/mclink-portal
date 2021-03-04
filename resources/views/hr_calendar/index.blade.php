@@ -146,7 +146,16 @@
                     headerToolbar:{
                         end:"today prev,next dayGridMonth timeGridWeek timeGridDay"
                     },
-                    events: "{{ route('hr_calendar.fetch_events') }}",
+                    eventSources: [
+                        {
+                            url: '{{ route("hr_calendar.fetch_events") }}', // use the `url` property
+                            color: '#355C7D',    // an option!
+                        },
+                        {
+                            url: '{{ route("hr_calendar.fetch_holidays") }}', // use the `url` property
+                            color: '#2D95BF',    // an option!
+                        }
+                    ],
                     select:function(selectionInfo){
                         $('#createEvent_modal').modal('show');
                         $('#start_date').val(FullCalendar.formatDate(selectionInfo.start));
