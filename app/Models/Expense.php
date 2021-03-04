@@ -15,7 +15,7 @@ class Expense extends Model
         'purchase_date',
         'amount',
         'company_id',
-        'user_id',
+        'employee_id',
         'bill_copy',
         'remarks',
         'status'
@@ -30,6 +30,6 @@ class Expense extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'employee_id');
     }
 }

@@ -37,10 +37,10 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="location_head">{{ __('label.location_head') }}</label>
-                    <select class="form-control" name="user_id" id="user_id">
+                    <select class="form-control" name="location_head" id="location_head">
                         <option></option>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ $location->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" {{ $location->location_head == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -101,7 +101,7 @@
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
-            $('#user_id').select2({
+            $('#location_head').select2({
                 theme: "bootstrap",
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
@@ -126,10 +126,10 @@
                     },
                     dataType: 'json',
                     success: function(result){
-                        $('#user_id').empty();
-                        $('#user_id').append('<option selected disabled>{{ __("label.choose") }}</option>');
+                        $('#location_head').empty();
+                        $('#location_head').append('<option selected disabled>{{ __("label.choose") }}</option>');
                         $.each(result, function (key, value) {
-                            $('#user_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                            $('#location_head').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
                     }
                 })

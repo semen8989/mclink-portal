@@ -42,8 +42,9 @@ class LocationController extends Controller
      */
     public function store(StoreLocationRequest $request)
     {
-        $request['added_by'] = auth()->user()->id;
+        $request['current_user_id'] = auth()->user()->id;
         Location::create($request->all());
+        
         return session()->flash('success', 'Location created successfully.');
     }
 
@@ -83,6 +84,7 @@ class LocationController extends Controller
     public function update(StoreLocationRequest $request, Location $location)
     {
         $location->update($request->all());
+        
         return session()->flash('success', 'Location updated successfully.');
     }
 
