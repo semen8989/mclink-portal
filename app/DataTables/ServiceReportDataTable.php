@@ -65,9 +65,7 @@ class ServiceReportDataTable extends DataTable
      */
     public function query(ServiceReport $model)
     {
-        return $model->newQuery()
-            ->select('id', 'csr_no', 'service_start', 'status', 'customer_id')
-            ->with(['customer:id,name']);
+        return $model->newQuery()->with(['customer:id,name']);
     }
 
     /**
