@@ -418,11 +418,11 @@ return [
                 'subject' => 'Service Report Acknowledgment Form | :company'
             ],
             'confirm' => [
-                'message' => 'The customer already submitted the signed service report form. You can click the button to view the details.',
+                'message' => 'An email was sent to the customer containing the link to the acknowledgement form. You can click the button to view the status of the service report.',
                 'button' => [
-                    'view_service_report' => 'View Service Report Details'
+                    'view_status' => 'View Service Report Status'
                 ],
-                'subject' => 'Service Report Customer Acknowledgement | :company'
+                'subject' => 'Acknowledgement Form Email Confirmation | :company'
             ]
         ],
         'form' => [
