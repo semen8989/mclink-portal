@@ -42,8 +42,25 @@ class LocationController extends Controller
      */
     public function store(StoreLocationRequest $request)
     {
-        $request['added_by'] = auth()->user()->id;
-        Location::create($request->all());
+        $validated = $request->validated();
+
+        $location = new Location;
+        $location->company_id = $validated['company_id'];
+        $location->location_name = $validated['location_name'];
+        $location->email = $validated['email'];
+        $location->phone = $validated['phone'];
+        $location->fax_num = $validated['fax_num'];
+        $location->location_head = $validated['location_head'];
+        $location->address_1 = $validated['address_1'];
+        $location->address_2 = $validated['address_2'];
+        $location->city = $validated['city'];
+        $location->state = $validated['state'];
+        $location->zip_code = $validated['zip_code'];
+        $location->country = $validated['country'];
+        $location->current_user_id = auth()->user()->id;
+        
+        $location->save();
+        
         return session()->flash('success', 'Location created successfully.');
     }
 
@@ -82,7 +99,25 @@ class LocationController extends Controller
      */
     public function update(StoreLocationRequest $request, Location $location)
     {
-        $location->update($request->all());
+        $validated = $request->validated();
+
+        $location = new Location;
+        $location->company_id = $validated['company_id'];
+        $location->location_name = $validated['location_name'];
+        $location->email = $validated['email'];
+        $location->phone = $validated['phone'];
+        $location->fax_num = $validated['fax_num'];
+        $location->location_head = $validated['location_head'];
+        $location->address_1 = $validated['address_1'];
+        $location->address_2 = $validated['address_2'];
+        $location->city = $validated['city'];
+        $location->state = $validated['state'];
+        $location->zip_code = $validated['zip_code'];
+        $location->country = $validated['country'];
+        $location->current_user_id = auth()->user()->id;
+
+        $location->save();
+        
         return session()->flash('success', 'Location updated successfully.');
     }
 

@@ -37,13 +37,13 @@ class LocationDataTable extends DataTable
             })->editColumn('company.company_name', function ($request) {
                 return $request->company->company_name;
             })->editColumn('user.name', function ($request) {
-                return $request->user->where('id',$request->user_id)->first()->name;
+                return $request->user->where('id',$request->location_head)->first()->name;
             })->editColumn('city', function ($request) {
                 return $request->city;
             })->editColumn('country', function ($request) {
                 return $request->country;
             })->editColumn('user.name', function ($request) {
-                return $request->user->where('id',$request->added_by)->first()->name;
+                return $request->user->where('id',$request->current_user_id)->first()->name;
             });
     }
 
