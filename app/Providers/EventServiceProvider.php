@@ -5,7 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use App\Events\AcknowledgementFormSent;
+use App\Listeners\SendCustomerCopyMail;
+use App\Events\AcknowledgementFormSigned;
 use App\Listeners\SendAcknowledgementFormMail;
+use App\Listeners\SendCustomerConfirmationMail;
 use App\Listeners\SendAcknowledgementFormConfirmationMail;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -24,6 +27,10 @@ class EventServiceProvider extends ServiceProvider
         AcknowledgementFormSent::class => [
             SendAcknowledgementFormMail::class,
             SendAcknowledgementFormConfirmationMail::class,
+        ],
+        AcknowledgementFormSigned::class => [
+            SendCustomerCopyMail::class,
+            SendCustomerConfirmationMail::class,
         ],
     ];
 
