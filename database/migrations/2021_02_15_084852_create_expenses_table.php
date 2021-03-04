@@ -27,7 +27,7 @@ class CreateExpensesTable extends Migration
             $table->date('purchase_date');
             $table->double('amount');
             $table->integer('company_id');
-            $table->string('user_id');
+            $table->integer('employee_id');
             $table->string('bill_copy')->nullable();
             $table->text('remarks')->nullable();
             $table->string('status')->default('pending');

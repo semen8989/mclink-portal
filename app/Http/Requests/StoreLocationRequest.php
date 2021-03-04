@@ -26,17 +26,10 @@ class StoreLocationRequest extends FormRequest
         return [
             'company_id' => 'required',
             'location_name' => 'required|string|max:50',
-            'user_id' => 'required',
             'email' => 'nullable|email:filter',
+            'location_head' => 'required',
             'city' => 'required',
             'country' => 'required',
-        ];
-    }
-    
-    public function messages(){
-        return [
-            'user_id.required' => 'The location head field is required',
-            'company_id.required' => 'The company field is required'
         ];
     }
 }

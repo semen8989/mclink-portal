@@ -32,10 +32,4 @@ class StoreHolidayRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'company_id.required' => 'The company field is required.'
-        ];
-    }
 }

@@ -22,7 +22,7 @@ class ExpenseSeeder extends Seeder
                 'purchase_date' => '2021-03-16',
                 'amount' => '200',
                 'company_id' => 1,
-                'user_id' => 1,
+                'employee_id' => 1,
                 'remarks' => 'no remarks'
             ]
         ];

@@ -16,18 +16,18 @@ class Location extends Model
         'email',
         'phone',
         'fax_num',
-        'user_id',
+        'location_head',
         'address_1',
         'address_2',
         'city',
         'state',
         'zip_code',
         'country',
-        'added_by'
+        'current_user_id'
     ];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'location_head');
     }
 
     public function company(){

@@ -35,8 +35,8 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="user_id">{{ __('label.purchase_by') }}</label>
-                <select id="user_id" name="user_id" class="form-control custom-select">
+                <label for="employee_id">{{ __('label.purchase_by') }}</label>
+                <select id="employee_id" name="employee_id" class="form-control custom-select">
                     <option></option>
                 </select>
             </div>
@@ -110,7 +110,7 @@
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
-            $('#user_id').select2({
+            $('#employee_id').select2({
                 theme: "bootstrap",
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
@@ -130,10 +130,10 @@
                     },
                     dataType: 'json',
                     success: function(result){
-                        $('#user_id').empty();
-                        $('#user_id').append('<option></option>');
+                        $('#employee_id').empty();
+                        $('#employee_id').append('<option></option>');
                         $.each(result, function (key, value) {
-                            $('#user_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                            $('#employee_id').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
                     }
                 })

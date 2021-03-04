@@ -30,11 +30,4 @@ class StoreDesignationRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'company_id.required' => 'The company field is required.',
-            'department_id.required' => 'The department field is required.'
-        ];
-    }
 }
