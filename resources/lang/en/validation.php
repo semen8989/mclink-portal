@@ -173,6 +173,7 @@ return [
         'company_id' => 'company',
         'department_id' => 'department',
         'expense_type_id' => 'expense type',
+        'employee_id' => 'employee'
     ],
 
 ];

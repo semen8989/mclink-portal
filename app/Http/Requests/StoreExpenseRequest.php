@@ -28,7 +28,7 @@ class StoreExpenseRequest extends FormRequest
             'purchase_date' => 'required',
             'amount' => 'required',
             'company_id' => 'required',
-            'user_id' => 'required',
+            'employee_id' => 'required',
             'bill_copy' => 'image|nullable|max:1000'
         ];
     }
