@@ -1,12 +1,12 @@
 @component('mail::message')
-# Introduction
+# {{ __('label.global.email.greeting') . ' ' . $serviceReport->user->name }},
 
-The body of your message.
+{{ __('label.service_report.email.confirm.message') }}
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => route('service.form.show', [$serviceReport->csr_no])])
+{{ __('label.service_report.email.confirm.button.view_status') }}
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+{{ __('label.global.email.closing') }},<br>
+{{ env('MAIL_SERVICE_REPORT_COMPANY', config('app.name')) }}
 @endcomponent
