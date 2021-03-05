@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KpiRating;
 use App\Models\KpiMaingoal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,9 +86,13 @@ class KpiMaingoalController extends Controller
      * @param  \App\Models\KpiMaingoal  $kpiMaingoal
      * @return \Illuminate\Http\Response
      */
-    public function edit(KpiMaingoal $kpiMaingoal)
+    public function edit(KpiMaingoal $kpiMain)
     {
-        //
+        $kpiMain->load(['kpiratings' => function ($query) {
+            $query->orderBy('month', 'asc')->limit(1);
+        }]);
+
+        return view('okr.kpi.maingoal.edit', compact('kpiMain'));
     }
 
     /**
@@ -99,7 +104,7 @@ class KpiMaingoalController extends Controller
      */
     public function update(Request $request, KpiMaingoal $kpiMaingoal)
     {
-        //
+       $kpiMain = KpiMaingoal::updateOrCreate($request->except('_token', '_method'));
     }
 
     /**
@@ -119,5 +124,21 @@ class KpiMaingoalController extends Controller
             : __('label.global.response.error.general', ['action' => 'deleting']);
 
         return back()->with($resultStatus, $msg);
+    }
+
+    /**
+     * Fetch a rating based on the main kpi
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\KpiMaingoal  $kpiMain
+     * @return \Illuminate\Http\Response
+     */
+    public function getRating(Request $request, KpiMaingoal $kpiMain)
+    {
+        $kpiMain->load(['kpiratings' => function ($query) use ($request) {
+            $query->where('month', $request->month);
+        }]);
+
+        return response()->json($kpiMain->kpiratings);
     }
 }
