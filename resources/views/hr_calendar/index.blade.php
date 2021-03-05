@@ -11,10 +11,9 @@
 @include('components.hr-calendar.create_modal')
 <!-- View modals -->
 @include('components.hr-calendar.show_modal')
-
 <!-- Popover Content -->
-<div id="popover-content">
-    <a class="btn btn-sm btn-info">Events</a>
+<div id="popover-content" style="display: none">
+    <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#createEvent_modal">Events</a>
     <a class="btn btn-sm btn-info">Holidays</a>
 </div>
 
@@ -97,6 +96,7 @@
 
                     },
                     dateClick: function(dateInfo){
+                        $("#popover-content").removeAttr("style");
                         $(dateInfo.dayEl).popover({
                             html: true,
                             trigger: 'click',
@@ -106,9 +106,10 @@
                                 // for each opened popover...hide it
                                 $("#calendar .popover.show").popover('hide');
                                 //                   ^^^^^
-                                return $("#popover-content").html();
+                                return $("#popover-content");
                             }
-                        }).popover('show');
+                        })
+                        $(dateInfo.dayEl).popover('toggle');
                     }
                     
                 },
@@ -145,6 +146,11 @@
                     }
                 })
             });
+
+            $('body').on('shown.bs.modal', function (e) {
+                // for each opened popover...hide it
+                $("#calendar .popover.show").hide();
+            })
         });
 
     </script>
