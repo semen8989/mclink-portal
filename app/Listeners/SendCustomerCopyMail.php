@@ -36,11 +36,16 @@ class SendCustomerCopyMail
             Mail::to($email)
                 ->queue(new ServiceReportCopyReceivedMail($serviceReport));
 
-            Log::info('The Service Report Customer Copy email to ' . $email .
-                ' was successfully sent.');
+            Log::info(__('label.service_report.email.log.general.success', [
+                'subject' => __('label.service_report.email.receipt.plain_subject'), 
+                'email' => $email
+            ]));
         } catch(\Exception $e) {
-            Log::warning('There is a problem in sending the Service Report Customer Copy email to ' . 
-                $email . '. The error given was: ' . $e->getMessage());
+            Log::warning(__('label.service_report.email.log.general.fail', [
+                'subject' => __('label.service_report.email.receipt.plain_subject'), 
+                'email' => $email,
+                'error' => $e->getMessage()
+            ]));
         }   
     }
 }

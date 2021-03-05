@@ -36,11 +36,16 @@ class SendAcknowledgementFormConfirmationMail
             Mail::to($email)
                 ->queue(new ServiceFormSentConfirmationMail($serviceReport));
 
-            Log::info('The Acknowledgement Form Email Confirmation email to ' . $email .
-                ' was successfully sent.');
+            Log::info(__('label.service_report.email.log.general.success', [
+                'subject' => __('label.service_report.email.confirm.plain_subject'), 
+                'email' => $email
+            ]));
         } catch(\Exception $e) {
-            Log::warning('There is a problem in sending the Acknowledgement Form Email Confirmation email to ' . 
-                $email . '. The error given was: ' . $e->getMessage());
+            Log::warning(__('label.service_report.email.log.general.fail', [
+                'subject' => __('label.service_report.email.confirm.plain_subject'), 
+                'email' => $email,
+                'error' => $e->getMessage()
+            ]));
         }
     }
 }

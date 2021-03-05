@@ -38,12 +38,16 @@ class SendAcknowledgementFormMail
             Mail::to($email)
             ->queue(new ServiceFormSent($serviceReport));
 
-            Log::info('The Service Report Acknowledgment Form email to ' . $email .
-                ' was successfully sent.');
+            Log::info(__('label.service_report.email.log.general.success', [
+                'subject' => __('label.service_report.email.sent.plain_subject'), 
+                'email' => $email
+            ]));
         } catch(\Exception $e) {
-            Log::warning('There is a problem in sending the Service Report Acknowledgment Form email to ' . 
-                $email . '. The error given was: ' . $e->getMessage());
-                
+            Log::warning(__('label.service_report.email.log.general.fail', [
+                'subject' => __('label.service_report.email.sent.plain_subject'), 
+                'email' => $email,
+                'error' => $e->getMessage()
+            ]));
         }
     }
 }
