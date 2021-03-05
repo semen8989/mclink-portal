@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\KpiMaingoalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KpiRatingController;
+use App\Http\Controllers\KpiMaingoalController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AcknowledgementFormController;
 
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', [KpiMaingoalController::class, 'store'])->name('performance.okr.kpi-maingoals.store');
         Route::get('/{kpiMain}', [KpiMaingoalController::class, 'show'])->name('performance.okr.kpi-maingoals.show');
         Route::get('/{kpiMain}/edit', [KpiMaingoalController::class, 'edit'])->name('performance.okr.kpi-maingoals.edit');
+        Route::put('/{kpiMain}', [KpiMaingoalController::class, 'update'])->name('performance.okr.kpi-maingoals.update');
         Route::delete('/{kpiMain}', [KpiMaingoalController::class, 'destroy'])->name('performance.okr.kpi-maingoals.destroy');
     });
 
@@ -57,13 +59,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi.objective.index');
     });
 
-    // Typeahead Routes
+    // Ajax Routes
     Route::prefix('get')->group(function () {
         // Customer Route
         Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
 
         // User Route
         Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+
+        // KPI Main Rating Route
+        Route::get('/kpi-maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpimain.rating');
     }); 
 });
 
