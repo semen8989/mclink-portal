@@ -37,6 +37,6 @@ class AcknowledgmentFormSubmitted extends Mailable
     public function build()
     {
         return $this->markdown('emails.acknowledgement_form.submitted')
-            ->subject(__('label.service_report.email.submitted.subject', ['company' => 'MPS Solutions']));
+            ->subject(__('label.service_report.email.submitted.subject', ['company' => config('app.mps_name')]));
     }
 }
