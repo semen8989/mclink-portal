@@ -18,7 +18,7 @@ class CreateKpiRatingsTable extends Migration
             $table->integer('rating');
             $table->integer('month');
             $table->text('manager_comment')->nullable();
-            $table->tinyInteger('type');
+            $table->morphs('kpi_ratable');
             $table->softDeletes();
             $table->timestamps();
         });
