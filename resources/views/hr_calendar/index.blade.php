@@ -46,7 +46,7 @@
     <script src="{{ asset('plugin/fullcalendar-5.5.1/main.min.js') }}"></script>
     <script>
         var calendar;
-        document.addEventListener('DOMContentLoaded',function(){
+        $(document).ready(function(){
             var calendarEl = document.getElementById('calendar')
             calendar = new FullCalendar.Calendar(calendarEl,{
                     header:{
@@ -96,21 +96,22 @@
 
                     },
                     dateClick: function(dateInfo){
-                        $("#popover-content").removeAttr("style");
                         $(dateInfo.dayEl).popover({
                             html: true,
                             trigger: 'click',
                             title: 'Add Option',
+                            sanitize: false,
                             container: '#calendar',
                             content: function() {
                                 // for each opened popover...hide it
                                 $("#calendar .popover.show").popover('hide');
                                 //                   ^^^^^
-                                return $("#popover-content");
+                                return $("#popover-content").html();
                             }
                         })
                         $(dateInfo.dayEl).popover('toggle');
-                    }
+                    },
+                   
                     
                 },
             );
