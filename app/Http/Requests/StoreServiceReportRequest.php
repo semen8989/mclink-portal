@@ -28,7 +28,7 @@ class StoreServiceReportRequest extends FormRequest
             'date' => 'bail|required|date',
             'newCustomer' => 'exclude_unless:isNewCustomer,true|bail|required',
             'customer' => 'exclude_unless:isNewCustomer,null|bail|required|exists:customers,id',
-            'custEmail' => 'bail|nullable|email:filter|required_if:action,send',
+            'custEmail' => 'bail|nullable|email:filter|required_if:action,sent',
             'address' => 'bail|required',
             'engineerId' => 'bail|required|exists:users,id',
             'ticketReference' => 'bail|nullable',
@@ -38,7 +38,7 @@ class StoreServiceReportRequest extends FormRequest
             'serviceStart' => 'bail|nullable|date|before:serviceEnd',
             'serviceEnd' => 'bail|nullable|date|after:serviceStart',
             'usedItCredit' => 'bail|nullable|multiple_of:0.5',
-            'action' => 'bail|required|in:send,draft',
+            'action' => 'bail|required|in:sent,draft',
         ];
     }
 }

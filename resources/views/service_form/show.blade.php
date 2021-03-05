@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        @if (empty($serviceReport->signed_date) && $serviceReport->status == 'Draft')
+        @if (empty($serviceReport->signed_date) && $serviceReport->status == 'Sent')
             <div class="row">
                 <div class="col-md-12">
                     <p class="guest-form-label font-weight-bold mb-2">{{ __('label.service_report.form.label.acknowledgement_link') }}</p>
@@ -157,7 +157,7 @@
         $('[data-toggle="tooltip"]').tooltip({
             placement: "top",
             trigger: "manual",
-            title: {{ __('label.global.datatable.text.copy_link') }}
+            title: "{{ __('label.global.datatable.text.copy_link') }}"
         });
         
         var btnTooltip = $('.btn-clipboard');

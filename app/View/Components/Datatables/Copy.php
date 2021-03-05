@@ -29,11 +29,11 @@ class Copy extends Component
     public $paramValue;
 
     /**
-     * Check if the status is Signed.
+     * Check if the status is Send.
      *
      * @var boolean
      */
-    public $isSigned;
+    public $isSend;
 
     /**
      * Create a new component instance.
@@ -43,12 +43,12 @@ class Copy extends Component
      * @param  string  $paramValue
      * @return void
      */
-    public function __construct($acknowledgementRouteName, $paramName, $paramValue , $isSigned)
+    public function __construct($acknowledgementRouteName, $paramName, $paramValue , $isSend)
     {
         $this->acknowledgementRouteName = $acknowledgementRouteName;
         $this->paramName = $paramName;
         $this->paramValue = $paramValue;
-        $this->isSigned = $isSigned;
+        $this->isSend = $isSend;
     }
 
     /**

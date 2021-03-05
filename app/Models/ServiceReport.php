@@ -17,7 +17,7 @@ class ServiceReport extends Model
 
     const STATUS = [
         "signed" => 1,
-        "send" => 2,
+        "sent" => 2,
         "draft" => 3,
     ];
 
@@ -48,7 +48,7 @@ class ServiceReport extends Model
      */
     public function setServiceStartAttribute($value)
     {
-        $this->attributes['service_start'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d h:i:s');    
+        $this->attributes['service_start'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d H:i:s');    
     }
 
     /**
@@ -59,7 +59,7 @@ class ServiceReport extends Model
      */
     public function setServiceEndAttribute($value)
     {
-        $this->attributes['service_end'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d h:i:s');
+        $this->attributes['service_end'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d H:i:s');
     }
 
     /**

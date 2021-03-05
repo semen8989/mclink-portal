@@ -105,7 +105,7 @@
                         <div class="form-group col-md-4 offset-md-1">
                             <label class="col-form-label font-weight-bold" for="signedCust">{{ __('label.service_report.form.label.name_designation') }} <span class="font-weight-bold">*</span></label>
                             <div class="controls">
-                                <input class="form-control" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" {{ old('isAcknowledged') ? '' : 'disabled' }}>                   
+                                <input class="form-control @error('signedCust') is-invalid @enderror" id="signedCust" name="signedCust"  type="text" value="{{ old('signedCust') }}" {{ old('isAcknowledged') ? '' : 'disabled' }}>                   
                                 @error('signedCust')
                                     <p class="help-block text-danger">{{ $message }}</p>
                                 @enderror
@@ -176,6 +176,7 @@
             ctx.strokeStyle = "#222222";
             ctx.lineWidth = 4;
             
+            var isPristine = true;
             var drawing = false;
             var mousePos = {
                 x: 0,
@@ -193,10 +194,14 @@
             }, false);
 
             canvas.addEventListener("mousemove", function(e) {
+                if (drawing) {
+                    isPristine = false;
+                }
                 mousePos = getMousePos(canvas, e);
             }, false);
 
             canvas.addEventListener("touchstart", function(e) {
+                isPristine = false;
                 mousePos = getTouchPos(canvas, e);
                 var touch = e.touches[0];
                 var me = new MouseEvent("mousedown", {
@@ -269,7 +274,12 @@
 
             $('#acknowledgementForm').submit(function(e) {
                 var sigData = $('#signatureDataUrl');
-                sigData.val(canvas.toDataURL());
+
+                if (!isPristine) {
+                    sigData.val(canvas.toDataURL());
+                } else {
+                    sigData.val('');
+                }      
             }); 
 
             $('#isAcknowledged').change(function() {
