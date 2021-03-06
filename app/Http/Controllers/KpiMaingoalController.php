@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KpiRating;
 use App\Models\KpiMaingoal;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\KpiMaingoalDataTable;
 use App\Http\Requests\StoreKpiMainRequest;
+use App\Http\Requests\UpdateKpiMainRequest;
+use App\Models\KpiRating;
 
 class KpiMaingoalController extends Controller
 {
@@ -89,7 +91,7 @@ class KpiMaingoalController extends Controller
     public function edit(KpiMaingoal $kpiMain)
     {
         $kpiMain->load(['kpiratings' => function ($query) {
-            $query->orderBy('month', 'asc')->limit(1);
+            $query->where('month', date('n'));
         }]);
 
         return view('okr.kpi.maingoal.edit', compact('kpiMain'));
@@ -102,9 +104,40 @@ class KpiMaingoalController extends Controller
      * @param  \App\Models\KpiMaingoal  $kpiMaingoal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KpiMaingoal $kpiMaingoal)
+    public function update(UpdateKpiMainRequest $request, KpiMaingoal $kpiMain)
     {
-       $kpiMain = KpiMaingoal::updateOrCreate($request->except('_token', '_method'));
+        $validated = $request->validated();
+        
+        $kpiMain->load(['kpiratings' => function ($query) use ($validated) {
+            $query->where('month', $validated['kpi_ratings']['month']);
+        }]);
+
+        $kpiRating = $kpiMain->kpiratings->isNotEmpty() 
+            ? $kpiMain->kpiratings[0] 
+            : false;
+
+        $result = true;
+        
+        try {
+            DB::transaction(function () use ($kpiMain, $kpiRating, $validated) {           
+                $kpiMain->update(Arr::except($validated, ['kpi_ratings']));
+
+                $kpiMain->kpiratings[0]->updateOrCreate(
+                    ['kpi_ratable_type' => $kpiRating->kpi_ratable_type, 'kpi_ratable_id' => $kpiRating->kpi_ratable_id, 'month' => $validated['kpi_ratings']['month']],
+                    ['rating' => $validated['kpi_ratings']['rating'], 'manager_comment' => $validated['kpi_ratings']['manager_comment']]      
+                );
+            });
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result 
+            ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'updated'])
+            : __('label.global.response.error.general', ['action' => 'updating']);
+
+        return redirect()->route('performance.okr.kpi-maingoals.index')->with($resultStatus, $msg);
     }
 
     /**

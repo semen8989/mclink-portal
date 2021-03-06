@@ -40,12 +40,13 @@
           }
         });
       });
-         
+
       @if(!empty($kpiMain->kpiratings))
-        $('#month').val('{{ $kpiMain->kpiratings[0]->month }}');
-        $('#rating').val('{{ $kpiMain->kpiratings[0]->rating }}');
+        $('#month').val('{{ old("kpi_ratings.month", $kpiMain->kpiratings[0]->month) }}');
+        $('#rating').val('{{ old("kpi_ratings.rating", $kpiMain->kpiratings[0]->rating) }}');
       @else
-        $('#month').val('{{ date("n") }}');
+        $('#month').val('{{ old("kpi_ratings.month", date("n")) }}');
+        $('#rating').val('{{ old("kpi_ratings.rating") }}');
       @endif
 
       $('#kpiMainForm').submit(function (event) {
