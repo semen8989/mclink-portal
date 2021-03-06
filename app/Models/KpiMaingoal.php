@@ -19,7 +19,13 @@ class KpiMaingoal extends Model
 
     protected $fillable = [
         'main_kpi',
-        'user_id'
+        'user_id',
+        'q1',
+        'q2',
+        'q3',
+        'q4',
+        'feedback',
+        'status'
     ];
 
     /**
