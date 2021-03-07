@@ -18,9 +18,9 @@
     <meta name="keyword" content="mclink-portal">
     <title>CoreUI Free Bootstrap Admin Template</title>
     <!-- Main styles for this application-->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
      <!-- Custom styles for this application-->
-     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
     <!-- Page specific style-->
     @stack('stylesheet')
   </head>
