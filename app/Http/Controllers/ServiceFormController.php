@@ -9,7 +9,9 @@ use App\Mail\ServiceFormSent;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Events\AcknowledgementFormSent;
 use App\DataTables\ServiceReportDataTable;
+use App\Mail\ServiceFormSentConfirmationMail;
 use App\Http\Requests\StoreServiceReportRequest;
 use App\Http\Requests\UpdateServiceReportRequest;
 
@@ -102,7 +104,7 @@ class ServiceFormController extends Controller
         }
 
         if ($result && ServiceReport::STATUS[$validated['action']] == 2) {
-            Mail::to($validated['custEmail'])->queue(new ServiceFormSent($serviceReport));
+            AcknowledgementFormSent::dispatch($serviceReport);
         }
 
         $resultStatus = $result ? 'success' : 'error';
@@ -172,7 +174,7 @@ class ServiceFormController extends Controller
         }
 
         if ($result && $validated['status'] == 2) {
-            Mail::to($validated['custEmail'])->queue(new ServiceFormSent($serviceReport));
+            AcknowledgementFormSent::dispatch($serviceReport);
         }
 
         $resultStatus = $result ? 'success' : 'error';

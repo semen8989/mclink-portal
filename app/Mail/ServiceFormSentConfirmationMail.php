@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AcknowledgmentFormSubmitted extends Mailable
+class ServiceFormSentConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,7 +18,7 @@ class AcknowledgmentFormSubmitted extends Mailable
      * @var \App\Models\ServiceReport
      */
     public $serviceReport;
-    
+
     /**
      * Create a new message instance.
      *
@@ -36,7 +36,7 @@ class AcknowledgmentFormSubmitted extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.acknowledgement_form.submitted')
-            ->subject(__('label.service_report.email.submitted.subject', ['company' => config('app.mps_name')]));
+        return $this->markdown('emails.service_form.confirm')
+            ->subject(__('label.service_report.email.confirm.subject', ['company' => config('app.mps_name')]));
     }
 }
