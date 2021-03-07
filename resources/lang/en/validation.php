@@ -136,8 +136,9 @@ return [
             'rule-name' => 'custom-message',
         ],
         'custEmail' => [
-            'required_if' => 'The :attribute field is required when sending to a customer.',
+            'required_if' => 'The :attribute field is required when sending to a customer.', 
         ],
+
     ],
 
     /*
@@ -167,7 +168,12 @@ return [
         'usedItCredit' => 'used it credit',
         // acknowledgement fields
         'signedCust' => 'customer name or designation',
-        'signatureDataUrl' => 'customer signature'
+        'signatureDataUrl' => 'customer signature',
+        // fields under organization modules
+        'company_id' => 'company',
+        'department_id' => 'department',
+        'expense_type_id' => 'expense type',
+        'employee_id' => 'employee'
     ],
 
 ];
