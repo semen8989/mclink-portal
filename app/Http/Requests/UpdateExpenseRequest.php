@@ -28,18 +28,10 @@ class UpdateExpenseRequest extends FormRequest
             'purchase_date' => 'required',
             'amount' => 'required',
             'company_id' => 'required',
-            'user_id' => 'required',
+            'employee_id' => 'required',
             'status' => 'required',
             'bill_copy' => 'image|nullable|max:1000'
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'expense_type_id.required' => 'The expense type field is required.',
-            'company_id.required' => 'The company field is required.',
-            'user_id.required' => 'The employee field is required.'
-        ];
-    }
 }

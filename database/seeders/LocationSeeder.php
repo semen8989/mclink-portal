@@ -21,11 +21,11 @@ class LocationSeeder extends Seeder
                 'company_id' => 1,
                 'location_name' => 'Sample Location',
                 'email' => 'sample@mclinkgroup.com',
-                'user_id' => 1,
+                'location_head' => 1,
                 'city' => 'Pasig',
                 'country' => 'Philippines',
                 'zip_code' => '1605',
-                'added_by' => 1,
+                'current_user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

@@ -20,14 +20,14 @@ class CreateLocationsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('fax_num')->nullable();
-            $table->integer('user_id');
+            $table->integer('location_head');
             $table->string('address_1')->nullable();
             $table->string('address_2')->nullable();
             $table->string('city');
             $table->string('state')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('country');
-            $table->string('added_by');
+            $table->integer('current_user_id');
             $table->softDeletes();
             $table->timestamps();
         });
