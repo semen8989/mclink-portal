@@ -58,7 +58,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form method="POST" id="createEvent_form" action="{{ route('hr_calendar.store_holiday') }}">
+        <form method="POST" id="createHoliday_form" action="{{ route('hr_calendar.store_holiday') }}">
             @csrf
             <div class="modal-body">
                 <div class="form-group">
@@ -76,11 +76,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="start_date">Start Date</label>
-                        <input type="text" class="form-control" name="h_start_date" id="h_start_date">
+                        <input type="text" class="form-control" name="start_date" id="start_date">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="end_date">End Date</label>
-                        <input type="text" class="form-control" name="h_end_date" id="h_end_date">
+                        <input type="text" class="form-control" name="end_date" id="end_date">
                     </div>
                 </div>
                 <div class="form-group">

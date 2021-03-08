@@ -7,16 +7,17 @@
         <div id="calendar"></div>
     </div>
 </div>
-<!-- Create modals -->
-@include('components.hr-calendar.create_modal')
-<!-- View modals -->
-@include('components.hr-calendar.show_modal')
 <!-- Popover Content -->
 <div id="popover-content" style="display: none">
     <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#createEvent_modal">Events</a>
     <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#createHoliday_modal">Holidays</a>
 </div>
-
+<!-- Input hidden exact date -->
+<input type="hidden" name="exact_date" id="exact_date">
+<!-- Create modals -->
+@include('components.hr-calendar.create_modal')
+<!-- View modals -->
+@include('components.hr-calendar.show_modal')
 @stop
 
 @push('stylesheet')
@@ -45,7 +46,10 @@
 @push('scripts')
     <script src="{{ asset('plugin/fullcalendar-5.5.1/main.min.js') }}"></script>
     <script>
+        //Global Variables
         var calendar;
+        var form;
+        // A $( document ).ready() block.
         $(document).ready(function(){
             var calendarEl = document.getElementById('calendar')
             calendar = new FullCalendar.Calendar(calendarEl,{
@@ -96,6 +100,7 @@
 
                     },
                     dateClick: function(dateInfo){
+                        $('#exact_date').val(dateInfo.dateStr);
                         $(dateInfo.dayEl).popover({
                             html: true,
                             trigger: 'click',
@@ -110,6 +115,7 @@
                             }
                         })
                         $(dateInfo.dayEl).popover('show');
+                        $('#exact_date').val(dateInfo.dateStr);
                     },
                    
                     
@@ -117,78 +123,51 @@
             );
             calendar.render();
 
-            $('#createEvent_form').submit(function (e){
-                e.preventDefault();
-
-                var url = $(this).attr('action');
-                var method = $(this).attr('method');
-                var data = $(this).serialize();
-
-                $.ajax({
-                    url: url,
-                    data: data,
-                    method: method,
-                    dataType: 'json',
-                    encode: true,
-                    success: function(data){
-                        if(data.success == true){
-                            //remove any form data
-                            $('#createEvent_form').trigger("reset");
-                            //close model
-                            $('#createEvent_modal').modal('hide');
-                            //Alert
-                            alert(data.message);
-                            //refetch events
-                            calendar.refetchEvents();
-                        }else if(data.success == false){
-                            //Alert
-                            alert(data.message);
-                        }
-                    }
-                })
-            });
-
-            $('#createHoliday_form').submit(function (e){
-                e.preventDefault();
-
-                var url = $(this).attr('action');
-                var method = $(this).attr('method');
-                var data = $(this).serialize();
-
-                $.ajax({
-                    url: url,
-                    data: data,
-                    method: method,
-                    dataType: 'json',
-                    encode: true,
-                    success: function(data){
-                        if(data.success == true){
-                            //remove any form data
-                            $('#createHoliday_form').trigger("reset");
-                            //close model
-                            $('#createEvent_modal').modal('hide');
-                            //Alert
-                            alert(data.message);
-                            //refetch events
-                            calendar.refetchEvents();
-                        }else if(data.success == false){
-                            //Alert
-                            alert(data.message);
-                        }
-                    }
-                })
-            });
-
             $('div.modal').on('shown.bs.modal', function (e) {
                 // Remove previous popover
                 $('#calendar .popover').remove();
-                //Get Id
-                var id = $(this).attr('id');
-                console.log(id);
+                //Initialize chosen date
+                var date = $('#exact_date').val();
+                //Fill start and end date fields on shown modal
+                $(this).find('input[id="start_date"]').val(date);
+                $(this).find('input[id="end_date"]').val(date);
+                //Initialize modal id and form id
+                modal = $(this).attr('id');
+                form = $(this).find('form').attr('id');
+                //Submit form
+                $('#'+form).submit(function (e){
+                    e.preventDefault();
+                    
+                    var url = $(this).attr('action');
+                    var method = $(this).attr('method');
+                    var data = $(this).serialize();
+
+                    $.ajax({
+                        url: url,
+                        data: data,
+                        method: method,
+                        dataType: 'json',
+                        encode: true,
+                        success: function(data){
+                            if(data.success == true){
+                                //Alert
+                                alert(data.message);
+                                //remove any form data
+                                $('#'+form).trigger("reset");
+                                //close modal
+                                $('#'+modal).modal('hide');
+                                $('#'+modal).trigger('click');
+                                //refetch events
+                                calendar.refetchEvents();
+                            }else if(data.success == false){
+                                //Alert
+                                alert(data.message);
+                            }
+                        }
+                    })
+                });
             })
 
-
         });
-
     </script>
 @endpush

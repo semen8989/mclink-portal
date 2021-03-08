@@ -97,8 +97,8 @@ class HrCalendarController extends Controller
         $insert = [
             'company_id'  => $request->company_id,
             'event_name'  => $request->event_name,
-            'start_date'  => date('Y-m-d', strtotime($request->h_start_date)),
-            'end_date'    => date('Y-m-d', strtotime($request->h_end_date)),
+            'start_date'  => date('Y-m-d', strtotime($request->start_date)),
+            'end_date'    => date('Y-m-d', strtotime($request->end_date)),
             'description' => $request->description,
             'status'      => $request->status
         ];
