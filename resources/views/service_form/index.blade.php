@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+    <div class="card-header">{{ __('label.mps_service_report') }}</div>
     <div class="card-body">
         {!! $dataTable->table() !!}
     </div>

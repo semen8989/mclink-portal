@@ -13,7 +13,7 @@ class SocialiteController extends Controller
     public function index()
     {
         if (auth()->check()) {
-            return redirect('/');
+            return redirect()->route('dashboard');
         }
         return Socialite::driver('google')->redirect();
     }
@@ -27,7 +27,7 @@ class SocialiteController extends Controller
         if ($users) {
             //if found redirect to home
             Auth::login($users);
-            return redirect('/');
+            return redirect()->route('home');
         } else {
             //create new user
             $user = User::create([
@@ -35,13 +35,14 @@ class SocialiteController extends Controller
                 'email' => $userGoogle->getEmail(),
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
+                'avatar' => $userGoogle->getAvatar()
             ]);
             //assign role
             $user->assignRole('Employee');
             //sign in user
             Auth::login($user);
             //redirect to home
-            return redirect('/');
+            return redirect()->route('home');
         }
     }
 }

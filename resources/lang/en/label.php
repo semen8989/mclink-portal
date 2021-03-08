@@ -343,7 +343,10 @@ return [
     'work_improvement_ideas' => 'Work Improvement Ideas',
     'xin_gtax' => 'Tax Number / EIN',
     'zip_code' => 'Zip Code',
-    'error' => 'Error',
+    'mps_service_report' => 'MPS Service Report',
+    'logout' => 'Log Out',
+    'settings' => 'Settings',
+    'report_problem' => 'Report Problem',
     'global' => [
         'text' => [
             'na' => 'N/A',
@@ -440,7 +443,7 @@ return [
                 'title' => 'Service Report',
                 'tel' => 'Tel',
                 'fax' => 'Fax',
-                'main' => 'CUSTOMER SERVICE REPORT',
+                'main' => 'Customer Service Report',
                 'acknowledgement' => 'CUSTOMER ACKNOWLEDGEMENT',
             ],
             'label' => [
