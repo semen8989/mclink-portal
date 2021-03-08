@@ -5,13 +5,24 @@
   @csrf
   @method('PUT')
 
-  <h5 class="card-header font-weight-bold text-center">KPI MAIN GOALS</h5>
+  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_main.form.header.main') }}</h5>
   <div class="card-body">
 
     <x-okr.kpi.main.form :kpiMain="$kpiMain"/>
 
-    <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" type="submit">Update</button>
+    <div class="row float-right mb-4 mt-2 mr-1">
+      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('performance.okr.kpi-maingoals.index') }}">
+        <svg class="c-icon">
+          <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
+        </svg>
+        {{ __('label.global.form.button.back') }}
+      </a>
+      <button class="btn btn-success font-weight-bold" type="submit">
+        <svg class="c-icon">
+          <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-reload') }}"></use>
+        </svg>
+        {{ __('label.global.form.button.update') }}
+      </button>
     </div>
 
   </div>
@@ -41,7 +52,7 @@
         });
       });
 
-      @if(!empty($kpiMain->kpiratings))
+      @if($kpiMain->kpiratings->isNotEmpty())
         $('#month').val('{{ old("kpi_ratings.month", $kpiMain->kpiratings[0]->month) }}');
         $('#rating').val('{{ old("kpi_ratings.rating", $kpiMain->kpiratings[0]->rating) }}');
       @else

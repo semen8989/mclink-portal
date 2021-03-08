@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="form-group col-md-3">
-                    <label class="col-form-label" for="filterYear">Select Year</label>
+                    <label class="col-form-label" for="filterYear">{{ __('label.kpi_main.form.label.select_year') }}</label>
                     <div class="controls">
                         <select class="form-control custom-select" id="filterYear">
                             @foreach ($dateFilter as $date)
@@ -25,15 +25,15 @@
                 <li class="nav-item"><a id="mainTabLink" class="nav-link active" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="main">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart') }}"></use>
-                    </svg> All Main KPI</a></li>
+                    </svg> {{ __('label.global.tab.kpi_main') }}</a></li>
                 <li class="nav-item"><a id="variableTabLink" class="nav-link" href="{{ route('performance.okr.kpi.variable.index') }}" role="tab" aria-controls="variable">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart-line') }}"></use>
-                    </svg> All Variable KPI</a></li>
+                    </svg> {{ __('label.global.tab.kpi_variable') }}</a></li>
                 <li class="nav-item"><a id="objectiveTabLink" class="nav-link" href="{{ route('performance.okr.kpi.objective.index') }}" role="tab" aria-controls="objective">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-paperclip') }}"></use>
-                    </svg> All Objective KPI</a></li>
+                    </svg> {{ __('label.global.tab.kpi_objective') }}</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel">

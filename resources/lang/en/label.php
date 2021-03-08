@@ -235,6 +235,13 @@ return [
             'na' => 'N/A',
             'full_na' => 'Not Applicable (NA)'
         ],
+        'numeric' => [
+            '1' => '1',
+            '2' => '2',
+            '3' => '3',
+            '4' => '4',
+            '5' => '5'
+        ],
         'form' => [
             'button' => [
                 'back' => 'Back',
@@ -260,6 +267,11 @@ return [
                     'delete' => 'Delete'
                 ]
             ]
+        ],
+        'tab' => [
+            'kpi_main' => 'All Main KPI',
+            'kpi_variable' => 'All Variable KPI',
+            'kpi_objective' => 'All Objective KPI',
         ],
         'email' => [
             'greeting' => 'Hi',
@@ -360,6 +372,28 @@ return [
                 'q3' => 'Q3',
                 'q4' => 'Q4',
                 'completed' => 'Completed'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI MAIN GOALS',
+                'rating' => 'MANAGER\'S RATING'
+            ],
+            'label' => [
+                'main_kpi' => 'Main Goals',
+                'q1' => 'Q1',
+                'q2' => 'Q2',
+                'q3' => 'Q3',
+                'q4' => 'Q4',
+                'status' => 'Completed',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
             ]
         ],
     ]
