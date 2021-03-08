@@ -12,9 +12,7 @@ class KpiRating extends Model
     protected $fillable = [
         'rating',
         'month',
-        'manager_comment',
-        'kpi_ratable_type',
-        'kpi_ratable_id'
+        'manager_comment'
     ];
 
     /**
