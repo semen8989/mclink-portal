@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\KpiRating;
+use Illuminate\Support\Str;
 use App\Traits\MonthInYearTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,6 +46,11 @@ class KpiMaingoal extends Model
     public function getMonthList()
     {
         return self::$monthList;
+    }
+
+    public function getStringStatus()
+    {
+        return Str::ucfirst(array_search($this->status, self::COMPLETED_STATUS));
     }
 
     /**
