@@ -4,5 +4,5 @@
 {{ __('label.service_report.email.receipt.message') }}
 
 {{ __('label.global.email.closing') }},<br>
-{{ env('MAIL_SERVICE_REPORT_COMPANY', config('app.name')) }}
+{{ config('app.mps_name') }}
 @endcomponent

@@ -343,7 +343,10 @@ return [
     'work_improvement_ideas' => 'Work Improvement Ideas',
     'xin_gtax' => 'Tax Number / EIN',
     'zip_code' => 'Zip Code',
-    'error' => 'Error',
+    'mps_service_report' => 'MPS Service Report',
+    'logout' => 'Log Out',
+    'settings' => 'Settings',
+    'report_problem' => 'Report Problem',
     'global' => [
         'text' => [
             'na' => 'N/A',
@@ -399,23 +402,40 @@ return [
             ]
         ],
         'email' => [
+            'log' => [
+                'general' => [
+                    'success' => 'The :subject email to :email was successfully sent.',
+                    'fail' => 'There is a problem in sending the :subject email to :email . The error given was :error'
+                ]
+            ],
             'receipt' => [
                 'message' => 'Thank you for submitting the signed acknowledgement form. Attached is your copy of service report in PDF format.',
-                'subject' => 'Service Report Customer Copy | :company'
+                'subject' => 'Service Report Customer Copy | :company',
+                'plain_subject' => 'Service Report Customer Copy'
             ],
             'submitted' => [
                 'message' => 'The customer already submitted the signed service report form. You can click the button to view the details.',
                 'button' => [
                     'view_service_report' => 'View Service Report Details'
                 ],
-                'subject' => 'Service Report Customer Acknowledgement | :company'
+                'subject' => 'Service Report Customer Acknowledgement | :company',
+                'plain_subject' => 'Service Report Customer Acknowledgement'
             ],
             'sent' => [
                 'message' => 'Click the button to sign the acknowledgement form.',
                 'button' => [
                     'view_details' => 'View Details and Sign'
                 ],
-                'subject' => 'Service Report Acknowledgment Form | :company'
+                'subject' => 'Service Report Acknowledgment Form | :company',
+                'plain_subject' => 'Service Report Acknowledgment Form'
+            ],
+            'confirm' => [
+                'message' => 'An email was sent to the customer containing the link to the acknowledgement form. You can click the button to view the status of the service report.',
+                'button' => [
+                    'view_status' => 'View Service Report Status'
+                ],
+                'subject' => 'Acknowledgement Form Email Confirmation | :company',
+                'plain_subject' => 'Acknowledgement Form Email Confirmation'
             ]
         ],
         'form' => [
@@ -423,7 +443,7 @@ return [
                 'title' => 'Service Report',
                 'tel' => 'Tel',
                 'fax' => 'Fax',
-                'main' => 'CUSTOMER SERVICE REPORT',
+                'main' => 'Customer Service Report',
                 'acknowledgement' => 'CUSTOMER ACKNOWLEDGEMENT',
             ],
             'label' => [

@@ -16,11 +16,11 @@
     <meta name="description" content="Mclink - Portal">
     <meta name="author" content="Mclink Dev Team">
     <meta name="keyword" content="mclink-portal">
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <title>{{ !empty($title) ? $title : '' }} | {{ config('app.name') }}</title>
     <!-- Main styles for this application-->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
      <!-- Custom styles for this application-->
-     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
     <!-- Page specific style-->
     @stack('stylesheet')
   </head>

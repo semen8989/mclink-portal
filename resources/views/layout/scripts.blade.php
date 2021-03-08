@@ -1,8 +1,8 @@
-    <!-- Main js script-->
-    <script src="{{ asset('js/app.js') }}"></script>
+      <!-- Main js script-->
+      <script src="{{ asset('js/app.min.js') }}"></script>
     
-    <!-- CoreUI and necessary plugins-->
-    <script src="{{ asset('js/coreui/coreui.bundle.min.js') }}"></script>
+      <!-- CoreUI and necessary plugins-->
+      <script src="{{ asset('js/coreui/coreui.bundle.min.js') }}"></script>
       <!--[if IE]><!-->
       <script src="{{ asset('js/coreui/svgxuse.min.js') }}"></script>
       <!--<![endif]-->
