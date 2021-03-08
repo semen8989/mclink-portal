@@ -44,7 +44,7 @@ class KpiMaingoalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreKpiMainRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreKpiMainRequest $request)
@@ -74,18 +74,20 @@ class KpiMaingoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\KpiMaingoal  $kpiMaingoal
+     * @param  \App\Models\KpiMaingoal  $kpiMain
      * @return \Illuminate\Http\Response
      */
-    public function show(KpiMaingoal $kpiMaingoal)
+    public function show(KpiMaingoal $kpiMain)
     {
-        //
+        $kpiMain->load('kpiratings');
+
+        return view('okr.kpi.maingoal.show', compact('kpiMain'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\KpiMaingoal  $kpiMaingoal
+     * @param  \App\Models\KpiMaingoal  $kpiMain
      * @return \Illuminate\Http\Response
      */
     public function edit(KpiMaingoal $kpiMain)
@@ -100,8 +102,8 @@ class KpiMaingoalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\KpiMaingoal  $kpiMaingoal
+     * @param  \App\Http\Requests\UpdateKpiMainRequest  $request
+     * @param  \App\Models\KpiMaingoal  $kpiMain
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateKpiMainRequest $request, KpiMaingoal $kpiMain)
@@ -112,20 +114,32 @@ class KpiMaingoalController extends Controller
             $query->where('month', $validated['kpi_ratings']['month']);
         }]);
 
-        $kpiRating = $kpiMain->kpiratings->isNotEmpty() 
-            ? $kpiMain->kpiratings[0] 
-            : false;
+        $ratingInput = array(
+            'month' => $validated['kpi_ratings']['month'],   
+            'rating' => $validated['kpi_ratings']['rating'], 
+            'manager_comment' => $validated['kpi_ratings']['manager_comment']
+        );
+
+        if ($kpiMain->kpiratings->isNotEmpty()) {
+            $kpiRating = $kpiMain->kpiratings[0];
+
+            $ratingInput['kpi_ratable_id'] = $kpiRating->kpi_ratable_id;
+            $ratingInput['kpi_ratable_type'] = $kpiRating->kpi_ratable_type;
+        } else {
+            $kpiRating = $kpiMain->kpiratings();
+        }
 
         $result = true;
-        
+
         try {
-            DB::transaction(function () use ($kpiMain, $kpiRating, $validated) {           
+            DB::transaction(function () use ($kpiMain, $kpiRating, $validated, $ratingInput) { 
                 $kpiMain->update(Arr::except($validated, ['kpi_ratings']));
 
-                $kpiMain->kpiratings[0]->updateOrCreate(
-                    ['kpi_ratable_type' => $kpiRating->kpi_ratable_type, 'kpi_ratable_id' => $kpiRating->kpi_ratable_id, 'month' => $validated['kpi_ratings']['month']],
-                    ['rating' => $validated['kpi_ratings']['rating'], 'manager_comment' => $validated['kpi_ratings']['manager_comment']]      
-                );
+                if ($kpiMain->kpiratings->isNotEmpty()) {            
+                    $kpiRating->update($ratingInput);
+                } else {
+                    $kpiRating->create($ratingInput);
+                }
             });
         } catch (\Exception $e) {
             $result = false;
