@@ -18,7 +18,11 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AcknowledgementFormController;
 
+Auth::routes(['register' => false]);
 
+/**
+ * Authenticated Routes
+ */
 Route::middleware(['auth'])->group(function () {
     // Dashboard Route
     Route::get('/', function () {
@@ -45,41 +49,46 @@ Route::middleware(['auth'])->group(function () {
 
         // User Route
         Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
-    }); 
+    });
+    
+    // Organizations
+    Route::prefix('organizations')->group(function () {
+        Route::resources([
+            'companies' => CompanyController::class,
+            'departments' => DepartmentController::class,
+            'designations' => DesignationController::class,
+            'announcements' => AnnouncementController::class,
+            'policies' => PolicyController::class,
+            'holidays' => HolidayController::class,
+            'locations' => LocationController::class,
+            'office_shifts' => OfficeShiftController::class,
+            'expenses' => ExpenseController::class
+        ]); 
+    });
+
+    //Basic Routes
+    Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
+    Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');
+    Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
 });
 
-// Guest Routes
 
-// Acknowledgement Routes
-Route::prefix('service-form/acknowledgement')->group(function () {
-    Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service.form.acknowledgment.sign');
-    Route::post('/{serviceReport}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
-    Route::get('/feedback', [AcknowledgementFormController::class, 'feedback'])->name('service.form.acknowledgment.feedback');
+
+/**
+ * Guest Routes
+ */
+Route::middleware(['guest'])->group(function () { 
+    // Acknowledgement Routes
+    Route::prefix('service-form/acknowledgement')->group(function () {
+        Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service.form.acknowledgment.sign');
+        Route::post('/{serviceReport}', [AcknowledgementFormController::class, 'store'])->name('service.form.acknowledgment.store');
+        Route::get('/feedback', [AcknowledgementFormController::class, 'feedback'])->name('service.form.acknowledgment.feedback');
+    });
+
+    Route::prefix('auth')->group(function () {
+        Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
+        Route::get('/callback', [socialiteController::class, 'callBack']);
+    });
 });
-
-Route::prefix('auth')->group(function () {
-    Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
-    Route::get('/callback', [socialiteController::class, 'callBack']);
-});
-
-Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Resource Controllers
-Route::prefix('organizations')->group(function () {
-    Route::resources([
-        'companies' => CompanyController::class,
-        'departments' => DepartmentController::class,
-        'designations' => DesignationController::class,
-        'announcements' => AnnouncementController::class,
-        'policies' => PolicyController::class,
-        'holidays' => HolidayController::class,
-        'locations' => LocationController::class,
-        'office_shifts' => OfficeShiftController::class,
-        'expenses' => ExpenseController::class
-    ]); 
-});
-//Basic Routes
-Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
-Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');
-Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');

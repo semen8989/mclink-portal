@@ -37,6 +37,6 @@ class ServiceFormSent extends Mailable
     public function build()
     {
         return $this->markdown('emails.service_form.sent')
-            ->subject(__('label.service_report.email.sent.subject', ['company' => 'MPS Solutions']));
+            ->subject(__('label.service_report.email.sent.subject', ['company' => config('app.mps_name')]));
     }
 }
