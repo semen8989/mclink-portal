@@ -89,6 +89,7 @@ Route::prefix('hr_calendar')->group(function (){
     Route::post('/view_event/{event}',[HrCalendarController::class, 'view_event'])->name('hr_calendar.view_event');
     //Holidays
     Route::get('/fetch_holidays',[HrCalendarController::class,'fetch_holidays'])->name('hr_calendar.fetch_holidays');
+    Route::get('/store_holiday',[HrCalendarController::class,'store_holiday'])->name('hr_calendar.store_holiday');
 });
 
 Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');

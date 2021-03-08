@@ -14,7 +14,7 @@
 <!-- Popover Content -->
 <div id="popover-content" style="display: none">
     <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#createEvent_modal">Events</a>
-    <a class="btn btn-sm btn-info">Holidays</a>
+    <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#createHoliday_modal">Holidays</a>
 </div>
 
 @stop
@@ -103,13 +103,13 @@
                             sanitize: false,
                             container: '#calendar',
                             content: function() {
-                                // for each opened popover...hide it
-                                $("#calendar .popover.show").popover('hide');
+                                // Remove previous popover
+                                $('#calendar .popover').remove();
                                 //                   ^^^^^
                                 return $("#popover-content").html();
                             }
                         })
-                        $(dateInfo.dayEl).popover('toggle');
+                        $(dateInfo.dayEl).popover('show');
                     },
                    
                     
@@ -148,10 +148,46 @@
                 })
             });
 
-            $('body').on('shown.bs.modal', function (e) {
-                // for each opened popover...hide it
-                $("#calendar .popover.show").hide();
+            $('#createHoliday_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    dataType: 'json',
+                    encode: true,
+                    success: function(data){
+                        if(data.success == true){
+                            //remove any form data
+                            $('#createHoliday_form').trigger("reset");
+                            //close model
+                            $('#createEvent_modal').modal('hide');
+                            //Alert
+                            alert(data.message);
+                            //refetch events
+                            calendar.refetchEvents();
+                        }else if(data.success == false){
+                            //Alert
+                            alert(data.message);
+                        }
+                    }
+                })
+            });
+
+            $('div.modal').on('shown.bs.modal', function (e) {
+                // Remove previous popover
+                $('#calendar .popover').remove();
+                //Get Id
+                var id = $(this).attr('id');
+                console.log(id);
             })
+
+
         });
 
     </script>

@@ -48,7 +48,6 @@ class HrCalendarController extends Controller
         $insert = [
             'company_id' => $request->company_id,
             'title'      => $request->title,
-            'color'      => '#355C7D',
             'start_date' => date('Y-m-d', strtotime($request->start_date)),
             'end_date'   => date('Y-m-d', strtotime($request->end_date)),
             'note'       => $request->note
@@ -59,7 +58,7 @@ class HrCalendarController extends Controller
             $data['message'] = "Event created successfully";
         }else{
             $data['success'] = false;
-            $data['message'] = "Error while creating successfully";
+            $data['message'] = "Error while creating event";
         }
 
         echo json_encode($data);
@@ -88,6 +87,28 @@ class HrCalendarController extends Controller
                 'start' => date('Y-m-d', strtotime($row->start_date)),
                 'end' => date('Y-m-d', strtotime($row->end_date)),
             ];
+        }
+
+        echo json_encode($data);
+    }
+
+    public function store_holiday(Request $request)
+    {
+        $insert = [
+            'company_id'  => $request->company_id,
+            'event_name'  => $request->event_name,
+            'start_date'  => date('Y-m-d', strtotime($request->h_start_date)),
+            'end_date'    => date('Y-m-d', strtotime($request->h_end_date)),
+            'description' => $request->description,
+            'status'      => $request->status
+        ];
+        $create = Holiday::create($insert);
+        if($create){
+            $data['success'] = true;
+            $data['message'] = "Holiday created successfully";
+        }else{
+            $data['success'] = false;
+            $data['message'] = "Error while creating holiday";
         }
 
         echo json_encode($data);
