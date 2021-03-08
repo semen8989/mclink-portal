@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\KpiRatingController;
 use App\Http\Controllers\KpiMaingoalController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AcknowledgementFormController;
