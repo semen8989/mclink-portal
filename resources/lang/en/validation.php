@@ -167,7 +167,18 @@ return [
         'usedItCredit' => 'used it credit',
         // acknowledgement fields
         'signedCust' => 'customer name or designation',
-        'signatureDataUrl' => 'customer signature'
+        'signatureDataUrl' => 'customer signature',
+        // okr kpi main fields
+        'main_kpi' => 'main goals',
+        'q1' => 'q1',
+        'q2' => 'q2',
+        'q3' => 'q3',
+        'q4' => 'q4',
+        'feedback' => 'employee\'s feedback',
+        'status' => 'completed',
+        'kpi_ratings[month]' => 'month',
+        'kpi_ratings[rating]' => 'rating',
+        'kpi_ratings[manager_comment]' => 'manager\'s comment',
     ],
 
 ];
