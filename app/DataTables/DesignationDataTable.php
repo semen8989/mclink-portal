@@ -24,7 +24,10 @@ class DesignationDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Designation $designation) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'designations.edit',
+                    'actionRoutes' => [
+                        'edit' => 'designations.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'designation',
                     'itemSlugValue' => $designation->id
                 ]);

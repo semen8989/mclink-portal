@@ -23,7 +23,10 @@ class HolidayDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Holiday $holiday) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'holidays.edit',
+                    'actionRoutes' => [
+                        'edit' => 'holidays.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'holiday',
                     'itemSlugValue' => $holiday->id
                 ]);
