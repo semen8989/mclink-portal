@@ -21,9 +21,14 @@
 @stop
 
 @push('stylesheet')
+    <!-- Fullcalendar 5 CSS Dependency-->
     <link rel="stylesheet" href="{{ asset('/plugin/fullcalendar-5.5.1/main.min.css') }}" />
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
     <!-- Datetimepicker css dependency -->
     <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
     <!-- Custom style -->
     <style>
         .fc-view{
@@ -44,7 +49,14 @@
 @endpush
 
 @push('scripts')
+    <!-- Fullcalendar 5 JS Dependency-->
     <script src="{{ asset('plugin/fullcalendar-5.5.1/main.min.js') }}"></script>
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/{{ env('TINY_MCE_API') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Datetimepicker js dependency -->
+    <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script>
         //Global Variables
         var calendar;
@@ -61,7 +73,8 @@
                     eventLimit:true,
                     locale:"En",
                     firstDay:0,
-                    displayEventTime:true,
+                    displayEventTime:false,
+                    allDaySlot: true,
                     selectable:true,
                     initialView:"dayGridMonth",
                     headerToolbar:{
@@ -108,7 +121,7 @@
                                 $('#view_modal').modal('show');
                             }
                         });
-                        
+    
                     },
                     dateClick: function(dateInfo){
                         $('#exact_date').val(dateInfo.dateStr);

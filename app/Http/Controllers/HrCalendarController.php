@@ -25,7 +25,7 @@ class HrCalendarController extends Controller
                 'id' => $row->id,
                 'title' => $row->title,
                 'start' => $row->start_date,
-                'end' => $row->end_date,
+                'end' => $row->end_date == $row->start_date ? $row->end_date : $row->end_date." 23:59:00",
                 'unq_id' => 1
             ];
         }
@@ -38,8 +38,8 @@ class HrCalendarController extends Controller
         $insert = [
             'company_id' => $request->company_id,
             'title'      => $request->title,
-            'start_date' => date('Y-m-d', strtotime($request->start_date)),
-            'end_date'   => date('Y-m-d', strtotime($request->end_date)),
+            'start_date' => $request->start_date,
+            'end_date'   => $request->end_date,
             'note'       => $request->note
         ];
         $create = Event::create($insert);
@@ -93,8 +93,8 @@ class HrCalendarController extends Controller
             $data[] = [
                 'id' => $row->id,
                 'title' => $row->event_name,
-                'start' => date('Y-m-d', strtotime($row->start_date)),
-                'end' => date('Y-m-d', strtotime($row->end_date)),
+                'start' => $row->start_date,
+                'end' => $row->end_date == $row->start_date ? $row->end_date : $row->end_date." 23:59:00",
                 'unq_id' => 2
             ];
         }
@@ -107,8 +107,8 @@ class HrCalendarController extends Controller
         $insert = [
             'company_id'  => $request->company_id,
             'event_name'  => $request->event_name,
-            'start_date'  => date('Y-m-d', strtotime($request->start_date)),
-            'end_date'    => date('Y-m-d', strtotime($request->end_date)),
+            'start_date'  => $request->start_date,
+            'end_date'    => $request->end_date,
             'description' => $request->description,
             'status'      => $request->status
         ];
