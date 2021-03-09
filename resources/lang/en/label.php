@@ -350,7 +350,8 @@ return [
     'global' => [
         'text' => [
             'na' => 'N/A',
-            'full_na' => 'Not Applicable (NA)'
+            'full_na' => 'Not Applicable (NA)',
+            'me' => 'Me'
         ],
         'numeric' => [
             '1' => '1',
@@ -525,6 +526,7 @@ return [
                 'rating' => 'Rating',
                 'manager_comment' => 'Manager\'s Comment',
                 'select_year' => 'Select Year',
+                'select_employee' => 'Select Employee',
             ],
             'placeholder' => [
                 'rating' => 'Select Rating'

@@ -13,7 +13,7 @@
                                 <option value="{{ $user->id }}"
                                     @if (request()->has('filterEmployee') && request()->filterEmployee == $user->id) selected @endif>
                                     {{ $user->name }}
-                                    @if (auth()->user()->id == $user->id) (Me) @endif
+                                    @if (auth()->user()->id == $user->id) ({{ __('label.global.text.me') }}) @endif
                                 </option>  
                             @endforeach
                         </select>
