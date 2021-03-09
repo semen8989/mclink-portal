@@ -24,12 +24,16 @@
                     <label class="col-form-label" for="filterYear">{{ __('label.kpi_main.form.label.select_year') }}</label>
                     <div class="controls">
                         <select class="form-control custom-select" id="filterYear">
-                            @foreach ($dateFilter as $date)
-                                <option value="{{ $date->year }}"
-                                    @if (request()->has('filterYear') && request()->filterYear == $date->year) selected @endif>
-                                    {{ $date->year }}
-                                </option>               
-                            @endforeach
+                            @if ($dateFilter->isNotEmpty())
+                                @foreach ($dateFilter as $date)
+                                    <option value="{{ $date->year }}"
+                                        @if (request()->has('filterYear') && request()->filterYear == $date->year) selected @endif>
+                                        {{ $date->year }}
+                                    </option>
+                                @endforeach
+                            @else 
+                                <option value="{{ date('Y') }}" selected>{{ date('Y') }}</option>
+                            @endif
                         </select>
                     </div>
                 </div>
