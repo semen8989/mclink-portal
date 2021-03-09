@@ -329,6 +329,7 @@ return [
     'view_announcement' => 'View Announcement',
     'view_company' => 'View Company',
     'view_expense' => 'View Expense',
+    'view_event' => 'View Event',
     'view_holiday' => 'View Holiday',
     'view_location' => 'View Location',
     'view_machine_availability' => 'View machine availability',

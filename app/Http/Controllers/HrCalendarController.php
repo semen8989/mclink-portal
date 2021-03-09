@@ -55,14 +55,33 @@ class HrCalendarController extends Controller
     }
 
     public function view_event(Event $event){
-        $data = [
-            'id'        => $event->id,
-            'company'   => $event->company->company_name,
-            'title'     => $event->title,
-            'start'     => date('Y-m-d', strtotime($event->start_date)),
-            'end'       => date('Y-m-d', strtotime($event->end_date)),
-            'note'      => $event->note
-        ];
+        $title = __('label.view_event');
+        $html  = '';
+        $html .= '<tr>';
+        $html .= '<th>Company</th>';
+        $html .= '<td>'.$event->company->company_name.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>Title</th>';
+        $html .= '<td>'.$event->title.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>Start Date</th>';
+        $html .= '<td>'.$event->start_date.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>End Date</th>';
+        $html .= '<td>'.$event->end_date.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>Note</th>';
+        $html .= '<td>'.$event->note.'</td>';
+        $html .= '</tr>';
+
+        $data = array(
+            'html' => $html,
+            'title' => $title
+        );
 
         echo json_encode($data);
     }
