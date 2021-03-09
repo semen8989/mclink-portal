@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use App\DataTables\KpiMaingoalDataTable;
 use App\Http\Requests\StoreKpiMainRequest;
 use App\Http\Requests\UpdateKpiMainRequest;
-use App\Models\KpiRating;
 
 class KpiMaingoalController extends Controller
 {
