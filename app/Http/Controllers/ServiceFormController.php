@@ -10,6 +10,7 @@ use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Events\AcknowledgementFormSent;
+use Illuminate\Support\Facades\Storage;
 use App\DataTables\ServiceReportDataTable;
 use App\Mail\ServiceFormSentConfirmationMail;
 use App\Http\Requests\StoreServiceReportRequest;
@@ -201,6 +202,6 @@ class ServiceFormController extends Controller
 
     public function download(ServiceReport  $serviceReport)
     {
-        return response()->download('storage\service_report\pdf\\' . $serviceReport->report_pdf, 'service_report.pdf');
+        return Storage::download('service_report\pdf\\' . $serviceReport->report_pdf, 'service_report.pdf');
     }
 }
