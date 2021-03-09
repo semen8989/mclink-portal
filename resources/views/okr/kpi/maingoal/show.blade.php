@@ -39,7 +39,8 @@
                 <p class="guest-form-data mb-4">{{ $kpiMain->getStringStatus() }}</p>
             </div>
         </div>   
-    
+        
+        @if (auth()->user()->isDepartmentHead())
         <hr>
         <h5 class="font-weight-bold text-center">{{ __('label.kpi_main.form.header.rating') }}</h5>
         <hr>
@@ -71,6 +72,7 @@
                 <p class="guest-form-data mb-4" id="comment">NA</p>
             </div>
         </div>   
+        @endif 
         
         <div class="row float-right">
             <div class="col-md-12">

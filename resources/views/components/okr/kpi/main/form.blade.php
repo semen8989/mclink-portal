@@ -80,6 +80,7 @@
     </div>
 </div>
 
+@if (auth()->user()->isDepartmentHead())
 <hr class="mt-3">
 <h5 class="font-weight-bold text-center">{{ __('label.kpi_main.form.header.rating') }}</h5>
 <hr class="mb-3">
@@ -129,4 +130,6 @@
         </div>
     </div>
 </div>
+@endif 
+
 @endif 
