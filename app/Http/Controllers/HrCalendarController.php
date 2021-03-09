@@ -13,17 +13,6 @@ class HrCalendarController extends Controller
 {
     public function index()
     {
-        $data = [];
-        $result = Event::all();
-        foreach($result as $row) {
-            $data[] = [
-                'id' => $row->id,
-                'title' => $row->title,
-                'start' => $row->start_date,
-                'end' => $row->end_date,
-                'color' => $row->color,
-            ];
-        }
         $companies = Company::all('id','company_name');
         return view('hr_calendar.index',compact('companies'));
     }
@@ -36,7 +25,8 @@ class HrCalendarController extends Controller
                 'id' => $row->id,
                 'title' => $row->title,
                 'start' => $row->start_date,
-                'end' => $row->end_date
+                'end' => $row->end_date,
+                'unq_id' => 1
             ];
         }
 
@@ -86,6 +76,7 @@ class HrCalendarController extends Controller
                 'title' => $row->event_name,
                 'start' => date('Y-m-d', strtotime($row->start_date)),
                 'end' => date('Y-m-d', strtotime($row->end_date)),
+                'unq_id' => 2
             ];
         }
 

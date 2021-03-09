@@ -69,35 +69,16 @@
                     },
                     eventSources: [
                         {
-                            url: '{{ route("hr_calendar.fetch_events") }}', 
-                            color: '#355C7D',
+                            url: '{{ route("hr_calendar.fetch_events") }}', //unq_id = 1
+                            color: '#355C7D'
                         },
                         {
-                            url: '{{ route("hr_calendar.fetch_holidays") }}', 
-                            color: '#2D95BF',
+                            url: '{{ route("hr_calendar.fetch_holidays") }}', //unq_id = 2
+                            color: '#2D95BF'
                         }
                     ],
-                    eventClick:function(arg){
-                        var id = arg.event.id;
-                        var url = '{{ route("hr_calendar.view_event",":id") }}';
-                        url = url.replace(':id',id);
-                        $.ajax({
-                            url: url,
-                            type:"POST",
-                            data: {
-                                "_token": "{{ csrf_token() }}"
-                            },
-                            dataType: 'json',
-                            success: function(data) {
-                                    $('#view_company').val(data.company);
-                                    $('#view_title').val(data.title);
-                                    $('#view_start_date').val(data.start);
-                                    $('#view_end_date').val(data.end);
-                                    $('#view_note').val(data.note);
-                                    $('#viewEvent_modal').modal('show');
-                                }
-                        });
-
+                    eventClick: function (arg) {
+                        console.log(arg.event.extendedProps.unq_id);
                     },
                     dateClick: function(dateInfo){
                         $('#exact_date').val(dateInfo.dateStr);
