@@ -21,6 +21,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'employee_id',
+        'joining_date',
+        'company_id',
+        'department_id',
+        'designation_id',
+        'role_id',
+        'gender',
+        'shift_id',
+        'birth_date',
+        'contact_number',
+        'email_verified_at',
     ];
 
     /**
@@ -73,4 +85,5 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', 'Administrator')->exists();
     }
+    
 }

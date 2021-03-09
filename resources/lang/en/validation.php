@@ -136,8 +136,9 @@ return [
             'rule-name' => 'custom-message',
         ],
         'custEmail' => [
-            'required_if' => 'The :attribute field is required when sending to a customer.',
+            'required_if' => 'The :attribute field is required when sending to a customer.', 
         ],
+
     ],
 
     /*
@@ -179,6 +180,11 @@ return [
         'kpi_ratings.month' => 'month',
         'kpi_ratings.rating' => 'rating',
         'kpi_ratings.manager_comment' => 'manager\'s comment',
+        // fields under organization modules
+        'company_id' => 'company',
+        'department_id' => 'department',
+        'expense_type_id' => 'expense type',
+        'employee_id' => 'employee'
     ],
 
 ];

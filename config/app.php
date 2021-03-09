@@ -125,6 +125,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Service Report Company
+    |--------------------------------------------------------------------------
+    |
+    | This is the details of mps solutions needed by the service report module
+    |
+    */
+
+    'mps_name' => env('MPS_NAME', 'MPS Solutions'),
+    
+    'mps_url' => env('MPS_URL', 'https://mpssolutions.com.sg/'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |

@@ -7,9 +7,10 @@ use Carbon\Carbon;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Events\AcknowledgementFormSigned;
 use App\Mail\AcknowledgmentFormSubmitted;
-use App\Http\Requests\StoreAcknowledgmentFormRequest;
 use App\Mail\ServiceReportCopyReceivedMail;
+use App\Http\Requests\StoreAcknowledgmentFormRequest;
 
 class AcknowledgementFormController extends Controller
 {
@@ -54,11 +55,7 @@ class AcknowledgementFormController extends Controller
             Storage::put('service_report\signature\\' . $imgFile, $image_base64);
             Storage::put('service_report\pdf\\' . $pdfFile, $pdf->output());
 
-            Mail::to($serviceReport->user->email)
-                ->queue(new AcknowledgmentFormSubmitted($serviceReport));
-
-            Mail::to($serviceReport->customer->email)
-                ->queue(new ServiceReportCopyReceivedMail($serviceReport));
+            AcknowledgementFormSigned::dispatch($serviceReport);
 
             return redirect()
                 ->route('service.form.acknowledgment.feedback')
