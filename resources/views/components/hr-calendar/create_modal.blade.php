@@ -1,5 +1,5 @@
 <!-- Create event modal -->
-<div class="modal fade" id="createEvent_modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="createEvent_modal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -13,7 +13,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="company_id" class="col-form-label">Company</label>
-                    <select class="form-control" name="company_id" id="company_id">
+                    <select class="form-control select2" name="company_id">
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
@@ -21,22 +21,22 @@
                 </div>
                 <div class="form-group">
                     <label for="title" class="col-form-label">Title</label>
-                    <input type="text" class="form-control" name="title" id="title"></input>
+                    <input type="text" class="form-control" name="title"></input>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="start_date">Start Date</label>
-                        <input type="text" class="form-control" name="start_date" id="start_date">
+                        <input type="text" class="form-control date" name="start_date">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="end_date">End Date</label>
-                        <input type="text" class="form-control" name="end_date" id="end_date">
+                        <input type="text" class="form-control date" name="end_date">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-group">
                         <label for="note">Event Note</label>
-                        <textarea class="form-control" name="note" id="note" cols="30" rows="10"></textarea>
+                        <textarea class="form-control tinymce-editor" name="note" id="note" cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
     </div>
   </div>
   <!-- Create Holiday modal -->
-<div class="modal fade" id="createHoliday_modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="createHoliday_modal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -63,7 +63,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="company_id" class="col-form-label">Company</label>
-                    <select class="form-control" name="company_id" id="company_id">
+                    <select class="form-control select2" name="company_id">
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
@@ -71,25 +71,25 @@
                 </div>
                 <div class="form-group">
                     <label for="title" class="col-form-label">Event Name</label>
-                    <input type="text" class="form-control" name="event_name" id="event_name"></input>
+                    <input type="text" class="form-control" name="event_name"></input>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="start_date">Start Date</label>
-                        <input type="text" class="form-control" name="start_date" id="start_date">
+                        <input type="text" class="form-control date" name="start_date">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="end_date">End Date</label>
-                        <input type="text" class="form-control" name="end_date" id="end_date">
+                        <input type="text" class="form-control date" name="end_date">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="note">Description</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                    <textarea class="form-control tinymce-editor" name="description" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select class="form-control" name="status" id="status">
+                    <select class="form-control select2" name="status">
                         <option value="published">Published</option>
                         <option value="unpublished">Unpublished</option>
                     </select>

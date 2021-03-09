@@ -74,7 +74,6 @@
                     locale:"En",
                     firstDay:0,
                     displayEventTime:false,
-                    allDaySlot: true,
                     selectable:true,
                     initialView:"dayGridMonth",
                     headerToolbar:{
@@ -153,15 +152,13 @@
                 //Initialize chosen date
                 var date = $('#exact_date').val();
                 //Fill start and end date fields on shown modal
-                $(this).find('input[id="start_date"]').val(date);
-                $(this).find('input[id="end_date"]').val(date);
+                $(this).find('input[name="start_date"]').val(date);
+                $(this).find('input[name="end_date"]').val(date);
                 //Initialize modal id and form id
                 modal = $(this).attr('id');
                 form = $(this).find('form').attr('id');
                 //Submit form
-                $('#'+form).submit(function (e){
-                    e.preventDefault();
-                    
+                $('#'+form).on('submit',function (e){                    
                     var url = $(this).attr('action');
                     var method = $(this).attr('method');
                     var data = $(this).serialize();
@@ -174,13 +171,13 @@
                         encode: true,
                         success: function(data){
                             if(data.success == true){
-                                //Alert
-                                alert(data.message);
                                 //remove any form data
                                 $('#'+form).trigger("reset");
                                 //close modal
-                                $('#'+modal).modal('hide');
                                 $('#'+modal).trigger('click');
+                                $('#'+modal).modal('hide');
+                                //Success
+                                alert(data.message)
                                 //refetch events
                                 calendar.refetchEvents();
                             }else if(data.success == false){
@@ -189,9 +186,41 @@
                             }
                         }
                     })
+                    
+                    e.preventDefault();
                 });
             })
-
+            //Datetimepicker
+           $('.date').datetimepicker({
+                ignoreReadonly: true,
+                format: 'YYYY-MM-DD',
+                widgetPositioning: {
+                    vertical: 'bottom'
+                }
+            });
+            //TinyMCE
+            tinymce.init({
+                selector: 'textarea.tinymce-editor',
+                height: 200,
+                menubar: false,
+                plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
+            //Select2
+            $('.select2').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            
         });
     </script>
 @endpush
