@@ -150,7 +150,7 @@ class KpiMaingoalController extends Controller
             ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('performance.okr.kpi-maingoals.index')->with($resultStatus, $msg);
+        return redirect()->route('performance.okr.kpi-maingoals.show', [$kpiMain->id])->with($resultStatus, $msg);
     }
 
     /**
