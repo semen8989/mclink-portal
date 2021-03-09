@@ -109,36 +109,41 @@ class KpiMaingoalController extends Controller
     {
         $validated = $request->validated();
         
-        $kpiMain->load(['kpiratings' => function ($query) use ($validated) {
-            $query->where('month', $validated['kpi_ratings']['month']);
-        }]);
+        $ratingInput = array();
+        $kpiRating = null;
 
-        $ratingInput = array(
-            'month' => $validated['kpi_ratings']['month'],   
-            'rating' => $validated['kpi_ratings']['rating'], 
-            'manager_comment' => $validated['kpi_ratings']['manager_comment']
-        );
-
-        if ($kpiMain->kpiratings->isNotEmpty()) {
-            $kpiRating = $kpiMain->kpiratings[0];
-
-            $ratingInput['kpi_ratable_id'] = $kpiRating->kpi_ratable_id;
-            $ratingInput['kpi_ratable_type'] = $kpiRating->kpi_ratable_type;
-        } else {
-            $kpiRating = $kpiMain->kpiratings();
+        if (!empty($validated['kpi_ratings'])) {
+            $kpiMain->load(['kpiratings' => function ($query) use ($validated) {
+                $query->where('month', $validated['kpi_ratings']['month']);
+            }]);
+    
+            $ratingInput['month'] = $validated['kpi_ratings']['month']; 
+            $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
+            $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
+    
+            if ($kpiMain->kpiratings->isNotEmpty()) {
+                $kpiRating = $kpiMain->kpiratings[0];
+    
+                $ratingInput['kpi_ratable_id'] = $kpiRating->kpi_ratable_id;
+                $ratingInput['kpi_ratable_type'] = $kpiRating->kpi_ratable_type;
+            } else {
+                $kpiRating = $kpiMain->kpiratings();
+            }
         }
 
         $result = true;
 
         try {
-            DB::transaction(function () use ($kpiMain, $kpiRating, $validated, $ratingInput) { 
+            DB::transaction(function () use ($kpiMain, $kpiRating, $ratingInput, $validated) { 
                 $kpiMain->update(Arr::except($validated, ['kpi_ratings']));
 
-                if ($kpiMain->kpiratings->isNotEmpty()) {            
-                    $kpiRating->update($ratingInput);
-                } else {
-                    $kpiRating->create($ratingInput);
-                }
+                if ($kpiRating) {
+                    if ($kpiMain->kpiratings->isNotEmpty()) {            
+                        $kpiRating->update($ratingInput);
+                    } else {
+                        $kpiRating->create($ratingInput);
+                    }
+                }      
             });
         } catch (\Exception $e) {
             $result = false;

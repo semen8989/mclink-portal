@@ -31,9 +31,9 @@ class UpdateKpiMainRequest extends FormRequest
             'q3' => 'bail|nullable',
             'q4' => 'bail|nullable',
             'status' => 'bail|required|in:0,1',
-            'kpi_ratings.month' => 'bail|required',
-            'kpi_ratings.rating' => 'bail|required',
-            'kpi_ratings.manager_comment' => 'bail|required',
+            'kpi_ratings.month' => 'bail|sometimes|required',
+            'kpi_ratings.rating' => 'bail|sometimes|required',
+            'kpi_ratings.manager_comment' => 'bail|sometimes|required',
         ];
     }
 }
