@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\KpiMaingoal;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
@@ -21,13 +22,23 @@ class KpiMaingoalController extends Controller
      */
     public function index(Request $request, KpiMaingoalDataTable $dataTable)
     {
+        $departmentUsers = null;
+
+        if (auth()->user()->isDepartmentHead()) {
+            $departmentUsers = User::select(['id', 'name'])
+                ->where([
+                    ['department_id', auth()->user()->department_id],
+                    ['company_id', auth()->user()->company_id],
+                ])->get();
+        }
+
         $dateFilter = KpiMaingoal::selectRaw("DATE_FORMAT(created_at, '%Y') AS year")
             ->where('user_id', auth()->user()->id)
             ->groupBy('year')
             ->orderBy('year', 'desc')
             ->get();
 
-        return $dataTable->render('okr.kpi.maingoal.index', compact('dateFilter'));
+        return $dataTable->render('okr.kpi.maingoal.index', compact('dateFilter', 'departmentUsers'));
     }
 
     /**

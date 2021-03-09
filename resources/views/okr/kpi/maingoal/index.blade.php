@@ -4,6 +4,22 @@
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
+                @if (auth()->user()->isDepartmentHead())
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="filterEmployee">{{ __('label.kpi_main.form.label.select_employee') }}</label>
+                    <div class="controls">
+                        <select class="form-control custom-select" id="filterEmployee">
+                            @foreach ($departmentUsers as $user)
+                                <option value="{{ $user->id }}"
+                                    @if (request()->has('filterEmployee') && request()->filterEmployee == $user->id) selected @endif>
+                                    {{ $user->name }}
+                                    @if (auth()->user()->id == $user->id) (Me) @endif
+                                </option>  
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                @endif
                 <div class="form-group col-md-3">
                     <label class="col-form-label" for="filterYear">{{ __('label.kpi_main.form.label.select_year') }}</label>
                     <div class="controls">
@@ -79,17 +95,21 @@
 
         // event for handling changes before datatable send request
         $("#kpimain-table").on('preXhr.dt', function (e, settings, data) {
+            data.filterEmployee = $('#filterEmployee').val();
             data.filterYear = $('#filterYear').val();
         });
 
         $( document ).ready(function() {
             // refresh datatable and update url get parameter based on the year filter on change event
-            $('#filterYear').change(function() {
+            $('#filterYear, #filterEmployee').change(function() {
                 LaravelDataTables["kpimain-table"].ajax.reload();
 
-                $('#mainTabLink').attr('href', '{{ route("performance.okr.kpi-maingoals.index") }}' + '?filterYear=' + $(this).val());
-                $('#variableTabLink').attr('href', '{{ route("performance.okr.kpi.variable.index") }}' + '?filterYear=' + $(this).val());
-                $('#objectiveTabLink').attr('href', '{{ route("performance.okr.kpi.objective.index") }}' + '?filterYear=' + $(this).val());
+                $('#mainTabLink').attr('href', '{{ route("performance.okr.kpi-maingoals.index") }}' + 
+                    '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
+                $('#variableTabLink').attr('href', '{{ route("performance.okr.kpi.variable.index") }}' + 
+                    '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
+                $('#objectiveTabLink').attr('href', '{{ route("performance.okr.kpi.objective.index") }}' + 
+                    '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
             });
 
             var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 

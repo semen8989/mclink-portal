@@ -52,7 +52,11 @@ class KpiMaingoalDataTable extends DataTable
                     'badgeColor' => $badgeColor
                 ]);
             })->filter(function ($instance) {
-                $instance->where('user_id', auth()->user()->id)
+                $user = auth()->user()->isDepartmentHead() 
+                    ? $this->request->filterEmployee
+                    : auth()->user()->id;
+
+                $instance->where('user_id', $user)
                     ->whereYear('created_at', $this->request->filterYear);
             }, true)->rawColumns(['main_kpi', 'status']);
     }
