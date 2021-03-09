@@ -63,17 +63,17 @@
             </div>
             <div class="col-md-4 offset-md-2">
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_main.form.label.rating') }}</p>
-                <p class="guest-form-data mb-4" id="rating">NA</p>
+                <p class="guest-form-data mb-4" id="rating">{{ __('label.global.text.na') }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_main.form.label.manager_comment') }}</p>
-                <p class="guest-form-data mb-4" id="comment">NA</p>
+                <p class="guest-form-data mb-4" id="comment">{{ __('label.global.text.na') }}</p>
             </div>
         </div>   
         @endif 
-        
+
         <div class="row float-right">
             <div class="col-md-12">
                 <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('performance.okr.kpi-maingoals.index') }}">
