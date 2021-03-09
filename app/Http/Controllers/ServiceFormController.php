@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Customer;
 use Illuminate\Support\Str;
-use App\Mail\ServiceFormSent;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use App\Events\AcknowledgementFormSent;
 use Illuminate\Support\Facades\Storage;
 use App\DataTables\ServiceReportDataTable;
-use App\Mail\ServiceFormSentConfirmationMail;
 use App\Http\Requests\StoreServiceReportRequest;
 use App\Http\Requests\UpdateServiceReportRequest;
 
