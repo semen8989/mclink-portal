@@ -176,9 +176,9 @@ return [
         'q4' => 'q4',
         'feedback' => 'employee\'s feedback',
         'status' => 'completed',
-        'kpi_ratings[month]' => 'month',
-        'kpi_ratings[rating]' => 'rating',
-        'kpi_ratings[manager_comment]' => 'manager\'s comment',
+        'kpi_ratings.month' => 'month',
+        'kpi_ratings.rating' => 'rating',
+        'kpi_ratings.manager_comment' => 'manager\'s comment',
     ],
 
 ];
