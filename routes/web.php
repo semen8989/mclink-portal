@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
         //Holidays
         Route::get('/fetch_holidays',[HrCalendarController::class,'fetch_holidays'])->name('hr_calendar.fetch_holidays');
         Route::post('/store_holiday',[HrCalendarController::class,'store_holiday'])->name('hr_calendar.store_holiday');
+        Route::post('/view_holiday/{holiday}',[HrCalendarController::class, 'view_holiday'])->name('hr_calendar.view_holiday');
     });
 
 });

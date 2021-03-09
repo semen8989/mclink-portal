@@ -58,23 +58,23 @@ class HrCalendarController extends Controller
         $title = __('label.view_event');
         $html  = '';
         $html .= '<tr>';
-        $html .= '<th>Company</th>';
+        $html .= '<th>'.__('label.company').'</th>';
         $html .= '<td>'.$event->company->company_name.'</td>';
         $html .= '</tr>';
         $html .= '<tr>';
-        $html .= '<th>Title</th>';
+        $html .= '<th>'.__('label.title').'</th>';
         $html .= '<td>'.$event->title.'</td>';
         $html .= '</tr>';
         $html .= '<tr>';
-        $html .= '<th>Start Date</th>';
+        $html .= '<th>'.__('label.start_date').'</th>';
         $html .= '<td>'.$event->start_date.'</td>';
         $html .= '</tr>';
         $html .= '<tr>';
-        $html .= '<th>End Date</th>';
+        $html .= '<th>'.__('label.end_date').'</th>';
         $html .= '<td>'.$event->end_date.'</td>';
         $html .= '</tr>';
         $html .= '<tr>';
-        $html .= '<th>Note</th>';
+        $html .= '<th>'.__('label.note').'</th>';
         $html .= '<td>'.$event->note.'</td>';
         $html .= '</tr>';
 
@@ -120,6 +120,43 @@ class HrCalendarController extends Controller
             $data['success'] = false;
             $data['message'] = "Error while creating holiday";
         }
+
+        echo json_encode($data);
+    }
+
+    public function view_holiday(Holiday $holiday)
+    {
+        $title = __('label.view_holiday');
+        $html  = '';
+        $html .= '<tr>';
+        $html .= '<th>'.__('label.company').'</th>';
+        $html .= '<td>'.$holiday->company->company_name.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>'.__('label.event_name').'</th>';
+        $html .= '<td>'.$holiday->event_name.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>'.__('label.start_date').'</th>';
+        $html .= '<td>'.$holiday->start_date.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>'.__('label.end_date').'</th>';
+        $html .= '<td>'.$holiday->end_date.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>'.__('label.description').'</th>';
+        $html .= '<td>'.$holiday->description.'</td>';
+        $html .= '</tr>';
+        $html .= '<tr>';
+        $html .= '<th>'.__('label.status').'</th>';
+        $html .= '<td>'.ucfirst($holiday->status).'</td>';
+        $html .= '</tr>';
+
+        $data = array(
+            'html' => $html,
+            'title' => $title
+        );
 
         echo json_encode($data);
     }

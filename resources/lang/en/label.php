@@ -190,6 +190,7 @@ return [
     'no_of_days' => 'No. of days',
     'none' => 'None',
     'not_approved' => 'Not Approved',
+    'note' => 'Note',
     'number_of_days' => 'Number of day/s',
     'number_of_items' => 'Number of Items',
     'office_contact_no' => 'Office contact no',

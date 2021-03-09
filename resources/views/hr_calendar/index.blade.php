@@ -81,31 +81,33 @@
                         //id and unq_id for fetching clicked event
                         id = arg.event.id;
                         unq_id = arg.event.extendedProps.unq_id;
+                        var url;
                         //Fetch event info based on unq_id assigned in every modules.
                         if(unq_id == 1)
                         {
-                            var url = '{{ route("hr_calendar.view_event",":id") }}'
+                            url = '{{ route("hr_calendar.view_event",":id") }}'
                             url = url.replace(':id',id)
-
-                            $.ajax({
-                                url: url,
-                                type: "POST",
-                                data: {
-                                    "_token": "{{ csrf_token() }}"
-                                },
-                                dataType: 'json',
-                                success: function(data){
-                                    $('#view_data').empty();
-                                    $('#view_data').append(data.html);
-                                    $('#modal_title').text(data.title);
-                                    $('#view_modal').modal('show');
-                                }
-                            });
                         }
                         else if(unq_id == 2)
                         {
-                            
+                            url = '{{ route("hr_calendar.view_holiday",":id") }}'
+                            url = url.replace(':id',id)
                         }
+                        //Submit using AJAX
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: 'json',
+                            success: function(data){
+                                $('#view_data').empty();
+                                $('#view_data').append(data.html);
+                                $('#modal_title').text(data.title);
+                                $('#view_modal').modal('show');
+                            }
+                        });
                         
                     },
                     dateClick: function(dateInfo){
