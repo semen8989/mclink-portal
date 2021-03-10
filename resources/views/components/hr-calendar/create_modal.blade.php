@@ -14,6 +14,7 @@
                 <div class="form-group">
                     <label for="company_id" class="col-form-label">Company</label>
                     <select class="form-control select2" name="company_id">
+                        <option></option>
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
@@ -64,6 +65,7 @@
                 <div class="form-group">
                     <label for="company_id" class="col-form-label">Company</label>
                     <select class="form-control select2" name="company_id">
+                        <option></option>
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
@@ -90,6 +92,7 @@
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control select2" name="status">
+                        <option></option>
                         <option value="published">Published</option>
                         <option value="unpublished">Unpublished</option>
                     </select>

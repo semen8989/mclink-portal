@@ -8,6 +8,8 @@ use App\Models\Company;
 use App\Models\Holiday;
 use Illuminate\Http\Request;
 use Acaronlex\LaravelCalendar\Calendar;
+use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\StoreHolidayRequest;
 
 class HrCalendarController extends Controller
 {
@@ -17,7 +19,8 @@ class HrCalendarController extends Controller
         return view('hr_calendar.index',compact('companies'));
     }
 
-    public function fetch_events(){
+    public function fetch_events()
+    {
         $data = [];
         $result = Event::all();
         foreach($result as $row) {
@@ -33,7 +36,7 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
     
-    public function store_event(Request $request)
+    public function store_event(StoreEventRequest $request)
     {
         $insert = [
             'company_id' => $request->company_id,
@@ -54,7 +57,8 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
 
-    public function view_event(Event $event){
+    public function view_event(Event $event)
+    {
         $title = __('label.view_event');
         $html  = '';
         $html .= '<tr>';
@@ -86,7 +90,8 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
     //Holidays
-    public function fetch_holidays(){
+    public function fetch_holidays()
+    {
         $data = [];
         $result = Holiday::all();
         foreach($result as $row) {
@@ -102,7 +107,7 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
 
-    public function store_holiday(Request $request)
+    public function store_holiday(StoreHolidayRequest $request)
     {
         $insert = [
             'company_id'  => $request->company_id,

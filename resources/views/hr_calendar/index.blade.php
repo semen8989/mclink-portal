@@ -90,13 +90,11 @@
                         }
                     ],
                     eventClick: function (arg){
-                        //id and unq_id for fetching clicked event
-                        id = arg.event.id;
-                        unq_id = arg.event.extendedProps.unq_id;
+                        var id = arg.event.id;
+                        var unq_id = arg.event.extendedProps.unq_id;
                         var url;
-                        //Fetch event info based on unq_id assigned in every modules.
-                        if(unq_id == 1)
-                        {
+
+                        if(unq_id == 1){
                             url = '{{ route("hr_calendar.view_event",":id") }}'
                             url = url.replace(':id',id)
                         }
@@ -124,6 +122,7 @@
                     },
                     dateClick: function(dateInfo){
                         $('#exact_date').val(dateInfo.dateStr);
+
                         $(dateInfo.dayEl).popover({
                             html: true,
                             trigger: 'click',
@@ -138,7 +137,8 @@
                             }
                         })
                         $(dateInfo.dayEl).popover('show');
-                        $('#exact_date').val(dateInfo.dateStr);
+                        
+                        
                     },
                    
                     
@@ -147,19 +147,20 @@
             calendar.render();
 
             $('div.modal').on('shown.bs.modal', function (e) {
-                // Remove previous popover
+                resetForm();
+
                 $('#calendar .popover').remove();
-                //Initialize chosen date
+
                 var date = $('#exact_date').val();
-                //Fill start and end date fields on shown modal
+
                 $(this).find('input[name="start_date"]').val(date);
                 $(this).find('input[name="end_date"]').val(date);
-                //Initialize modal id and form id
+
                 modal = $(this).attr('id');
                 form = $(this).find('form').attr('id');
-                //remove previous submit event and submit form
+
                 $('#'+form).off().submit(function (e){
-                    //Initialize                 
+
                     var url = $(this).attr('action');
                     var method = $(this).attr('method');
                     var data = $(this).serialize();
@@ -172,25 +173,51 @@
                         encode: true,
                         success: function(data){
                             if(data.success == true){
-                                //remove any form data
-                                $('#'+form).trigger("reset");
-                                //close modal
+                                resetForm();
+
                                 $('#'+modal).trigger('click');
                                 $('#'+modal).modal('hide');
-                                //Success
+                                
                                 alert(data.message)
-                                //refetch events
+                                
                                 calendar.refetchEvents();
-                            }else if(data.success == false){
-                                //Alert
+                            }
+                            else if(data.success == false){
                                 alert(data.message);
                             }
+                        },
+                        error: function(response){
+                            $('#'+modal).animate({ scrollTop: 45 }, 'smooth');
+
+                            $('#'+form).find(".invalid-feedback").remove();
+                            $('#'+form).find( ".form-control" ).removeClass("is-invalid");
+                            
+                            var errors = response.responseJSON;
+                            
+                            $.each(errors.errors, function (index, value){
+                                var name = $('#'+form).find('[name="'+index+'"]');
+                                name.closest('.form-control')
+                                .addClass('is-invalid');
+                                
+                                if(name.next('.select2-container').length > 0){
+                                    name.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                }else{
+                                    name.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                }
+
+                            });
                         }
                     })
                     
                     e.preventDefault();
                 });
             })
+            //Function
+            function resetForm(){
+                $('#'+form).find(".invalid-feedback").remove();
+                $('#'+form).find( ".form-control" ).removeClass("is-invalid");
+                $('#'+form).trigger("reset");
+            }
             //Datetimepicker
            $('.date').datetimepicker({
                 ignoreReadonly: true,
