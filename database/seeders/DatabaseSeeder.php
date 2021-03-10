@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\KpiRatingSeeder;
-use Database\Seeders\KpiMaingoalSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             ServiceReportSeeder::class,        
             KpiMaingoalSeeder::class,
+            KpiVariableSeeder::class,
             KpiRatingSeeder::class,
             CompanySeeder::class,
             DepartmentSeeder::class,
