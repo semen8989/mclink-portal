@@ -391,6 +391,12 @@ return [
         ]
     ],
     'service_report' => [
+        'title' => [
+            'index' => 'Service Reports',
+            'create' => 'Add New Service Report',
+            'show' => 'View Service Report',
+            'edit' => 'Edit Service Report',
+        ],
         'datatable' => [
             'column_header' => [
                 'csr_no' => 'CSR No.',
