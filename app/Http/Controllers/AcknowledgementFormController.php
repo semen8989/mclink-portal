@@ -25,7 +25,10 @@ class AcknowledgementFormController extends Controller
             abort(404);
         }
 
+        $title = __('label.service_report.title.sign');
+
         return view('service_form.acknowledgement.sign', [
+            'title' => $title,
             'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d/m/Y')
         ]);
@@ -65,6 +68,7 @@ class AcknowledgementFormController extends Controller
 
     public function feedback()
     {
-        return view('service_form.acknowledgement.feedback');
+        $title = __('label.service_report.title.feedback');
+        return view('service_form.acknowledgement.feedback', compact('title'));
     }
 }

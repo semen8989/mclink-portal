@@ -396,6 +396,8 @@ return [
             'create' => 'Add New Service Report',
             'show' => 'View Service Report',
             'edit' => 'Edit Service Report',
+            'sign' => 'Acknowledgement Form',
+            'feedback' => 'Customer Feedback',
         ],
         'datatable' => [
             'column_header' => [
