@@ -103,7 +103,7 @@
                             url = '{{ route("hr_calendar.view_holiday",":id") }}'
                             url = url.replace(':id',id)
                         }
-                        //Submit using AJAX
+
                         $.ajax({
                             url: url,
                             type: "POST",
@@ -126,7 +126,7 @@
                         $(dateInfo.dayEl).popover({
                             html: true,
                             trigger: 'click',
-                            title: 'Add Option',
+                            title: 'Add Option<a class="close" style="cursor:pointer;");">&times;</a>',
                             sanitize: false,
                             container: '#calendar',
                             content: function() {
@@ -137,7 +137,6 @@
                             }
                         })
                         $(dateInfo.dayEl).popover('show');
-                        
                         
                     },
                    
@@ -170,7 +169,7 @@
                         data: data,
                         method: method,
                         encode: true,
-                        success: function(data){
+                        success: function(){
                             window.location.reload();
                         },
                         error: function(response){
@@ -234,6 +233,12 @@
                 theme: "bootstrap",
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
+            });
+            //Close button action on popover header
+            $(document).click(function (e) {
+                if(($('#calendar .popover').has(e.target).length == 0) || $(e.target).is('.close')) {
+                    $('#calendar .popover').remove();
+                }
             });
             
         });
