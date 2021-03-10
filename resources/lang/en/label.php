@@ -430,7 +430,7 @@ return [
                 'plain_subject' => 'Service Report Customer Acknowledgement'
             ],
             'sent' => [
-                'message' => 'Click the button to sign the acknowledgement form.',
+                'message' => 'The engineer has filled up the service report. You may now review the details and sign the acknowledgement form by clicking the button below.',
                 'button' => [
                     'view_details' => 'View Details and Sign'
                 ],
