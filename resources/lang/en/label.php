@@ -348,6 +348,12 @@ return [
     'settings' => 'Settings',
     'report_problem' => 'Report Problem',
     'global' => [
+        'module' => [
+            'service_report' => [
+                'title' => 'MPS Service Report',
+                'url_segment' => 'service-forms'
+            ]
+        ],
         'text' => [
             'na' => 'N/A',
             'full_na' => 'Not Applicable (NA)'
@@ -391,6 +397,14 @@ return [
         ]
     ],
     'service_report' => [
+        'title' => [
+            'index' => 'Service Reports',
+            'create' => 'Add New Service Report',
+            'show' => 'View Service Report',
+            'edit' => 'Edit Service Report',
+            'sign' => 'Acknowledgement Form',
+            'feedback' => 'Customer Feedback',
+        ],
         'datatable' => [
             'column_header' => [
                 'csr_no' => 'CSR No.',
@@ -422,7 +436,7 @@ return [
                 'plain_subject' => 'Service Report Customer Acknowledgement'
             ],
             'sent' => [
-                'message' => 'Click the button to sign the acknowledgement form.',
+                'message' => 'The engineer has filled up the service report. You may now review the details and sign the acknowledgement form by clicking the button below.',
                 'button' => [
                     'view_details' => 'View Details and Sign'
                 ],
