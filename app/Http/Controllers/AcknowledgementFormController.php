@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use PDF;
 use Carbon\Carbon;
 use App\Models\ServiceReport;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Events\AcknowledgementFormSigned;
-use App\Mail\AcknowledgmentFormSubmitted;
-use App\Mail\ServiceReportCopyReceivedMail;
 use App\Http\Requests\StoreAcknowledgmentFormRequest;
 
 class AcknowledgementFormController extends Controller
