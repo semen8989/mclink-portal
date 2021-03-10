@@ -1,22 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
-use App\Http\Controllers\OfficeShiftController;
-use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KpiMaingoalController;
+use App\Http\Controllers\KpiVariableController;
+use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -50,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
             ->parameters(['maingoals' => 'kpiMain'])
             ->names('okr.kpi.maingoals');
         // KPI Variable Routes
-        Route::resource('variables', KpiMaingoalController::class)
+        Route::resource('variables', KpiVariableController::class)
             ->parameters(['variables' => 'kpiVariable'])
             ->names('okr.kpi.variables');
         // KPI Objectives Routes
