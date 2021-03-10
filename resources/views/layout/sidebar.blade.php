@@ -48,7 +48,7 @@
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-bar-chart') }}"></use>
               </svg> Performance</a>
               <ul class="c-sidebar-nav-dropdown-items">
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('performance.okr.kpi-maingoals.index') }}"><span class="c-sidebar-nav-icon"></span> OKR</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('okr.kpi.maingoals.index') }}"><span class="c-sidebar-nav-icon"></span> OKR</a></li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span> KPI Report</a></li>
               </ul>
             </li>

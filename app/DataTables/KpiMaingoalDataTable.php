@@ -22,14 +22,14 @@ class KpiMaingoalDataTable extends DataTable
             ->addIndexColumn()
             ->addColumn('', function(KpiMaingoal $kpiMain) {
                 return view('components.datatables.show-column', [
-                    'showRouteName' => 'performance.okr.kpi-maingoals.show',
+                    'showRouteName' => 'okr.kpi.maingoals.show',
                     'showRouteSlug' => 'kpiMain',
                     'showRouteSlugValue' => $kpiMain->id
                 ]);
             })->addColumn('action', function(KpiMaingoal $kpiMain) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
-                        'edit' => 'performance.okr.kpi-maingoals.edit',
+                        'edit' => 'okr.kpi.maingoals.edit',
                         'delete' => ''
                     ],
                     'itemSlug' => 'kpiMain',

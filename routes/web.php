@@ -43,25 +43,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
     });
 
-    // OKR KPI Maingoal Routes
-    Route::prefix('performance/okr/kpi-maingoals')->group(function () {
-        Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi-maingoals.index');
-        Route::get('/create', [KpiMaingoalController::class, 'create'])->name('performance.okr.kpi-maingoals.create');
-        Route::post('/', [KpiMaingoalController::class, 'store'])->name('performance.okr.kpi-maingoals.store');
-        Route::get('/{kpiMain}', [KpiMaingoalController::class, 'show'])->name('performance.okr.kpi-maingoals.show');
-        Route::get('/{kpiMain}/edit', [KpiMaingoalController::class, 'edit'])->name('performance.okr.kpi-maingoals.edit');
-        Route::put('/{kpiMain}', [KpiMaingoalController::class, 'update'])->name('performance.okr.kpi-maingoals.update');
-        Route::delete('/{kpiMain}', [KpiMaingoalController::class, 'destroy'])->name('performance.okr.kpi-maingoals.destroy');
-    });
-
-    // OKR KPI Variable Routes
-    Route::prefix('performance/okr/kpi/variable')->group(function () {
-        Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi.variable.index');
-    });
-
-    // OKR KPI Objective Routes
-    Route::prefix('performance/okr/kpi/objective')->group(function () {
-        Route::get('/', [KpiMaingoalController::class, 'index'])->name('performance.okr.kpi.objective.index');
+    // OKR Routes
+    Route::prefix('performance/okr/kpi')->group(function () {
+        // KPI Maingoal Routes
+        Route::resource('maingoals', KpiMaingoalController::class)
+            ->parameters(['maingoals' => 'kpiMain'])
+            ->names('okr.kpi.maingoals');
+        // KPI Variable Routes
+        Route::resource('variables', KpiMaingoalController::class)
+            ->parameters(['variables' => 'kpiVariable'])
+            ->names('okr.kpi.variables');
+        // KPI Objectives Routes
+        Route::resource('objectives', KpiMaingoalController::class)
+            ->parameters(['objectives' => 'kpiObjective'])
+            ->names('okr.kpi.objectives');
     });
     
     // Organizations
@@ -88,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
 
         // KPI Main Rating Route
-        Route::get('/kpi-maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpimain.rating');
+        Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
     });
 
     //Basic Routes

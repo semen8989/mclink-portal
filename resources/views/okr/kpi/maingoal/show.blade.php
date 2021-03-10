@@ -76,13 +76,13 @@
 
         <div class="row float-right">
             <div class="col-md-12">
-                <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('performance.okr.kpi-maingoals.index') }}">
+                <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('okr.kpi.maingoals.index') }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
                     </svg>
                     {{ __('label.global.form.button.back') }}
                 </a>
-                <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('performance.okr.kpi-maingoals.edit', [$kpiMain->id]) }}">
+                <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('okr.kpi.maingoals.edit', [$kpiMain->id]) }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                     </svg>
@@ -100,7 +100,7 @@
         $( document ).ready(function() {
             $('#month').change(function() {
                 $.ajax({
-                    url: "{{ route('get.kpimain.rating', ['kpiMain' => $kpiMain->id]) }}",
+                    url: "{{ route('get.kpi.main.rating', ['kpiMain' => $kpiMain->id]) }}",
                     type: 'get',
                     data: { 
                         month: $(this).val()

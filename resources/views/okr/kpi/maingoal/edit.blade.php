@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<form class="form-horizontal" id="kpiMainForm" action="{{ route('performance.okr.kpi-maingoals.update', ['kpiMain' => $kpiMain->id]) }}" method="POST">
+<form class="form-horizontal" id="kpiMainForm" action="{{ route('okr.kpi.maingoals.update', ['kpiMain' => $kpiMain->id]) }}" method="POST">
   @csrf
   @method('PUT')
 
@@ -11,7 +11,7 @@
     <x-okr.kpi.main.form :kpiMain="$kpiMain"/>
 
     <div class="row float-right mb-4 mt-2 mr-1">
-      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('performance.okr.kpi-maingoals.index') }}">
+      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('okr.kpi.maingoals.index') }}">
         <svg class="c-icon">
           <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
         </svg>
@@ -39,7 +39,7 @@
     $( document ).ready(function() {
       $('#month').change(function() {
         $.ajax({
-          url: "{{ route('get.kpimain.rating', ['kpiMain' => $kpiMain->id]) }}",
+          url: "{{ route('get.kpi.main.rating', ['kpiMain' => $kpiMain->id]) }}",
           type: 'get',
           data: { 
             month: $(this).val()

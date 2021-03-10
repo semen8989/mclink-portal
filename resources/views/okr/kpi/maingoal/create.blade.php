@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<form class="form-horizontal" id="kpiMainForm" action="{{ route('performance.okr.kpi-maingoals.store') }}" method="POST">
+<form class="form-horizontal" id="kpiMainForm" action="{{ route('okr.kpi.maingoals.store') }}" method="POST">
   @csrf
 
   <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_main.form.header.main') }}</h5>
@@ -10,7 +10,7 @@
     <x-okr.kpi.main.form />
 
     <div class="row float-right mb-4 mt-2 mr-1">
-      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('performance.okr.kpi-maingoals.index') }}">
+      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('okr.kpi.maingoals.index') }}">
         <svg class="c-icon">
           <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
         </svg>

@@ -42,15 +42,15 @@
         <div class="col-md-12 mb-3">
             <div class="nav-tabs-boxed">
                 <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item"><a id="mainTabLink" class="nav-link active" href="{{ route('performance.okr.kpi-maingoals.index') }}" role="tab" aria-controls="main">
+                <li class="nav-item"><a id="mainTabLink" class="nav-link active" href="{{ route('okr.kpi.maingoals.index') }}" role="tab" aria-controls="main">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_main') }}</a></li>
-                <li class="nav-item"><a id="variableTabLink" class="nav-link" href="{{ route('performance.okr.kpi.variable.index') }}" role="tab" aria-controls="variable">
+                <li class="nav-item"><a id="variableTabLink" class="nav-link" href="{{ route('okr.kpi.variables.index') }}" role="tab" aria-controls="variable">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart-line') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_variable') }}</a></li>
-                <li class="nav-item"><a id="objectiveTabLink" class="nav-link" href="{{ route('performance.okr.kpi.objective.index') }}" role="tab" aria-controls="objective">
+                <li class="nav-item"><a id="objectiveTabLink" class="nav-link" href="{{ route('okr.kpi.objectives.index') }}" role="tab" aria-controls="objective">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-paperclip') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_objective') }}</a></li>
@@ -88,7 +88,7 @@
     <script>
         $(document).on('click','#delete',function() {
             let id = $(this).attr('data-id');
-            var url = "{{ route('performance.okr.kpi-maingoals.destroy', ':id') }}"
+            var url = "{{ route('okr.kpi.maingoals.destroy', ':id') }}"
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });
@@ -108,11 +108,11 @@
             $('#filterYear, #filterEmployee').change(function() {
                 LaravelDataTables["kpimain-table"].ajax.reload();
 
-                $('#mainTabLink').attr('href', '{{ route("performance.okr.kpi-maingoals.index") }}' + 
+                $('#mainTabLink').attr('href', '{{ route("okr.kpi.maingoals.index") }}' + 
                     '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
-                $('#variableTabLink').attr('href', '{{ route("performance.okr.kpi.variable.index") }}' + 
+                $('#variableTabLink').attr('href', '{{ route("okr.kpi.variables.index") }}' + 
                     '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
-                $('#objectiveTabLink').attr('href', '{{ route("performance.okr.kpi.objective.index") }}' + 
+                $('#objectiveTabLink').attr('href', '{{ route("okr.kpi.objectives.index") }}' + 
                     '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
             });
 
