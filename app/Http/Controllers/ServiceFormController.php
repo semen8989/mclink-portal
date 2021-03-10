@@ -45,7 +45,7 @@ class ServiceFormController extends Controller
      */
     public function create()
     {
-        $title = __('label.service_report.title.show');
+        $title = __('label.service_report.title.create');
         $recentServiceReport = ServiceReport::select('csr_no')
             ->withTrashed()
             ->orderByDesc('created_at')
