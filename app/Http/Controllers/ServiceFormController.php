@@ -20,7 +20,8 @@ class ServiceFormController extends Controller
      */
     public function index(ServiceReportDataTable $dataTable)
     {
-        return $dataTable->render('service_form.index');
+        $title = __('label.service_report.title.index');
+        return $dataTable->render('service_form.index', compact('title'));
     }
 
     /**
@@ -31,9 +32,10 @@ class ServiceFormController extends Controller
      */
     public function show(ServiceReport  $serviceReport)
     {
+        $title = __('label.service_report.title.show');
         $serviceReport->status = Str::ucfirst(array_search($serviceReport->status, ServiceReport::STATUS));
         
-        return view('service_form.show', ['serviceReport' => $serviceReport]);
+        return view('service_form.show', compact('title', 'serviceReport'));
     }
 
     /**
@@ -43,6 +45,7 @@ class ServiceFormController extends Controller
      */
     public function create()
     {
+        $title = __('label.service_report.title.show');
         $recentServiceReport = ServiceReport::select('csr_no')
             ->withTrashed()
             ->orderByDesc('created_at')
@@ -53,7 +56,7 @@ class ServiceFormController extends Controller
             ? intval($recentServiceReport->csr_no)
             : ServiceReport::MODEL_START;
         
-        return view('service_form.create', ['csrNo' => $csrNo]);
+        return view('service_form.create', compact('title', 'csrNo'));
     }
 
     public function store(StoreServiceReportRequest  $request)
@@ -114,7 +117,8 @@ class ServiceFormController extends Controller
 
     public function edit(ServiceReport  $serviceReport)
     {
-        return view('service_form.edit', ['serviceReport' => $serviceReport]);
+        $title = __('label.service_report.title.edit');
+        return view('service_form.edit', compact('title', 'serviceReport'));
     }
 
     public function update(UpdateServiceReportRequest  $request, ServiceReport  $serviceReport)
