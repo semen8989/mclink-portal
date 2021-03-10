@@ -159,10 +159,6 @@
                 form = $(this).find('form').attr('id');
                 //remove previous submit event and submit form
                 $('#'+form).off().submit(function (e){
-                    var end_date = $(this).find('input[name="end_date"]').val();
-                    if(end_date == ''){
-                        alert('End date is null')
-                    }
                     //Initialize                 
                     var url = $(this).attr('action');
                     var method = $(this).attr('method');
