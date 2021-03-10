@@ -37,24 +37,9 @@ class HrCalendarController extends Controller
     }
     
     public function store_event(StoreEventRequest $request)
-    {
-        $insert = [
-            'company_id' => $request->company_id,
-            'title'      => $request->title,
-            'start_date' => $request->start_date,
-            'end_date'   => $request->end_date,
-            'note'       => $request->note
-        ];
-        $create = Event::create($insert);
-        if($create){
-            $data['success'] = true;
-            $data['message'] = "Event created successfully";
-        }else{
-            $data['success'] = false;
-            $data['message'] = "Error while creating event";
-        }
-
-        echo json_encode($data);
+    {        
+        Event::create($request->all());
+        return session()->flash('success', 'Event created successfully.');
     }
 
     public function view_event(Event $event)
@@ -108,25 +93,9 @@ class HrCalendarController extends Controller
     }
 
     public function store_holiday(StoreHolidayRequest $request)
-    {
-        $insert = [
-            'company_id'  => $request->company_id,
-            'event_name'  => $request->event_name,
-            'start_date'  => $request->start_date,
-            'end_date'    => $request->end_date,
-            'description' => $request->description,
-            'status'      => $request->status
-        ];
-        $create = Holiday::create($insert);
-        if($create){
-            $data['success'] = true;
-            $data['message'] = "Holiday created successfully";
-        }else{
-            $data['success'] = false;
-            $data['message'] = "Error while creating holiday";
-        }
-
-        echo json_encode($data);
+    {   
+        Holiday::create($request->all());
+        return session()->flash('success', 'Holiday created successfully.');   
     }
 
     public function view_holiday(Holiday $holiday)

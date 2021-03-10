@@ -169,22 +169,9 @@
                         url: url,
                         data: data,
                         method: method,
-                        dataType: 'json',
                         encode: true,
                         success: function(data){
-                            if(data.success == true){
-                                resetForm();
-
-                                $('#'+modal).trigger('click');
-                                $('#'+modal).modal('hide');
-                                
-                                alert(data.message)
-                                
-                                calendar.refetchEvents();
-                            }
-                            else if(data.success == false){
-                                alert(data.message);
-                            }
+                            window.location.reload();
                         },
                         error: function(response){
                             $('#'+modal).animate({ scrollTop: 45 }, 'smooth');
