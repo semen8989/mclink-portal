@@ -105,7 +105,7 @@ class PolicyDataTable extends DataTable
             Column::make('created_at')
                 ->title(__('label.created_at')),
             Column::make('user.name')
-            ->title(__('label.created_at')),
+            ->title(__('label.added_by')),
             Column::computed('action')
                 ->title(__('label.action')),
         ];

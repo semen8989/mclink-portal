@@ -11,6 +11,11 @@ class Holiday extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS = [
+        "unpublished" => 0,
+        "published" => 1
+    ];
+
     protected $fillable = [
         'company_id',
         'event_name',

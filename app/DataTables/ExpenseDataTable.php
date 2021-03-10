@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Expense;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -43,7 +44,20 @@ class ExpenseDataTable extends DataTable
             })->editColumn('purchase_date', function ($request) {
                 return date('M d Y', strtotime($request->purchase_date));
             })->editColumn('status', function ($request) {
-                return $request->status;
+                $status = Str::ucfirst(array_search($request->status, Expense::STATUS));
+
+                if($request->status == 0){
+                    $badgeColor = 'warning';
+                }else if($request->status == 1){
+                    $badgeColor = 'success';
+                }else if($request->status == 2){
+                    $badgeColor = 'danger';
+                }
+                
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
             });
     }
 
