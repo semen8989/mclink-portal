@@ -498,6 +498,12 @@ return [
         ]
     ],
     'kpi_main' => [
+        'title' => [
+            'index' => 'KPI Main Goals',
+            'create' => 'Add New Main Goal',
+            'show' => 'View Main Goal',
+            'edit' => 'Edit Main Goal',
+        ],
         'datatable' => [
             'column_header' => [
                 'action' => 'Action',

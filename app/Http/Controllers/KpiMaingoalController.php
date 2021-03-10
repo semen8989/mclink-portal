@@ -22,6 +22,7 @@ class KpiMaingoalController extends Controller
      */
     public function index(Request $request, KpiMaingoalDataTable $dataTable)
     {
+        $title = __('label.kpi_main.title.index');
         $departmentUsers = null;
 
         if (auth()->user()->isDepartmentHead()) {
@@ -38,7 +39,7 @@ class KpiMaingoalController extends Controller
             ->orderBy('year', 'desc')
             ->get();
 
-        return $dataTable->render('okr.kpi.maingoal.index', compact('dateFilter', 'departmentUsers'));
+        return $dataTable->render('okr.kpi.maingoal.index', compact('title', 'dateFilter', 'departmentUsers'));
     }
 
     /**
@@ -48,7 +49,8 @@ class KpiMaingoalController extends Controller
      */
     public function create()
     {
-        return view('okr.kpi.maingoal.create');
+        $title = __('label.kpi_main.title.create');
+        return view('okr.kpi.maingoal.create', compact('title'));
     }
 
     /**
@@ -89,9 +91,10 @@ class KpiMaingoalController extends Controller
      */
     public function show(KpiMaingoal $kpiMain)
     {
+        $title = __('label.kpi_main.title.show');
         $kpiMain->load('kpiratings');
 
-        return view('okr.kpi.maingoal.show', compact('kpiMain'));
+        return view('okr.kpi.maingoal.show', compact('title', 'kpiMain'));
     }
 
     /**
@@ -102,11 +105,13 @@ class KpiMaingoalController extends Controller
      */
     public function edit(KpiMaingoal $kpiMain)
     {
+        $title = __('label.kpi_main.title.edit');
+
         $kpiMain->load(['kpiratings' => function ($query) {
             $query->where('month', date('n'));
         }]);
 
-        return view('okr.kpi.maingoal.edit', compact('kpiMain'));
+        return view('okr.kpi.maingoal.edit', compact('title', 'kpiMain'));
     }
 
     /**
