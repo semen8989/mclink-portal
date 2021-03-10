@@ -348,6 +348,12 @@ return [
     'settings' => 'Settings',
     'report_problem' => 'Report Problem',
     'global' => [
+        'module' => [
+            'service_report' => [
+                'title' => 'MPS Service Report',
+                'url_segment' => 'service-forms'
+            ]
+        ],
         'text' => [
             'na' => 'N/A',
             'full_na' => 'Not Applicable (NA)'
