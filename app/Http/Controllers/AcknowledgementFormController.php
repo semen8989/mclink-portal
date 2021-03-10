@@ -53,7 +53,7 @@ class AcknowledgementFormController extends Controller
             $pdf = PDF::loadView('pdf.service_report.form', ['serviceReport' => $serviceReport]);       
 
             Storage::put('service_report\signature\\' . $imgFile, $image_base64);
-            Storage::put('service_report\pdf\\' . $pdfFile, $pdf->output());
+            Storage::disk('local')->put('private\service_report\pdf\\' . $pdfFile, $pdf->output());
 
             AcknowledgementFormSigned::dispatch($serviceReport);
 

@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
 use App\Events\AcknowledgementFormSent;
-use Illuminate\Support\Facades\Storage;
 use App\DataTables\ServiceReportDataTable;
 use App\Http\Requests\StoreServiceReportRequest;
 use App\Http\Requests\UpdateServiceReportRequest;
@@ -198,6 +197,6 @@ class ServiceFormController extends Controller
 
     public function download(ServiceReport  $serviceReport)
     {
-        return Storage::download('service_report\pdf\\' . $serviceReport->report_pdf, 'service_report.pdf');
+        return response()->download(storage_path('app/private/service_report/pdf/') . $serviceReport->report_pdf, 'service_report.pdf');
     }
 }
