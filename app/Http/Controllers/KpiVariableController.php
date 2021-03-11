@@ -27,7 +27,7 @@ class KpiVariableController extends Controller
                 ])->get();
         }
 
-        $dateFilter = KpiVariable::select('variable_year')
+        $dateFilter = KpiVariable::select('variable_year as year')
             ->where('user_id', auth()->user()->id)
             ->groupBy('variable_year')
             ->orderBy('variable_year', 'desc')
