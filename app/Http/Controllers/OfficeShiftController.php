@@ -18,6 +18,7 @@ class OfficeShiftController extends Controller
     public function index(OfficeShiftDataTable $dataTable)
     {
         $title = __('label.shifts');
+        
         return $dataTable->render('office_shift.index',compact('title'));
     }
 
@@ -30,6 +31,7 @@ class OfficeShiftController extends Controller
     {
         $title = __('label.add_shift');
         $companies = Company::all();
+        
         return view('office_shift.create',compact('title','companies'));
     }
 
@@ -42,8 +44,11 @@ class OfficeShiftController extends Controller
     public function store(StoreOfficeShiftRequest $request)
     {
         OfficeShift::create($request->all());
-        //Success flash message
-        return session()->flash('success', 'Office Shift created successfully.');
+        
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.office_shift'), 'action' => $action]);
+
+        return session()->flash('success',$message);
     }
 
     /**
@@ -55,6 +60,7 @@ class OfficeShiftController extends Controller
     public function show(OfficeShift $officeShift)
     {
         $title = __('label.view_shift');
+
         return view('office_shift.show',compact('title','officeShift'));
     }
 
@@ -68,6 +74,7 @@ class OfficeShiftController extends Controller
     {
         $title = __('label.edit_shift');
         $companies = Company::all();
+
         return view('office_shift.edit',compact('title','companies','officeShift'));
     }
 
@@ -81,8 +88,11 @@ class OfficeShiftController extends Controller
     public function update(StoreOfficeShiftRequest $request, OfficeShift $officeShift)
     {
         $officeShift->update($request->all());
-        //Success flash message
-        return session()->flash('success', 'Office Shift updated successfully.');
+        
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.office_shift'), 'action' => $action]);
+
+        return session()->flash('success',$message);
     }
 
     /**
@@ -94,6 +104,10 @@ class OfficeShiftController extends Controller
     public function destroy(OfficeShift $officeShift)
     {
         $officeShift->delete();
-        return redirect()->route('office_shifts.index')->with('success', 'Office Shift deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.office_shift'), 'action' => $action]);
+
+        return redirect()->route('office_shifts.index')->with('success',$message);
     }
 }

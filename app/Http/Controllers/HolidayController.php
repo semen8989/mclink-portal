@@ -18,6 +18,7 @@ class HolidayController extends Controller
     public function index(HolidayDataTable $dataTable)
     {
         $title = __('label.holidays');
+        
         return $dataTable->render('holiday.index',compact('title'));
     }
 
@@ -31,6 +32,7 @@ class HolidayController extends Controller
         $title = __('label.add_holiday');
         $companies = Company::all();
         $status = Holiday::STATUS;
+        
         return view('holiday.create',compact('title','companies','status'));
     }
 
@@ -43,8 +45,11 @@ class HolidayController extends Controller
     public function store(StoreHolidayRequest $request)
     {
         Holiday::create($request->all());
-        //Success flash message
-        return session()->flash('success','Holiday created successfully.');
+        
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.holiday'), 'action' => $action]);
+
+        return session()->flash('success',$message);
     }
 
     /**
@@ -56,6 +61,7 @@ class HolidayController extends Controller
     public function show(Holiday $holiday)
     {
         $title = __('label.view_holiday');
+
         return view('holiday.show',compact('title','holiday'));
     }
 
@@ -70,6 +76,7 @@ class HolidayController extends Controller
         $title = __('label.edit_holiday');
         $companies = Company::all();
         $status = Holiday::STATUS;
+
         return view('holiday.edit',compact('title','companies','holiday','status'));
     }
 
@@ -83,8 +90,11 @@ class HolidayController extends Controller
     public function update(StoreHolidayRequest $request, Holiday $holiday)
     {
         $holiday->update($request->all());
-        //Success flash message
-        return session()->flash('success','Holiday updated successfully.');
+        
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.holiday'), 'action' => $action]);
+
+        return session()->flash('success',$message);
     }
 
     /**
@@ -96,6 +106,10 @@ class HolidayController extends Controller
     public function destroy(Holiday $holiday)
     {
         $holiday->delete();
-        return redirect()->route('holidays.index')->with('success', 'Holiday deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.holiday'), 'action' => $action]);
+
+        return redirect()->route('holidays.index')->with('success',$message);
     }
 }
