@@ -38,7 +38,7 @@ class KpiVariable extends Model
         return self::COMPLETED_STATUS;
     }
 
-    public function getQuarter()
+    public function getQuarterList()
     {
         return self::QUARTER;
     }
