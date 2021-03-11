@@ -3,8 +3,18 @@
 @section('content')
 <div class="card-header">Hr Calendar</div>
 <div class="card-body">
-    <div class="col-md-12">
-        <div id="calendar"></div>
+    <div class="row">
+        <div class="col-md-3">
+            <div id='external-events'>
+                <div id="external-events-listing" class="fc-events-container">
+                    <div class="fc-event" style="background-color: rgb(53, 92, 125); border-color: rgb(53, 92, 125);">Events</div>
+                    <div class="fc-event" style="background-color: rgb(45, 149, 191); border-color: rgb(45, 149, 191);">Holidays</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div id="calendar"></div>
+        </div>
     </div>
 </div>
 <!-- Popover Content -->
@@ -34,6 +44,7 @@
         .fc-view{
             cursor: pointer;
         }
+
         .popover{
             width: 200px;
         }
@@ -45,6 +56,24 @@
             text-align: left !important;
             margin-bottom: 5px;
         }
+
+        #external-events{
+            width: 100%;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+        }
+        
+        #external-events .fc-event {
+            margin: 10px 0;
+            padding: 2px !important;
+            cursor: pointer;
+            color: #eee;
+            font-weight: bold;
+        }
+
+
     </style>
 @endpush
 
