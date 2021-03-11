@@ -40,8 +40,9 @@
             <label for="status">{{ __('label.status') }}</label>
             <select class="form-control custom-select" name="status" id="status">
                 <option></option>
-                <option value="published" {{ $holiday->status == 'published' ? 'selected' : '' }}>{{ __('label.published') }}</option>
-                <option value="unpublished" {{ $holiday->status == 'unpublished' ? 'selected' : '' }}>{{ __('label.unpublished') }}</option>
+                @foreach($status as $statusName => $statusId)
+                    <option value="{{ $statusId }}" {{ $statusId == $holiday->status ? 'selected' : '' }}>{{ ucfirst($statusName) }}</option>
+                @endforeach
             </select>
         </div>
     </div>

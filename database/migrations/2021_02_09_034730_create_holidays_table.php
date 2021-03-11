@@ -20,7 +20,7 @@ class CreateHolidaysTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('description')->nullable();
-            $table->string('status');
+            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -10,6 +10,12 @@ class Expense extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS = [
+        "pending" => 0,
+        "approved" => 1,
+        "cancelled" => 2
+    ];
+
     protected $fillable = [
         'expense_type_id',
         'purchase_date',

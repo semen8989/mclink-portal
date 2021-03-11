@@ -36,9 +36,10 @@
         <div class="form-group">
             <label for="status">{{ __('label.status') }}</label>
             <select class="form-control custom-select" name="status" id="status">
-                    <option></option>
-                    <option value="published">{{ __('label.published') }}</option>
-                    <option value="unpublished">{{ __('label.unpublished') }}</option>
+                        <option></option>
+                    @foreach($status as $statusName => $statusId)
+                        <option value="{{ $statusId }}">{{ ucfirst($statusName) }}</option>
+                    @endforeach
             </select>
         </div>
     </div>

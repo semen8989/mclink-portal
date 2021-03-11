@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use PDF;
 use Carbon\Carbon;
 use App\Models\ServiceReport;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Events\AcknowledgementFormSigned;
-use App\Mail\AcknowledgmentFormSubmitted;
-use App\Mail\ServiceReportCopyReceivedMail;
 use App\Http\Requests\StoreAcknowledgmentFormRequest;
 
 class AcknowledgementFormController extends Controller
@@ -25,7 +22,10 @@ class AcknowledgementFormController extends Controller
             abort(404);
         }
 
+        $title = __('label.service_report.title.sign');
+
         return view('service_form.acknowledgement.sign', [
+            'title' => $title,
             'serviceReport' => $serviceReport,
             'currentDate' => Carbon::now()->format('d/m/Y')
         ]);
@@ -53,7 +53,7 @@ class AcknowledgementFormController extends Controller
             $pdf = PDF::loadView('pdf.service_report.form', ['serviceReport' => $serviceReport]);       
 
             Storage::put('service_report\signature\\' . $imgFile, $image_base64);
-            Storage::put('service_report\pdf\\' . $pdfFile, $pdf->output());
+            Storage::disk('local')->put('private\service_report\pdf\\' . $pdfFile, $pdf->output());
 
             AcknowledgementFormSigned::dispatch($serviceReport);
 
@@ -65,6 +65,7 @@ class AcknowledgementFormController extends Controller
 
     public function feedback()
     {
-        return view('service_form.acknowledgement.feedback');
+        $title = __('label.service_report.title.feedback');
+        return view('service_form.acknowledgement.feedback', compact('title'));
     }
 }
