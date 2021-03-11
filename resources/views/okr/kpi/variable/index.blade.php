@@ -6,7 +6,7 @@
             <div class="row">
                 @if (auth()->user()->isDepartmentHead())
                 <div class="form-group col-md-3">
-                    <label class="col-form-label" for="filterEmployee">{{ __('label.kpi_main.form.label.select_employee') }}</label>
+                    <label class="col-form-label" for="filterEmployee">{{ __('label.kpi_variable.form.label.select_employee') }}</label>
                     <div class="controls">
                         <select class="form-control custom-select" id="filterEmployee">
                             @foreach ($departmentUsers as $user)
@@ -21,11 +21,24 @@
                 </div>
                 @endif
                 <div class="form-group col-md-3">
-                    <label class="col-form-label" for="filterYear">{{ __('label.kpi_main.form.label.select_year') }}</label>
+                    <label class="col-form-label" for="filterQuarter">{{ __('label.kpi_variable.form.label.select_quarter') }}</label>
+                    <div class="controls">
+                        <select class="form-control custom-select" id="filterQuarter">     
+                            @foreach ($quarterFilter as $quarterKey => $quarterValue)
+                                <option value="{{ $quarterKey }}"
+                                    @if (request()->has('filterQuarter') && request()->filterQuarter == $quarterKey) selected @endif>
+                                    {{ $quarterValue }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="filterYear">{{ __('label.kpi_variable.form.label.select_year') }}</label>
                     <div class="controls">
                         <select class="form-control custom-select" id="filterYear">
-                            @if ($dateFilter->isNotEmpty())
-                                @foreach ($dateFilter as $date)
+                            @if ($yearFilter->isNotEmpty())
+                                @foreach ($yearFilter as $date)
                                     <option value="{{ $date->year }}"
                                         @if (request()->has('filterYear') && request()->filterYear == $date->year) selected @endif>
                                         {{ $date->year }}
@@ -100,20 +113,32 @@
         // event for handling changes before datatable send request
         $("#kpivariable-table").on('preXhr.dt', function (e, settings, data) {
             data.filterEmployee = $('#filterEmployee').val();
+            data.filterQuarter = $('#filterQuarter').val();
             data.filterYear = $('#filterYear').val();
         });
 
-        $( document ).ready(function() {
-            // refresh datatable and update url get parameter based on the year filter on change event
-            $('#filterYear, #filterEmployee').change(function() {
-                LaravelDataTables["kpivariable-table"].ajax.reload();
+        function updateTabUrl() {
+            $('#mainTabLink').attr('href', '{{ route("okr.kpi.maingoals.index") }}' 
+                + '?filterYear=' + $("#filterYear").val()  
+                + '?filterEmployee=' + $("#filterEmployee").val());
+            $('#variableTabLink').attr('href', '{{ route("okr.kpi.variables.index") }}' 
+                + '?filterYear=' + $("#filterYear").val() 
+                + '?filterQuarter=' + $("#filterQuarter").val() 
+                + '?filterEmployee=' + $("#filterEmployee").val());
+            $('#objectiveTabLink').attr('href', '{{ route("okr.kpi.objectives.index") }}' 
+                + '?filterYear=' + $("#filterYear").val() 
+                + '?filterQuarter=' + $("#filterQuarter").val()
+                + '?filterEmployee=' + $("#filterEmployee").val());
+        }
 
-                $('#mainTabLink').attr('href', '{{ route("okr.kpi.maingoals.index") }}' + 
-                    '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
-                $('#variableTabLink').attr('href', '{{ route("okr.kpi.variables.index") }}' + 
-                    '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
-                $('#objectiveTabLink').attr('href', '{{ route("okr.kpi.objectives.index") }}' + 
-                    '?filterYear=' + $("#filterYear").val() + '?filterEmployee=' + $("#filterEmployee").val());
+        $( document ).ready(function() {
+            // initialize get query parameter on load
+            updateTabUrl();
+
+            // refresh datatable and update url get parameter based on the year filter on change event
+            $('#filterYear, #filterQuarter, #filterEmployee').change(function() {
+                LaravelDataTables["kpivariable-table"].ajax.reload();
+                updateTabUrl();
             });
 
             var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 

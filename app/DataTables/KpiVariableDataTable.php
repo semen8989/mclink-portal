@@ -50,8 +50,13 @@ class KpiVariableDataTable extends DataTable
                     ? $this->request->filterEmployee
                     : auth()->user()->id;
 
+                $quarter = $this->request->filterQuarter;
+
                 $instance->where('user_id', $user)
-                    ->whereYear('created_at', $this->request->filterYear);
+                    ->where('variable_year', $this->request->filterYear)
+                    ->when(!empty($quarter), function ($query) use ($quarter) {
+                        return $query->where('variable_quarter', $quarter);
+                    });
             }, true)->rawColumns(['status']);
     }
 

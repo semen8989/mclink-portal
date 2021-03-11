@@ -27,13 +27,15 @@ class KpiVariableController extends Controller
                 ])->get();
         }
 
-        $dateFilter = KpiVariable::select('variable_year as year')
+        $quarterFilter = KpiVariable::QUARTER;
+
+        $yearFilter = KpiVariable::select('variable_year as year')
             ->where('user_id', auth()->user()->id)
             ->groupBy('variable_year')
             ->orderBy('variable_year', 'desc')
             ->get();
 
-        return $dataTable->render('okr.kpi.variable.index', compact('title', 'dateFilter', 'departmentUsers'));
+        return $dataTable->render('okr.kpi.variable.index', compact('title', 'yearFilter', 'quarterFilter', 'departmentUsers'));
     }
 
     /**
