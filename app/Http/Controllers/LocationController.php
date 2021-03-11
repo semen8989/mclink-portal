@@ -19,6 +19,7 @@ class LocationController extends Controller
     public function index(LocationDataTable $dataTable)
     {
         $title = __('label.locations');
+        
         return $dataTable->render('location.index',compact('title'));
     }
 
@@ -31,6 +32,7 @@ class LocationController extends Controller
     {
         $companies = Company::all();
         $title = __('label.add_location');
+        
         return view('location.create',compact('title','companies'));
     }
 
@@ -43,9 +45,13 @@ class LocationController extends Controller
     public function store(StoreLocationRequest $request)
     {
         $request['current_user_id'] = auth()->user()->id;
+
         Location::create($request->all());
+
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.location'), 'action' => $action]);
         
-        return session()->flash('success', 'Location created successfully.');
+        return session()->flash('success',$message);
     }
 
     /**
@@ -57,6 +63,7 @@ class LocationController extends Controller
     public function show(Location $location)
     {
         $title = __('label.view_location');
+
         return view('location.show',compact('title','location'));
     }
 
@@ -71,6 +78,7 @@ class LocationController extends Controller
         $title = __('label.edit_location');
         $companies = Company::all();
         $users = Company::find($location->company_id)->company_users;
+        
         return view('location.edit',compact('title','location','companies','users'));
     }
 
@@ -84,8 +92,11 @@ class LocationController extends Controller
     public function update(StoreLocationRequest $request, Location $location)
     {
         $location->update($request->all());
+
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.location'), 'action' => $action]);
         
-        return session()->flash('success', 'Location updated successfully.');
+        return session()->flash('success',$message);
     }
 
     /**
@@ -97,6 +108,10 @@ class LocationController extends Controller
     public function destroy(Location $location)
     {
         $location->delete();
-        return redirect()->route('locations.index')->with('success', 'Location deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.location'), 'action' => $action]);
+        
+        return redirect()->route('locations.index')->with('success',$message);
     }
 }

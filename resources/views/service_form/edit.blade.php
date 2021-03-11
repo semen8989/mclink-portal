@@ -9,8 +9,19 @@
   
     <x-service-report.form :serviceReport="$serviceReport"/>
 
-    <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" type="submit">{{ __('label.global.form.button.update') }}</button>
+    <div class="row float-right mb-4 mt-3 mr-1">
+      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('service.form.index') }}">
+        <svg class="c-icon">
+            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
+        </svg>
+        {{ __('label.global.form.button.back') }}
+      </a>
+      <button class="btn btn-success font-weight-bold px-3" type="submit">
+        <svg class="c-icon">
+          <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-reload') }}"></use>
+        </svg>
+        {{ __('label.global.form.button.update') }}
+      </button>
     </div>
 
   </div>
@@ -30,7 +41,7 @@
   <!-- Datetimepicker js dependency -->
   <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
   <!-- TinyMCE js dependency -->
-  <script src="https://cdn.tiny.cloud/1/g3nqaa9be2i3wr7kdbzetf4y0iqrzwvbeia890tk3263yb08/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://cdn.tiny.cloud/1/{{ env('TINY_MCE_API') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <!-- bootstrap-input-spinner js dependency -->
   <script src="{{ asset('plugin/bootstrap-input-spinner/js/bootstrap-input-spinner.js') }}"></script>
   <!-- select2 js dependency -->

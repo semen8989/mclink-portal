@@ -22,6 +22,7 @@ class ExpenseController extends Controller
     public function index(ExpenseDataTable $dataTable)
     {
         $title = __('label.expenses');
+        
         return $dataTable->render('expense.index',compact('title'));
     }
 
@@ -35,6 +36,7 @@ class ExpenseController extends Controller
         $title = __('label.add_expense');
         $expense_types = ExpenseType::all();
         $companies = Company::all();
+        
         return view('expense.create',compact('title','expense_types','companies'));
     }
 
@@ -47,21 +49,21 @@ class ExpenseController extends Controller
     public function store(StoreExpenseRequest $request)
     {
         if($request->hasFile('bill_copy')){
-            //Get just extension
             $extension = $request->file('bill_copy')->getClientOriginalExtension();
-            //Filename to store
             $fileNameToStore = time().'.'.$extension;
-            //Upload image
             $path = $request->file('bill_copy')->storeAs('public/bill_copies',$fileNameToStore);
        } else {
             $fileNameToStore = '';
        }
-       //Inserting new data
-       $data = $request->except('bill_copy');
-       $data['bill_copy'] = $fileNameToStore;
-       Expense::create($data);
-       //Success flash message
-       return session()->flash('success', 'Expense created successfully.');
+        $data = $request->except('bill_copy');
+        $data['bill_copy'] = $fileNameToStore;
+        
+        Expense::create($data);
+
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.expense'), 'action' => $action]);
+
+        return session()->flash('success',$message);
     }
 
     /**
@@ -73,6 +75,7 @@ class ExpenseController extends Controller
     public function show(Expense $expense)
     {
         $title = __('label.view_expense');
+        
         return view('expense.show',compact('expense','title'));
     }
 
@@ -88,7 +91,9 @@ class ExpenseController extends Controller
         $expense_types = ExpenseType::all();
         $companies = Company::all();
         $users = Company::find($expense->company_id)->company_users;
-        return view('expense.edit',compact('expense','title','expense_types','companies','users'));
+        $status = Expense::STATUS;
+        
+        return view('expense.edit',compact('expense','title','expense_types','companies','users','status'));
     }
 
     /**
@@ -101,24 +106,22 @@ class ExpenseController extends Controller
     public function update(UpdateExpenseRequest $request, Expense $expense)
     {
         if($request->hasFile('bill_copy')){
-            //Delete old image data
             Storage::delete('public/bill_copies/'.$expense->bill_copy);
-            //Get just extension
+
             $extension = $request->file('bill_copy')->getClientOriginalExtension();
-            //Filename to store
             $fileNameToStore = time().'.'.$extension;
-            //Upload image
             $path = $request->file('bill_copy')->storeAs('public/bill_copies',$fileNameToStore);
         }else{
-            //Remain existing image
             $fileNameToStore = $expense->bill_copy;
         }
-        //Updating expense data
         $data = $request->except('bill_copy');
         $data['bill_copy'] = $fileNameToStore;
         $expense->update($data);
-        //Success flash message
-        return session()->flash('success', 'Expense updated successfully.');
+
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.expense'), 'action' => $action]);
+
+        return session()->flash('success',$message);
     }
 
     /**
@@ -129,11 +132,14 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //Delete old image
         Storage::delete('public/bill_copies/'.$expense->bill_copy);
-        //Delete expense data
+
         $expense->delete();
-        return redirect()->route('expenses.index')->with('success', 'Expense deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.expense'), 'action' => $action]);
+
+        return redirect()->route('expenses.index')->with('success',$message);
     }
 
     public function downloadFile($expense)

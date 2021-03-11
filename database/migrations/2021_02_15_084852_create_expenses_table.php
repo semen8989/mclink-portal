@@ -30,7 +30,7 @@ class CreateExpensesTable extends Migration
             $table->integer('employee_id');
             $table->string('bill_copy')->nullable();
             $table->text('remarks')->nullable();
-            $table->string('status')->default('pending');
+            $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

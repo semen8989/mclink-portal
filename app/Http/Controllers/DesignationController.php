@@ -10,7 +10,6 @@ use App\Http\Requests\StoreDesignationRequest;
 
 class DesignationController extends Controller
 {
-    protected $actions = ['create'];
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +18,7 @@ class DesignationController extends Controller
     public function index(DesignationDataTable $dataTable)
     {
         $title = __('label.designations');
+
         return $dataTable->render('designation.index',compact('title'));
     }
 
@@ -31,6 +31,7 @@ class DesignationController extends Controller
     {
         $title = __('label.add_designation');
         $companies = Company::all();
+
         return view('designation.create',compact('title','companies'));
     }
 
@@ -43,7 +44,11 @@ class DesignationController extends Controller
     public function store(StoreDesignationRequest $request)
     {
         Designation::create($request->all());
-        return session()->flash('success', 'Designation created successfully.');
+
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.designation'), 'action' => $action]);
+        
+        return session()->flash('success',$message);
     }
 
     /**
@@ -68,6 +73,7 @@ class DesignationController extends Controller
         $title = __('label.edit_designation');
         $companies = Company::all();
         $departments = Company::find($designation->company_id)->departments;
+        
         return view('designation.edit',compact('title','companies','departments','designation'));
 
     }
@@ -82,7 +88,11 @@ class DesignationController extends Controller
     public function update(StoreDesignationRequest $request, Designation $designation)
     {
         $designation->update($request->all());
-        return session()->flash('success', 'Designation created successfully.');
+        
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.designation'), 'action' => $action]);
+        
+        return session()->flash('success',$message);
     }
 
     /**
@@ -94,6 +104,10 @@ class DesignationController extends Controller
     public function destroy(Designation $designation)
     {
         $designation->delete();
-        return redirect()->route('designations.index')->with('success', 'Designation deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.designation'), 'action' => $action]);
+
+        return redirect()->route('designations.index')->with('success',$message);
     }
 }

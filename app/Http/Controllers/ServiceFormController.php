@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Customer;
 use Illuminate\Support\Str;
-use App\Mail\ServiceFormSent;
 use App\Models\ServiceReport;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use App\Events\AcknowledgementFormSent;
 use App\DataTables\ServiceReportDataTable;
-use App\Mail\ServiceFormSentConfirmationMail;
 use App\Http\Requests\StoreServiceReportRequest;
 use App\Http\Requests\UpdateServiceReportRequest;
 
@@ -24,7 +20,8 @@ class ServiceFormController extends Controller
      */
     public function index(ServiceReportDataTable $dataTable)
     {
-        return $dataTable->render('service_form.index');
+        $title = __('label.service_report.title.index');
+        return $dataTable->render('service_form.index', compact('title'));
     }
 
     /**
@@ -35,9 +32,10 @@ class ServiceFormController extends Controller
      */
     public function show(ServiceReport  $serviceReport)
     {
+        $title = __('label.service_report.title.show');
         $serviceReport->status = Str::ucfirst(array_search($serviceReport->status, ServiceReport::STATUS));
         
-        return view('service_form.show', ['serviceReport' => $serviceReport]);
+        return view('service_form.show', compact('title', 'serviceReport'));
     }
 
     /**
@@ -47,6 +45,7 @@ class ServiceFormController extends Controller
      */
     public function create()
     {
+        $title = __('label.service_report.title.create');
         $recentServiceReport = ServiceReport::select('csr_no')
             ->withTrashed()
             ->orderByDesc('created_at')
@@ -57,7 +56,7 @@ class ServiceFormController extends Controller
             ? intval($recentServiceReport->csr_no)
             : ServiceReport::MODEL_START;
         
-        return view('service_form.create', ['csrNo' => $csrNo]);
+        return view('service_form.create', compact('title', 'csrNo'));
     }
 
     public function store(StoreServiceReportRequest  $request)
@@ -118,7 +117,8 @@ class ServiceFormController extends Controller
 
     public function edit(ServiceReport  $serviceReport)
     {
-        return view('service_form.edit', ['serviceReport' => $serviceReport]);
+        $title = __('label.service_report.title.edit');
+        return view('service_form.edit', compact('title', 'serviceReport'));
     }
 
     public function update(UpdateServiceReportRequest  $request, ServiceReport  $serviceReport)
@@ -201,6 +201,6 @@ class ServiceFormController extends Controller
 
     public function download(ServiceReport  $serviceReport)
     {
-        return response()->download('storage\service_report\pdf\\' . $serviceReport->report_pdf, 'service_report.pdf');
+        return response()->download(storage_path('app/private/service_report/pdf/') . $serviceReport->report_pdf, 'service_report.pdf');
     }
 }

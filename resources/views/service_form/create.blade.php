@@ -9,13 +9,28 @@
   
     <x-service-report.form :csrNo="$csrNo"/>
 
-    <div class="btn-group float-right mb-4 mt-3">
-      <button class="btn btn-success" value="sent" type="submit">{{ __('label.service_report.form.button.send') }}</button>
-      <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <div class="dropdown-menu">
-        <button class="dropdown-item" value="draft" type="submit">{{ __('label.service_report.form.button.draft') }}</button>
+    <div class="row float-right mb-4 mt-3 mr-1">
+      <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('service.form.index') }}">
+        <svg class="c-icon">
+            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
+        </svg>
+        {{ __('label.global.form.button.back') }}
+      </a>
+      <div class="btn-group">
+        <button class="btn btn-success font-weight-bold px-3" value="sent" type="submit">
+          <svg class="c-icon">
+            <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-send') }}"></use>
+          </svg>
+          {{ __('label.service_report.form.button.send') }}
+        </button>
+        <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+          <button class="dropdown-item font-weight-bold px-3" value="draft" type="submit">
+            {{ __('label.service_report.form.button.draft') }}
+          </button>
+        </div>
       </div>
     </div>
 
