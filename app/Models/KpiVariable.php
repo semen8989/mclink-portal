@@ -16,6 +16,14 @@ class KpiVariable extends Model
         "yes" => 1
     ];
 
+    const QUARTER = [
+        0 => "All",
+        1 => "First Quarter",
+        2 => "Second Quarter",
+        3 => "Third Quarter",
+        4 => "Fourth Quarter"
+    ];
+
     /**
      * The model's default values for attributes.
      *
@@ -24,6 +32,16 @@ class KpiVariable extends Model
     protected $attributes = [
         'status' => 0,
     ];
+
+    public function getCompletedStatus()
+    {
+        return self::COMPLETED_STATUS;
+    }
+
+    public function getQuarter()
+    {
+        return self::QUARTER;
+    }
 
     /**
      * Get the user that is associated with the record.
