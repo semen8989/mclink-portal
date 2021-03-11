@@ -30,7 +30,8 @@ class HolidayController extends Controller
     {
         $title = __('label.add_holiday');
         $companies = Company::all();
-        return view('holiday.create',compact('title','companies'));
+        $status = Holiday::STATUS;
+        return view('holiday.create',compact('title','companies','status'));
     }
 
     /**
@@ -68,7 +69,8 @@ class HolidayController extends Controller
     {
         $title = __('label.edit_holiday');
         $companies = Company::all();
-        return view('holiday.edit',compact('title','companies','holiday'));
+        $status = Holiday::STATUS;
+        return view('holiday.edit',compact('title','companies','holiday','status'));
     }
 
     /**

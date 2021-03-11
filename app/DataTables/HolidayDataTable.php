@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Holiday;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -37,7 +38,13 @@ class HolidayDataTable extends DataTable
                     'columnData' => $request->event_name
                 ]);
             })->editColumn('status', function ($request) {
-                return ucfirst($request->status);
+                $status = Str::ucfirst(array_search($request->status, Holiday::STATUS));
+                $badgeColor = $request->status == 1 ? 'success' : 'warning';
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
             })->editColumn('start_date', function ($request) {
                 return date('M d Y', strtotime($request->start_date));
             })->editColumn('end_date', function ($request) {
