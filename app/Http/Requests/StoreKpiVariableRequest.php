@@ -27,7 +27,7 @@ class StoreKpiVariableRequest extends FormRequest
     {
         return [
             'variable_kpi' => 'bail|required',
-            'variable_quarter' => ['bail', 'required', Rule::in(KpiVariable::QUARTER)],
+            'variable_quarter' => ['bail', 'required', Rule::in(array_keys(KpiVariable::QUARTER))],
             'variable_year' => 'bail|required|date_format:Y|before_or_equal:+5 year|after_or_equal:-6 year',
             'target_date' => 'bail|required|date_format:d/m/Y|after_or_equal:' . date('d/m/Y'),
         ];
