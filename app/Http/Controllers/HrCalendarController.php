@@ -6,6 +6,7 @@ use DateTime;
 use App\Models\Event;
 use App\Models\Company;
 use App\Models\Holiday;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Acaronlex\LaravelCalendar\Calendar;
 use App\Http\Requests\StoreEventRequest;
@@ -78,7 +79,7 @@ class HrCalendarController extends Controller
     public function fetch_holidays()
     {
         $data = [];
-        $result = Holiday::all();
+        $result = Holiday::all()->where('status','=',1);
         foreach($result as $row) {
             $data[] = [
                 'id' => $row->id,
@@ -124,7 +125,7 @@ class HrCalendarController extends Controller
         $html .= '</tr>';
         $html .= '<tr>';
         $html .= '<th>'.__('label.status').'</th>';
-        $html .= '<td>'.ucfirst($holiday->status).'</td>';
+        $html .= '<td>'.Str::ucfirst(array_search($holiday->status, Holiday::STATUS)).'</td>';
         $html .= '</tr>';
 
         $data = array(
