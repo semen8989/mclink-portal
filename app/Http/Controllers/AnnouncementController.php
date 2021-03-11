@@ -18,6 +18,7 @@ class AnnouncementController extends Controller
     public function index(AnnouncementDataTable $dataTable)
     {
         $title = __('label.announcements');
+        
         return $dataTable->render('announcement.index',compact('title'));
     }
 
@@ -30,6 +31,7 @@ class AnnouncementController extends Controller
     {
         $title = __('label.add_announcement');
         $companies = Company::all();
+        
         return view('announcement.create',compact('companies','title'));
     }
 
@@ -42,8 +44,11 @@ class AnnouncementController extends Controller
     public function store(StoreAnnouncementRequest $request)
     {
         Announcement::create($request->all());
-        //Success flash message
-        return session()->flash('success','Announcement created successfully.');
+        
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.announcement'), 'action' => $action]);
+        
+        return session()->flash('success',$message);
     }
     /**
      * Display the specified resource.
@@ -54,6 +59,7 @@ class AnnouncementController extends Controller
     public function show(Announcement $announcement)
     {
         $title = __('label.view_announcement');
+        
         return view('announcement.show',compact('announcement','title'));
     }
 
@@ -68,6 +74,7 @@ class AnnouncementController extends Controller
         $title = __('label.edit_announcement');
         $companies = Company::all();
         $departments = Company::find($announcement->company_id)->departments;
+        
         return view('announcement.edit',compact('announcement','companies','departments','title'));
     }
 
@@ -81,8 +88,10 @@ class AnnouncementController extends Controller
     public function update(StoreAnnouncementRequest $request, Announcement $announcement)
     {
         $announcement->update($request->all());
-        //Success flash message
-        return session()->flash('success','Announcement updated successfully.');
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.announcement'), 'action' => $action]);
+        
+        return session()->flash('success',$message);
     }
 
     /**
@@ -94,6 +103,10 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement)
     {
         $announcement->delete();
-        return redirect()->route('announcements.index')->with('success', 'Announcement deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.announcement'), 'action' => $action]);
+        
+        return redirect()->route('announcements.index')->with('success',$message);
     }
 }

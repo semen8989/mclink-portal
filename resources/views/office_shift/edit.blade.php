@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">{{ __('label.edit_shift') }}</div>
-<form action="{{ route('office_shifts.update',$officeShift->id) }}" id="shift_form" method="post">
+<form action="{{ route('office_shifts.update',$officeShift->id) }}" id="shift_form" method="post" autocomplete="off">
     @csrf
     @method('PUT')
     <div class="card-body">
@@ -22,7 +22,7 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-2">{{ __('label.shift_name') }}</label>
                     <div class="col-md-4">
-                        <input class="form-control" name="shift_name" id="shift_name" type="text" value="{{ $officeShift->shift_name }}">
+                        <input class="form-control" name="shift_name" type="text" value="{{ $officeShift->shift_name }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -179,14 +179,14 @@
                         //fetch and display error messages
                         var errors = response.responseJSON;
                         $.each(errors.errors, function (index, value) {
-                            var id = $("#"+index);
-                            id.closest('.form-control')
+                            var name = $('[name="'+index+'"]');
+                            name.closest('.form-control')
                             .addClass('is-invalid');
-                            
-                            if(id.next('.select2-container').length > 0){
-                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+
+                            if(name.next('.select2-container').length > 0){
+                                name.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
                             }else{
-                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                name.after('<div class="invalid-feedback d-block">'+value+'</div>');
                             }
                         });
                         
