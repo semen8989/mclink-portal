@@ -44,6 +44,11 @@
                         class="c-sidebar-nav-icon"></span> {{ __('label.expense') }}</a></li>
                 </ul>
             </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('hr_calendar') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-calendar') }}"></use>
+                </svg> {{ __('label.hr_calendar') }}</a></li>
+            </li>
         </ul>
         
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
