@@ -88,7 +88,8 @@ class ExpenseController extends Controller
         $expense_types = ExpenseType::all();
         $companies = Company::all();
         $users = Company::find($expense->company_id)->company_users;
-        return view('expense.edit',compact('expense','title','expense_types','companies','users'));
+        $status = Expense::STATUS;
+        return view('expense.edit',compact('expense','title','expense_types','companies','users','status'));
     }
 
     /**

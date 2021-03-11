@@ -23,7 +23,7 @@ class HolidaySeeder extends Seeder
                 'start_date' => '2021-04-09',
                 'end_date' => '2021-04-09',
                 'description' => 'Holy Week',
-                'status' => 'published',
+                'status' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -34,7 +34,7 @@ class HolidaySeeder extends Seeder
                 'start_date' => '2021-04-10',
                 'end_date' => '2021-04-10',
                 'description' => 'Holy Week',
-                'status' => 'published',
+                'status' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
