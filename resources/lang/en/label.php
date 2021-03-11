@@ -538,5 +538,34 @@ return [
                 'rating' => 'Select Rating'
             ]
         ],
+    ],
+    'kpi_variable' => [
+        'title' => [
+            'index' => 'KPI Variables',
+            'create' => 'Add New Variable',
+            'show' => 'View Variable',
+            'edit' => 'Edit Variable',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'variable_kpi' => 'Variable KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI VARIABLES',
+                'rating' => 'MANAGER\'S RATING'
+            ],
+            'label' => [
+                
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
     ]
 ];
