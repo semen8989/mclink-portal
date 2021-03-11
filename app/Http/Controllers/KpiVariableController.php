@@ -6,9 +6,13 @@ use App\Models\User;
 use App\Models\KpiVariable;
 use Illuminate\Http\Request;
 use App\DataTables\KpiVariableDataTable;
+use App\Http\Requests\StoreKpiVariableRequest;
+use App\Traits\YearRangeTrait;
 
 class KpiVariableController extends Controller
 {
+    use YearRangeTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -45,16 +49,19 @@ class KpiVariableController extends Controller
      */
     public function create()
     {
-        //
+        $title = __('label.kpi_variable.title.create');
+        $yearList = $this->getYearRange(5, 5);
+
+        return view('okr.kpi.variable.create', compact('title', 'yearList'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreKpiVariableRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreKpiVariableRequest $request)
     {
         //
     }
