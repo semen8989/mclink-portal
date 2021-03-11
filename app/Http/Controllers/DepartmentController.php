@@ -18,6 +18,7 @@ class DepartmentController extends Controller
     public function index(DepartmentDataTable $dataTable)
     {
         $title = __('label.departments');
+        
         return $dataTable->render('department.index',compact('title'));
     }
 
@@ -30,6 +31,7 @@ class DepartmentController extends Controller
     {
         $title = __('label.add_department');
         $companies = Company::all('id','company_name');
+        
         return view('department.create',compact('companies','title'));
     }
 
@@ -42,7 +44,11 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->all());
-        return session()->flash('success', 'Department created successfully.');
+        
+        $action = __('label.global.response.action.created');
+        $message = __('label.global.response.success.general', ['module' => __('label.department'), 'action' => $action]);
+        
+        return session()->flash('success',$message);
     }
 
     /**
@@ -67,6 +73,7 @@ class DepartmentController extends Controller
         $title = __('label.edit_department');
         $companies = Company::all('id','company_name');
         $users = Company::find($department->company_id)->company_users;
+        
         return view('department.edit',compact('department', 'companies', 'users', 'title'));
     }
 
@@ -80,7 +87,11 @@ class DepartmentController extends Controller
     public function update(StoreDepartmentRequest $request, Department $department)
     {
         $department->update($request->all());
-        return session()->flash('success', 'Department updated successfully.');
+        
+        $action = __('label.global.response.action.updated');
+        $message = __('label.global.response.success.general', ['module' => __('label.department'), 'action' => $action]);
+        
+        return session()->flash('success',$message);
     }
 
     /**
@@ -92,6 +103,10 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
+
+        $action = __('label.global.response.action.deleted');
+        $message = __('label.global.response.success.general', ['module' => __('label.department'), 'action' => $action]);
+
+        return redirect()->route('departments.index')->with('success',$message);
     }
 }

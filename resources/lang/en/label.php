@@ -78,7 +78,6 @@ return [
     'create_prf' => 'Create PRF',
     'create_request' => 'Create request',
     'create_request' => 'Create request',
-    'created' => 'Created',
     'created_at' => 'Created at',
     'created_by' => 'Created by',
     'credit' => 'Credit',
@@ -138,6 +137,7 @@ return [
     'handbook' => 'Handbook',
     'hide_my_name' => 'Hide my name',
     'holiday_list' => 'Holiday List',
+    'holiday' => 'Holiday',
     'holidays' => 'Holidays',
     'home' => 'Home',
     'hr' => 'HR',
@@ -193,7 +193,8 @@ return [
     'number_of_days' => 'Number of day/s',
     'number_of_items' => 'Number of Items',
     'office_contact_no' => 'Office contact no',
-    'office_shifts' => 'office_shifts',
+    'office_shifts' => 'Office Shifts',
+    'office_shift' => 'Office Shift',
     'on_hand' => 'On hand',
     'onboarding_program' => 'Onboarding Program',
     'optional' => 'Optional',
@@ -215,6 +216,7 @@ return [
     'phone_number' => 'Phone number',
     'pic' => 'Pic',
     'please_write_your_feedback' => 'Please write your feedback',
+    'policy' => 'Policy',
     'policies' => 'Policies',
     'policy_list' => 'Policy List',
     'position' => 'Position',
@@ -393,6 +395,11 @@ return [
             ],
             'error' => [
                 'general' => 'There is a problem in :action the record.'
+            ],
+            'action' => [
+                'created' => 'created',
+                'updated' => 'updated',
+                'deleted' => 'deleted'
             ]
         ]
     ],

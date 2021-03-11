@@ -10,7 +10,7 @@
             <label for="company_id">{{ __('label.company') }}</label>
             <select class="form-control custom-select" name="company_id" id="company_id">
                 <option></option>
-                <option value="0">{{ __('label.all_companies') }}</option>
+                <option value="0" {{ $policy->company_id == 0 ? 'selected' : '' }}>{{ __('label.all_companies') }}</option>
                 @foreach ($companies as $company)
                     <option value="{{ $company->id }}" {{ $policy->company_id == $company->id ? 'selected' : '' }}>
                         {{ $company->company_name }}
