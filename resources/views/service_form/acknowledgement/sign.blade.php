@@ -151,11 +151,8 @@
 @stop
 
 @push('scripts')
-    <!-- TinyMCE js dependency -->
-    <script src="https://cdn.tiny.cloud/1/g3nqaa9be2i3wr7kdbzetf4y0iqrzwvbeia890tk3263yb08/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    
+    <!-- Page js codes -->
     <script>
- 
         (function() {
             window.requestAnimFrame = (function(callback) {
                 return window.requestAnimationFrame ||
