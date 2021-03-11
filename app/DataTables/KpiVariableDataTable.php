@@ -4,7 +4,6 @@ namespace App\DataTables;
 
 use App\Models\KpiVariable;
 use Illuminate\Support\Str;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -112,19 +111,19 @@ class KpiVariableDataTable extends DataTable
             Column::computed('')
                 ->width('5%'),
             Column::make('variable_kpi')
-                ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
+                ->title(__('label.kpi_variable.datatable.column_header.variable_kpi'))
                 ->width('30%'),
             Column::make('target_date')
-                ->title(__('label.kpi_main.datatable.column_header.q1'))
-                ->width('10%'),
+                ->title(__('label.kpi_variable.datatable.column_header.target_date'))
+                ->width('15%'),
             Column::make('result')
-                ->title(__('label.kpi_main.datatable.column_header.q2'))
-                ->width('35%'),
+                ->title(__('label.kpi_variable.datatable.column_header.result'))
+                ->width('30%'),
             Column::make('status')
-                ->title(__('label.kpi_main.datatable.column_header.q3'))
+                ->title(__('label.kpi_variable.datatable.column_header.completed'))
                 ->width('10%'),
             Column::computed('action')
-                ->title(__('label.kpi_main.datatable.column_header.action'))
+                ->title(__('label.kpi_variable.datatable.column_header.action'))
                 ->width('10%')
         ];
     }
