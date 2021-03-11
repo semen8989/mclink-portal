@@ -1,21 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\OfficeShiftController;
-use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServiceFormController;
+use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -64,6 +65,10 @@ Route::middleware(['auth'])->group(function () {
             'office_shifts' => OfficeShiftController::class,
             'expenses' => ExpenseController::class
         ]); 
+    });
+
+    Route::prefix('machine-requests')->group(function (){
+        Route::get('/', [MachineRequestController::class, 'index'])->name('machine_request.index');
     });
 
     //Basic Routes
