@@ -561,7 +561,9 @@ return [
                 'rating' => 'MANAGER\'S RATING'
             ],
             'label' => [
-                
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+                'select_employee' => 'Select Employee',
             ],
             'placeholder' => [
                 'rating' => 'Select Rating'
