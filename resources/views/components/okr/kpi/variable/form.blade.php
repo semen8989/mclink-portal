@@ -14,7 +14,7 @@
 
 <div class="form-row"> 
     <div class="form-group col-md-6">
-        <label class="col-form-label pl-1" for="result">result{{ __('label.kpi_main.form.label.main_kpi') }} <span class="font-weight-bold">*</span></label>
+        <label class="col-form-label pl-1" for="result">{{ __('label.kpi_variable.form.label.result') }} <span class="font-weight-bold">*</span></label>
         <div class="controls">
             <textarea class="form-control @error('result') is-invalid @enderror" name="result" id="result" rows="4">{{ old('result', $kpiVariable->result) }}</textarea>
             @error('result')
@@ -23,7 +23,7 @@
         </div>
     </div> 
     <div class="form-group col-md-6">
-        <label class="col-form-label pl-1" for="feedback">employee feedback{{ __('label.kpi_main.form.label.main_kpi') }} <span class="font-weight-bold">*</span></label>
+        <label class="col-form-label pl-1" for="feedback">{{ __('label.kpi_variable.form.label.feedback') }} <span class="font-weight-bold">*</span></label>
         <div class="controls">
             <textarea class="form-control @error('feedback') is-invalid @enderror" name="feedback" id="feedback" rows="4">{{ old('feedback', $kpiVariable->feedback) }}</textarea>
             @error('feedback')
@@ -35,7 +35,7 @@
 
 <div class="form-row">
     <div class="form-group col-md-6">
-        <label class="col-form-label pl-1" for="target_date">Target Date{{ __('label.kpi_main.form.label.status') }} </label>
+        <label class="col-form-label pl-1" for="target_date">{{ __('label.kpi_variable.form.label.target_date') }} <span class="font-weight-bold">*</span></label>
         <div class="controls">
             <input class="form-control @error('target_date') is-invalid @enderror" name="target_date" id="target_date" type="text" value="{{ old('target_date', $kpiVariable->target_date) }}">
             @error('target_date')
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="form-group col-md-6">
-        <label class="col-form-label pl-1" for="status">completed{{ __('label.kpi_main.form.label.status') }} </label>
+        <label class="col-form-label pl-1" for="status">{{ __('label.kpi_variable.form.label.status') }} <span class="font-weight-bold">*</span></label>
         <div class="controls">
             <select class="form-control custom-select @error('status') is-invalid @enderror" name="status" id="status">
                 @foreach ($kpiVariable->getCompletedStatus() as $statusKey => $statusValue)
