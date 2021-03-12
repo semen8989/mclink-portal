@@ -10,4 +10,9 @@ class MachineRequestController extends Controller
     {
         return view('machine_request.create_request');
     }
+
+    public function create_request(StoreMachineRequest $request)
+    {
+        
+    }
 }

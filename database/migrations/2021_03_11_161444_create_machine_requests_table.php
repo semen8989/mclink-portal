@@ -15,6 +15,20 @@ class CreateMachineRequestsTable extends Migration
     {
         Schema::create('machine_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('model');
+            $table->integer('qty');
+            $table->string('system');
+            $table->integer('cassette_no');
+            $table->string('contract_period');
+            $table->text('special_requirement');
+            $table->string('company_name');
+            $table->string('billing_address');
+            $table->string('office_contact_no');
+            $table->string('installation_address');
+            $table->string('person_in_charnge');
+            $table->string('contact_no');
+            $table->string('installation_date');
+            $table->string('technician_id');
             $table->timestamps();
         });
     }

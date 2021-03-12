@@ -60,7 +60,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Person in-charge</label>
-                <input class="form-control" name="installation_address" id="installation_address" type="text">
+                <input class="form-control" name="person_in_charnge" id="person_in_charnge" type="text">
             </div>
             <div class="form-group">
                 <label for="title">Contact No.</label>
