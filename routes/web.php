@@ -68,10 +68,6 @@ Route::middleware(['auth'])->group(function () {
         ]); 
     });
 
-    Route::prefix('machine-requests')->group(function (){
-        Route::get('/', [MachineRequestController::class, 'index'])->name('machine_request.index');
-    });
-
     //Basic Routes
     Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
     Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');
@@ -88,6 +84,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/fetch_holidays',[HrCalendarController::class,'fetch_holidays'])->name('hr_calendar.fetch_holidays');
         Route::post('/store_holiday',[HrCalendarController::class,'store_holiday'])->name('hr_calendar.store_holiday');
         Route::post('/view_holiday/{holiday}',[HrCalendarController::class, 'view_holiday'])->name('hr_calendar.view_holiday');
+    });
+    
+    //Machine Request
+    Route::prefix('machine_request')->group(function (){
+        Route::get('/',[MachineRequestController::class, 'index'])->name('machine_request.index');
+        Route::post('/store_request',[MachineRequestController::class, 'store_request'])->name('machine_request.store_request');
     });
 
 });

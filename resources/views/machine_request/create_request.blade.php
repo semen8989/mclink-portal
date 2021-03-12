@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="card-header">Machine Request Menu</div>
-<form action="" autocomplete="off" novalidate>
+<form method="POST" id="request_form" action="{{ route('machine_request.store_request') }}" autocomplete="off" novalidate>
+    @csrf
     <div class="card-body">
         @include('components.machine-request.nav-tabs')
         <div class="tab-content mt-3" id="myTab1Content">
@@ -29,7 +30,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="title">No of cassette</label>
+                        <label for="title">No of Cassette</label>
                         <input class="form-control" name="cassette_no" id="cassette_no" type="number">
                     </div>
                 </div>
@@ -60,7 +61,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Person in-charge</label>
-                <input class="form-control" name="person_in_charnge" id="person_in_charnge" type="text">
+                <input class="form-control" name="person_in_charge" id="person_in_charge" type="text">
             </div>
             <div class="form-group">
                 <label for="title">Contact No.</label>
@@ -72,7 +73,11 @@
             </div>
             <div class="form-group">
                 <label for="title">Send Request To</label>
-                <select class="form-control" name="send_request" id="send_request"></select>
+                <select class="form-control" name="technician_id" id="technician_id">
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
@@ -81,8 +86,8 @@
             <span class="badge badge-danger" style="font-size: 15px">**Different Installation Address Different Request Form</span>
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">All data are correct</label>
+            <input type="checkbox" class="form-check-input" name="data_check" id="data_check">
+            <label class="form-check-label" for="data_check">All data are correct</label>
         </div>
         <div class="form-group mt-2 text-center">
             <button type="submit" class="btn btn-success" style="width: 100%">Submit</button>
@@ -90,3 +95,44 @@
     </div>
 </form>
 @stop
+
+@push('scripts')
+    <script>
+        $('document').ready(function (){
+            //Form Submit
+            $('#request_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    success: function(){
+                        window.location.reload();
+                    },
+                    error: function(response){
+                        //Clear previous error messages
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            
+                            id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+
+
+                        });
+                        
+                    }
+                })
+            })
+        })
+    </script>
+@endpush

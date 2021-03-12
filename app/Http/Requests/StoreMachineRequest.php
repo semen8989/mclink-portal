@@ -13,7 +13,7 @@ class StoreMachineRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class StoreMachineRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'model' => 'required',
+            'qty' => 'required',
+            'system' => 'required',
+            'cassette_no' => 'required',
+            'contract_period' => 'required',
+            'special_requirement' => 'required',
+            'company_name' => 'required',
+            'billing_address' => 'required',
+            'office_contact_no' => 'required',
+            'installation_address' => 'required',
+            'person_in_charge' => 'required',
+            'contact_no' => 'required',
+            'installation_date' => 'required',
+            'technician_id' => 'required'
         ];
     }
 }

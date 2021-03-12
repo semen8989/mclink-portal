@@ -25,10 +25,11 @@ class CreateMachineRequestsTable extends Migration
             $table->string('billing_address');
             $table->string('office_contact_no');
             $table->string('installation_address');
-            $table->string('person_in_charnge');
+            $table->string('person_in_charge');
             $table->string('contact_no');
             $table->string('installation_date');
             $table->string('technician_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
