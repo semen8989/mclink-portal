@@ -1,10 +1,10 @@
 @extends('layout.master')
 
 @section('content')
-<form class="form-horizontal" id="kpiMainForm" action="{{ route('okr.kpi.variables.store') }}" method="POST">
+<form class="form-horizontal" id="kpiVariableForm" action="{{ route('okr.kpi.variables.store') }}" method="POST">
   @csrf
 
-  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_main.form.header.main') }}</h5>
+  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_variable.form.header.main') }}</h5>
   <div class="card-body">
 
     <x-okr.kpi.variable.form :yearList="$yearList"/>
@@ -46,7 +46,7 @@
         format: 'DD/MM/YYYY',
       });
 
-      $('#kpiMainForm').submit(function (event) {
+      $('#kpiVariableForm').submit(function (event) {
         $(this).find(':submit').prop('disabled', true);
       });
     });
