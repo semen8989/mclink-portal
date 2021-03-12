@@ -85,6 +85,9 @@ Route::middleware(['auth'])->group(function () {
 
         // KPI Main Rating Route
         Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
+
+        // KPI Variable Rating Route
+        Route::get('/okr/kpi/variables/{kpiVariable}/rating', [KpiVariableController::class, 'getRating'])->name('get.kpi.variable.rating');
     });
 
     //Basic Routes
