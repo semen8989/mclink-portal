@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             LocationSeeder::class,
             OfficeShiftSeeder::class,
             ExpenseTypeSeeder::class,
-            ExpenseSeeder::class
+            ExpenseSeeder::class,
+            EventSeeder::class
         ]);
     }
 }
