@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\KpiVariable;
 use Illuminate\Http\Request;
+use App\Traits\YearRangeTrait;
+use Illuminate\Support\Facades\DB;
 use App\DataTables\KpiVariableDataTable;
 use App\Http\Requests\StoreKpiVariableRequest;
-use App\Traits\YearRangeTrait;
 
 class KpiVariableController extends Controller
 {
@@ -63,7 +64,26 @@ class KpiVariableController extends Controller
      */
     public function store(StoreKpiVariableRequest $request)
     {
-        //
+        $validated = $request->validated();    
+        $validated['user_id'] = auth()->user()->id;
+
+        $result = true;
+        
+        try {
+            DB::transaction(function () use ($validated) {
+                KpiVariable::create($validated);
+            });
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result
+            ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'created'])
+            : __('label.global.response.error.general', ['action' => 'creating']);
+        
+        return redirect()->route('okr.kpi.variables.index')->with($resultStatus, $msg);
     }
 
     /**
