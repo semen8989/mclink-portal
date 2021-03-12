@@ -24,6 +24,25 @@ class KpiVariable extends Model
         4 => "Fourth Quarter"
     ];
 
+    protected $fillable = [
+        'variable_kpi',
+        'variable_quarter',
+        'variable_year',
+        'target_date',
+        'result',
+        'feedback',
+        'user_id'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'target_date' => 'date:d/m/Y',
+    ];
+
     /**
      * The model's default values for attributes.
      *
