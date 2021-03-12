@@ -566,6 +566,7 @@ return [
                 'variable_year' => 'Year',
                 'target_date' => 'Target Date',
                 'status' => 'Completed',
+                'result' => 'Result',
                 'feedback' => 'Employee\'s Feedback',
                 'month' => 'Month',
                 'rating' => 'Rating',
