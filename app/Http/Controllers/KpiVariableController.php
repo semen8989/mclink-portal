@@ -100,12 +100,19 @@ class KpiVariableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\KpiVariable  $kpiVariable
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(KpiVariable $kpiVariable)
     {
-        //
+        $title = __('label.kpi_main.title.edit');
+        $yearList = $this->getYearRange(5, 5, $kpiVariable->variable_year);
+
+        $kpiVariable->load(['kpiratings' => function ($query) {
+            $query->where('month', date('n'));
+        }]);
+
+        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable', 'yearList'));
     }
 
     /**
@@ -129,5 +136,21 @@ class KpiVariableController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Fetch a rating based on the main kpi
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\KpiVariable  $kpiVariable
+     * @return \Illuminate\Http\Response
+     */
+    public function getRating(Request $request, KpiVariable $kpiVariable)
+    {
+        $kpiVariable->load(['kpiratings' => function ($query) use ($request) {
+            $query->where('month', $request->month);
+        }]);
+
+        return response()->json($kpiVariable->kpiratings);
     }
 }
