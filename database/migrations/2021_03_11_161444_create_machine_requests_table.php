@@ -15,6 +15,7 @@ class CreateMachineRequestsTable extends Migration
     {
         Schema::create('machine_requests', function (Blueprint $table) {
             $table->id();
+            $table->integer('requester_id');
             $table->string('model');
             $table->integer('qty');
             $table->string('system');
@@ -28,7 +29,8 @@ class CreateMachineRequestsTable extends Migration
             $table->string('person_in_charge');
             $table->string('contact_no');
             $table->string('installation_date');
-            $table->string('technician_id');
+            $table->integer('technician_id');
+            $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

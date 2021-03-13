@@ -87,9 +87,12 @@ Route::middleware(['auth'])->group(function () {
     });
     
     //Machine Request
-    Route::prefix('machine_request')->group(function (){
-        Route::get('/',[MachineRequestController::class, 'index'])->name('machine_request.index');
-        Route::post('/store_request',[MachineRequestController::class, 'store_request'])->name('machine_request.store_request');
+    Route::prefix('machine-request')->group(function (){
+        //Create request form
+        Route::get('/create-request',[MachineRequestController::class, 'create_request'])->name('machine_request.create_request');
+        Route::post('/store-request',[MachineRequestController::class, 'store_request'])->name('machine_request.store_request');
+        //Pending machine request
+        Route::get('/pending-request',[MachineRequestController::class, 'pending_request'])->name('machine_request.pending_request');
     });
 
 });

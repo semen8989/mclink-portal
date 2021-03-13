@@ -11,6 +11,7 @@ class MachineRequest extends Model
     use SoftDeletes, HasFactory;
 
     protected $fillable = [
+        'requester_id',
         'model',
         'qty',
         'system',
@@ -26,4 +27,8 @@ class MachineRequest extends Model
         'installation_date',
         'technician_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'requester_id');
+    }
 }
