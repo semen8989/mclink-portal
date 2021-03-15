@@ -33,6 +33,12 @@ class PendingMachineRequestDataTable extends DataTable
                 return $request->qty;
             })->editColumn('created_at', function ($request) {
                 return $request->created_at->format('d/m/Y'); // use moment.js for this later
+            })->addColumn('detail', function(MachineRequest $machineRequest) {
+                return view('components.datatables.detail', [
+                    'editRouteName' => 'machine_request.pending_info',
+                    'itemSlug' => 'machineRequest',
+                    'itemSlugValue' => $machineRequest->id
+                ]);
             });
     }
 
@@ -102,8 +108,8 @@ class PendingMachineRequestDataTable extends DataTable
                 ->title('Quantity'),
             Column::make('created_at')
                 ->title('Created'),
-            // Column::computed('detail')
-            //    ->title('Details')
+            Column::computed('detail')
+                ->title('Details')
         ];
     }
 

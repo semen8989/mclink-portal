@@ -29,4 +29,10 @@ class MachineRequestController extends Controller
     {
         return $dataTable->render('machine_request.pending_request.index');
     }
+
+    public function showPendingInfo(MachineRequest $machineRequest)
+    {
+        $status = MachineRequest::STATUS;
+        return view('machine_request.pending_request.show',compact('machineRequest','status'));
+    }
 }
