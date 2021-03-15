@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\MachineRequest;
 use App\Http\Requests\StoreMachineRequest;
 use App\DataTables\PendingMachineRequestDataTable;
+use App\DataTables\CompletedMachineRequestDatatable;
 
 class MachineRequestController extends Controller
 {
@@ -30,9 +31,14 @@ class MachineRequestController extends Controller
         return $dataTable->render('machine_request.pending_request.index');
     }
 
-    public function showPendingInfo(MachineRequest $machineRequest)
+    public function showDetails(MachineRequest $machineRequest)
     {
         $status = MachineRequest::STATUS;
-        return view('machine_request.pending_request.show',compact('machineRequest','status'));
+        return view('machine_request.show-details',compact('machineRequest','status'));
+    }
+
+    public function completed_request(CompletedMachineRequestDatatable $dataTable)
+    {
+        return $dataTable->render('machine_request.completed_request.index');
     }
 }

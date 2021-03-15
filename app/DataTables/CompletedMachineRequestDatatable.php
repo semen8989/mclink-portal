@@ -9,7 +9,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class PendingMachineRequestDataTable extends DataTable
+class CompletedMachineRequestDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -32,7 +32,7 @@ class PendingMachineRequestDataTable extends DataTable
             })->editColumn('qty', function ($request) {
                 return $request->qty;
             })->editColumn('created_at', function ($request) {
-                return $request->created_at->format('d/m/Y'); // use moment.js for this later
+                return $request->updated_at; // use moment.js for this later
             })->addColumn('detail', function(MachineRequest $machineRequest) {
                 return view('components.datatables.detail', [
                     'editRouteName' => 'machine_request.show_details',
@@ -45,12 +45,12 @@ class PendingMachineRequestDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PendingMachineRequestsDataTable $model
+     * @param \App\Models\CompletedMachineRequestDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(MachineRequest $model)
     {
-        return $model->with('user')->select('machine_requests.*')->where('status','=',0);
+        return $model->with('user')->select('machine_requests.*')->where('status','=',1);
     }
 
     /**
@@ -61,7 +61,7 @@ class PendingMachineRequestDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-        ->setTableId('pending-table')
+        ->setTableId('completed-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->parameters([
@@ -106,8 +106,8 @@ class PendingMachineRequestDataTable extends DataTable
                 ->title('Model'),
             Column::make('qty')
                 ->title('Quantity'),
-            Column::make('created_at')
-                ->title('Created'),
+            Column::make('updated_at')
+                ->title('Updated'),
             Column::computed('detail')
                 ->title('Details')
         ];

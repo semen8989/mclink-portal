@@ -93,7 +93,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store-request',[MachineRequestController::class, 'store_request'])->name('machine_request.store_request');
         //Pending machine request
         Route::get('/pending-request',[MachineRequestController::class, 'pending_request'])->name('machine_request.pending_request');
-        Route::get('/pending-info/{machineRequest}',[MachineRequestController::class, 'showPendingInfo'])->name('machine_request.pending_info');
+        //Completed machine request
+        Route::get('/completed-request',[MachineRequestController::class, 'completed_request'])->name('machine_request.completed_request');
+        //View Details
+        Route::get('/view-details/{machineRequest}',[MachineRequestController::class, 'showDetails'])->name('machine_request.show_details');
     });
 
 });

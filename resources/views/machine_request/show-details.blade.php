@@ -59,7 +59,9 @@
                 </tr>
                 <tr>
                     <th class="custom-width">Status</th>
-                    <td><span class="badge badge-danger px-2 py-1">{{ ucfirst(array_search($machineRequest->status,$status)) }}</span></td>
+                    <td><span class="badge badge-{{$machineRequest->status == 1 ? 'success' : 'danger'}} px-2 py-1">
+                        {{ ucfirst(array_search($machineRequest->status,$status)) }}
+                    </span></td>
                 </tr>
             </tbody>
         </table>
