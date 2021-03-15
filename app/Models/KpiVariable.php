@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Traits\MonthInYearTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -57,9 +58,25 @@ class KpiVariable extends Model
         return self::COMPLETED_STATUS;
     }
 
+    public function getMonthList()
+    {
+        return self::$monthList;
+    }
+
     public function getQuarterList()
     {
         return self::QUARTER;
+    }
+
+    /**
+     * Set the target date format.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setTargetDateAttribute( $value ) 
+    {
+        $this->attributes['target_date'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d');
     }
 
     /**
