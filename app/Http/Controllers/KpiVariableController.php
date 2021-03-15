@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\KpiVariable;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Traits\YearRangeTrait;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\KpiVariableDataTable;
 use App\Http\Requests\StoreKpiVariableRequest;
+use App\Http\Requests\UpdateKpiVariableRequest;
 
 class KpiVariableController extends Controller
 {
@@ -118,13 +120,61 @@ class KpiVariableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateKpiVariableRequest  $request
+     * @param  \App\Models\KpiVariable  $kpiVariable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateKpiVariableRequest $request, KpiVariable $kpiVariable)
     {
-        //
+        $validated = $request->validated();
+        
+        $ratingInput = array();
+        $kpiRating = null;
+        
+        if (!empty($validated['kpi_ratings'])) {
+            $kpiVariable->load(['kpiratings' => function ($query) use ($validated) {
+                $query->where('month', $validated['kpi_ratings']['month']);
+            }]);
+    
+            $ratingInput['month'] = $validated['kpi_ratings']['month']; 
+            $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
+            $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
+    
+            if ($kpiVariable->kpiratings->isNotEmpty()) {
+                $kpiRating = $kpiVariable->kpiratings[0];
+    
+                $ratingInput['kpi_ratable_id'] = $kpiRating->kpi_ratable_id;
+                $ratingInput['kpi_ratable_type'] = $kpiRating->kpi_ratable_type;
+            } else {
+                $kpiRating = $kpiVariable->kpiratings();
+            }
+        }
+
+        $result = true;
+        
+        try {
+            DB::transaction(function () use ($kpiVariable, $kpiRating, $ratingInput, $validated) { 
+                $kpiVariable->update(Arr::except($validated, ['kpi_ratings']));
+
+                if ($kpiRating) {
+                    if ($kpiVariable->kpiratings->isNotEmpty()) {            
+                        $kpiRating->update($ratingInput);
+                    } else {
+                        $kpiRating->create($ratingInput);
+                    }
+                }      
+            });
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result 
+            ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'updated'])
+            : __('label.global.response.error.general', ['action' => 'updating']);
+
+        return redirect()->route('okr.kpi.variables.show', [$kpiVariable->id])->with($resultStatus, $msg);
     }
 
     /**

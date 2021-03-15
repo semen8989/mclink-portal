@@ -8,7 +8,7 @@
   <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_variable.form.header.main') }}</h5>
   <div class="card-body">
 
-    <x-okr.kpi.variable.form :kpiVariable="$kpiVariable" :yearList="$yearList"/>
+    <x-okr.kpi.variable.form :kpiVariable="$kpiVariable"/>
 
     <div class="row float-right mb-4 mt-2 mr-1">
       <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('okr.kpi.variables.index') }}">
@@ -63,8 +63,8 @@
       });
 
       @if($kpiVariable->kpiratings->isNotEmpty())
-        $('#month').val('{{ old("kpi_ratings.month", $kpiMain->kpiratings[0]->month) }}');
-        $('#rating').val('{{ old("kpi_ratings.rating", $kpiMain->kpiratings[0]->rating) }}');
+        $('#month').val('{{ old("kpi_ratings.month", $kpiVariable->kpiratings[0]->month) }}');
+        $('#rating').val('{{ old("kpi_ratings.rating", $kpiVariable->kpiratings[0]->rating) }}');
       @else
         $('#month').val('{{ old("kpi_ratings.month", date("n")) }}');
         $('#rating').val('{{ old("kpi_ratings.rating") }}');

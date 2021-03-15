@@ -35,7 +35,7 @@ class Form extends Component
      * @param  array  $yearList
      * @return void
      */
-    public function __construct($kpiVariable = null, $yearList)
+    public function __construct($kpiVariable = null, $yearList = null)
     {
         $this->kpiVariable = $kpiVariable;
         $this->yearList = $yearList;
