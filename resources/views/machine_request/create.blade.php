@@ -111,14 +111,22 @@
                     url: url,
                     data: data,
                     method: method,
-                    success: function(){
-                        window.location.reload();
-                    },
-                    error: function(response){
-                        //Clear previous error messages
+                    success: function(data){
+                      if(data.success == false)
+                      {
                         $(".invalid-feedback").remove();
                         $( ".form-control" ).removeClass("is-invalid");
-                        //fetch and display error messages
+                        $('.form-check-label').after('<div class="invalid-feedback d-block">Please confirm if all data are correct</div>');
+                      }
+                      else
+                      {
+                          window.location.reload();
+                      }
+                    },
+                    error: function(response){
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+
                         var errors = response.responseJSON;
                         $.each(errors.errors, function (index, value) {
                             var id = $("#"+index);
@@ -126,7 +134,6 @@
                             .addClass('is-invalid');
                             
                             id.after('<div class="invalid-feedback d-block">'+value+'</div>');
-
 
                         });
                         

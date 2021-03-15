@@ -19,11 +19,22 @@ class MachineRequestController extends Controller
 
     public function store(StoreMachineRequest $request)
     {
-        $request['requester_id'] = auth()->user()->id;
 
-        MachineRequest::create($request->all());
-        
-        return session()->flash('success','Machine Request Submitted');
+       if($request['data_check'] == "on")
+       {
+            $request['requester_id'] = auth()->user()->id;
+
+            MachineRequest::create($request->all());
+            
+            return session()->flash('success','Machine Request Submitted');
+
+            $data['success'] = true;
+       }
+       else
+       {
+            $data['success'] = false;
+       }
+            return response()->json($data);
     }
 
     public function show(MachineRequest $machineRequest)

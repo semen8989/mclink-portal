@@ -31,7 +31,7 @@ class MachineRequest extends Model
         'person_in_charge',
         'contact_no',
         'installation_date',
-        'technician_id'
+        'technician_id',
     ];
 
     public function user()
