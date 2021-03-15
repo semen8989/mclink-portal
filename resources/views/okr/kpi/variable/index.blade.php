@@ -146,6 +146,10 @@
                 '"></use></svg>';
 
             $('.buttons-create').find('span').html(newIcon + "{{ __('label.global.datatable.button.new') }}");
+
+            $('.buttons-create').click(function () {
+                location.href = "{{ route("okr.kpi.variables.create") }}";         
+            })
         });
         
     </script>
