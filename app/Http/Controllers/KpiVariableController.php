@@ -19,11 +19,13 @@ class KpiVariableController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\DataTables\KpiVariableDataTable  $dataTable
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, KpiVariableDataTable $dataTable)
     {
-        $title = __('label.kpi_main.title.index');
+        $title = __('label.kpi_variable.title.index');
         $departmentUsers = null;
 
         if (auth()->user()->isDepartmentHead()) {
@@ -96,7 +98,7 @@ class KpiVariableController extends Controller
      */
     public function show(KpiVariable $kpiVariable)
     {
-        $title = __('label.kpi_main.title.show');
+        $title = __('label.kpi_variable.title.show');
         $kpiVariable->load('kpiratings');
 
         return view('okr.kpi.variable.show', compact('title', 'kpiVariable'));
@@ -110,7 +112,7 @@ class KpiVariableController extends Controller
      */
     public function edit(KpiVariable $kpiVariable)
     {
-        $title = __('label.kpi_main.title.edit');
+        $title = __('label.kpi_variable.title.edit');
 
         $kpiVariable->load(['kpiratings' => function ($query) {
             $query->where('month', date('n'));
