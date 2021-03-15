@@ -108,13 +108,12 @@ class KpiVariableController extends Controller
     public function edit(KpiVariable $kpiVariable)
     {
         $title = __('label.kpi_main.title.edit');
-        $yearList = $this->getYearRange(5, 5, $kpiVariable->variable_year);
 
         $kpiVariable->load(['kpiratings' => function ($query) {
             $query->where('month', date('n'));
         }]);
 
-        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable', 'yearList'));
+        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable'));
     }
 
     /**
