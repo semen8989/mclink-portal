@@ -20,11 +20,7 @@
 			<li class="c-header-nav-item dropdown">
 				<a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 					<div class="c-avatar">
-						@if (!is_null(auth()->user()->avatar))
-							<img class="c-avatar-img" src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->email }}">
-						@else
-							<img class="c-avatar-img" src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&size=96&background=random&length=1&color=fff" alt="{{ auth()->user()->email }}">
-						@endif
+						<img class="c-avatar-img" src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->email }}">
 					</div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right pt-0">
@@ -50,7 +46,7 @@
 						</svg> Comments<span class="badge badge-warning ml-auto">42</span>
 					</a> --}}
 					<div class="dropdown-header bg-light py-2"><strong>{{ __('label.settings') }}</strong></div>
-					<a class="dropdown-item" href="#">
+					<a class="dropdown-item" href="{{ route('profile.index') }}">
 						<svg class="c-icon mr-2">
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-user') }}"></use>
 						</svg> {{ __('label.profile') }}
