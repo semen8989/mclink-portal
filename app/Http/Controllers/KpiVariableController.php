@@ -179,12 +179,20 @@ class KpiVariableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\KpiVariable  $kpiVariable
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(KpiVariable $kpiVariable)
     {
-        //
+        $result = $kpiVariable->delete();
+
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result
+            ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'deleted'])
+            : __('label.global.response.error.general', ['action' => 'deleting']);
+
+        return back()->with($resultStatus, $msg);
     }
 
     /**
