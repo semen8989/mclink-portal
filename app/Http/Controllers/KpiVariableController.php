@@ -91,12 +91,15 @@ class KpiVariableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\KpiVariable  $kpiVariable
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(KpiVariable $kpiVariable)
     {
-        //
+        $title = __('label.kpi_main.title.show');
+        $kpiVariable->load('kpiratings');
+
+        return view('okr.kpi.variable.show', compact('title', 'kpiVariable'));
     }
 
     /**

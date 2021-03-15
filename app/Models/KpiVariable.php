@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use App\Traits\MonthInYearTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -66,6 +67,11 @@ class KpiVariable extends Model
     public function getQuarterList()
     {
         return self::QUARTER;
+    }
+
+    public function getStringStatus()
+    {
+        return Str::ucfirst(array_search($this->status, self::COMPLETED_STATUS));
     }
 
     /**
