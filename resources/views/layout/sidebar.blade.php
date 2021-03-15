@@ -54,7 +54,7 @@
                     <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-dollar') }}"></use>
                 </svg> Sales</a>
                 <ul class="c-sidebar-nav-dropdown-items">
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('machine_request.create_request') }}"><span class="c-sidebar-nav-icon"></span> Machine Request </a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('machine_request.create') }}"><span class="c-sidebar-nav-icon"></span> Machine Request </a></li>
                 </ul>
             </li>
         </ul>

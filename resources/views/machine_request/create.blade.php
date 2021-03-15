@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Machine Request Menu</div>
-<form method="POST" id="request_form" action="{{ route('machine_request.store_request') }}" autocomplete="off" novalidate>
+<form method="POST" id="request_form" action="{{ route('machine_request.store') }}" autocomplete="off" novalidate>
     @csrf
     <div class="card-body">
         @include('components.machine-request.nav-tabs')

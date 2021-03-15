@@ -11,13 +11,13 @@ use App\DataTables\CompletedMachineRequestDatatable;
 
 class MachineRequestController extends Controller
 {
-    public function create_request()
+    public function create()
     {
         $users = User::all();
-        return view('machine_request.create_request',compact('users'));
+        return view('machine_request.create',compact('users'));
     }
 
-    public function store_request(StoreMachineRequest $request)
+    public function store(StoreMachineRequest $request)
     {
         $request['requester_id'] = auth()->user()->id;
 
@@ -25,20 +25,21 @@ class MachineRequestController extends Controller
         
         return session()->flash('success','Machine Request Submitted');
     }
+
+    public function show(MachineRequest $machineRequest)
+    {
+        $status = MachineRequest::STATUS;
+        return view('machine_request.show',compact('machineRequest','status'));
+    }
     
-    public function pending_request(PendingMachineRequestDataTable $dataTable)
+    public function pendingRequestIndex(PendingMachineRequestDataTable $dataTable)
     {
         return $dataTable->render('machine_request.pending_request.index');
     }
 
-    public function showDetails(MachineRequest $machineRequest)
-    {
-        $status = MachineRequest::STATUS;
-        return view('machine_request.show-details',compact('machineRequest','status'));
-    }
-
-    public function completed_request(CompletedMachineRequestDatatable $dataTable)
+    public function completedRequestIndex(CompletedMachineRequestDatatable $dataTable)
     {
         return $dataTable->render('machine_request.completed_request.index');
     }
+
 }

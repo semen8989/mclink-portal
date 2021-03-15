@@ -35,7 +35,7 @@ class PendingMachineRequestDataTable extends DataTable
                 return $request->created_at->format('d/m/Y'); // use moment.js for this later
             })->addColumn('detail', function(MachineRequest $machineRequest) {
                 return view('components.datatables.detail', [
-                    'editRouteName' => 'machine_request.show_details',
+                    'editRouteName' => 'machine_request.show',
                     'itemSlug' => 'machineRequest',
                     'itemSlugValue' => $machineRequest->id
                 ]);

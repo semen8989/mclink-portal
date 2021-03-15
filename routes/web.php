@@ -89,14 +89,14 @@ Route::middleware(['auth'])->group(function () {
     //Machine Request
     Route::prefix('machine-request')->group(function (){
         //Create request form
-        Route::get('/create-request',[MachineRequestController::class, 'create_request'])->name('machine_request.create_request');
-        Route::post('/store-request',[MachineRequestController::class, 'store_request'])->name('machine_request.store_request');
+        Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
+        Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
         //Pending machine request
-        Route::get('/pending-request',[MachineRequestController::class, 'pending_request'])->name('machine_request.pending_request');
+        Route::get('/pending-request',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_request');
         //Completed machine request
-        Route::get('/completed-request',[MachineRequestController::class, 'completed_request'])->name('machine_request.completed_request');
+        Route::get('/completed-request',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_request');
         //View Details
-        Route::get('/view-details/{machineRequest}',[MachineRequestController::class, 'showDetails'])->name('machine_request.show_details');
+        Route::get('/view-details/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.show');
     });
 
 });
