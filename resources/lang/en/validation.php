@@ -180,6 +180,12 @@ return [
         'kpi_ratings.month' => 'month',
         'kpi_ratings.rating' => 'rating',
         'kpi_ratings.manager_comment' => 'manager\'s comment',
+        // okr kpi variable fields
+        'variable_kpi' => 'variable',
+        'variable_year' => 'year',
+        'variable_quarter' => 'quarter',
+        'target_date' => 'target date',
+        'result' => 'result',
         // fields under organization modules
         'company_id' => 'company',
         'department_id' => 'department',
