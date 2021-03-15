@@ -4,7 +4,7 @@
 <form class="form-horizontal" id="kpiVariableForm" action="{{ route('okr.kpi.variables.store') }}" method="POST">
   @csrf
 
-  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_variable.form.header.main') }}</h5>
+  <div class="card-header">{{ __('label.kpi_variable.title.create') }}</div>
   <div class="card-body">
 
     <x-okr.kpi.variable.form :yearList="$yearList"/>

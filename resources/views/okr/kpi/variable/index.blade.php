@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+    <div class="card-header">{{ __('label.kpi_variable.title.index') }}</div>
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">

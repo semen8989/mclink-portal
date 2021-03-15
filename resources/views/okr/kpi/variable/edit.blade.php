@@ -5,7 +5,7 @@
   @csrf
   @method('PUT')
 
-  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_variable.form.header.main') }}</h5>
+  <div class="card-header">{{ __('label.kpi_variable.title.edit') }}</div>
   <div class="card-body">
 
     <x-okr.kpi.variable.form :kpiVariable="$kpiVariable"/>

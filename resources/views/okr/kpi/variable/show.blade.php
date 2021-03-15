@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_variable.form.header.main') }}</h5>
+    <div class="card-header">{{ __('label.kpi_variable.title.show') }}</div>
     <div class="card-body px-5">
         <div class="row">
             <div class="col-md-6">
