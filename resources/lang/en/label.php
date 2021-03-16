@@ -512,7 +512,8 @@ return [
                 'q2' => 'Q2',
                 'q3' => 'Q3',
                 'q4' => 'Q4',
-                'completed' => 'Completed'
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
             ]
         ],
         'form' => [

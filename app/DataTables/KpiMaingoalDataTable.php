@@ -52,6 +52,8 @@ class KpiMaingoalDataTable extends DataTable
                     'columnData' => $status,
                     'badgeColor' => $badgeColor
                 ]);
+            })->editColumn('updated_at', function ($request) {
+                return $request->updated_at->format('d/m/Y');
             })->filter(function ($instance) {
                 $user = auth()->user()->isDepartmentHead() 
                     ? $this->request->filterEmployee
@@ -117,7 +119,7 @@ class KpiMaingoalDataTable extends DataTable
         return [
             Column::make('main_kpi')
                 ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
-                ->width('27%'),
+                ->width('20%'),
             Column::make('q1')
                 ->title(__('label.kpi_main.datatable.column_header.q1'))
                 ->width('12%'),
@@ -133,6 +135,9 @@ class KpiMaingoalDataTable extends DataTable
             Column::make('status')
                 ->title(__('label.kpi_main.datatable.column_header.completed'))
                 ->width('10%'),
+            Column::make('updated_at')
+                ->title(__('label.kpi_main.datatable.column_header.updated_at'))
+                ->width('12%'),
             Column::computed('action')
                 ->title(__('label.kpi_main.datatable.column_header.action'))
                 ->width('10%')
