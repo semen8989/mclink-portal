@@ -20,13 +20,7 @@ class KpiMaingoalDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('', function(KpiMaingoal $kpiMain) {
-                return view('components.datatables.show-column', [
-                    'showRouteName' => 'okr.kpi.maingoals.show',
-                    'showRouteSlug' => 'kpiMain',
-                    'showRouteSlugValue' => $kpiMain->id
-                ]);
-            })->addColumn('action', function(KpiMaingoal $kpiMain) {
+            ->addColumn('action', function(KpiMaingoal $kpiMain) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
                         'edit' => 'okr.kpi.maingoals.edit',
@@ -34,6 +28,13 @@ class KpiMaingoalDataTable extends DataTable
                     ],
                     'itemSlug' => 'kpiMain',
                     'itemSlugValue' => $kpiMain->id
+                ]);
+            })->editColumn('main_kpi', function ($request) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'okr.kpi.maingoals.show',
+                    'showRouteSlug' => 'kpiMain',
+                    'showRouteSlugValue' => $request->id,
+                    'columnData' => $request->main_kpi
                 ]);
             })->editColumn('q1', function ($request) {
                 return $request->q1 ?? 'N/A';
@@ -114,8 +115,6 @@ class KpiMaingoalDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('')
-                ->width('5%'),
             Column::make('main_kpi')
                 ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
                 ->width('27%'),
