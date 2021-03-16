@@ -364,10 +364,18 @@ return [
     'new' => 'New',
     'confirm' => 'Confirm',
     'global' => [
-        'module' => [
+        'module' => [ 
             'service_report' => [
                 'title' => 'MPS Service Report',
                 'url_segment' => 'service-forms'
+            ],
+            'performance' => [
+                'title' => 'Performance',
+                'url_segment' => 'performance'
+            ],
+            'okr' => [
+                'title' => 'OKR',
+                'url_segment' => 'okr'
             ]
         ],
         'text' => [
