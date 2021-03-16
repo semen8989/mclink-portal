@@ -125,7 +125,7 @@
                     },
                     error: function(response){
                         $(".invalid-feedback").remove();
-                        $( ".form-control" ).removeClass("is-invalid");
+                        $( ".form-control").removeClass("is-invalid");
 
                         var errors = response.responseJSON;
                         $.each(errors.errors, function (index, value) {
@@ -136,6 +136,12 @@
                             id.after('<div class="invalid-feedback d-block">'+value+'</div>');
 
                         });
+                        
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 90)
+                            },500);
+                        }
                         
                     }
                 })
