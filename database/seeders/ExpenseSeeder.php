@@ -23,6 +23,7 @@ class ExpenseSeeder extends Seeder
                 'amount' => '200',
                 'company_id' => 1,
                 'employee_id' => 1,
+                'status' => 0,
                 'remarks' => 'no remarks'
             ]
         ];

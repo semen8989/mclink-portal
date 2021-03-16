@@ -78,7 +78,6 @@ return [
     'create_prf' => 'Create PRF',
     'create_request' => 'Create request',
     'create_request' => 'Create request',
-    'created' => 'Created',
     'created_at' => 'Created at',
     'created_by' => 'Created by',
     'credit' => 'Credit',
@@ -125,6 +124,7 @@ return [
     'end_date' => 'End Date',
     'error' => 'Error',
     'evaluate' => 'Evaluate',
+    'events' => 'Events',
     'event_name' => 'Event Name',
     'expense' => 'Expense',
     'expense_list' => 'Expense List',
@@ -138,9 +138,11 @@ return [
     'handbook' => 'Handbook',
     'hide_my_name' => 'Hide my name',
     'holiday_list' => 'Holiday List',
+    'holiday' => 'Holiday',
     'holidays' => 'Holidays',
     'home' => 'Home',
     'hr' => 'HR',
+    'hr_calendar' => 'HR Calendar',
     'hrms' => 'HRMS',
     'im_currently_in_the' => 'I`m currently in the',
     'in_time' => 'In Time',
@@ -190,10 +192,12 @@ return [
     'no_of_days' => 'No. of days',
     'none' => 'None',
     'not_approved' => 'Not Approved',
+    'note' => 'Note',
     'number_of_days' => 'Number of day/s',
     'number_of_items' => 'Number of Items',
     'office_contact_no' => 'Office contact no',
-    'office_shifts' => 'office_shifts',
+    'office_shifts' => 'Office Shifts',
+    'office_shift' => 'Office Shift',
     'on_hand' => 'On hand',
     'onboarding_program' => 'Onboarding Program',
     'optional' => 'Optional',
@@ -215,6 +219,7 @@ return [
     'phone_number' => 'Phone number',
     'pic' => 'Pic',
     'please_write_your_feedback' => 'Please write your feedback',
+    'policy' => 'Policy',
     'policies' => 'Policies',
     'policy_list' => 'Policy List',
     'position' => 'Position',
@@ -329,6 +334,7 @@ return [
     'view_announcement' => 'View Announcement',
     'view_company' => 'View Company',
     'view_expense' => 'View Expense',
+    'view_event' => 'View Event',
     'view_holiday' => 'View Holiday',
     'view_location' => 'View Location',
     'view_machine_availability' => 'View machine availability',
@@ -347,7 +353,23 @@ return [
     'logout' => 'Log Out',
     'settings' => 'Settings',
     'report_problem' => 'Report Problem',
+    'profile' => 'Profile',
+    'information' => 'Information',
+    'update_profile_informationand_email_address' => 'Update your profle information and email address.',
+    'photo' => 'Photo',
+    'update' => 'Update',
+    'ensure_your_account_is_using_a_strong_password' => 'Ensure your account is using a strong password',
+    'password' => 'Password',
+    'current' => 'Current',
+    'new' => 'New',
+    'confirm' => 'Confirm',
     'global' => [
+        'module' => [
+            'service_report' => [
+                'title' => 'MPS Service Report',
+                'url_segment' => 'service-forms'
+            ]
+        ],
         'text' => [
             'na' => 'N/A',
             'full_na' => 'Not Applicable (NA)',
@@ -401,10 +423,23 @@ return [
             ],
             'error' => [
                 'general' => 'There is a problem in :action the record.'
+            ],
+            'action' => [
+                'created' => 'created',
+                'updated' => 'updated',
+                'deleted' => 'deleted'
             ]
         ]
     ],
     'service_report' => [
+        'title' => [
+            'index' => 'Service Reports',
+            'create' => 'Add New Service Report',
+            'show' => 'View Service Report',
+            'edit' => 'Edit Service Report',
+            'sign' => 'Acknowledgement Form',
+            'feedback' => 'Customer Feedback',
+        ],
         'datatable' => [
             'column_header' => [
                 'csr_no' => 'CSR No.',
@@ -436,7 +471,7 @@ return [
                 'plain_subject' => 'Service Report Customer Acknowledgement'
             ],
             'sent' => [
-                'message' => 'Click the button to sign the acknowledgement form.',
+                'message' => 'The engineer has filled up the service report. You may now review the details and sign the acknowledgement form by clicking the button below.',
                 'button' => [
                     'view_details' => 'View Details and Sign'
                 ],

@@ -132,7 +132,12 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-9 offset-md-1">
-                            <button id="submitBtn" class="btn btn-success float-right" type="submit" {{ old('isAcknowledged') ? '' : 'disabled' }}>{{ __('label.global.form.button.submit') }}</button>
+                            <button id="submitBtn" class="btn btn-success float-right font-weight-bold px-3" type="submit" {{ old('isAcknowledged') ? '' : 'disabled' }}>
+                                <svg class="c-icon">
+                                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-task') }}"></use>
+                                </svg>
+                                {{ __('label.global.form.button.submit') }}
+                            </button>
                         </div>
                     </div>
                     
@@ -146,11 +151,8 @@
 @stop
 
 @push('scripts')
-    <!-- TinyMCE js dependency -->
-    <script src="https://cdn.tiny.cloud/1/g3nqaa9be2i3wr7kdbzetf4y0iqrzwvbeia890tk3263yb08/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    
+    <!-- Page js codes -->
     <script>
- 
         (function() {
             window.requestAnimFrame = (function(callback) {
                 return window.requestAnimationFrame ||

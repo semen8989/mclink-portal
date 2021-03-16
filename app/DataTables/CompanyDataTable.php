@@ -41,7 +41,7 @@ class CompanyDataTable extends DataTable
             })->editColumn('email', function ($request) {
                 return $request->email;
             })->editColumn('website', function ($request) {
-                return $request->email;
+                return $request->website;
             })->editColumn('city', function ($request) {
                 return $request->city;
             })->editColumn('country', function ($request) {

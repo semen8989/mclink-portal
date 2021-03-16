@@ -18,23 +18,23 @@ class HolidaySeeder extends Seeder
         $holidays = [
             [
                 'id' => 1,
-                'event_name' => 'Good Friday',
+                'event_name' => 'Holiday 1',
                 'company_id' => 2,
-                'start_date' => '2021-04-09',
-                'end_date' => '2021-04-09',
-                'description' => 'Holy Week',
-                'status' => 'published',
+                'start_date' => '2021-03-18',
+                'end_date' => '2021-03-18',
+                'description' => '<p><strong>This is holiday 1</strong></strong>',
+                'status' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'id' => 2,
-                'event_name' => 'Black Saturday',
+                'event_name' => 'Holiday 2',
                 'company_id' => 2,
-                'start_date' => '2021-04-10',
-                'end_date' => '2021-04-10',
-                'description' => 'Holy Week',
-                'status' => 'published',
+                'start_date' => '2021-03-29',
+                'end_date' => '2021-03-31',
+                'description' => '<p><strong>This is holiday 2</strong></strong>',
+                'status' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
