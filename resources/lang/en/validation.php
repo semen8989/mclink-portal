@@ -138,6 +138,13 @@ return [
         'custEmail' => [
             'required_if' => 'The :attribute field is required when sending to a customer.', 
         ],
+        'variable_year' => [
+            'before_or_equal' => 'The :attribute should be a year in the given option',
+            'after_or_equal' => 'The :attribute should be a year in the given option',
+        ],
+        'target_date' => [
+            'after_or_equal' => 'The :attribute should be today or a date in the future',
+        ],
 
     ],
 
