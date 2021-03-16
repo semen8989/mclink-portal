@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="title">Quantity</label>
-                        <input class="form-control" name="qty" id="qty" type="number">
+                        <input class="form-control" name="qty" id="qty" type="number" min="1">
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="title">No of Cassette</label>
-                        <input class="form-control" name="cassette_no" id="cassette_no" type="number">
+                        <input class="form-control" name="cassette_no" id="cassette_no" type="number" min="1">
                     </div>
                 </div>
             </div>
@@ -108,6 +108,16 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $('document').ready(function (){
+            // No negative number and decimal on keypress
+            $("input[name='qty'], input[name='cassette_no']").keypress(    
+                function(e) {       
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                        || (e.keyCode > 47 && e.keyCode < 58) 
+                        || e.keyCode == 8)){
+                            return false;
+                    }
+            });
+
             //Select2
             $('#technician_id').select2({
                 placeholder: '{{ __('label.choose') }}',
