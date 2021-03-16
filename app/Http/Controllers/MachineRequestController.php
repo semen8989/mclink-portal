@@ -19,11 +19,11 @@ class MachineRequestController extends Controller
 
     public function store(StoreMachineRequest $request)
     {
-
        if($request['data_check'] == "on")
        {
             $request['requester_id'] = auth()->user()->id;
-
+            $request['technician_id'] = implode(',', $request->technician_id);
+            
             MachineRequest::create($request->all());
             
             return session()->flash('success','Machine Request Submitted');

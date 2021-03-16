@@ -29,7 +29,7 @@ class CreateMachineRequestsTable extends Migration
             $table->string('person_in_charge');
             $table->string('contact_no');
             $table->string('installation_date');
-            $table->integer('technician_id');
+            $table->string('technician_id');
             $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();

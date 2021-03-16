@@ -73,7 +73,8 @@
             </div>
             <div class="form-group">
                 <label for="title">Send Request To</label>
-                <select class="form-control" name="technician_id" id="technician_id">
+                <select class="form-control select2-multiple" name="technician_id[]" id="technician_id" multiple>
+                        <option></option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
@@ -96,9 +97,22 @@
 </form>
 @stop
 
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $('document').ready(function (){
+            //Select2
+            $('#technician_id').select2({
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
             //Form Submit
             $('#request_form').submit(function (e){
                 e.preventDefault();
@@ -133,7 +147,11 @@
                             id.closest('.form-control')
                             .addClass('is-invalid');
                             
-                            id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }else{
+                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                            }
 
                         });
                         
