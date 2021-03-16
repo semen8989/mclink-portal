@@ -622,5 +622,46 @@ return [
                 'rating' => 'Select Rating'
             ]
         ],
-    ]
+    ],
+    'kpi_objective' => [
+        'title' => [
+            'index' => 'KPI Objectives',
+            'create' => 'Add New Objective',
+            'show' => 'View Objective',
+            'edit' => 'Edit Objective',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'variable_kpi' => 'Variable KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI VARIABLES',
+                'rating' => 'MANAGER\'S RATING'
+            ],
+            'label' => [
+                'variable_kpi' => 'Variable',
+                'variable_quarter' => 'Quarter',
+                'variable_year' => 'Year',
+                'target_date' => 'Target Date',
+                'status' => 'Completed',
+                'result' => 'Result',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
 ];
