@@ -35,7 +35,7 @@ class SocialiteController extends Controller
                 'email' => $userGoogle->getEmail(),
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
-                'avatar' => $userGoogle->getAvatar()
+                'avatar' => "https://ui-avatars.com/api/?name={$userGoogle->getName()}&size=96&background=random&length=2&color=fff"
             ]);
             //assign role
             $user->assignRole('Employee');
