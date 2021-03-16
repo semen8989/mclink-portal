@@ -55,7 +55,7 @@
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-bar-chart') }}"></use>
               </svg> {{ __('label.global.module.performance.title') }}</a>
               <ul class="c-sidebar-nav-dropdown-items">
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.okr.url_segment')) ? 'c-active' : ''}}" href="{{ route('service.form.index') }}" href="{{ route('okr.kpi.maingoals.index') }}">
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.okr.url_segment')) ? 'c-active' : ''}}" href="{{ route('okr.kpi.maingoals.index') }}">
                     <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.okr.title') }}</a></li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
                     <span class="c-sidebar-nav-icon"></span> KPI Report</a></li>
