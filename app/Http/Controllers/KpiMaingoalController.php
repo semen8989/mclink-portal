@@ -107,11 +107,13 @@ class KpiMaingoalController extends Controller
     {
         $title = __('label.kpi_main.title.edit');
 
-        $kpiMain->load(['kpiratings' => function ($query) {
-            $query->where('month', date('n'));
+        $selectedMonth = request('month') ?? date('n');
+
+        $kpiMain->load(['kpiratings' => function ($query) use ($selectedMonth) {
+            $query->where('month', $selectedMonth);
         }]);
 
-        return view('okr.kpi.maingoal.edit', compact('title', 'kpiMain'));
+        return view('okr.kpi.maingoal.edit', compact('title', 'kpiMain', 'selectedMonth'));
     }
 
     /**

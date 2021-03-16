@@ -56,7 +56,7 @@
         $('#month').val('{{ old("kpi_ratings.month", $kpiMain->kpiratings[0]->month) }}');
         $('#rating').val('{{ old("kpi_ratings.rating", $kpiMain->kpiratings[0]->rating) }}');
       @else
-        $('#month').val('{{ old("kpi_ratings.month", date("n")) }}');
+        $('#month').val('{{ old("kpi_ratings.month", $selectedMonth) }}');
         $('#rating').val('{{ old("kpi_ratings.rating") }}');
       @endif
 
