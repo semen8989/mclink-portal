@@ -20,6 +20,7 @@ use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\KpiObjectiveController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\AcknowledgementFormController;
 
@@ -64,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
             ->parameters(['variables' => 'kpiVariable'])
             ->names('okr.kpi.variables');
         // KPI Objectives Routes
-        Route::resource('objectives', KpiMaingoalController::class)
+        Route::resource('objectives', KpiObjectiveController::class)
             ->parameters(['objectives' => 'kpiObjective'])
             ->names('okr.kpi.objectives');
     });
