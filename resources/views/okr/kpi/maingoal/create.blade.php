@@ -4,7 +4,7 @@
 <form class="form-horizontal" id="kpiMainForm" action="{{ route('okr.kpi.maingoals.store') }}" method="POST">
   @csrf
 
-  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_main.form.header.main') }}</h5>
+  <div class="card-header">{{ __('label.kpi_main.title.create') }}</div>
   <div class="card-body">
 
     <x-okr.kpi.main.form />

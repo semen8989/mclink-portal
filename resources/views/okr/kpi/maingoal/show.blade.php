@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_main.form.header.main') }}</h5>
+    <div class="card-header">{{ __('label.kpi_main.title.show') }}</div>
     <div class="card-body px-5">
         <div class="row">
             <div class="col-md-12">
@@ -39,12 +39,14 @@
                 <p class="guest-form-data mb-4">{{ $kpiMain->getStringStatus() }}</p>
             </div>
         </div>   
-        
-        @if (auth()->user()->isDepartmentHead())
-        <hr>
-        <h5 class="font-weight-bold text-center">{{ __('label.kpi_main.form.header.rating') }}</h5>
-        <hr>
+    </div> 
 
+    @if (auth()->user()->isDepartmentHead())
+    <hr class="mb-3">
+    <div class="px-4">{{ __('label.kpi_main.form.header.rating') }}</div>
+    <hr class="mt-3 mb-0">
+
+    <div class="card-body px-5">
         <div class="row">
             <div class="col-md-4">
                 <p class="guest-form-label font-weight-bold mb-2">{{ __('label.kpi_main.form.label.month') }}</p>
@@ -72,7 +74,7 @@
                 <p class="guest-form-data mb-4" id="comment">{{ __('label.global.text.na') }}</p>
             </div>
         </div>   
-        @endif 
+    @endif 
 
         <div class="row float-right">
             <div class="col-md-12">
