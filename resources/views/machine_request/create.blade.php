@@ -144,7 +144,7 @@
                       }
                       else
                       {
-                          window.location.reload();
+                          window.location.href = "{{ route('machine_request.create') }}"
                       }
                     },
                     error: function(response){

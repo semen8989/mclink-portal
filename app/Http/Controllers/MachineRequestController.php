@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\MachineRequest;
+use App\Mail\MachineRequestSent;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreMachineRequest;
 use App\DataTables\PendingMachineRequestDataTable;
 use App\DataTables\CompletedMachineRequestDatatable;
@@ -26,9 +28,12 @@ class MachineRequestController extends Controller
             
             MachineRequest::create($request->all());
             
+            Mail::to('test@gmail.com')->send(new MachineRequestSent());
+            
             return session()->flash('success','Machine Request Submitted');
 
             $data['success'] = true;
+
        }
        else
        {
