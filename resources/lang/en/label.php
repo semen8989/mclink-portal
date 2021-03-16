@@ -519,7 +519,7 @@ return [
         'form' => [
             'header' => [
                 'main' => 'KPI MAIN GOALS',
-                'rating' => 'MANAGER\'S RATING'
+                'rating' => 'Manager\'s Rating'
             ],
             'label' => [
                 'main_kpi' => 'Main Goals',
