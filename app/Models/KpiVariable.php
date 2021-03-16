@@ -80,9 +80,9 @@ class KpiVariable extends Model
      * @param  string  $value
      * @return void
      */
-    public function setTargetDateAttribute( $value ) 
+    public function setTargetDateAttribute($value) 
     {
-        $this->attributes['target_date'] = empty($value) ? null : Carbon::make($value)->format('Y-m-d');
+        $this->attributes['target_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
 
     /**
