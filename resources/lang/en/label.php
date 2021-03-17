@@ -471,6 +471,9 @@ return [
                 ],
                 'subject' => 'Acknowledgement Form Email Confirmation | :company',
                 'plain_subject' => 'Acknowledgement Form Email Confirmation'
+            ],
+            'resend' => [
+                'plain_subject' => 'Service Report Acknowledgment Form (Resend)'
             ]
         ],
         'form' => [
