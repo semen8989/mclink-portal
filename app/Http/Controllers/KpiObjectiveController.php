@@ -185,17 +185,17 @@ class KpiObjectiveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\KpiVariable  $kpiVariable
+     * @param  \App\Models\KpiObjective  $kpiObjective
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KpiVariable $kpiVariable)
+    public function destroy(KpiObjective $kpiObjective)
     {
-        $result = $kpiVariable->delete();
+        $result = $kpiObjective->delete();
 
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result
-            ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'deleted'])
+            ? __('label.global.response.success.general', ['module' => 'KPI Objective', 'action' => 'deleted'])
             : __('label.global.response.error.general', ['action' => 'deleting']);
 
         return back()->with($resultStatus, $msg);
