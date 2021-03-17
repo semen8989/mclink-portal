@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="card-header">{{ __('label.kpi_variable.title.index') }}</div>
+    <div class="card-header">{{ __('label.kpi_objective.title.index') }}</div>
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
@@ -60,11 +60,11 @@
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_main') }}</a></li>
-                <li class="nav-item"><a id="variableTabLink" class="nav-link active" href="{{ route('okr.kpi.variables.index') }}" role="tab" aria-controls="variable">
+                <li class="nav-item"><a id="variableTabLink" class="nav-link" href="{{ route('okr.kpi.variables.index') }}" role="tab" aria-controls="variable">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart-line') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_variable') }}</a></li>
-                <li class="nav-item"><a id="objectiveTabLink" class="nav-link" href="{{ route('okr.kpi.objectives.index') }}" role="tab" aria-controls="objective">
+                <li class="nav-item"><a id="objectiveTabLink" class="nav-link active" href="{{ route('okr.kpi.objectives.index') }}" role="tab" aria-controls="objective">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-paperclip') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_objective') }}</a></li>
