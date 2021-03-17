@@ -633,10 +633,11 @@ return [
         'datatable' => [
             'column_header' => [
                 'action' => 'Action',
-                'variable_kpi' => 'Variable KPI',
+                'objective_kpi' => 'Objective KPI',
                 'target_date' => 'Target Date',
                 'result' => 'Result',
-                'completed' => 'Completed'
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
             ]
         ],
         'form' => [
