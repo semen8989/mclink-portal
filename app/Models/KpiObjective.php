@@ -84,4 +84,20 @@ class KpiObjective extends Model
     {
         $this->attributes['target_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
+
+    /**
+     * Get the user that is associated with the record.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Get all of the KpiMaingoal's kpi rating.
+     */
+    public function kpiratings()
+    {
+        return $this->morphMany(KpiRating::class, 'kpi_ratable');
+    }
 }
