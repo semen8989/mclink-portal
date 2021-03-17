@@ -55,10 +55,10 @@ class KpiObjectiveController extends Controller
      */
     public function create()
     {
-        $title = __('label.kpi_variable.title.create');
+        $title = __('label.kpi_objective.title.create');
         $yearList = $this->getYearRange(5, 5);
 
-        return view('okr.kpi.variable.create', compact('title', 'yearList'));
+        return view('okr.kpi.objective.create', compact('title', 'yearList'));
     }
 
     /**
