@@ -20,13 +20,7 @@ class KpiObjectiveDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('', function(KpiObjective $kpiObjective) {
-                return view('components.datatables.show-column', [
-                    'showRouteName' => 'okr.kpi.objectives.show',
-                    'showRouteSlug' => 'kpiObjective',
-                    'showRouteSlugValue' => $kpiObjective->id
-                ]);
-            })->addColumn('action', function(KpiObjective $kpiObjective) {
+            ->addColumn('action', function(KpiObjective $kpiObjective) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
                         'edit' => 'okr.kpi.objectives.edit',
@@ -35,8 +29,17 @@ class KpiObjectiveDataTable extends DataTable
                     'itemSlug' => 'kpiObjective',
                     'itemSlugValue' => $kpiObjective->id
                 ]);
+            })->editColumn('objective_kpi', function ($request) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'okr.kpi.objectives.show',
+                    'showRouteSlug' => 'kpiObjective',
+                    'showRouteSlugValue' => $request->id,
+                    'columnData' => $request->objective_kpi
+                ]);
             })->editColumn('result', function ($request) {
-                return $request->result ?? __('label.global.text.na');
+                return  $request->result 
+                    ? Str::of($request->result)->limit(50) 
+                    : __('label.global.text.na');
             })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, KpiObjective::COMPLETED_STATUS));
                 $badgeColor = $status == 'Yes' ? 'success' : 'danger';
@@ -45,6 +48,8 @@ class KpiObjectiveDataTable extends DataTable
                     'columnData' => $status,
                     'badgeColor' => $badgeColor
                 ]);
+            })->editColumn('updated_at', function ($request) {
+                return $request->updated_at->format('d/m/Y');
             })->filter(function ($instance) {
                 $user = auth()->user()->isDepartmentHead() 
                     ? $this->request->filterEmployee
@@ -113,22 +118,23 @@ class KpiObjectiveDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('')
-                ->width('5%'),
-            Column::make('variable_kpi')
-                ->title(__('label.kpi_variable.datatable.column_header.variable_kpi'))
-                ->width('30%'),
+            Column::make('objective_kpi')
+                ->title(__('label.kpi_objective.datatable.column_header.objective_kpi'))
+                ->width('28%'),
             Column::make('target_date')
-                ->title(__('label.kpi_variable.datatable.column_header.target_date'))
+                ->title(__('label.kpi_objective.datatable.column_header.target_date'))
                 ->width('15%'),
             Column::make('result')
-                ->title(__('label.kpi_variable.datatable.column_header.result'))
-                ->width('30%'),
+                ->title(__('label.kpi_objective.datatable.column_header.result'))
+                ->width('25%'),
             Column::make('status')
-                ->title(__('label.kpi_variable.datatable.column_header.completed'))
+                ->title(__('label.kpi_objective.datatable.column_header.completed'))
                 ->width('10%'),
+            Column::make('updated_at')
+                ->title(__('label.kpi_objective.datatable.column_header.updated_at'))
+                ->width('12%'),
             Column::computed('action')
-                ->title(__('label.kpi_variable.datatable.column_header.action'))
+                ->title(__('label.kpi_objective.datatable.column_header.action'))
                 ->width('10%')
         ];
     }

@@ -9,9 +9,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Traits\YearRangeTrait;
 use Illuminate\Support\Facades\DB;
-use App\DataTables\KpiVariableDataTable;
 use App\Http\Requests\StoreKpiVariableRequest;
 use App\Http\Requests\UpdateKpiVariableRequest;
+use App\DataTables\KpiObjectiveDataTable;
 
 class KpiObjectiveController extends Controller
 {
@@ -21,12 +21,12 @@ class KpiObjectiveController extends Controller
      * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DataTables\KpiVariableDataTable  $dataTable
+     * @param  \App\DataTables\KpiObjectiveDataTable  $dataTable
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, KpiVariableDataTable $dataTable)
+    public function index(Request $request, KpiObjectiveDataTable $dataTable)
     {
-        $title = __('label.kpi_variable.title.index');
+        $title = __('label.kpi_objective.title.index');
         $departmentUsers = null;
 
         if (auth()->user()->isDepartmentHead()) {
@@ -37,15 +37,15 @@ class KpiObjectiveController extends Controller
                 ])->get();
         }
 
-        $quarterFilter = KpiVariable::QUARTER;
+        $quarterFilter = KpiObjective::QUARTER;
 
-        $yearFilter = KpiVariable::select('variable_year as year')
+        $yearFilter = KpiObjective::select('objective_year as year')
             ->where('user_id', auth()->user()->id)
-            ->groupBy('variable_year')
-            ->orderBy('variable_year', 'desc')
+            ->groupBy('objective_year')
+            ->orderBy('objective_year', 'desc')
             ->get();
 
-        return $dataTable->render('okr.kpi.variable.index', compact('title', 'yearFilter', 'quarterFilter', 'departmentUsers'));
+        return $dataTable->render('okr.kpi.objective.index', compact('title', 'yearFilter', 'quarterFilter', 'departmentUsers'));
     }
 
     /**
