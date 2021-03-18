@@ -203,18 +203,18 @@ class KpiObjectiveController extends Controller
     }
 
     /**
-     * Fetch a rating based on the main kpi
+     * Fetch a rating based on the objective kpi
      * 
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\KpiVariable  $kpiVariable
+     * @param  \App\Models\KpiObjective  $kpiObjective
      * @return \Illuminate\Http\Response
      */
-    public function getRating(Request $request, KpiVariable $kpiVariable)
+    public function getRating(Request $request, KpiObjective $kpiObjective)
     {
-        $kpiVariable->load(['kpiratings' => function ($query) use ($request) {
+        $kpiObjective->load(['kpiratings' => function ($query) use ($request) {
             $query->where('month', $request->month);
         }]);
 
-        return response()->json($kpiVariable->kpiratings);
+        return response()->json($kpiObjective->kpiratings);
     }
 }

@@ -49,7 +49,7 @@
       // console.log($('#target_date').val());
       $('#month').change(function() {
         $.ajax({
-          url: "{{ route('get.kpi.variable.rating', ['kpiVariable' => $kpiObjective->id]) }}",
+          url: "{{ route('get.kpi.objective.rating', ['kpiObjective' => $kpiObjective->id]) }}",
           type: 'get',
           data: { 
             month: $(this).val()
