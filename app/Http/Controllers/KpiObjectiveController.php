@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\KpiVariable;
-use App\Models\KpiObjective;
 use Illuminate\Support\Arr;
+use App\Models\KpiObjective;
 use Illuminate\Http\Request;
 use App\Traits\YearRangeTrait;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\StoreKpiVariableRequest;
-use App\Http\Requests\UpdateKpiVariableRequest;
 use App\DataTables\KpiObjectiveDataTable;
+use App\Http\Requests\StoreKpiVariableRequest;
+use App\Http\Requests\StoreKpiObjectiveRequest;
+use App\Http\Requests\UpdateKpiVariableRequest;
 
 class KpiObjectiveController extends Controller
 {
@@ -64,10 +65,10 @@ class KpiObjectiveController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreKpiVariableRequest  $request
+     * @param  \App\Http\Requests\StoreKpiObjectiveRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreKpiVariableRequest $request)
+    public function store(StoreKpiObjectiveRequest $request)
     {
         $validated = $request->validated();    
         $validated['user_id'] = auth()->user()->id;
@@ -76,7 +77,7 @@ class KpiObjectiveController extends Controller
         
         try {
             DB::transaction(function () use ($validated) {
-                KpiVariable::create($validated);
+                KpiObjective::create($validated);
             });
         } catch (\Exception $e) {
             $result = false;
@@ -85,10 +86,10 @@ class KpiObjectiveController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result
-            ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'created'])
+            ? __('label.global.response.success.general', ['module' => 'KPI Objective', 'action' => 'created'])
             : __('label.global.response.error.general', ['action' => 'creating']);
         
-        return redirect()->route('okr.kpi.variables.index')->with($resultStatus, $msg);
+        return redirect()->route('okr.kpi.objectives.index')->with($resultStatus, $msg);
     }
 
     /**
