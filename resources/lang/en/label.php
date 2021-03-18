@@ -642,13 +642,13 @@ return [
         ],
         'form' => [
             'header' => [
-                'main' => 'KPI VARIABLES',
+                'main' => 'KPI OBJECTIVES',
                 'rating' => 'MANAGER\'S RATING'
             ],
             'label' => [
-                'variable_kpi' => 'Variable',
-                'variable_quarter' => 'Quarter',
-                'variable_year' => 'Year',
+                'objective_kpi' => 'Objective',
+                'objective_quarter' => 'Quarter',
+                'objective_year' => 'Year',
                 'target_date' => 'Target Date',
                 'status' => 'Completed',
                 'result' => 'Result',
