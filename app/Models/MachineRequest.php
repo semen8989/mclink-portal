@@ -15,25 +15,7 @@ class MachineRequest extends Model
         "pending" => 0,
         "completed" => 1
     ];
-
-    protected $fillable = [
-        'requester_id',
-        'model',
-        'qty',
-        'system',
-        'cassette_no',
-        'contract_period',
-        'special_requirement',
-        'company_name',
-        'billing_address',
-        'office_contact_no',
-        'installation_address',
-        'person_in_charge',
-        'contact_no',
-        'installation_date',
-        'technician_id',
-    ];
-
+    
     public function user()
     {
         return $this->belongsTo(User::class,'requester_id');

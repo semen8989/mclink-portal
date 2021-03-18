@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-You have machine request from {Insert Name Here}, Please review the details and confirm by clicking the button below.
+You have machine request from {{ $machineRequest->user->name }}. Please review the details and confirm by clicking the button below.
 
 @component('mail::button', ['url' => ''])
 Review and Confirm

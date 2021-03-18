@@ -108,6 +108,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $('document').ready(function (){
+            //Scroll to top when page refresh
+            $(window).on('beforeunload', function() {
+                $(window).scrollTop(0);
+            });
             // No negative number and decimal on keypress
             $("input[name='qty'], input[name='cassette_no']").keypress(    
                 function(e) {       
@@ -117,7 +121,6 @@
                             return false;
                     }
             });
-
             //Select2
             $('#technician_id').select2({
                 placeholder: '{{ __('label.choose') }}',

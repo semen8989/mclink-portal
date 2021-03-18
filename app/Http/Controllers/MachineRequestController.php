@@ -23,12 +23,27 @@ class MachineRequestController extends Controller
     {
        if($request['data_check'] == "on")
        {
-            $request['requester_id'] = auth()->user()->id;
-            $request['technician_id'] = implode(',', $request->technician_id);
+            $machineRequest = new MachineRequest;
             
-            MachineRequest::create($request->all());
+            $machineRequest->requester_id = auth()->user()->id;
+            $machineRequest->model = $request['model'];
+            $machineRequest->qty = $request['qty'];
+            $machineRequest->system = $request['system'];
+            $machineRequest->cassette_no = $request['cassette_no'];
+            $machineRequest->contract_period = $request['contract_period'];
+            $machineRequest->special_requirement = $request['special_requirement'];
+            $machineRequest->company_name = $request['company_name'];
+            $machineRequest->billing_address = $request['billing_address'];
+            $machineRequest->office_contact_no = $request['office_contact_no'];
+            $machineRequest->installation_address = $request['installation_address'];
+            $machineRequest->person_in_charge = $request['person_in_charge'];
+            $machineRequest->contact_no = $request['contact_no'];
+            $machineRequest->installation_date = $request['installation_date'];
+            $machineRequest->technician_id = implode(',', $request->technician_id);
+            $machineRequest->status = 0;
+            $machineRequest->save();
             
-            Mail::to('test@gmail.com')->queue(new MachineRequestSent());
+            Mail::to('test@gmail.com')->queue(new MachineRequestSent($machineRequest));
             
             return session()->flash('success','Machine Request Submitted');
 
