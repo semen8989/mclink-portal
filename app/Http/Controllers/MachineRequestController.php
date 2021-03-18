@@ -39,12 +39,18 @@ class MachineRequestController extends Controller
             $machineRequest->person_in_charge = $request['person_in_charge'];
             $machineRequest->contact_no = $request['contact_no'];
             $machineRequest->installation_date = $request['installation_date'];
-            $machineRequest->technician_id = implode(',', $request->technician_id);
+            $machineRequest->technician_id = $request['technician_id'];
+            $machineRequest->cc_user_id = implode(',',$request['cc_user_id']);
             $machineRequest->status = 0;
             $machineRequest->save();
             
-            Mail::to('test@gmail.com')->queue(new MachineRequestSent($machineRequest));
-            
+            $cc = $request['cc_user_id'];
+            $cc_emails[] = User::find($cc)->pluck('email');
+
+            Mail::to($machineRequest->technician->email)
+                ->cc(implode(',',$cc_emails))    
+                ->queue(new MachineRequestSent($machineRequest));
+           
             return session()->flash('success','Machine Request Submitted');
 
             $data['success'] = true;

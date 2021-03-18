@@ -18,10 +18,10 @@ class CreateMachineRequestsTable extends Migration
             $table->integer('requester_id');
             $table->string('model');
             $table->integer('qty');
-            $table->string('system');
+            $table->string('system')->nullable();
             $table->integer('cassette_no');
             $table->string('contract_period');
-            $table->text('special_requirement');
+            $table->text('special_requirement')->nullable();
             $table->string('company_name');
             $table->string('billing_address');
             $table->string('office_contact_no');
@@ -29,7 +29,8 @@ class CreateMachineRequestsTable extends Migration
             $table->string('person_in_charge');
             $table->string('contact_no');
             $table->string('installation_date');
-            $table->string('technician_id');
+            $table->integer('technician_id');
+            $table->string('cc_user_id')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();

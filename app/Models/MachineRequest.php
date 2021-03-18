@@ -21,6 +21,11 @@ class MachineRequest extends Model
         return $this->belongsTo(User::class,'requester_id');
     }
 
+    public function technician()
+    {
+        return $this->belongsTo(User::class,'technician_id');
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('d/m/Y');

@@ -72,13 +72,27 @@
                 <input class="form-control" name="installation_date" id="installation_date" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Send Request To</label>
-                <select class="form-control select2-multiple" name="technician_id[]" id="technician_id" multiple>
+                <label>Send Request To</label>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="technician_id">Technician</label>
+                    <select class="form-control" name="technician_id" id="technician_id">
+                            <option></option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cc_user_id">CC</label>
+                    <select class="form-control" name="cc_user_id[]" id="cc_user_id" multiple>
                         <option></option>
-                    @foreach ($users as $user)
+                        @foreach ($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endforeach
-                </select>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -123,6 +137,12 @@
             });
             //Select2
             $('#technician_id').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+             //Select2
+             $('#cc_user_id').select2({
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
