@@ -138,6 +138,10 @@ return [
         'custEmail' => [
             'required_if' => 'The :attribute field is required when sending to a customer.', 
         ],
+        'objective_year' => [
+            'before_or_equal' => 'The :attribute should be a year in the given option',
+            'after_or_equal' => 'The :attribute should be a year in the given option',
+        ],
         'variable_year' => [
             'before_or_equal' => 'The :attribute should be a year in the given option',
             'after_or_equal' => 'The :attribute should be a year in the given option',
@@ -193,6 +197,10 @@ return [
         'variable_quarter' => 'quarter',
         'target_date' => 'target date',
         'result' => 'result',
+        // okr kpi objective fields
+        'objective_kpi' => 'variable',
+        'objective_year' => 'year',
+        'objective_quarter' => 'quarter',
         // fields under organization modules
         'company_id' => 'company',
         'department_id' => 'department',
