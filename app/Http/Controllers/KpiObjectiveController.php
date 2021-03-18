@@ -109,18 +109,18 @@ class KpiObjectiveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\KpiVariable  $kpiVariable
+     * @param  \App\Models\KpiObjective  $kpiObjective
      * @return \Illuminate\Http\Response
      */
-    public function edit(KpiVariable $kpiVariable)
+    public function edit(KpiObjective $kpiObjective)
     {
-        $title = __('label.kpi_variable.title.edit');
+        $title = __('label.kpi_objective.title.edit');
 
-        $kpiVariable->load(['kpiratings' => function ($query) {
+        $kpiObjective->load(['kpiratings' => function ($query) {
             $query->where('month', date('n'));
         }]);
 
-        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable'));
+        return view('okr.kpi.objective.edit', compact('title', 'kpiObjective'));
     }
 
     /**
