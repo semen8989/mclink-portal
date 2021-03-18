@@ -643,7 +643,7 @@ return [
         'form' => [
             'header' => [
                 'main' => 'KPI OBJECTIVES',
-                'rating' => 'MANAGER\'S RATING'
+                'rating' => 'Manager\'s Rating'
             ],
             'label' => [
                 'objective_kpi' => 'Objective',
