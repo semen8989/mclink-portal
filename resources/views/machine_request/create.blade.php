@@ -91,7 +91,7 @@
             <label class="form-check-label" for="data_check">All data are correct</label>
         </div>
         <div class="form-group mt-2 text-center">
-            <button type="submit" class="btn btn-success" style="width: 100%">Submit</button>
+            <button type="submit" class="btn btn-success btn-submit" style="width: 100%">Submit</button>
         </div>
     </div>
 </form>
@@ -135,22 +135,23 @@
                     url: url,
                     data: data,
                     method: method,
+                    beforeSend: function() { 
+                        $(".invalid-feedback").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        $(".btn-submit").attr("disabled", true);
+                        $(".btn-submit").html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`);
+                    },
                     success: function(data){
                       if(data.success == false)
                       {
-                        $(".invalid-feedback").remove();
-                        $( ".form-control" ).removeClass("is-invalid");
                         $('.form-check-label').after('<div class="invalid-feedback d-block">Please confirm if all data are correct</div>');
                       }
                       else
                       {
-                          window.location.href = "{{ route('machine_request.create') }}"
+                        window.location.reload();
                       }
                     },
                     error: function(response){
-                        $(".invalid-feedback").remove();
-                        $( ".form-control").removeClass("is-invalid");
-
                         var errors = response.responseJSON;
                         $.each(errors.errors, function (index, value) {
                             var id = $("#"+index);
@@ -171,6 +172,10 @@
                             },500);
                         }
                         
+                    },
+                    complete: function() {
+                        $(".btn-submit").attr("disabled", false);
+                        $(".btn-submit").html('Submit');
                     }
                 })
             })

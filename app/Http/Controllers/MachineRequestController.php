@@ -28,7 +28,7 @@ class MachineRequestController extends Controller
             
             MachineRequest::create($request->all());
             
-            Mail::to('test@gmail.com')->send(new MachineRequestSent());
+            Mail::to('test@gmail.com')->queue(new MachineRequestSent());
             
             return session()->flash('success','Machine Request Submitted');
 
