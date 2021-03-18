@@ -13,6 +13,7 @@ use App\DataTables\KpiObjectiveDataTable;
 use App\Http\Requests\StoreKpiVariableRequest;
 use App\Http\Requests\StoreKpiObjectiveRequest;
 use App\Http\Requests\UpdateKpiVariableRequest;
+use App\Http\Requests\UpdateKpiObjectiveRequest;
 
 class KpiObjectiveController extends Controller
 {
@@ -126,11 +127,11 @@ class KpiObjectiveController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateKpiVariableRequest  $request
-     * @param  \App\Models\KpiVariable  $kpiVariable
+     * @param  \App\Http\Requests\UpdateKpiObjectiveRequest  $request
+     * @param  \App\Models\KpiObjective  $kpiObjective
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKpiVariableRequest $request, KpiVariable $kpiVariable)
+    public function update(UpdateKpiObjectiveRequest $request, KpiObjective $kpiObjective)
     {
         $validated = $request->validated();
         
@@ -138,7 +139,7 @@ class KpiObjectiveController extends Controller
         $kpiRating = null;
         
         if (!empty($validated['kpi_ratings'])) {
-            $kpiVariable->load(['kpiratings' => function ($query) use ($validated) {
+            $kpiObjective->load(['kpiratings' => function ($query) use ($validated) {
                 $query->where('month', $validated['kpi_ratings']['month']);
             }]);
     
@@ -146,24 +147,24 @@ class KpiObjectiveController extends Controller
             $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
             $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
     
-            if ($kpiVariable->kpiratings->isNotEmpty()) {
-                $kpiRating = $kpiVariable->kpiratings[0];
+            if ($kpiObjective->kpiratings->isNotEmpty()) {
+                $kpiRating = $kpiObjective->kpiratings[0];
     
                 $ratingInput['kpi_ratable_id'] = $kpiRating->kpi_ratable_id;
                 $ratingInput['kpi_ratable_type'] = $kpiRating->kpi_ratable_type;
             } else {
-                $kpiRating = $kpiVariable->kpiratings();
+                $kpiRating = $kpiObjective->kpiratings();
             }
         }
 
         $result = true;
         
         try {
-            DB::transaction(function () use ($kpiVariable, $kpiRating, $ratingInput, $validated) { 
-                $kpiVariable->update(Arr::except($validated, ['kpi_ratings']));
+            DB::transaction(function () use ($kpiObjective, $kpiRating, $ratingInput, $validated) { 
+                $kpiObjective->update(Arr::except($validated, ['kpi_ratings']));
 
                 if ($kpiRating) {
-                    if ($kpiVariable->kpiratings->isNotEmpty()) {            
+                    if ($kpiObjective->kpiratings->isNotEmpty()) {            
                         $kpiRating->update($ratingInput);
                     } else {
                         $kpiRating->create($ratingInput);
@@ -177,10 +178,10 @@ class KpiObjectiveController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result 
-            ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'updated'])
+            ? __('label.global.response.success.general', ['module' => 'KPI Objective', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('okr.kpi.variables.show', [$kpiVariable->id])->with($resultStatus, $msg);
+        return redirect()->route('okr.kpi.objectives.show', [$kpiObjective->id])->with($resultStatus, $msg);
     }
 
     /**
