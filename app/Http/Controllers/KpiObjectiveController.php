@@ -96,15 +96,15 @@ class KpiObjectiveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\KpiVariable  $kpiVariable
+     * @param  \App\Models\KpiObjective $kpiObjective
      * @return \Illuminate\Http\Response
      */
-    public function show(KpiVariable $kpiVariable)
+    public function show(KpiObjective $kpiObjective)
     {
-        $title = __('label.kpi_variable.title.show');
-        $kpiVariable->load('kpiratings');
+        $title = __('label.kpi_objective.title.show');
+        $kpiObjective->load('kpiratings');
 
-        return view('okr.kpi.variable.show', compact('title', 'kpiVariable'));
+        return view('okr.kpi.objective.show', compact('title', 'kpiObjective'));
     }
 
     /**
