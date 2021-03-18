@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\KpiVariable;
 use Illuminate\Support\Arr;
 use App\Models\KpiObjective;
 use Illuminate\Http\Request;
 use App\Traits\YearRangeTrait;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\KpiObjectiveDataTable;
-use App\Http\Requests\StoreKpiVariableRequest;
 use App\Http\Requests\StoreKpiObjectiveRequest;
-use App\Http\Requests\UpdateKpiVariableRequest;
 use App\Http\Requests\UpdateKpiObjectiveRequest;
 
 class KpiObjectiveController extends Controller
