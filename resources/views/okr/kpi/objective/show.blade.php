@@ -73,7 +73,7 @@
                     </svg>
                     {{ __('label.global.form.button.back') }}
                 </a>
-                <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('okr.kpi.objectives.edit', [$kpiObjective->id]) }}">
+                <a id="editBtn" class="btn btn-primary px-3 font-weight-bold" href="{{ route('okr.kpi.objectives.edit', [$kpiObjective->id]) }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                     </svg>
@@ -98,6 +98,9 @@
                     },
                     dataType: 'json',
                     success: function (result) {
+                        $('#editBtn').attr('href', function(index, attr) {
+                            return attr.split("?")[0] + '?month=' + $("#month").val();
+                        });
                         $('#rating').text(result.length > 0 ? result[0].rating : "{{ __('label.global.text.na') }}");
                         $('#comment').text(result.length > 0 ? result[0].manager_comment : "{{ __('label.global.text.na') }}");
                     }

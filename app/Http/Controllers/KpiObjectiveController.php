@@ -113,12 +113,13 @@ class KpiObjectiveController extends Controller
     public function edit(KpiObjective $kpiObjective)
     {
         $title = __('label.kpi_objective.title.edit');
+        $selectedMonth = request('month') ?? date('n');
 
-        $kpiObjective->load(['kpiratings' => function ($query) {
-            $query->where('month', date('n'));
+        $kpiObjective->load(['kpiratings' => function ($query) use ($selectedMonth) {
+            $query->where('month', $selectedMonth);
         }]);
 
-        return view('okr.kpi.objective.edit', compact('title', 'kpiObjective'));
+        return view('okr.kpi.objective.edit', compact('title', 'kpiObjective', 'selectedMonth'));
     }
 
     /**
