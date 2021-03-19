@@ -136,6 +136,7 @@ class KpiVariableController extends Controller
         
         $ratingInput = array();
         $kpiRating = null;
+        $selectedMonth = null;
         
         if (!empty($validated['kpi_ratings'])) {
             $kpiVariable->load(['kpiratings' => function ($query) use ($validated) {
@@ -145,6 +146,7 @@ class KpiVariableController extends Controller
             $ratingInput['month'] = $validated['kpi_ratings']['month']; 
             $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
             $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
+            $selectedMonth = $ratingInput['month'];
     
             if ($kpiVariable->kpiratings->isNotEmpty()) {
                 $kpiRating = $kpiVariable->kpiratings[0];
@@ -180,7 +182,11 @@ class KpiVariableController extends Controller
             ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('okr.kpi.variables.show', [$kpiVariable->id])->with($resultStatus, $msg);
+        return redirect()->route('okr.kpi.variables.show', [$kpiVariable->id])
+            ->with([
+                $resultStatus => $msg, 
+                'selectedMonth' => $selectedMonth
+            ]);
     }
 
     /**
