@@ -114,11 +114,13 @@ class KpiVariableController extends Controller
     {
         $title = __('label.kpi_variable.title.edit');
 
-        $kpiVariable->load(['kpiratings' => function ($query) {
-            $query->where('month', date('n'));
+        $selectedMonth = request('month') ?? date('n');
+
+        $kpiVariable->load(['kpiratings' => function ($query) use ($selectedMonth) {
+            $query->where('month', $selectedMonth);
         }]);
 
-        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable'));
+        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable', 'selectedMonth'));
     }
 
     /**
