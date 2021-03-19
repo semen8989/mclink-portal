@@ -15,7 +15,7 @@ class MachineRequestController extends Controller
 {
     public function create()
     {
-        $users = User::all();
+        $users = User::all()->except(auth()->user()->id);
         return view('machine_request.create',compact('users'));
     }
 

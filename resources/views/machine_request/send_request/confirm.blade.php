@@ -71,9 +71,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer text-center">
-                <a type="submit" class="btn btn-success" href="{{ route('machine_request.update',['machineRequest' => $machineRequest->id]) }}">Confirm</a>
-            </div>
+            @if($machineRequest->technician->id == auth()->user()->id)
+                <div class="card-footer text-center">
+                        <a type="submit" class="btn btn-success" href="{{ route('machine_request.update',['machineRequest' => $machineRequest->id]) }}">Mark As Complete</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>
