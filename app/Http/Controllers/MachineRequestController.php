@@ -48,10 +48,10 @@ class MachineRequestController extends Controller
             $cc_emails[] = User::find($cc)->pluck('email');
 
             Mail::to($machineRequest->technician->email)
-                ->cc(implode(',',$cc_emails))    
+                ->cc($cc_emails[0])    
                 ->queue(new MachineRequestSent($machineRequest));
            
-            return session()->flash('success','Machine Request Submitted');
+            return session()->flash('success','Machine Request Submitted'); 
 
             $data['success'] = true;
 
