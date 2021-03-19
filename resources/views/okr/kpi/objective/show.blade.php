@@ -14,27 +14,28 @@
             </div>
         </div>
         <div class="row">
-
-                    <div class="col-md-3">
-                        <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_objective.form.label.target_date') }}</p>
-                        <p class="guest-form-data mb-4">{{ $kpiObjective->target_date->format('d/m/Y') ?? __('label.global.text.na') }}</p>
-                    </div>
-
-                    <div class="col-md-3">
-                        <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_objective.form.label.status') }}</p>
-                        <p class="guest-form-data mb-4">{{ $kpiObjective->getStringStatus() ?? __('label.global.text.na') }}</p>
-                    </div>       
+            <div class="col-md-3">
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_objective.form.label.target_date') }}</p>
+                <p class="guest-form-data mb-4">{{ $kpiObjective->target_date->format('d/m/Y') ?? __('label.global.text.na') }}</p>
+            </div>
+            <div class="col-md-3">
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_objective.form.label.status') }}</p>
+                <p class="guest-form-data mb-4">{{ $kpiObjective->getStringStatus() ?? __('label.global.text.na') }}</p>
+            </div>       
             <div class="col-md-6">
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_objective.form.label.feedback') }}</p>
                 <p class="guest-form-data mb-4">{{ $kpiObjective->feedback ?? __('label.global.text.na') }}</p>
             </div>
-        </div> 
-        
-        @if (auth()->user()->isDepartmentHead())
-        <hr>
-        <h5 class="font-weight-bold text-center">{{ __('label.kpi_objective.form.header.rating') }}</h5>
-        <hr>
+        </div>
+              
+    @if (auth()->user()->isDepartmentHead())
+    </div> 
 
+    <hr class="mb-3">
+    <div class="px-4">{{ __('label.kpi_objective.form.header.rating') }}</div>
+    <hr class="mt-3 mb-0">
+
+    <div class="card-body px-5">
         <div class="row">
             <div class="col-md-3">
                 <p class="guest-form-label font-weight-bold mb-2">{{ __('label.kpi_objective.form.label.month') }}</p>
@@ -59,11 +60,8 @@
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_objective.form.label.manager_comment') }}</p>
                 <p class="guest-form-data mb-4" id="comment">{{ __('label.global.text.na') }}</p>
             </div>
-        </div>
-        <div class="row">
-            
-        </div>   
-        @endif 
+        </div> 
+    @endif 
 
         <div class="row float-right">
             <div class="col-md-12">
