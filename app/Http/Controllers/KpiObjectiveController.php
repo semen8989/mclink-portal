@@ -135,16 +135,18 @@ class KpiObjectiveController extends Controller
         
         $ratingInput = array();
         $kpiRating = null;
+        $selectedMonth = null;
         
         if (!empty($validated['kpi_ratings'])) {
             $kpiObjective->load(['kpiratings' => function ($query) use ($validated) {
                 $query->where('month', $validated['kpi_ratings']['month']);
             }]);
-    
+                   
             $ratingInput['month'] = $validated['kpi_ratings']['month']; 
             $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
             $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
-    
+            $selectedMonth = $ratingInput['month'];
+
             if ($kpiObjective->kpiratings->isNotEmpty()) {
                 $kpiRating = $kpiObjective->kpiratings[0];
     
@@ -179,7 +181,11 @@ class KpiObjectiveController extends Controller
             ? __('label.global.response.success.general', ['module' => 'KPI Objective', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('okr.kpi.objectives.show', [$kpiObjective->id])->with($resultStatus, $msg);
+        return redirect()->route('okr.kpi.objectives.show', [$kpiObjective->id])
+            ->with([
+                $resultStatus => $msg, 
+                'selectedMonth' => $selectedMonth
+            ]);
     }
 
     /**
