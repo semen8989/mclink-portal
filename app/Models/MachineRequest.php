@@ -11,6 +11,8 @@ class MachineRequest extends Model
 {
     use SoftDeletes, HasFactory;
 
+    protected $fillable = ['status'];
+
     const STATUS = [
         "pending" => 0,
         "completed" => 1

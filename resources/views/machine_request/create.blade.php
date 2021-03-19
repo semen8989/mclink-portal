@@ -86,7 +86,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="cc_user_id">CC</label>
-                    <select class="form-control" name="cc_user_id[]" id="cc_user_id" multiple>
+                    <select class="form-control custom-select" name="cc_user_id[]" id="cc_user_id" multiple>
                         <option></option>
                         @foreach ($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>

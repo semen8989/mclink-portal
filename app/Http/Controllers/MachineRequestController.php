@@ -54,8 +54,8 @@ class MachineRequestController extends Controller
             return session()->flash('success','Machine Request Submitted'); 
 
             $data['success'] = true;
-
-       }
+        
+        }
        else
        {
             $data['success'] = false;
@@ -77,6 +77,18 @@ class MachineRequestController extends Controller
     public function completedRequestIndex(CompletedMachineRequestDatatable $dataTable)
     {
         return $dataTable->render('machine_request.completed_request.index');
+    }
+
+    public function confirm(MachineRequest $machineRequest)
+    {
+        $status = MachineRequest::STATUS;
+        return view('machine_request.send_request.confirm',compact('machineRequest','status'));
+    }
+
+    public function update(MachineRequest $machineRequest)
+    {
+        $machineRequest->update(array('status' => 1));
+        return view('machine_request.send_request.approved');
     }
 
 }

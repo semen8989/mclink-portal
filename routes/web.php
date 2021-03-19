@@ -97,6 +97,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/completed-request',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_request');
         //View Details
         Route::get('/view-details/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.show');
+        //Email
+        Route::get('/confirm/{machineRequest}', [MachineRequestController::class, 'confirm'])->name('machine_request.confirm');
+        Route::get('/update/{machineRequest}', [MachineRequestController::class, 'update'])->name('machine_request.update');
     });
 
 });
@@ -117,6 +120,10 @@ Route::middleware(['guest'])->group(function () {
     Route::prefix('auth')->group(function () {
         Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
         Route::get('/callback', [socialiteController::class, 'callBack']);
+    });
+    // Machine Request Routes
+    Route::prefix('machine-request/request-details')->group(function () {
+        
     });
 });
 
