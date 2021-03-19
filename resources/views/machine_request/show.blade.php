@@ -67,7 +67,7 @@
         </table>
     </div>
     <div class="card-footer text-right">
-        <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ url()->previous() }}">
+        <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ $machineRequest->status == 1 ? route('machine_request.completed_request') : route("machine_request.pending_request") }}">
             <svg class="c-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
             </svg>

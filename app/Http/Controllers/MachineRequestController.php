@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\MachineRequest;
 use App\Mail\MachineRequestSent;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\MachineRequestCompleted;
 use App\Http\Requests\StoreMachineRequest;
 use App\DataTables\PendingMachineRequestDataTable;
 use App\DataTables\CompletedMachineRequestDatatable;
@@ -82,12 +83,17 @@ class MachineRequestController extends Controller
     public function confirm(MachineRequest $machineRequest)
     {
         $status = MachineRequest::STATUS;
+
         return view('machine_request.send_request.confirm',compact('machineRequest','status'));
     }
 
     public function update(MachineRequest $machineRequest)
     {
         $machineRequest->update(array('status' => 1));
+
+        Mail::to($machineRequest->user->email)
+            ->queue(new MachineRequestCompleted($machineRequest));
+
         return view('machine_request.send_request.approved');
     }
 
