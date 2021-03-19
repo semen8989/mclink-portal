@@ -602,7 +602,7 @@ return [
         'form' => [
             'header' => [
                 'main' => 'KPI VARIABLES',
-                'rating' => 'MANAGER\'S RATING'
+                'rating' => 'Manager\'s Rating'
             ],
             'label' => [
                 'variable_kpi' => 'Variable',
