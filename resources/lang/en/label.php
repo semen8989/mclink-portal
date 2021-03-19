@@ -561,7 +561,7 @@ return [
         'form' => [
             'header' => [
                 'main' => 'KPI MAIN GOALS',
-                'rating' => 'MANAGER\'S RATING'
+                'rating' => 'Manager\'s Rating'
             ],
             'label' => [
                 'main_kpi' => 'Main Goals',
@@ -595,7 +595,8 @@ return [
                 'variable_kpi' => 'Variable KPI',
                 'target_date' => 'Target Date',
                 'result' => 'Result',
-                'completed' => 'Completed'
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
             ]
         ],
         'form' => [

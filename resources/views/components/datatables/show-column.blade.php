@@ -6,6 +6,6 @@
 </a>
 @else
 <a href="{{ route($showRouteName, [$showRouteSlug => $showRouteSlugValue]) }}">
-    {{ $columnData }}
+    {{ Str::of($columnData)->limit(50) }}
 </a>
 @endif
