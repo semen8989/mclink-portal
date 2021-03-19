@@ -37,13 +37,13 @@ class KpiMaingoalDataTable extends DataTable
                     'columnData' => $request->main_kpi
                 ]);
             })->editColumn('q1', function ($request) {
-                return $request->q1 ? Str::of($request->q1)->limit(50) : 'N/A';
+                return $request->q1 ? Str::of($request->q1)->limit(50) : __('label.global.text.na');
             })->editColumn('q2', function ($request) {
-                return $request->q2 ? Str::of($request->q2)->limit(50) : 'N/A';
+                return $request->q2 ? Str::of($request->q2)->limit(50) : __('label.global.text.na');
             })->editColumn('q3', function ($request) {
-                return $request->q3 ? Str::of($request->q3)->limit(50) : 'N/A';
+                return $request->q3 ? Str::of($request->q3)->limit(50) : __('label.global.text.na');
             })->editColumn('q4', function ($request) {
-                return $request->q4 ? Str::of($request->q4)->limit(50) : 'N/A';
+                return $request->q4 ? Str::of($request->q4)->limit(50) : __('label.global.text.na');
             })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, KpiMaingoal::COMPLETED_STATUS));
                 $badgeColor = $status == 'Yes' ? 'success' : 'danger';
