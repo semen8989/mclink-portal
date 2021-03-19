@@ -84,7 +84,7 @@ class KpiVariableController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result
-            ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'created'])
+            ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'created'])
             : __('label.global.response.error.general', ['action' => 'creating']);
         
         return redirect()->route('okr.kpi.variables.index')->with($resultStatus, $msg);
@@ -201,7 +201,7 @@ class KpiVariableController extends Controller
     }
 
     /**
-     * Fetch a rating based on the main kpi
+     * Fetch a rating based on the variable kpi
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\KpiVariable  $kpiVariable
