@@ -37,7 +37,7 @@ class KpiVariableDataTable extends DataTable
                     'columnData' => $request->variable_kpi
                 ]);
             })->editColumn('result', function ($request) {
-                return $request->result ?? __('label.global.text.na');
+                return $request->result ? Str::of($request->result)->limit(50) : __('label.global.text.na');
             })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, KpiVariable::COMPLETED_STATUS));
                 $badgeColor = $status == 'Yes' ? 'success' : 'danger';
