@@ -38,10 +38,11 @@
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_main.form.label.status') }}</p>
                 <p class="guest-form-data mb-4">{{ $kpiMain->getStringStatus() }}</p>
             </div>
-        </div>   
-    </div> 
+        </div>    
 
     @if (auth()->user()->isDepartmentHead())
+    </div> 
+
     <hr class="mb-3">
     <div class="px-4">{{ __('label.kpi_main.form.header.rating') }}</div>
     <hr class="mt-3 mb-0">
