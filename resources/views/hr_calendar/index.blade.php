@@ -4,7 +4,7 @@
 <div class="card-header">{{ __('label.hr_calendar') }}</div>
 <div class="card-body">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
             <div id='external-events'>
                 <div id="external-events-listing" class="fc-events-container">
                     <div class="fc-event" style="background-color: rgb(53, 92, 125); border-color: rgb(53, 92, 125);">{{ __('label.events') }}</div>

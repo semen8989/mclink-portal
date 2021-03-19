@@ -21,7 +21,7 @@ class HrCalendarController extends Controller
         return view('hr_calendar.index',compact('companies','title'));
     }
 
-    public function fetch_events()
+    public function fetchEvents()
     {
         $data = [];
         $result = Event::all();
@@ -38,13 +38,13 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
     
-    public function store_event(StoreEventRequest $request)
+    public function storeEvent(StoreEventRequest $request)
     {        
         Event::create($request->all());
         return session()->flash('success', 'Event created successfully.');
     }
 
-    public function view_event(Event $event)
+    public function viewEvent(Event $event)
     {
         $title = __('label.view_event');
         $html  = '';
@@ -77,7 +77,7 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
     //Holidays
-    public function fetch_holidays()
+    public function fetchHolidays()
     {
         $data = [];
         $result = Holiday::all()->where('status','=',1);
@@ -94,13 +94,13 @@ class HrCalendarController extends Controller
         echo json_encode($data);
     }
 
-    public function store_holiday(StoreHolidayRequest $request)
+    public function storeHoliday(StoreHolidayRequest $request)
     {   
         Holiday::create($request->all());
         return session()->flash('success', 'Holiday created successfully.');   
     }
 
-    public function view_holiday(Holiday $holiday)
+    public function viewHoliday(Holiday $holiday)
     {
         $title = __('label.view_holiday');
         $html  = '';

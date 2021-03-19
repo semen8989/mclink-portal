@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class FetchController extends Controller
 {
-    public function fetch_department(Request $request)
+    public function fetchDepartment(Request $request)
     {
         $value = $request->get('value');
         $data = Company::find($value)->departments;
         echo json_encode($data);
     }
 
-    public function fetch_user(Request $request)
+    public function fetchUser(Request $request)
     {
         $value = $request->get('value');
         $data = Company::find($value)->company_users;

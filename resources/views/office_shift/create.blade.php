@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">{{ __('label.add_shift') }}</div>
-<form action="{{ route('office_shifts.store') }}" id="shift_form" method="post" autocomplete="off">
+<form action="{{ route('office-shifts.store') }}" id="shift_form" method="post" autocomplete="off">
     @csrf
     <div class="card-body">
         <div class="row">
@@ -165,7 +165,7 @@
                     data: data,
                     method: method,
                     success: function(){
-                        window.location.href = '{{ route("office_shifts.index") }}';
+                        window.location.href = '{{ route("office-shifts.index") }}';
                     },
                     error: function(response){
                         //Scroll up
