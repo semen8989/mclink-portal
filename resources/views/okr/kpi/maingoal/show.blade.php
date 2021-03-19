@@ -124,12 +124,15 @@
                 $('#comment').text("{{ __('label.global.text.na') }}");
             @else
                 @foreach ($kpiMain->kpiratings as $kpirating)
-                    @if($kpirating->month == date('n'))           
+                    @if($kpirating->month == (Session::get('selectedMonth') ?? date('n')))
                         $('#month').val('{{ $kpirating->month }}'); 
                         $('#rating').text('{{ $kpirating->rating }}');
                         $('#comment').text('{{ $kpirating->manager_comment }}');
                     @endif
                 @endforeach
+                $('#editBtn').attr('href', function(index, attr) {
+                    return attr.split("?")[0] + '?month=' + $("#month").val();
+                });
             @endif
         });
     </script>
