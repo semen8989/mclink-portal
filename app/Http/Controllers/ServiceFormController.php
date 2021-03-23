@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 use App\Models\ServiceReport;
@@ -103,6 +104,9 @@ class ServiceFormController extends Controller
         }
 
         if ($result && ServiceReport::STATUS[$validated['action']] == 2) {
+            $serviceReport->email_sent_at = Carbon::now()->toDateTimeString();
+            $serviceReport->save();
+
             AcknowledgementFormSent::dispatch($serviceReport);
         }
 
@@ -174,6 +178,9 @@ class ServiceFormController extends Controller
         }
 
         if ($result && $validated['status'] == 2) {
+            $serviceReport->email_sent_at = Carbon::now()->toDateTimeString();
+            $serviceReport->save();
+            
             AcknowledgementFormSent::dispatch($serviceReport);
         }
 

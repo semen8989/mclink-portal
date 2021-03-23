@@ -2,17 +2,17 @@
 
 namespace App\Listeners;
 
+use App\Mail\ServiceFormSent;
 use Illuminate\Support\Facades\Mail;
-use App\Events\AcknowledgementFormSent;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Mail\ServiceFormSentConfirmationMail;
+use App\Events\UnsignedServiceReportFound;
 use App\Traits\ServiceReportEmailLoggerTrait;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendAcknowledgementFormConfirmationMail
+class ResendAcknowledgementFormMail
 {
     use ServiceReportEmailLoggerTrait;
-    
+
     /**
      * Create the event listener.
      *
@@ -26,19 +26,19 @@ class SendAcknowledgementFormConfirmationMail
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  UnsignedServiceReportFound  $event
      * @return void
      */
-    public function handle(AcknowledgementFormSent $event)
+    public function handle(UnsignedServiceReportFound $event)
     {
         $serviceReport = $event->serviceReport;
-        $email = $serviceReport->user->email;
-        $subject = __('label.service_report.email.confirm.plain_subject');
+        $email = $serviceReport->customer->email;
+        $subject = __('label.service_report.email.resend.plain_subject');
 
         try {
             Mail::to($email)
-                ->queue(new ServiceFormSentConfirmationMail($serviceReport));
-
+                ->queue(new ServiceFormSent($serviceReport));
+            
             $this->writeLog('info', $serviceReport, $subject);
         } catch(\Exception $e) {
             $this->writeLog('warning', $serviceReport, $subject, $e->getMessage());
