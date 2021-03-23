@@ -353,6 +353,16 @@ return [
     'logout' => 'Log Out',
     'settings' => 'Settings',
     'report_problem' => 'Report Problem',
+    'profile' => 'Profile',
+    'information' => 'Information',
+    'update_profile_informationand_email_address' => 'Update your profle information and email address.',
+    'photo' => 'Photo',
+    'update' => 'Update',
+    'ensure_your_account_is_using_a_strong_password' => 'Ensure your account is using a strong password',
+    'password' => 'Password',
+    'current' => 'Current',
+    'new' => 'New',
+    'confirm' => 'Confirm',
     'global' => [
         'module' => [
             'service_report' => [
@@ -461,6 +471,9 @@ return [
                 ],
                 'subject' => 'Acknowledgement Form Email Confirmation | :company',
                 'plain_subject' => 'Acknowledgement Form Email Confirmation'
+            ],
+            'resend' => [
+                'plain_subject' => 'Service Report Acknowledgment Form (Resend)'
             ]
         ],
         'form' => [

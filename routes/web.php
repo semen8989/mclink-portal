@@ -8,6 +8,7 @@ use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SocialiteController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\MachineRequestController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -28,8 +30,14 @@ Auth::routes(['register' => false]);
 Route::middleware(['auth'])->group(function () {
     // Dashboard Route
     Route::get('/', function () {
-        return view('dashboard');
+        return view('dashboard', ['title'=>__('label.dashboard')]);
     })->name('dashboard');
+
+    // Profile
+    Route::resource('profile', ProfileController::class)->only(['index', 'update']);
+    
+    // Change password
+    Route::resource('change-password', ChangePasswordController::class)->only(['update']);
 
     // Service Report Routes
     Route::prefix('service-forms')->group(function () {
