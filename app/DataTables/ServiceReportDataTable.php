@@ -25,7 +25,10 @@ class ServiceReportDataTable extends DataTable
             ->setRowId('csr_no')
             ->addColumn('action', function(ServiceReport $serviceReport) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'service.form.edit',
+                    'actionRoutes' => [
+                        'edit' => 'service.form.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'serviceReport',
                     'itemSlugValue' => $serviceReport->csr_no
                 ]);
