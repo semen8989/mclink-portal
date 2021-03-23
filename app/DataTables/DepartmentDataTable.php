@@ -24,7 +24,10 @@ class DepartmentDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Department $department) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'departments.edit',
+                    'actionRoutes' => [
+                        'edit' => 'departments.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'department',
                     'itemSlugValue' => $department->id
                 ]);
