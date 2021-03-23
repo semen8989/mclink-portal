@@ -202,9 +202,10 @@
                             window.location.reload();
                         },
                         error: function(response){
+                                                    
                             $('#'+modal).animate({ scrollTop: 45 }, 'smooth');
 
-                            $('#'+form).find(".invalid-feedback").remove();
+                            $('#'+form).find(".help-block").remove();
                             $('#'+form).find( ".form-control" ).removeClass("is-invalid");
                             
                             var errors = response.responseJSON;
@@ -215,9 +216,9 @@
                                 .addClass('is-invalid');
                                 
                                 if(name.next('.select2-container').length > 0){
-                                    name.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                    name.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
                                 }else{
-                                    name.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                    name.after('<div class="help-block text-danger">'+value+'</div>');
                                 }
 
                             });

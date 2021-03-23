@@ -125,7 +125,7 @@
                         //Scroll up
                         window.scrollTo({ top: 100, behavior: 'smooth' });
                         //Clear previous error messages
-                        $(".invalid-feedback").remove();
+                        $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
                         //fetch and display error messages
                         var errors = response.responseJSON;
@@ -135,9 +135,9 @@
                             .addClass('is-invalid');
                             
                             if(id.next('.select2-container').length > 0){
-                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
                             }else{
-                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
                         

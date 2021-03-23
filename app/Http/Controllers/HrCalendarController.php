@@ -18,7 +18,8 @@ class HrCalendarController extends Controller
     {
         $title = __('label.hr_calendar');
         $companies = Company::all('id','company_name');
-        return view('hr_calendar.index',compact('companies','title'));
+        $status = Holiday::STATUS;
+        return view('hr_calendar.index',compact('companies','title','status'));
     }
 
     public function fetchEvents()

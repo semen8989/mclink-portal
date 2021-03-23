@@ -101,7 +101,7 @@
                     },
                     error: function(response){
                         //Clear previous error messages
-                        $(".invalid-feedback").remove();
+                        $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
                         //fetch and display error messages
                         var errors = response.responseJSON;
@@ -109,14 +109,14 @@
                             var id = $("#"+index);
                             id.closest('.form-control')
                             .addClass('is-invalid');
-                            id.after('<div class="invalid-feedback">'+value+'</div>');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
+                            }else{
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
+                            }
                         });
 
-                        if(id.next('.select2-container').length > 0){
-                            id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
-                        }else{
-                            id.after('<div class="invalid-feedback d-block">'+value+'</div>');
-                        }
                         
                     }
                 })
