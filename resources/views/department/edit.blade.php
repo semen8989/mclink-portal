@@ -117,6 +117,11 @@
                             }
                         });
 
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

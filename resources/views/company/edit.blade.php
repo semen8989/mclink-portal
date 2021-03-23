@@ -92,13 +92,13 @@
                 <div class="form-group row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="logo">{{ __('label.company_logo') }}</label>
+                            <label>{{ __('label.company_logo') }}</label>
                             <img style="width: 100%" src="{{ asset('storage/company_logos/'.$company->logo) }}" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="logo">{{ __('label.company_logo') }}</label>
+                            <label for="logo">{{ __('label.update_company_logo') }}</label>
                             <input type="file" class="form-control-file" id="logo" name="logo">
                             <small>{{ __('label.upload_format') }}</small>
                         </div>
@@ -153,8 +153,6 @@
                         window.location.href = '{{ route("companies.index") }}';
                     },
                     error: function(response){
-                        //Scroll up
-                        window.scrollTo({ top: 50, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -171,6 +169,12 @@
                                 id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

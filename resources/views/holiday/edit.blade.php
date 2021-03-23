@@ -122,8 +122,6 @@
                         window.location.href = '{{ route("holidays.index") }}';
                     },
                     error: function(response){
-                        //Scroll up
-                        window.scrollTo({ top: 100, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -140,6 +138,12 @@
                                 id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

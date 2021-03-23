@@ -21,7 +21,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="amount">{{ __('label.amount') }}</label>
-                <input type="number" class="form-control" id="amount" name="amount">
+                <input type="number" class="form-control" id="amount" name="amount" min="0">
             </div>
         </div>
         <div class="form-row">
@@ -156,8 +156,6 @@
                         window.location.href = '{{ route("expenses.index") }}';
                     },
                     error: function(response){
-                        //Scroll up
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -174,6 +172,12 @@
                                 id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

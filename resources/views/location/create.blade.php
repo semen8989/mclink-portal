@@ -146,8 +146,6 @@
                         window.location.href = '{{ route("locations.index") }}';
                     },
                     error: function(response){
-                        //Scroll up
-                        window.scrollTo({ top: 40, behavior: 'smooth' });
                         //Clear previous error messages
                         $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
@@ -164,6 +162,12 @@
                                 id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

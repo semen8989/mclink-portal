@@ -202,9 +202,6 @@
                             window.location.reload();
                         },
                         error: function(response){
-                                                    
-                            $('#'+modal).animate({ scrollTop: 45 }, 'smooth');
-
                             $('#'+form).find(".help-block").remove();
                             $('#'+form).find( ".form-control" ).removeClass("is-invalid");
                             
@@ -222,6 +219,12 @@
                                 }
 
                             });
+
+                            if($('#'+modal).find(".is-invalid").length) {
+                                $('#'+modal).animate({
+                                        scrollTop: ($(".is-invalid").first().offset().top - 95)
+                                },500);
+                            }
                         }
                     })
                     
