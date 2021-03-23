@@ -16,6 +16,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\OfficeShiftController;
+use App\Http\Controllers\KpiMaingoalController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ChangePasswordController;
@@ -51,13 +52,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
     });
 
-    // Typeahead Routes
-    Route::prefix('get')->group(function () {
-        // Customer Route
-        Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
-
-        // User Route
-        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+    // OKR Routes
+    Route::prefix('performance/okr/kpi')->group(function () {
+        // KPI Maingoal Routes
+        Route::resource('maingoals', KpiMaingoalController::class)
+            ->parameters(['maingoals' => 'kpiMain'])
+            ->names('okr.kpi.maingoals');
+        // KPI Variable Routes
+        Route::resource('variables', KpiMaingoalController::class)
+            ->parameters(['variables' => 'kpiVariable'])
+            ->names('okr.kpi.variables');
+        // KPI Objectives Routes
+        Route::resource('objectives', KpiMaingoalController::class)
+            ->parameters(['objectives' => 'kpiObjective'])
+            ->names('okr.kpi.objectives');
     });
     
     // Organizations
@@ -73,6 +81,18 @@ Route::middleware(['auth'])->group(function () {
             'office-shifts' => OfficeShiftController::class,
             'expenses' => ExpenseController::class
         ]); 
+    });
+
+    // Ajax Routes
+    Route::prefix('get')->group(function () {
+        // Customer Route
+        Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
+
+        // User Route
+        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+
+        // KPI Main Rating Route
+        Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
     });
 
     //Basic Routes

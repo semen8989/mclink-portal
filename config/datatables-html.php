@@ -11,8 +11,9 @@ return [
      * Default table attributes when generating the table.
      */
     'table' => [
-        'class' => 'table',
+        'class' => 'table responsive',
         'id'    => 'dataTableBuilder',
+        'width' => '100%',
     ],
 
     /*

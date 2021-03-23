@@ -23,7 +23,10 @@ class OfficeShiftDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(OfficeShift $officeShift) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'office-shifts.edit',
+                    'actionRoutes' => [
+                        'edit' => 'office-shifts.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'office_shift',
                     'itemSlugValue' => $officeShift->id
                 ]);

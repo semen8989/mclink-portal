@@ -24,7 +24,10 @@ class CompanyDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Company $company) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'companies.edit',
+                    'actionRoutes' => [
+                        'edit' => 'companies.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'company',
                     'itemSlugValue' => $company->id
                 ]);

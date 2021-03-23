@@ -43,7 +43,7 @@ class ShowColumn extends Component
      * @param  string  $columnData
      * @return void
      */
-    public function __construct($showRouteName, $showRouteSlug, $showRouteSlugValue, $columnData)
+    public function __construct($showRouteName, $showRouteSlug, $showRouteSlugValue, $columnData = null)
     {
         $this->showRouteName = $showRouteName;
         $this->showRouteSlug = $showRouteSlug;

@@ -23,7 +23,10 @@ class LocationDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Location $location) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'locations.edit',
+                    'actionRoutes' => [
+                        'edit' => 'locations.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'location',
                     'itemSlugValue' => $location->id
                 ]);

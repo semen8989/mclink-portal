@@ -23,7 +23,10 @@ class AnnouncementDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Announcement $announcement) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'announcements.edit',
+                    'actionRoutes' => [
+                        'edit' => 'announcements.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'announcement',
                     'itemSlugValue' => $announcement->id
                 ]);
