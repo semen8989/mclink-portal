@@ -24,7 +24,7 @@ class OfficeShiftDataTable extends DataTable
             ->addColumn('action', function(OfficeShift $officeShift) {
                 return view('components.datatables.action', [
                     'editRouteName' => 'office-shifts.edit',
-                    'itemSlug' => 'officeShift',
+                    'itemSlug' => 'office_shift',
                     'itemSlugValue' => $officeShift->id
                 ]);
             })->editColumn('shift_name', function ($request) {
@@ -32,7 +32,7 @@ class OfficeShiftDataTable extends DataTable
             })->editColumn('company.company_name', function ($request) {
                 return view('components.datatables.show-column', [
                     'showRouteName' => 'office-shifts.show',
-                    'showRouteSlug' => 'officeShift',
+                    'showRouteSlug' => 'office_shift',
                     'showRouteSlugValue' => $request->id,
                     'columnData' => $request->company->company_name
                 ]);
