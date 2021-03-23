@@ -1,10 +1,10 @@
 @component('mail::message')
 # Hello {{ $machineRequest->technician->name }},
 
-You have machine request from {{ $machineRequest->user->name }}. Please review the details and confirm by clicking the button below.
+You have machine request from {{ $machineRequest->user->name }}. Click this button below to view details
 
-@component('mail::button', ['url' => route('machine_request.confirm', ['machineRequest' => $machineRequest->id])])
-Review and Confirm
+@component('mail::button', ['url' => route('machine_request.show', ['machineRequest' => $machineRequest->id])])
+Review Details
 @endcomponent
 
 Thanks,<br>

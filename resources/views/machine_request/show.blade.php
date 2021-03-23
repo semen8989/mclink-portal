@@ -66,12 +66,18 @@
             </tbody>
         </table>
     </div>
-    <div class="card-footer text-right">
-        <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ $machineRequest->status == 1 ? route('machine_request.completed_request') : route("machine_request.pending_request") }}">
+    <div class="card-footer">
+        <a class="btn btn-secondary px-3 mr-1 font-weight-bold float-left" href="{{ $machineRequest->status == 1 ? route('machine_request.completed_request') : route("machine_request.pending_request") }}">
             <svg class="c-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
             </svg>
             Back
+        </a>
+        <a class="btn btn-info px-3 mr-1 font-weight-bold float-right" href="#">
+            <svg class="c-icon">
+                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-check') }}"></use>
+            </svg>
+            Mark as Completed
         </a>
     </div>
 @stop

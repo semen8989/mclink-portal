@@ -93,19 +93,20 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group col-md-12">
+                    <span class="badge badge-danger" style="font-size: 15px">**Different Installation Address Different Request Form</span>
+                </div>
+                <br>
+                <div class="form-check form-check ml-2">
+                    <input type="checkbox" class="form-check-input" name="data_check" id="data_check">
+                    <label class="form-check-label" for="data_check">All data are correct</label>
+                </div>
             </div>
         </div>
     </div>
     <div class="card-footer">
-        <div class="form-group">
-            <span class="badge badge-danger" style="font-size: 15px">**Different Installation Address Different Request Form</span>
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="data_check" id="data_check">
-            <label class="form-check-label" for="data_check">All data are correct</label>
-        </div>
-        <div class="form-group mt-2 text-center">
-            <button type="submit" class="btn btn-success btn-submit" style="width: 100%">Submit</button>
+        <div class="form-group mt-2 text-right">
+            <button type="submit" class="btn btn-success btn-submit">Submit</button>
         </div>
     </div>
 </form>
@@ -159,7 +160,7 @@
                     data: data,
                     method: method,
                     beforeSend: function() { 
-                        $(".invalid-feedback").remove();
+                        $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
                         $(".btn-submit").attr("disabled", true);
                         $(".btn-submit").html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`);
@@ -182,16 +183,16 @@
                             .addClass('is-invalid');
                             
                             if(id.next('.select2-container').length > 0){
-                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
                             }else{
-                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
 
                         });
                         
                         if($(".is-invalid").length) {
                             $('html, body').animate({
-                                    scrollTop: ($(".is-invalid").first().offset().top - 90)
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
                             },500);
                         }
                         

@@ -120,13 +120,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
         Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
         //Pending machine request
-        Route::get('/pending-request',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_request');
+        Route::get('/pending',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_request');
         //Completed machine request
-        Route::get('/completed-request',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_request');
-        //View Details
-        Route::get('/view-details/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.show');
-        //Email
-        Route::get('/confirm/{machineRequest}', [MachineRequestController::class, 'confirm'])->name('machine_request.confirm');
+        Route::get('/completed',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_request');
+        //mark as completed
+        Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
+        //View Pending Details
+        Route::get('/pending/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.view_details');
+         //Completed
+         Route::get('/completed/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
+        //Route::get('/confirm/{machineRequest}', [MachineRequestController::class, 'confirm'])->name('machine_request.confirm');
         Route::get('/update/{machineRequest}', [MachineRequestController::class, 'update'])->name('machine_request.update');
     });
 

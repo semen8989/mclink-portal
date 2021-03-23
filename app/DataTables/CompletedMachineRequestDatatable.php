@@ -35,7 +35,7 @@ class CompletedMachineRequestDatatable extends DataTable
                 return $request->updated_at; // use moment.js for this later
             })->addColumn('detail', function(MachineRequest $machineRequest) {
                 return view('components.datatables.detail', [
-                    'editRouteName' => 'machine_request.show',
+                    'editRouteName' => 'machine_request.completed',
                     'itemSlug' => 'machineRequest',
                     'itemSlugValue' => $machineRequest->id
                 ]);

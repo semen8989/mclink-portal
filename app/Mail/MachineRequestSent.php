@@ -32,6 +32,6 @@ class MachineRequestSent extends Mailable
     public function build()
     {
         return $this->markdown('emails.machine_request.sent')
-                    ->subject('Machine Request');
+                    ->subject('New Machine Request');
     }
 }

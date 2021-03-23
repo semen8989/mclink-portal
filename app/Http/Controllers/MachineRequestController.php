@@ -16,7 +16,7 @@ class MachineRequestController extends Controller
 {
     public function create()
     {
-        $users = User::all()->except(auth()->user()->id);
+        $users = User::all();
         return view('machine_request.create',compact('users'));
     }
 
@@ -64,6 +64,18 @@ class MachineRequestController extends Controller
             return response()->json($data);
     }
 
+    public function mark(MachineRequest $machineRequest)
+    {
+        if($machineRequest->technician->id == auth()->user()->id && $machineRequest->status == 1)
+        {
+            return redirect()->route('machine_request.pending_request.index')->with('error', 'Machine Request Cannot Be Found');
+        }
+        else
+        {
+            return redirect()->route('machine_request.view_details',['machineRequest' => $machineRequest]);
+        }
+    }
+
     public function show(MachineRequest $machineRequest)
     {
         $status = MachineRequest::STATUS;
@@ -80,12 +92,12 @@ class MachineRequestController extends Controller
         return $dataTable->render('machine_request.completed_request.index');
     }
 
-    public function confirm(MachineRequest $machineRequest)
+    /**public function confirm(MachineRequest $machineRequest)
     {
         $status = MachineRequest::STATUS;
 
         return view('machine_request.send_request.confirm',compact('machineRequest','status'));
-    }
+    }**/
 
     public function update(MachineRequest $machineRequest)
     {
