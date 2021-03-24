@@ -28,7 +28,7 @@ class CreateMachineRequestsTable extends Migration
             $table->string('installation_address');
             $table->string('person_in_charge');
             $table->string('contact_no');
-            $table->string('installation_date');
+            $table->date('installation_date');
             $table->integer('technician_id');
             $table->string('cc_user_id')->nullable();
             $table->tinyInteger('status')->default(0);

@@ -69,7 +69,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Installation Date</label>
-                <input class="form-control" name="installation_date" id="installation_date" type="text">
+                <input class="form-control date" name="installation_date" id="installation_date" type="text">
             </div>
             <div class="form-group">
                 <label>Send Request To</label>
@@ -113,12 +113,17 @@
 @stop
 
 @push('stylesheet')
+    <!-- Datetimepicker css dependency -->
+    <link href="{{ asset('plugin/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
     <!-- select2 css dependency -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
+    <!-- Datetimepicker js dependency -->
+    <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- select2 js dependency -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
@@ -135,6 +140,14 @@
                         || e.keyCode == 8)){
                             return false;
                     }
+            });
+            //Datetimepicker
+           $('.date').datetimepicker({
+                ignoreReadonly: true,
+                format: 'YYYY-MM-DD',
+                widgetPositioning: {
+                    vertical: 'bottom'
+                }
             });
             //Select2
             $('#technician_id').select2({
