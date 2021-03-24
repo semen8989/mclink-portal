@@ -10,6 +10,7 @@ return [
     'add_department' => 'Add New Department',
     'add_designation' => 'Add New Designation',
     'add_expense' => 'Add New Expense',
+    'add_event' => 'Add New Event',
     'add_holiday' => 'Add New Holiday',
     'add_location' => 'Add New Location',
     'add_new' => 'Add new',
@@ -51,6 +52,7 @@ return [
     'claims_menu' => 'Claims menu',
     'classification' => 'CLASSIFICATION',
     'clear' => 'Clear',
+    'close' => 'Close',
     'companies' => 'Companies',
     'company' => 'Company',
     'company_list' => 'Company List',
@@ -126,6 +128,7 @@ return [
     'evaluate' => 'Evaluate',
     'events' => 'Events',
     'event_name' => 'Event Name',
+    'event_note' => 'Event Note',
     'expense' => 'Expense',
     'expense_list' => 'Expense List',
     'expense_type' => 'Expense Type',
@@ -198,6 +201,7 @@ return [
     'office_contact_no' => 'Office contact no',
     'office_shifts' => 'Office Shifts',
     'office_shift' => 'Office Shift',
+    'office-shifts' => 'office-shifts',
     'on_hand' => 'On hand',
     'onboarding_program' => 'Onboarding Program',
     'optional' => 'Optional',
@@ -493,6 +497,9 @@ return [
                 ],
                 'subject' => 'Acknowledgement Form Email Confirmation | :company',
                 'plain_subject' => 'Acknowledgement Form Email Confirmation'
+            ],
+            'resend' => [
+                'plain_subject' => 'Service Report Acknowledgment Form (Resend)'
             ]
         ],
         'form' => [
@@ -555,7 +562,8 @@ return [
                 'q2' => 'Q2',
                 'q3' => 'Q3',
                 'q4' => 'Q4',
-                'completed' => 'Completed'
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
             ]
         ],
         'form' => [

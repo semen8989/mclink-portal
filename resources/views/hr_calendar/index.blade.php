@@ -4,7 +4,7 @@
 <div class="card-header">{{ __('label.hr_calendar') }}</div>
 <div class="card-body">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
             <div id='external-events'>
                 <div id="external-events-listing" class="fc-events-container">
                     <div class="fc-event" style="background-color: rgb(53, 92, 125); border-color: rgb(53, 92, 125);">{{ __('label.events') }}</div>
@@ -202,9 +202,7 @@
                             window.location.reload();
                         },
                         error: function(response){
-                            $('#'+modal).animate({ scrollTop: 45 }, 'smooth');
-
-                            $('#'+form).find(".invalid-feedback").remove();
+                            $('#'+form).find(".help-block").remove();
                             $('#'+form).find( ".form-control" ).removeClass("is-invalid");
                             
                             var errors = response.responseJSON;
@@ -215,12 +213,18 @@
                                 .addClass('is-invalid');
                                 
                                 if(name.next('.select2-container').length > 0){
-                                    name.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                    name.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
                                 }else{
-                                    name.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                    name.after('<div class="help-block text-danger">'+value+'</div>');
                                 }
 
                             });
+
+                            if($('#'+modal).find(".is-invalid").length) {
+                                $('#'+modal).animate({
+                                        scrollTop: ($(".is-invalid").first().offset().top - 95)
+                                },500);
+                            }
                         }
                     })
                     

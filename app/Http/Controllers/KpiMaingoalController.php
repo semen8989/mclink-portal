@@ -107,11 +107,13 @@ class KpiMaingoalController extends Controller
     {
         $title = __('label.kpi_main.title.edit');
 
-        $kpiMain->load(['kpiratings' => function ($query) {
-            $query->where('month', date('n'));
+        $selectedMonth = request('month') ?? date('n');
+
+        $kpiMain->load(['kpiratings' => function ($query) use ($selectedMonth) {
+            $query->where('month', $selectedMonth);
         }]);
 
-        return view('okr.kpi.maingoal.edit', compact('title', 'kpiMain'));
+        return view('okr.kpi.maingoal.edit', compact('title', 'kpiMain', 'selectedMonth'));
     }
 
     /**
@@ -127,6 +129,7 @@ class KpiMaingoalController extends Controller
         
         $ratingInput = array();
         $kpiRating = null;
+        $selectedMonth = null;
 
         if (!empty($validated['kpi_ratings'])) {
             $kpiMain->load(['kpiratings' => function ($query) use ($validated) {
@@ -136,6 +139,7 @@ class KpiMaingoalController extends Controller
             $ratingInput['month'] = $validated['kpi_ratings']['month']; 
             $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
             $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
+            $selectedMonth = $ratingInput['month'];
     
             if ($kpiMain->kpiratings->isNotEmpty()) {
                 $kpiRating = $kpiMain->kpiratings[0];
@@ -171,7 +175,11 @@ class KpiMaingoalController extends Controller
             ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('okr.kpi.maingoals.show', [$kpiMain->id])->with($resultStatus, $msg);
+        return redirect()->route('okr.kpi.maingoals.show', [$kpiMain->id])
+            ->with([
+                $resultStatus => $msg, 
+                'selectedMonth' => $selectedMonth
+            ]);
     }
 
     /**

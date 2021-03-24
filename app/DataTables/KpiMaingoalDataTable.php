@@ -20,13 +20,7 @@ class KpiMaingoalDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('', function(KpiMaingoal $kpiMain) {
-                return view('components.datatables.show-column', [
-                    'showRouteName' => 'okr.kpi.maingoals.show',
-                    'showRouteSlug' => 'kpiMain',
-                    'showRouteSlugValue' => $kpiMain->id
-                ]);
-            })->addColumn('action', function(KpiMaingoal $kpiMain) {
+            ->addColumn('action', function(KpiMaingoal $kpiMain) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
                         'edit' => 'okr.kpi.maingoals.edit',
@@ -35,14 +29,21 @@ class KpiMaingoalDataTable extends DataTable
                     'itemSlug' => 'kpiMain',
                     'itemSlugValue' => $kpiMain->id
                 ]);
+            })->editColumn('main_kpi', function ($request) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'okr.kpi.maingoals.show',
+                    'showRouteSlug' => 'kpiMain',
+                    'showRouteSlugValue' => $request->id,
+                    'columnData' => $request->main_kpi
+                ]);
             })->editColumn('q1', function ($request) {
-                return $request->q1 ?? 'N/A';
+                return $request->q1 ? Str::of($request->q1)->limit(50) : __('label.global.text.na');
             })->editColumn('q2', function ($request) {
-                return $request->q2 ?? 'N/A';
+                return $request->q2 ? Str::of($request->q2)->limit(50) : __('label.global.text.na');
             })->editColumn('q3', function ($request) {
-                return $request->q3 ?? 'N/A';
+                return $request->q3 ? Str::of($request->q3)->limit(50) : __('label.global.text.na');
             })->editColumn('q4', function ($request) {
-                return $request->q4 ?? 'N/A';
+                return $request->q4 ? Str::of($request->q4)->limit(50) : __('label.global.text.na');
             })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, KpiMaingoal::COMPLETED_STATUS));
                 $badgeColor = $status == 'Yes' ? 'success' : 'danger';
@@ -51,6 +52,8 @@ class KpiMaingoalDataTable extends DataTable
                     'columnData' => $status,
                     'badgeColor' => $badgeColor
                 ]);
+            })->editColumn('updated_at', function ($request) {
+                return $request->updated_at->format('d/m/Y');
             })->filter(function ($instance) {
                 $user = auth()->user()->isDepartmentHead() 
                     ? $this->request->filterEmployee
@@ -114,11 +117,9 @@ class KpiMaingoalDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('')
-                ->width('5%'),
             Column::make('main_kpi')
                 ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
-                ->width('27%'),
+                ->width('20%'),
             Column::make('q1')
                 ->title(__('label.kpi_main.datatable.column_header.q1'))
                 ->width('12%'),
@@ -134,6 +135,9 @@ class KpiMaingoalDataTable extends DataTable
             Column::make('status')
                 ->title(__('label.kpi_main.datatable.column_header.completed'))
                 ->width('10%'),
+            Column::make('updated_at')
+                ->title(__('label.kpi_main.datatable.column_header.updated_at'))
+                ->width('12%'),
             Column::computed('action')
                 ->title(__('label.kpi_main.datatable.column_header.action'))
                 ->width('10%')
