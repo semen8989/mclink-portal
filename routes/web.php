@@ -120,17 +120,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
         Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
         //Pending machine request
-        Route::get('/pending',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_request');
+        Route::prefix('pending')->group(function (){
+            Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
+            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
+        });
         //Completed machine request
-        Route::get('/completed',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_request');
+        Route::prefix('completed')->group(function (){
+            Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
+            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
+        });
+        //View request details
+        Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
         //mark as completed
         Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
-        //View Pending Details
-        Route::get('/pending/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.view_details');
-         //Completed
-         Route::get('/completed/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
-        //Route::get('/confirm/{machineRequest}', [MachineRequestController::class, 'confirm'])->name('machine_request.confirm');
-        Route::get('/update/{machineRequest}', [MachineRequestController::class, 'update'])->name('machine_request.update');
     });
 
 });

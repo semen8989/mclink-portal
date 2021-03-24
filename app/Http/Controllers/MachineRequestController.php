@@ -14,6 +14,16 @@ use App\DataTables\CompletedMachineRequestDatatable;
 
 class MachineRequestController extends Controller
 {
+    public function pendingRequestIndex(PendingMachineRequestDataTable $dataTable)
+    {
+        return $dataTable->render('machine_request.pending_request.index');
+    }
+
+    public function completedRequestIndex(CompletedMachineRequestDatatable $dataTable)
+    {
+        return $dataTable->render('machine_request.completed_request.index');
+    }
+
     public function create()
     {
         $users = User::all();
@@ -64,49 +74,33 @@ class MachineRequestController extends Controller
             return response()->json($data);
     }
 
-    public function mark(MachineRequest $machineRequest)
-    {
-        if($machineRequest->technician->id == auth()->user()->id && $machineRequest->status == 1)
-        {
-            return redirect()->route('machine_request.pending_request.index')->with('error', 'Machine Request Cannot Be Found');
-        }
-        else
-        {
-            return redirect()->route('machine_request.view_details',['machineRequest' => $machineRequest]);
-        }
-    }
 
     public function show(MachineRequest $machineRequest)
     {
         $status = MachineRequest::STATUS;
         return view('machine_request.show',compact('machineRequest','status'));
     }
-    
-    public function pendingRequestIndex(PendingMachineRequestDataTable $dataTable)
+
+    public function requestDetails(MachineRequest $machineRequest)
     {
-        return $dataTable->render('machine_request.pending_request.index');
+        if($machineRequest->technician->id == auth()->user()->id && $machineRequest->status == 1)
+        {
+            return redirect()->route('machine_request.pending_index')->with('error','Machine Request Cannot Be Found.');
+        }
+        else
+        {
+            return redirect()->route('machine_request.pending',['machineRequest' => $machineRequest]);
+        }
     }
 
-    public function completedRequestIndex(CompletedMachineRequestDatatable $dataTable)
-    {
-        return $dataTable->render('machine_request.completed_request.index');
-    }
-
-    /**public function confirm(MachineRequest $machineRequest)
-    {
-        $status = MachineRequest::STATUS;
-
-        return view('machine_request.send_request.confirm',compact('machineRequest','status'));
-    }**/
-
-    public function update(MachineRequest $machineRequest)
+    public function mark(MachineRequest $machineRequest)
     {
         $machineRequest->update(array('status' => 1));
 
         Mail::to($machineRequest->user->email)
             ->queue(new MachineRequestCompleted($machineRequest));
 
-        return view('machine_request.send_request.approved');
+        return redirect()->route('machine_request.completed_index')->with('success', 'Machine Request Approved.');
     }
 
 }

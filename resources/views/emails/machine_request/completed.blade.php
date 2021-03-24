@@ -3,7 +3,7 @@
 
 Your machine request has been completed. You may view the details by clicking the button below.
 
-@component('mail::button', ['url' => route('machine_request.show', ['machineRequest' => $machineRequest->id])])
+@component('mail::button', ['url' => route('machine_request.completed', ['machineRequest' => $machineRequest->id])])
 View Details
 @endcomponent
 
