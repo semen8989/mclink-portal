@@ -368,10 +368,18 @@ return [
     'new' => 'New',
     'confirm' => 'Confirm',
     'global' => [
-        'module' => [
+        'module' => [ 
             'service_report' => [
                 'title' => 'MPS Service Report',
                 'url_segment' => 'service-forms'
+            ],
+            'performance' => [
+                'title' => 'Performance',
+                'url_segment' => 'performance'
+            ],
+            'okr' => [
+                'title' => 'OKR',
+                'url_segment' => 'okr'
             ]
         ],
         'text' => [
@@ -575,6 +583,48 @@ return [
                 'rating' => 'Rating',
                 'manager_comment' => 'Manager\'s Comment',
                 'select_year' => 'Select Year',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
+    'kpi_variable' => [
+        'title' => [
+            'index' => 'KPI Variables',
+            'create' => 'Add New Variable',
+            'show' => 'View Variable',
+            'edit' => 'Edit Variable',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'variable_kpi' => 'Variable KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI VARIABLES',
+                'rating' => 'Manager\'s Rating'
+            ],
+            'label' => [
+                'variable_kpi' => 'Variable',
+                'variable_quarter' => 'Quarter',
+                'variable_year' => 'Year',
+                'target_date' => 'Target Date',
+                'status' => 'Completed',
+                'result' => 'Result',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
                 'select_employee' => 'Select Employee',
             ],
             'placeholder' => [

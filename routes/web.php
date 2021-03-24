@@ -15,8 +15,9 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\DesignationController;
-use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\KpiMaingoalController;
+use App\Http\Controllers\KpiVariableController;
+use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ChangePasswordController;
@@ -59,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
             ->parameters(['maingoals' => 'kpiMain'])
             ->names('okr.kpi.maingoals');
         // KPI Variable Routes
-        Route::resource('variables', KpiMaingoalController::class)
+        Route::resource('variables', KpiVariableController::class)
             ->parameters(['variables' => 'kpiVariable'])
             ->names('okr.kpi.variables');
         // KPI Objectives Routes
@@ -93,6 +94,9 @@ Route::middleware(['auth'])->group(function () {
 
         // KPI Main Rating Route
         Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
+
+        // KPI Variable Rating Route
+        Route::get('/okr/kpi/variables/{kpiVariable}/rating', [KpiVariableController::class, 'getRating'])->name('get.kpi.variable.rating');
     });
 
     //Basic Routes
