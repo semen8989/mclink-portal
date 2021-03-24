@@ -1,4 +1,12 @@
-@component('mail::message')
+@component('mail::layout')
+{{-- Header --}}
+@slot('header')
+@component('mail::header', ['url' => 'https://www.mclinkphil.com/'])
+McLink Copy Services Phil Inc
+@endcomponent
+@endslot
+
+{{-- Body --}}
 # Hello {{ $machineRequest->user->name }},
 
 Your machine request has been completed. You may view the details by clicking the button below.
@@ -9,4 +17,20 @@ View Details
 
 Thanks,<br>
 {{ config('app.name') }}
+
+{{-- Subcopy --}}
+@isset($subcopy)
+@slot('subcopy')
+@component('mail::subcopy')
+{{ $subcopy }}
+@endcomponent
+@endslot
+@endisset
+
+{{-- Footer --}}
+@slot('footer')
+@component('mail::footer')
+© {{ date('Y') }} McLink Copy Services Phil Inc. @lang('All rights reserved.')
+@endcomponent
+@endslot
 @endcomponent
