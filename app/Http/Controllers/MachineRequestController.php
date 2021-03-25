@@ -16,18 +16,24 @@ class MachineRequestController extends Controller
 {
     public function pendingRequestIndex(PendingMachineRequestDataTable $dataTable)
     {
-        return $dataTable->render('machine_request.pending_request.index');
+        $title = __('label.machine_request.title.pending_index');
+
+        return $dataTable->render('machine_request.pending_request.index',compact('title'));
     }
 
     public function completedRequestIndex(CompletedMachineRequestDatatable $dataTable)
     {
-        return $dataTable->render('machine_request.completed_request.index');
+        $title = __('label.machine_request.title.completed_index');
+
+        return $dataTable->render('machine_request.completed_request.index',compact('title'));
     }
 
     public function create()
     {
         $users = User::all();
-        return view('machine_request.create',compact('users'));
+        $title = __('label.machine_request.title.create_index');
+        
+        return view('machine_request.create',compact('users','title'));
     }
 
     public function store(StoreMachineRequest $request)
@@ -78,7 +84,9 @@ class MachineRequestController extends Controller
     public function show(MachineRequest $machineRequest)
     {
         $status = MachineRequest::STATUS;
-        return view('machine_request.show',compact('machineRequest','status'));
+        $title = __('label.machine_request.title.show');
+
+        return view('machine_request.show',compact('machineRequest','status','title'));
     }
 
     public function requestDetails(MachineRequest $machineRequest)

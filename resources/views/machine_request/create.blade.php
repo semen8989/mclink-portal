@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Machine Request Menu</div>
+<div class="card-header">Create Machine Request</div>
 <form method="POST" id="request_form" action="{{ route('machine_request.store') }}" autocomplete="off" novalidate>
     @csrf
     <div class="card-body">

@@ -26,10 +26,8 @@ class StoreMachineRequest extends FormRequest
         return [
             'model' => 'required',
             'qty' => 'required',
-            'system' => 'required',
             'cassette_no' => 'required',
             'contract_period' => 'required',
-            'special_requirement' => 'required',
             'company_name' => 'required',
             'billing_address' => 'required',
             'office_contact_no' => 'required',

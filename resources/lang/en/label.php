@@ -631,5 +631,19 @@ return [
                 'rating' => 'Select Rating'
             ]
         ],
+    ],
+    'machine_request' => [
+        'title' => [
+            'create_index' => 'Create Machine Request',
+            'pending_index' => 'Pending Machine Requests',
+            'completed_index' => 'Completed Machine Requests',
+            'show' => 'View Request Details'
+        ],
+        'navtabs_title' => [
+            'create' => 'Create Request',
+            'pending' => 'Pending',
+            'completed' => 'Completed'
+        ]
+
     ]
 ];
