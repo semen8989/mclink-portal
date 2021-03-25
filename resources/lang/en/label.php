@@ -643,6 +643,46 @@ return [
             'create' => 'Create Request',
             'pending' => 'Pending',
             'completed' => 'Completed'
+        ],
+        'form' => [
+            'label' => [
+                'requester' => 'Requester',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'system' => 'System',
+                'qty' => 'Quantity',
+                'cassette_no' => 'Cassette Number',
+                'period_of_contract' => 'Period Of Contract',
+                'special_requirement' => 'Special Requirement',
+                'company_name' => 'Company Name',
+                'billing_address' => 'Billing Address',
+                'office_contact_no' => 'Office Contact Number',
+                'installation_address' => 'Installation Address',
+                'person_in_charge' => 'Person in-Charge',
+                'contact_no' => 'Contact Number',
+                'installation_date' => 'Installation Date',
+                'send_request' => 'Send Request To',
+                'status' => 'Status',
+                'technician' => 'Technician',
+                'cc' => 'CC',
+                'important_note' => '**Different Installation Address Different Request Form',
+                'data_check' => 'All data are correct'
+            ],
+            'button' => [
+                'mark_completed' => 'Mark As Completed'
+            ]
+        ],
+        'datatable' => [
+            'column_header' => [
+                'request_id' => 'Request ID',
+                'request_by' => 'Request By',
+                'company_name' => 'Company Name',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'details' => 'Details' 
+            ]
         ]
 
     ]

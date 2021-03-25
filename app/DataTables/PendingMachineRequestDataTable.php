@@ -97,19 +97,19 @@ class PendingMachineRequestDataTable extends DataTable
     {
         return [
             Column::make('id')
-                ->title('Request ID'),
+                ->title(__('label.machine_request.datatable.column_header.request_id')),
             Column::make('user.name')
-                ->title('Request By'),
+                ->title(__('label.machine_request.datatable.column_header.request_by')),
             Column::make('company_name')
-                ->title('Company Name'),
+                ->title(__('label.machine_request.datatable.column_header.company_name')),
             Column::make('model')
-                ->title('Model'),
+                ->title(__('label.machine_request.datatable.column_header.model')),
             Column::make('qty')
-                ->title('Quantity'),
+                ->title(__('label.machine_request.datatable.column_header.quantity')),
             Column::make('created_at')
-                ->title('Created'),
+                ->title(__('label.machine_request.datatable.column_header.created_at')),
             Column::computed('detail')
-                ->title('Details')
+                ->title(__('label.machine_request.datatable.column_header.details'))
         ];
     }
 

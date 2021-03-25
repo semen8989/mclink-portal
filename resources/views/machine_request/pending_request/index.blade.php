@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Pending Machine Requests</div>
+<div class="card-header">{{ __('label.machine_request.title.pending_index') }}</div>
     <div class="card-body">
         @include('components.machine-request.nav-tabs')
         <div class="tab-content mt-3" id="myTab1Content">

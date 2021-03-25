@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Create Machine Request</div>
+<div class="card-header">{{ __('label.machine_request.title.create_index') }}</div>
 <form method="POST" id="request_form" action="{{ route('machine_request.store') }}" autocomplete="off" novalidate>
     @csrf
     <div class="card-body">
@@ -10,13 +10,13 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label for="title">Model</label>
+                        <label for="title">{{ __('label.machine_request.form.label.model') }}</label>
                         <input class="form-control" name="model" id="model" type="text">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="title">Quantity</label>
+                        <label for="title">{{ __('label.machine_request.form.label.quantity') }}</label>
                         <input class="form-control" name="qty" id="qty" type="number" min="1">
                     </div>
                 </div>
@@ -24,59 +24,59 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label for="title">System</label>
+                        <label for="title">{{ __('label.machine_request.form.label.system') }}</label>
                         <input class="form-control" name="system" id="system" type="text">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="title">No of Cassette</label>
+                        <label for="title">{{ __('label.machine_request.form.label.cassette_no') }}</label>
                         <input class="form-control" name="cassette_no" id="cassette_no" type="number" min="1">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="title">Period of Contract</label>
+                <label for="title">{{ __('label.machine_request.form.label.period_of_contract') }}</label>
                 <input class="form-control" name="contract_period" id="contract_period" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Special Requirement</label>
+                <label for="title">{{ __('label.machine_request.form.label.special_requirement') }}</label>
                 <textarea class="form-control" name="special_requirement" id="special_requirement"></textarea>
             </div>
             <div class="form-group">
-                <label for="title">Company Name</label>
+                <label for="title">{{ __('label.machine_request.form.label.company_name') }}</label>
                 <input class="form-control" name="company_name" id="company_name" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Billing Address</label>
+                <label for="title">{{ __('label.machine_request.form.label.billing_address') }}</label>
                 <input class="form-control" name="billing_address" id="billing_address" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Office Contact No.</label>
+                <label for="title">{{ __('label.machine_request.form.label.office_contact_no') }}</label>
                 <input class="form-control" name="office_contact_no" id="office_contact_no" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Installation Address</label>
+                <label for="title">{{ __('label.machine_request.form.label.installation_address') }}</label>
                 <input class="form-control" name="installation_address" id="installation_address" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Person in-charge</label>
+                <label for="title">{{ __('label.machine_request.form.label.person_in_charge') }}</label>
                 <input class="form-control" name="person_in_charge" id="person_in_charge" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Contact No.</label>
+                <label for="title">{{ __('label.machine_request.form.label.contact_no') }}</label>
                 <input class="form-control" name="contact_no" id="contact_no" type="text">
             </div>
             <div class="form-group">
-                <label for="title">Installation Date</label>
+                <label for="title">{{ __('label.machine_request.form.label.installation_date') }}</label>
                 <input class="form-control date" name="installation_date" id="installation_date" type="text">
             </div>
             <div class="form-group">
-                <label>Send Request To</label>
+                <label>{{ __('label.machine_request.form.label.send_request') }}</label>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="technician_id">Technician</label>
+                    <label for="technician_id">{{ __('label.machine_request.form.label.technician') }}</label>
                     <select class="form-control" name="technician_id" id="technician_id">
                             <option></option>
                         @foreach ($users as $user)
@@ -85,7 +85,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="cc_user_id">CC</label>
+                    <label for="cc_user_id">{{ __('label.machine_request.form.label.cc') }}</label>
                     <select class="form-control custom-select" name="cc_user_id[]" id="cc_user_id" multiple>
                         <option></option>
                         @foreach ($users as $user)
@@ -94,19 +94,19 @@
                     </select>
                 </div>
                 <div class="form-group col-md-12">
-                    <span class="badge badge-danger" style="font-size: 15px">**Different Installation Address Different Request Form</span>
+                    <span class="badge badge-danger" style="font-size: 15px">{{ __('label.machine_request.form.label.important_note') }}</span>
                 </div>
                 <br>
                 <div class="form-check form-check ml-2">
                     <input type="checkbox" class="form-check-input" name="data_check" id="data_check">
-                    <label class="form-check-label" for="data_check">All data are correct</label>
+                    <label class="form-check-label" for="data_check">{{ __('label.machine_request.form.label.data_check') }}</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="card-footer">
         <div class="form-group mt-2 text-right">
-            <button type="submit" class="btn btn-success btn-submit">Submit</button>
+            <button type="submit" class="btn btn-success btn-submit">{{ __('label.global.form.button.submit') }}</button>
         </div>
     </div>
 </form>

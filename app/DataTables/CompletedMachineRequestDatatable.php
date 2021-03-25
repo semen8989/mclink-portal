@@ -97,19 +97,19 @@ class CompletedMachineRequestDatatable extends DataTable
     {
         return [
             Column::make('id')
-                ->title('Request ID'),
-            Column::make('user.name')
-                ->title('Request By'),
-            Column::make('company_name')
-                ->title('Company Name'),
-            Column::make('model')
-                ->title('Model'),
-            Column::make('qty')
-                ->title('Quantity'),
-            Column::make('updated_at')
-                ->title('Updated'),
-            Column::computed('detail')
-                ->title('Details')
+            ->title(__('label.machine_request.datatable.column_header.request_id')),
+        Column::make('user.name')
+            ->title(__('label.machine_request.datatable.column_header.request_by')),
+        Column::make('company_name')
+            ->title(__('label.machine_request.datatable.column_header.company_name')),
+        Column::make('model')
+            ->title(__('label.machine_request.datatable.column_header.model')),
+        Column::make('qty')
+            ->title(__('label.machine_request.datatable.column_header.quantity')),
+        Column::make('updated_at')
+            ->title(__('label.machine_request.datatable.column_header.updated_at')),
+        Column::computed('detail')
+            ->title(__('label.machine_request.datatable.column_header.details'))
         ];
     }
 
