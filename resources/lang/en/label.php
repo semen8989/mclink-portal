@@ -10,6 +10,7 @@ return [
     'add_department' => 'Add New Department',
     'add_designation' => 'Add New Designation',
     'add_expense' => 'Add New Expense',
+    'add_event' => 'Add New Event',
     'add_holiday' => 'Add New Holiday',
     'add_location' => 'Add New Location',
     'add_new' => 'Add new',
@@ -51,6 +52,7 @@ return [
     'claims_menu' => 'Claims menu',
     'classification' => 'CLASSIFICATION',
     'clear' => 'Clear',
+    'close' => 'Close',
     'companies' => 'Companies',
     'company' => 'Company',
     'company_list' => 'Company List',
@@ -126,6 +128,7 @@ return [
     'evaluate' => 'Evaluate',
     'events' => 'Events',
     'event_name' => 'Event Name',
+    'event_note' => 'Event Note',
     'expense' => 'Expense',
     'expense_list' => 'Expense List',
     'expense_type' => 'Expense Type',
@@ -198,6 +201,7 @@ return [
     'office_contact_no' => 'Office contact no',
     'office_shifts' => 'Office Shifts',
     'office_shift' => 'Office Shift',
+    'office-shifts' => 'office-shifts',
     'on_hand' => 'On hand',
     'onboarding_program' => 'Onboarding Program',
     'optional' => 'Optional',
@@ -364,10 +368,18 @@ return [
     'new' => 'New',
     'confirm' => 'Confirm',
     'global' => [
-        'module' => [
+        'module' => [ 
             'service_report' => [
                 'title' => 'MPS Service Report',
                 'url_segment' => 'service-forms'
+            ],
+            'performance' => [
+                'title' => 'Performance',
+                'url_segment' => 'performance'
+            ],
+            'okr' => [
+                'title' => 'OKR',
+                'url_segment' => 'okr'
             ]
         ],
         'text' => [
@@ -571,6 +583,48 @@ return [
                 'rating' => 'Rating',
                 'manager_comment' => 'Manager\'s Comment',
                 'select_year' => 'Select Year',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
+    'kpi_variable' => [
+        'title' => [
+            'index' => 'KPI Variables',
+            'create' => 'Add New Variable',
+            'show' => 'View Variable',
+            'edit' => 'Edit Variable',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'variable_kpi' => 'Variable KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI VARIABLES',
+                'rating' => 'Manager\'s Rating'
+            ],
+            'label' => [
+                'variable_kpi' => 'Variable',
+                'variable_quarter' => 'Quarter',
+                'variable_year' => 'Year',
+                'target_date' => 'Target Date',
+                'status' => 'Completed',
+                'result' => 'Result',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
                 'select_employee' => 'Select Employee',
             ],
             'placeholder' => [

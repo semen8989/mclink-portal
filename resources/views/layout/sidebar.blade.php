@@ -10,7 +10,7 @@
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('home') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-speedometer') }}"></use>
-                </svg> Dashboard</a></li>
+                </svg> {{ __('label.dashboard') }}</a></li>
             </li>   
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ (request()->segment(1) == __('label.global.module.service_report.url_segment')) ? 'c-active' : ''}}" href="{{ route('service.form.index') }}">
@@ -22,7 +22,7 @@
               class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
               <svg class="c-sidebar-nav-icon">
                   <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-layers') }}"></use>
-              </svg> Organizations</a>
+              </svg> {{ __('label.organizations') }}</a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.companies'))) ? 'c-active c-show' : '' }}" href="{{ route('companies.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.company') }} </a></li>
@@ -38,7 +38,7 @@
                         class="c-sidebar-nav-icon"></span> {{ __('label.holidays') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.locations'))) ? 'c-active c-show' : '' }}" href="{{ route('locations.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.location') }}</a></li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.office_shifts'))) ? 'c-active c-show' : '' }}" href="{{ route('office_shifts.index') }}"><span
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.office-shifts'))) ? 'c-active c-show' : '' }}" href="{{ route('office-shifts.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.shifts') }}</a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.expenses'))) ? 'c-active c-show' : '' }}" href="{{ route('expenses.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.expense') }}</a></li>
@@ -56,13 +56,16 @@
                 <ul class="c-sidebar-nav-dropdown-items">
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('machine_request.create') }}"><span class="c-sidebar-nav-icon"></span> Machine Request </a></li>
                 </ul>
-            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == __('label.global.module.performance.url_segment')) ? 'c-active c-show' : '' }}">
+              <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
               <svg class="c-sidebar-nav-icon">
                 <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-bar-chart') }}"></use>
-              </svg> Performance</a>
+              </svg> {{ __('label.global.module.performance.title') }}</a>
               <ul class="c-sidebar-nav-dropdown-items">
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('okr.kpi.maingoals.index') }}"><span class="c-sidebar-nav-icon"></span> OKR</a></li>
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span> KPI Report</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.okr.url_segment')) ? 'c-active' : ''}}" href="{{ route('okr.kpi.maingoals.index') }}">
+                    <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.okr.title') }}</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
+                    <span class="c-sidebar-nav-icon"></span> KPI Report</a></li>
               </ul>
             </li>
         </ul>
