@@ -100,7 +100,8 @@ Route::middleware(['auth'])->group(function () {
         });
         //Recruitment
         Route::prefix('recruitment')->group(function (){
-            Route::get('/',[RecruitmentController::class, 'index'])->name('recruitment.index');            
+            Route::get('/',[RecruitmentController::class, 'index'])->name('recruitment.index');  
+            Route::get('/{submission_id}/details',[RecruitmentController::class, 'show'])->name('recruitment.show');          
         });
 
     });

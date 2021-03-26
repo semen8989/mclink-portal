@@ -14,7 +14,7 @@
             @foreach($collection as $item)
                 <tr>
                     <td>{{ $i++ }}</td>
-                    <td>{{ $item['answers']['15']['answer']['first'].' '.$item['answers']['15']['answer']['last'] }}</td>
+                    <td><a href="{{ route('recruitment.show',$item['id']) }}">{{ $item['answers']['15']['answer']['first'].' '.$item['answers']['15']['answer']['last'] }}</a></td>
                     <td>{{ $item['answers']['11']['answer'] }}</td>
                     <td>{{ $item['answers']['16']['answer'] }}</td>
                 </tr>
