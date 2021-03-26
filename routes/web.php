@@ -18,6 +18,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\KpiMaingoalController;
 use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
+use App\Http\Controllers\RecruitmentController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ChangePasswordController;
@@ -83,7 +84,26 @@ Route::middleware(['auth'])->group(function () {
             'expenses' => ExpenseController::class
         ]); 
     });
+    //Human Resource
+    Route::prefix('hr')->group(function (){
+        //HR Calendar
+        Route::prefix('calendar')->group(function (){
+            Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
+            //Events
+            Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
+            Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
+            Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
+            //Holidays
+            Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
+            Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
+            Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+        });
+        //Recruitment
+        Route::prefix('recruitment')->group(function (){
+            Route::get('/',[RecruitmentController::class, 'index'])->name('recruitment.index');            
+        });
 
+    });
     // Ajax Routes
     Route::prefix('get')->group(function () {
         // Customer Route
@@ -103,19 +123,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/fetch-department', [FetchController::class,'fetchDepartment'])->name('fetch_department');
     Route::post('/fetch-user', [FetchController::class,'fetchUser'])->name('fetch_user');
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
-
-    //HR Calendar
-    Route::prefix('hr-calendar')->group(function (){
-        Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
-        //Events
-        Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
-        Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
-        Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
-        //Holidays
-        Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
-        Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
-        Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
-    });
 
 });
 
