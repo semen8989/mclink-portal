@@ -63,7 +63,7 @@
     <div class="row">
         <div class="col-md-6">
             <p class="guest-form-label font-weight-bold mb-1">Driving License</p>
-            <p class="guest-form-data mb-4">{{ $details['26']['answer'] }}</p>
+            <p class="guest-form-data mb-4">{{ (!empty($details['26']['answer'])) ? $details['26']['answer'] : '---' }}</p>
         </div>
         <div class="col-md-6">
             <p class="guest-form-label font-weight-bold mb-1">Home Address</p>
@@ -83,7 +83,7 @@
     <div class="row">
         <div class="col-md-6">
             <p class="guest-form-label font-weight-bold mb-1">Home Telephone</p>
-            <p class="guest-form-data mb-4">{{ (!empty($details['29']['answer'])) ? $details['29']['answer'] : '---' }}
+            <p class="guest-form-data mb-4">{{ (!empty($details['29']['prettyFormat'])) ? $details['29']['prettyFormat'] : '---' }}
             </p>
         </div>
         <div class="col-md-6">
@@ -232,7 +232,7 @@
         </div>
     </div>
     <p class="guest-form-label font-weight-bold mb-1">Children</p>
-    @if(count($details['44']['answer']) > 0)
+    @if(ctype_alpha($details['44']['answer']))
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -243,7 +243,9 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <tr>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     @else
