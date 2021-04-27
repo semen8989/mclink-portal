@@ -13,7 +13,7 @@ class EmployeeKpiExport implements Responsable, WithMultipleSheets
 {
     use Exportable;
     
-    private $fileName = 'kpi.xlsx';
+    private $fileName = 'kpi_report.xlsx';
     private $users;
     private $request;
 
