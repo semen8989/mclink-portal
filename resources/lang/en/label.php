@@ -574,7 +574,8 @@ return [
                 'q3' => 'Q3',
                 'q4' => 'Q4',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'feedback' => 'Feedback'
             ]
         ],
         'form' => [
@@ -615,7 +616,10 @@ return [
                 'target_date' => 'Target Date',
                 'result' => 'Result',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'quarter' => 'Quarter',   
+                'year' => 'Year',
+                'feedback' => 'Feedback'               
             ]
         ],
         'form' => [

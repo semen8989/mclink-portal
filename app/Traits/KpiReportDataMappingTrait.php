@@ -65,25 +65,25 @@ trait KpiReportDataMappingTrait {
 
         if ($kpiType == 'mainGoals') {
             $headerArray = [
-                'KPI MAIN GOAL',
-                'Q1',
-                'Q2',
-                'Q3',
-                'Q4',
-                'FEEDBACK',
-                'COMPLETED',
-                'UPDATED AT'
+                Str::upper(__('label.kpi_main.datatable.column_header.main_kpi')),
+                Str::upper(__('label.kpi_main.datatable.column_header.q1')),
+                Str::upper(__('label.kpi_main.datatable.column_header.q2')),
+                Str::upper(__('label.kpi_main.datatable.column_header.q3')),
+                Str::upper(__('label.kpi_main.datatable.column_header.q4')),
+                Str::upper(__('label.kpi_main.datatable.column_header.feedback')),
+                Str::upper(__('label.kpi_main.datatable.column_header.completed')),
+                Str::upper(__('label.kpi_main.datatable.column_header.updated_at'))
             ];
         } elseif ($kpiType == 'variables') {
             $headerArray = [
-                'KPI VARIABLE',
-                'QUARTER',
-                'YEAR',
-                'TARGET DATE',
-                'RESULT',
-                'FEEDBACK',
-                'COMPLETED',
-                'UPDATED AT'
+                Str::upper(__('label.kpi_variable.datatable.column_header.variable_kpi')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.quarter')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.year')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.target_date')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.result')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.feedback')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.completed')),
+                Str::upper(__('label.kpi_variable.datatable.column_header.updated_at'))
             ];
         }
 
