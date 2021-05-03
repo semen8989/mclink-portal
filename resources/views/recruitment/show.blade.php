@@ -267,34 +267,69 @@
                 <th scope="col">Highest Qualification Obtained</th>
             </tr>
             @php
-                $trim_data = trim($details['48']['answer']['Elementary'],'[]');
-                $element = explode(",",$trim_data);
+                //Temporary only, will change it later
+                
+                //Elementary
+                $elem_data = trim($details['48']['answer']['Elementary'],'[]');
+                $elem_element = explode(",",$elem_data);
+                //Secondary
+                $second_data = trim($details['48']['answer']['Secondary'],'[]');
+                $second_element = explode(",",$second_data);
+                //Vocational
+                $vo_data = trim($details['48']['answer']['Vocational'],'[]');
+                $vo_element = explode(",",$vo_data);
+                //University/College
+                $uni_data = trim($details['48']['answer']['University/College'],'[]');
+                $uni_element = explode(",",$uni_data);
+                //Post Graduate
+                $post_data = trim($details['48']['answer']['Post-Graduate'],'[]');
+                $post_element = explode(",",$post_data);
+                //Post Graduate
+                $other_data = trim($details['48']['answer']['Other'],'[]');
+                $other_element = explode(",",$other_data);
             @endphp
             <tbody>
                 <tr>
                     <th scope="row">Elementary</th>
-                    <td>{{ trim($element[0],'""') }}</td>
-                    <td>{{ trim($element[1],'""') }}</td>
-                    <td>{{ trim($element[2],'""') }}</td>
-                    <td>{{ trim($element[3],'""') }}</td>
+                    <td>{{ trim($elem_element[0],'""') }}</td>
+                    <td>{{ str_replace('\\','',trim($elem_element[1],'""')) }}</td>
+                    <td>{{ str_replace('\\','',trim($elem_element[2],'""')) }}</td>
+                    <td>{{ trim($elem_element[3],'""') }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Secondary</th>
-                    
+                    <td>{{ trim($second_element[0],'""') }}</td>
+                    <td>{{ str_replace('\\','',trim($second_element[1],'""')) }}</td>
+                    <td>{{ str_replace('\\','',trim($second_element[2],'""')) }}</td>
+                    <td>{{ trim($second_element[3],'""') }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Vocational</th>
-                    
+                    <td>{{ trim($vo_element[0],'""') }}</td>
+                    <td>{{ str_replace('\\','',trim($vo_element[1],'""')) }}</td>
+                    <td>{{ str_replace('\\','',trim($vo_element[2],'""')) }}</td>
+                    <td>{{ trim($vo_element[3],'""') }}</td>
                 </tr>
                 <tr>
                     <th scope="row">University/College</th>
-                    
+                    <td>{{ trim($uni_element[0],'""') }}</td>
+                    <td>{{ str_replace('\\','',trim($uni_element[1],'""')) }}</td>
+                    <td>{{ str_replace('\\','',trim($uni_element[2],'""')) }}</td>
+                    <td>{{ trim($uni_element[3],'""') }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Post-Graduate</th>
+                    <td>{{ trim($post_element[0],'""') }}</td>
+                    <td>{{ str_replace('\\','',trim($post_element[1],'""')) }}</td>
+                    <td>{{ str_replace('\\','',trim($post_element[2],'""')) }}</td>
+                    <td>{{ trim($post_element[3],'""') }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Other</th>
+                    <td>{{ trim($other_element[0],'""') }}</td>
+                    <td>{{ str_replace('\\','',trim($other_element[1],'""')) }}</td>
+                    <td>{{ str_replace('\\','',trim($other_element[2],'""')) }}</td>
+                    <td>{{ trim($other_element[3],'""') }}</td>
                 </tr>
             </tbody>
         </table>
