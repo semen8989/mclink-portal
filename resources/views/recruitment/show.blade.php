@@ -232,7 +232,6 @@
         </div>
     </div>
     <p class="guest-form-label font-weight-bold mb-1">Children</p>
-    @if(ctype_alpha($details['44']['answer']))
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -242,15 +241,52 @@
                     <th scope="col">Date of Birth</th>
                 </tr>
             </thead>
+            @php
+            //Children
+                $child1_data = trim($details['44']['answer']['1'],'[]');
+                $child1_element = explode(",",$child1_data);
+                $child2_data = trim($details['44']['answer']['2'],'[]');
+                $child2_element = explode(",",$child2_data);
+                $child3_data = trim($details['44']['answer']['3'],'[]');
+                $child3_element = explode(",",$child3_data);
+                $child4_data = trim($details['44']['answer']['4'],'[]');
+                $child4_element = explode(",",$child4_data);
+                $child5_data = trim($details['44']['answer']['5'],'[]');
+                $child5_element = explode(",",$child5_data);
+            @endphp
             <tbody>
                 <tr>
-                    <td></td>
+                    <th scope="row">1</th>
+                    <td>{{ trim($child1_element[0],'""') }}</td>
+                    <td>{{ trim($child1_element[1],'""') }}</td>
+                    <td>{{ trim($child1_element[2],'""') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>{{ trim($child2_element[0],'""') }}</td>
+                    <td>{{ trim($child2_element[1],'""') }}</td>
+                    <td>{{ trim($child2_element[2],'""') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>{{ trim($child3_element[0],'""') }}</td>
+                    <td>{{ trim($child3_element[1],'""') }}</td>
+                    <td>{{ trim($child3_element[2],'""') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>{{ trim($child4_element[0],'""') }}</td>
+                    <td>{{ trim($child4_element[1],'""') }}</td>
+                    <td>{{ trim($child4_element[2],'""') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>{{ trim($child5_element[0],'""') }}</td>
+                    <td>{{ trim($child5_element[1],'""') }}</td>
+                    <td>{{ trim($child5_element[2],'""') }}</td>
                 </tr>
             </tbody>
         </table>
-    @else
-        ---
-    @endif
 </div>
 
 <hr class="mb-3">
@@ -268,7 +304,6 @@
             </tr>
             @php
                 //Temporary only, will change it later
-                
                 //Elementary
                 $elem_data = trim($details['48']['answer']['Elementary'],'[]');
                 $elem_element = explode(",",$elem_data);
