@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="card-header">Recruitment List</div>
+    <div class="card-header">List</div>
     <div class="card-body">
         <table class="table table-responsive-sm">
             <tr>

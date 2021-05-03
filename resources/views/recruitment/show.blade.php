@@ -258,6 +258,46 @@
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name of School/Institution (fill in where applicable)</th>
+                <th scope="col">From(mm/dd/yy)</th>
+                <th scope="col">To(mm/dd/yy)</th>
+                <th scope="col">Highest Qualification Obtained</th>
+            </tr>
+            @php
+                $trim_data = trim($details['48']['answer']['Elementary'],'[]');
+                $element = explode(",",$trim_data);
+            @endphp
+            <tbody>
+                <tr>
+                    <th scope="row">Elementary</th>
+                    <td>{{ trim($element[0],'""') }}</td>
+                    <td>{{ trim($element[1],'""') }}</td>
+                    <td>{{ trim($element[2],'""') }}</td>
+                    <td>{{ trim($element[3],'""') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Secondary</th>
+                    
+                </tr>
+                <tr>
+                    <th scope="row">Vocational</th>
+                    
+                </tr>
+                <tr>
+                    <th scope="row">University/College</th>
+                    
+                </tr>
+                <tr>
+                    <th scope="row">Post-Graduate</th>
+                </tr>
+                <tr>
+                    <th scope="row">Other</th>
+                </tr>
+            </tbody>
+        </table>
 
 </div>
 
@@ -266,7 +306,7 @@
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
-
+   
 </div>
 
 <hr class="mb-3">

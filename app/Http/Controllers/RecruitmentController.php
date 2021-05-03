@@ -17,5 +17,6 @@ class RecruitmentController extends Controller
     {
         $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
         return view('recruitment.show',['details'=>$details['content']['answers']]);
+        
     }
 }
