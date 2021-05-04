@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@inject('Recruitment', 'App\Http\Controllers\RecruitmentController')
+
 @section('content')
 <div class="card-header">1. Personal Particulars</div>
 <div class="card-body">
@@ -241,49 +243,36 @@
                     <th scope="col">Date of Birth</th>
                 </tr>
             </thead>
-            @php
-            //Children
-                $child1_data = trim($details['44']['answer']['1'],'[]');
-                $child1_element = explode(",",$child1_data);
-                $child2_data = trim($details['44']['answer']['2'],'[]');
-                $child2_element = explode(",",$child2_data);
-                $child3_data = trim($details['44']['answer']['3'],'[]');
-                $child3_element = explode(",",$child3_data);
-                $child4_data = trim($details['44']['answer']['4'],'[]');
-                $child4_element = explode(",",$child4_data);
-                $child5_data = trim($details['44']['answer']['5'],'[]');
-                $child5_element = explode(",",$child5_data);
-            @endphp
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>{{ trim($child1_element[0],'""') }}</td>
-                    <td>{{ trim($child1_element[1],'""') }}</td>
-                    <td>{{ trim($child1_element[2],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['1'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['1'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['1'],2) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>{{ trim($child2_element[0],'""') }}</td>
-                    <td>{{ trim($child2_element[1],'""') }}</td>
-                    <td>{{ trim($child2_element[2],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['2'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['2'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['2'],2) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td>{{ trim($child3_element[0],'""') }}</td>
-                    <td>{{ trim($child3_element[1],'""') }}</td>
-                    <td>{{ trim($child3_element[2],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['3'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['3'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['3'],2) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">4</th>
-                    <td>{{ trim($child4_element[0],'""') }}</td>
-                    <td>{{ trim($child4_element[1],'""') }}</td>
-                    <td>{{ trim($child4_element[2],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['4'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['4'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['4'],2) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">5</th>
-                    <td>{{ trim($child5_element[0],'""') }}</td>
-                    <td>{{ trim($child5_element[1],'""') }}</td>
-                    <td>{{ trim($child5_element[2],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['5'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['5'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['5'],2) }}</td>
                 </tr>
             </tbody>
         </table>
@@ -302,69 +291,48 @@
                 <th scope="col">To(mm/dd/yy)</th>
                 <th scope="col">Highest Qualification Obtained</th>
             </tr>
-            @php
-                //Temporary only, will change it later
-                //Elementary
-                $elem_data = trim($details['48']['answer']['Elementary'],'[]');
-                $elem_element = explode(",",$elem_data);
-                //Secondary
-                $second_data = trim($details['48']['answer']['Secondary'],'[]');
-                $second_element = explode(",",$second_data);
-                //Vocational
-                $vo_data = trim($details['48']['answer']['Vocational'],'[]');
-                $vo_element = explode(",",$vo_data);
-                //University/College
-                $uni_data = trim($details['48']['answer']['University/College'],'[]');
-                $uni_element = explode(",",$uni_data);
-                //Post Graduate
-                $post_data = trim($details['48']['answer']['Post-Graduate'],'[]');
-                $post_element = explode(",",$post_data);
-                //Post Graduate
-                $other_data = trim($details['48']['answer']['Other'],'[]');
-                $other_element = explode(",",$other_data);
-            @endphp
             <tbody>
                 <tr>
                     <th scope="row">Elementary</th>
-                    <td>{{ trim($elem_element[0],'""') }}</td>
-                    <td>{{ str_replace('\\','',trim($elem_element[1],'""')) }}</td>
-                    <td>{{ str_replace('\\','',trim($elem_element[2],'""')) }}</td>
-                    <td>{{ trim($elem_element[3],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],3) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Secondary</th>
-                    <td>{{ trim($second_element[0],'""') }}</td>
-                    <td>{{ str_replace('\\','',trim($second_element[1],'""')) }}</td>
-                    <td>{{ str_replace('\\','',trim($second_element[2],'""')) }}</td>
-                    <td>{{ trim($second_element[3],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],3) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Vocational</th>
-                    <td>{{ trim($vo_element[0],'""') }}</td>
-                    <td>{{ str_replace('\\','',trim($vo_element[1],'""')) }}</td>
-                    <td>{{ str_replace('\\','',trim($vo_element[2],'""')) }}</td>
-                    <td>{{ trim($vo_element[3],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],3) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">University/College</th>
-                    <td>{{ trim($uni_element[0],'""') }}</td>
-                    <td>{{ str_replace('\\','',trim($uni_element[1],'""')) }}</td>
-                    <td>{{ str_replace('\\','',trim($uni_element[2],'""')) }}</td>
-                    <td>{{ trim($uni_element[3],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],3) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Post-Graduate</th>
-                    <td>{{ trim($post_element[0],'""') }}</td>
-                    <td>{{ str_replace('\\','',trim($post_element[1],'""')) }}</td>
-                    <td>{{ str_replace('\\','',trim($post_element[2],'""')) }}</td>
-                    <td>{{ trim($post_element[3],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],3) }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Other</th>
-                    <td>{{ trim($other_element[0],'""') }}</td>
-                    <td>{{ str_replace('\\','',trim($other_element[1],'""')) }}</td>
-                    <td>{{ str_replace('\\','',trim($other_element[2],'""')) }}</td>
-                    <td>{{ trim($other_element[3],'""') }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],3) }}</td>
                 </tr>
             </tbody>
         </table>
