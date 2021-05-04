@@ -660,13 +660,15 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Relationship</th>
+                <th scope="col">Contact no.</th>
+                <th scope="col">relationship</th>
             </tr>
             <tbody>
                 <tr>
                     <th scope="row">1</th>
                     <td>{{ $Recruitment->trimAndExplode($details['98']['answer']['1.'],0) }}</td>
                     <td>{{ $Recruitment->trimAndExplode($details['98']['answer']['1.'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['98']['answer']['1.'],2) }}</td>
                 </tr>
             </tbody>
         </table>
@@ -677,7 +679,74 @@
     <hr class="mt-3 mb-0">
 
     <div class="card-body">
-
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Answer</th>
+                    <th scope="col">If yes, please specify</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1. Have you suffered, or are suffering from any medical condition, illness, disease, mental illness, substance dependence or physical impairment?</th>
+                    <td>{{ (!empty($details['125']['answer'])) ? $details['125']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['126']['answer'])) ? $details['126']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">2a. Do you have any existing criminal records?</th>
+                    <td>{{ (!empty($details['104']['answer'])) ? $details['104']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['103']['answer'])) ? $details['103']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">2b. Have you been charged with any offence in a court of law or in any other country for which the outcome is pending (excluding parking offences)?</th>
+                    <td>{{ (!empty($details['105']['answer'])) ? $details['105']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['106']['answer'])) ? $details['106']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">3. Have you been charged with any offence in a court of law or in any other country for which the outcome is pending (excluding parking offences)?</th>
+                    <td>{{ (!empty($details['107']['answer'])) ? $details['107']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['108']['answer'])) ? $details['108']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">4. Are you aware of being under any current police investigations or in any other country following allegations made against you?</th>
+                    <td>{{ (!empty($details['109']['answer'])) ? $details['109']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['110']['answer'])) ? $details['110']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">5. Have you been or are you under any financial embarrassment i.e. (a) an undischarged bankrupt, (b) a judgement debtor, (c) have unsecured debts and liabilities of more than 3 months of last-drawn pay, (d) have signed a promissory note or an acknowledgement of indebtedness?</th>
+                    <td>{{ (!empty($details['111']['answer'])) ? $details['111']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['112']['answer'])) ? $details['112']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">6. Has your employment ever been terminated as a result of misconduct of service?</th>
+                    <td>{{ (!empty($details['113']['answer'])) ? $details['113']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['114']['answer'])) ? $details['114']['answer'] : '---' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Answer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">7. In the event where you have successfully passed the job interview(s) and received a job offer from us, when is the earliest date that you will be available to start work?</th>
+                    <td>{{ (!empty($details['115']['prettyFormat'])) ? $details['115']['prettyFormat'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">8. What is your personal strength?</th>
+                    <td>{{ (!empty($details['116']['answer'])) ? $details['116']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">9. List your hobbies</th>
+                    <td>{{ (!empty($details['117']['answer'])) ? $details['117']['answer'] : '---' }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <hr class="mb-3">
