@@ -12,7 +12,7 @@ class RecruitmentController extends Controller
     
     public function index()
     {
-        $collection = Http::get('https://api.jotform.com/form/'.env('APPLICATION_FORM_ID').'/submissions?apiKey='.env('APPLICATION_FORM_API').'&limit=20');
+        $collection = Http::get('https://api.jotform.com/form/'.env('APPLICATION_FORM_ID').'/submissions?apiKey='.env('APPLICATION_FORM_API').'&limit=50');
         return view('recruitment.index',['collection'=>$collection['content']]);
     }
 
