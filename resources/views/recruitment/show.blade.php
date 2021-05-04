@@ -276,6 +276,61 @@
                 </tr>
             </tbody>
         </table>
+    <p class="guest-form-label font-weight-bold mb-1">Other relatives in similar industry/sector as Mclink</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Relationship</th>
+                    <th scope="col">Date of birth(dd/mm/yy)</th>
+                    <th scope="col">Occupation</th>
+                    <th scope="col">Employer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],3) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],4) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],3) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],4) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],3) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],4) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],3) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],4) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],0) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],1) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],2) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],3) }}</td>
+                    <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],4) }}</td>
+                </tr>
+            </tbody>
+        </table>
 </div>
 
 <hr class="mb-3">
@@ -283,60 +338,59 @@
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
-        <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name of School/Institution (fill in where applicable)</th>
+            <th scope="col">From(mm/dd/yy)</th>
+            <th scope="col">To(mm/dd/yy)</th>
+            <th scope="col">Highest Qualification Obtained</th>
+        </tr>
+        <tbody>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Name of School/Institution (fill in where applicable)</th>
-                <th scope="col">From(mm/dd/yy)</th>
-                <th scope="col">To(mm/dd/yy)</th>
-                <th scope="col">Highest Qualification Obtained</th>
+                <th scope="row">Elementary</th>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],3) }}</td>
             </tr>
-            <tbody>
-                <tr>
-                    <th scope="row">Elementary</th>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],0) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],1) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],2) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],3) }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Secondary</th>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],0) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],1) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],2) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],3) }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Vocational</th>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],0) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],1) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],2) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],3) }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">University/College</th>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],0) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],1) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],2) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],3) }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Post-Graduate</th>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],0) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],1) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],2) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],3) }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Other</th>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],0) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],1) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],2) }}</td>
-                    <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],3) }}</td>
-                </tr>
-            </tbody>
-        </table>
-
+            <tr>
+                <th scope="row">Secondary</th>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Vocational</th>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">University/College</th>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Post-Graduate</th>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Other</th>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],3) }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <hr class="mb-3">
@@ -344,15 +398,87 @@
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
-   
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name of School/Institution (fill in where applicable)</th>
+            <th scope="col">From(mm/dd/yy)</th>
+            <th scope="col">To(mm/dd/yy)</th>
+            <th scope="col">Highest Qualification Obtained</th>
+        </tr>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],3) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],3) }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <hr class="mb-3">
-<div class="px-4">6. Membership Details</div>
+<div class="px-4">6. Membership Details (Are you affiliated to any institution / association / organisation /charity?)</div>
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
-
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Organisation name</th>
+            <th scope="col">Role/Position</th>
+            <th scope="col">Key/Responsibilities</th>
+        </tr>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['1'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['1'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['1'],2) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['2'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['2'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['2'],2) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['3'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['3'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['3'],2) }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <hr class="mb-3">
@@ -360,7 +486,42 @@
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
-
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course</th>
+            <th scope="col">School/Institution</th>
+            <th scope="col">From(dd/mm/yy)</th>
+            <th scope="col">To(dd/mm/yy)</th>
+            <th scope="col">Qualification obtained</th>
+        </tr>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],3) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],4) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],3) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],4) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],1) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],2) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],3) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],4) }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <hr class="mb-3">
@@ -368,7 +529,35 @@
 <hr class="mt-3 mb-0">
 
 <div class="card-body">
-
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Skill</th>
+            <th scope="col">Description</th>
+        </tr>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['1'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['1'],1) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['2'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['2'],1) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['3'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['3'],1) }}</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['4'],0) }}</td>
+                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['4'],1) }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <hr class="mb-3">
