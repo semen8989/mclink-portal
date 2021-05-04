@@ -422,10 +422,10 @@
         <table class="table table-bordered table-striped">
             <tr>
                 <th scope="col"></th>
-                <th scope="col">Name of School/Institution (fill in where applicable)</th>
-                <th scope="col">From(mm/dd/yy)</th>
-                <th scope="col">To(mm/dd/yy)</th>
-                <th scope="col">Highest Qualification Obtained</th>
+                <th scope="col">Name</th>
+                <th scope="col">Institution</th>
+                <th scope="col">Role/Position</th>
+                <th scope="col">Key responsibilities</th>
             </tr>
             <tbody>
                 <tr>
@@ -588,11 +588,11 @@
 
     <div class="card-body">
         <p class="guest-form-label font-weight-bold mb-1">Employment History (1 of 5)</p>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             <tbody>
                 <tr>
                     <th>Period of Employment</th>
-                    <td></td>
+                    <td>{{$details['62']['answer'] }}</td>
                 </tr>
                 <tr>
                     <th>Company Name</th>
@@ -620,7 +620,39 @@
                 </tr>
             </tbody>
         </table>
-
+        <p class="guest-form-label font-weight-bold mb-1">Employment History (2 of 5)</p>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>Period of Employment</th>
+                    <td>{{ (!empty($details['70']['answer'])) ? $details['70']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Company Name</th>
+                    <td>{{ (!empty($details['71']['answer'])) ? $details['71']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Position Held</th>
+                    <td>{{ (!empty($details['72']['answer'])) ? $details['72']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Basic Monthly Salary</th>
+                    <td>{{ (!empty($details['73']['answer'])) ? $details['73']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Reason for Leaving</th>
+                    <td>{{ (!empty($details['74']['answer'])) ? $details['74']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Responsibilities</th>
+                    <td>//</td>
+                </tr>
+                <tr>
+                    <th>What did you enjoy most while working in this company</th>
+                    <td>{{ (!empty($details['67']['answer'])) ? $details['67']['answer'] : '---' }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <hr class="mb-3">
