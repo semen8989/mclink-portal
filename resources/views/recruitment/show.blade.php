@@ -298,7 +298,7 @@
             </tbody>
         </table>
         <p class="guest-form-label font-weight-bold mb-1">Other relatives in similar industry/sector as Mclink</p>
-        <table class="table table-bordered table-striped">
+        <table class="table table-responsive-sm table-bordered table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -359,7 +359,7 @@
     <hr class="mt-3 mb-0">
 
     <div class="card-body">
-        <table class="table table-bordered table-striped">
+        <table class="table table-responsive-sm table-bordered table-striped">
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Name of School/Institution (fill in where applicable)</th>
@@ -419,7 +419,7 @@
     <hr class="mt-3 mb-0">
 
     <div class="card-body">
-        <table class="table table-bordered table-striped">
+        <table class="table table-responsive-sm table-bordered table-striped">
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Name</th>
@@ -508,7 +508,7 @@
     <hr class="mt-3 mb-0">
 
     <div class="card-body">
-        <table class="table table-bordered table-striped">
+        <table class="table table-responsive-sm table-bordered table-striped">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Course</th>
