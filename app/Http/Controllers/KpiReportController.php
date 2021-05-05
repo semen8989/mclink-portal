@@ -18,6 +18,8 @@ class KpiReportController extends Controller
      */
     public function index()
     {
+        $title = __('label.kpi_report.title.index');
+
         $kpiTypes = KpiReport::getKpiTypes();
         $quarters = KpiReport::getQuarterList();
 
@@ -26,7 +28,7 @@ class KpiReportController extends Controller
 
         $years = $mainYear->concat($variableYear)->groupBy('year')->all();
 
-        return view('kpi_report.index', compact('kpiTypes', 'quarters', 'years'));     
+        return view('kpi_report.index', compact('title', 'kpiTypes', 'quarters', 'years'));     
     }
 
     public function download(Request $request)
