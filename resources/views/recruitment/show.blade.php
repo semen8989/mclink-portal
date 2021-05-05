@@ -5,112 +5,105 @@
 @section('content')
 <div class="card-header">Applicant Information</div>
 <div class="card-body">
+    <table class="table table-striped table-bordered" style="table-layout: fixed;">
+        <tbody>
+            <tr>
+                <th>Position Applying For</th>
+                <td>{{ $details['11']['answer'] }}</td>
+            </tr>
+            <tr>
+                <th>Expected Salary</th>
+                <td>{{ $details['12']['answer'] }}</td>
+            </tr>
+        </tbody>
+    </table>
     <div class="accordion" id="accordion" role="tablist">
         <div class="card mb-0">
             <div class="card-header" id="headingOne" role="tab">
                 <h5 class="mb-0"><a data-toggle="collapse" href="#collapseOne" aria-expanded="true"
-                        aria-controls="collapseOne">1. Personal Particulars</a></h5>
+                    aria-controls="collapseOne">1. Personal Particulars</a></h5>
             </div>
             <div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne"
                 data-parent="#accordion">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Name</p>
-                            <p class="guest-form-data mb-4">
-                                {{ $details['15']['answer']['first'] ." ". $details['15']['answer']['last'] }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Gender</p>
-                            <p class="guest-form-data mb-4">{{ $details['16']['answer'] }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Religion</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['17']['answer'])) ? $details['17']['answer'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">ID No. / Passport No.</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['18']['answer'])) ? $details['18']['answer'] : '---' }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Date of Birth</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['19']['prettyFormat'])) ? $details['19']['prettyFormat'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Age</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['20']['answer'])) ? $details['20']['answer'] : '---' }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Country of Birth</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['21']['answer'])) ? $details['21']['answer'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Nationality</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['22']['answer'])) ? $details['22']['answer'] : '---' }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Permanent Residence</p>
-                            <p class="guest-form-data mb-4">{{ $details['24']['answer'] }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Marital Status</p>
-                            <p class="guest-form-data mb-4">{{ $details['25']['answer'] }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Driving License</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['26']['answer'])) ? $details['26']['answer'] : '---' }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Home Address</p>
-                            <p class="guest-form-data mb-4">{{ $details['27']['answer'] }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Mailing Address</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['128']['answer'])) ? $details['128']['answer'] : '---' }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Email</p>
-                            <p class="guest-form-data mb-4">{{ $details['28']['answer'] }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Home Telephone</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['29']['prettyFormat'])) ? $details['29']['prettyFormat'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Mobile Phone</p>
-                            <p class="guest-form-data mb-4">{{ $details['30']['prettyFormat'] }}</p>
-                        </div>
-                    </div>
+                    <table class="table table-striped table-bordered" style="table-layout: fixed;">
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ $details['15']['answer']['first'] ." ". $details['15']['answer']['last'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td>{{ $details['16']['answer'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Religion</th>
+                            <td>{{ (!empty($details['17']['answer'])) ? $details['17']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>ID No. / Passport No.</th>
+                            <td>{{ (!empty($details['18']['answer'])) ? $details['18']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth(DD/MM/YYYY)</th>
+                            <td>{{ (!empty($details['19']['answer'])) ? $details['19']['prettyFormat'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>{{ (!empty($details['20']['answer'])) ? $details['20']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Country of Birth</th>
+                            <td>{{ (!empty($details['21']['answer'])) ? $details['21']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nationality</th>
+                            <td>{{ (!empty($details['22']['answer'])) ? $details['22']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Citizenship</th>
+                            <td>{{ (!empty($details['23']['answer'])) ? $details['23']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Permanent Residence</th>
+                            <td>{{ $details['24']['answer'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Marital Status</th>
+                            <td>
+                                @if(!empty($details['25']['answer']['other']))
+                                    {{ $details['25']['answer']['other'] }}
+                                @elseif(!empty($details['25']['answer']))
+                                    {{ $details['25']['answer'] }}
+                                @else
+                                    ---
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Driving License</th>
+                            <td>{{ (!empty($details['26']['answer'])) ? $details['26']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Home Address</th>
+                            <td>{{ $details['27']['answer'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Mailing Address</th>
+                            <td>{{ (!empty($details['128']['answer'])) ? $details['128']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ $details['28']['answer'] }}</td>
+                        </tr>
+                        <tr>
+                            <th>Home Telephone</th>
+                            <td>{{ (!empty($details['29']['prettyFormat'])) ? $details['29']['prettyFormat'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile Phone</th>
+                            <td>{{ $details['30']['prettyFormat'] }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -255,53 +248,36 @@
             <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingThree"
                 data-parent="#accordion">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Name of Spouse</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['37']['answer'])) ? $details['37']['answer'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Age</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['38']['answer'])) ? $details['38']['answer'] : '---' }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">ID No. / Password No.</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['39']['answer'])) ? $details['39']['answer'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Occupation</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['40']['answer'])) ? $details['40']['answer'] : '---' }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Contact Number</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['41']['answer'])) ? $details['41']['answer'] : '---' }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Employer</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['42']['answer'])) ? $details['42']['answer'] : '---' }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="guest-form-label font-weight-bold mb-1">Number of Children</p>
-                            <p class="guest-form-data mb-4">
-                                {{ (!empty($details['43']['answer'])) ? $details['43']['answer'] : '---' }}
-                            </p>
-                        </div>
-                    </div>
+                    <table class="table table-striped table-bordered" style="table-layout: fixed;">
+                        <tr>
+                            <th>Name of Spouse</th>
+                            <td>{{ (!empty($details['37']['answer'])) ? $details['37']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>{{ (!empty($details['38']['answer'])) ? $details['38']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>ID No. / Password No.</th>
+                            <td>{{ (!empty($details['39']['answer'])) ? $details['39']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Occupation</th>
+                            <td>{{ (!empty($details['40']['answer'])) ? $details['40']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact Number</th>
+                            <td>{{ (!empty($details['41']['answer'])) ? $details['41']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Employer</th>
+                            <td>{{ (!empty($details['42']['answer'])) ? $details['42']['answer'] : '---' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Number of Children</th>
+                            <td>{{ (!empty($details['43']['answer'])) ? $details['43']['answer'] : '---' }}</td>
+                        </tr>
+                    </table>
                     <p class="guest-form-label font-weight-bold mb-1">Children</p>
                     <table class="table table-bordered table-striped">
                         <thead>
