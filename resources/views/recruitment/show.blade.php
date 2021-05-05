@@ -645,11 +645,134 @@
                 </tr>
                 <tr>
                     <th>Responsibilities</th>
-                    <td>//</td>
+                    <td>
+                        @if(!empty($details['75']['answer']))
+                            {!! $details['75']['answer'] !!}
+                        @else
+                            ---
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <th>What did you enjoy most while working in this company</th>
-                    <td>{{ (!empty($details['67']['answer'])) ? $details['67']['answer'] : '---' }}</td>
+                    <td>{{ (!empty($details['76']['answer'])) ? $details['76']['answer'] : '---' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="guest-form-label font-weight-bold mb-1">Employment History (3 of 5)</p>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>Period of Employment</th>
+                    <td>{{ (!empty($details['78']['answer'])) ? $details['78']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Company Name</th>
+                    <td>{{ (!empty($details['79']['answer'])) ? $details['79']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Position Held</th>
+                    <td>{{ (!empty($details['80']['answer'])) ? $details['80']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Basic Monthly Salary</th>
+                    <td>{{ (!empty($details['81']['answer'])) ? $details['81']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Reason for Leaving</th>
+                    <td>{{ (!empty($details['82']['answer'])) ? $details['82']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Responsibilities</th>
+                    <td>
+                        @if(!empty($details['83']['answer']))
+                            {!! $details['83']['answer'] !!}
+                        @else
+                            ---
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <th>What did you enjoy most while working in this company</th>
+                    <td>{{ (!empty($details['84']['answer'])) ? $details['84']['answer'] : '---' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="guest-form-label font-weight-bold mb-1">Employment History (4 of 5)</p>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>Period of Employment</th>
+                    <td>{{ (!empty($details['88']['answer'])) ? $details['88']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Company Name</th>
+                    <td>{{ (!empty($details['89']['answer'])) ? $details['89']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Position Held</th>
+                    <td>{{ (!empty($details['90']['answer'])) ? $details['90']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Basic Monthly Salary</th>
+                    <td>{{ (!empty($details['91']['answer'])) ? $details['91']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Reason for Leaving</th>
+                    <td>{{ (!empty($details['92']['answer'])) ? $details['92']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Responsibilities</th>
+                    <td>
+                        @if(!empty($details['93']['answer']))
+                            {!! $details['93']['answer'] !!}
+                        @else
+                            ---
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <th>What did you enjoy most while working in this company</th>
+                    <td>{{ (!empty($details['94']['answer'])) ? $details['94']['answer'] : '---' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="guest-form-label font-weight-bold mb-1">Employment History (5 of 5)</p>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>Period of Employment</th>
+                    <td>{{ (!empty($details['133']['answer'])) ? $details['133']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Company Name</th>
+                    <td>{{ (!empty($details['134']['answer'])) ? $details['134']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Position Held</th>
+                    <td>{{ (!empty($details['135']['answer'])) ? $details['135']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Basic Monthly Salary</th>
+                    <td>{{ (!empty($details['136']['answer'])) ? $details['136']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Reason for Leaving</th>
+                    <td>{{ (!empty($details['137']['answer'])) ? $details['137']['answer'] : '---' }}</td>
+                </tr>
+                <tr>
+                    <th>Responsibilities</th>
+                    <td>
+                        @if(!empty($details['138']['answer']))
+                            {!! $details['138']['answer'] !!}
+                        @else
+                            ---
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <th>What did you enjoy most while working in this company</th>
+                    <td>{{ (!empty($details['139']['answer'])) ? $details['139']['answer'] : '---' }}</td>
                 </tr>
             </tbody>
         </table>
