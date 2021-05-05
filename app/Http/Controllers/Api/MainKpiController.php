@@ -32,17 +32,10 @@ class MainKpiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data = Validator::make($request->all(), [
+    { 
+        $data = $request->validate([
             'main_kpi' => 'required|string'
         ]);
-
-        if ($data->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $data->errors()
-            ]);
-        }
 
         $main = new KpiMaingoal;
         $main->main_kpi = $request->main_kpi;
@@ -101,7 +94,7 @@ class MainKpiController extends Controller
             ], 404);
         }
 
-        $data = Validator::make($request->all(), [
+        $data = $request->validate([
             'main_kpi' => 'required|string',
             'q1' => 'nullable|string',
             'q2' => 'nullable|string',
@@ -111,14 +104,7 @@ class MainKpiController extends Controller
             'status' => 'required|boolean'
         ]);
 
-        if ($data->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $data->errors()
-            ]);
-        }
-
-        $updated = $main->fill($request->all())->save();
+        $updated = $main->fill($data)->save();
  
         if ($updated) {
             return response()->json([
