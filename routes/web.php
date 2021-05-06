@@ -21,6 +21,7 @@ use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\NewRecordAppraisalController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -51,6 +52,21 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{serviceReport:csr_no}', [ServiceFormController::class, 'destroy'])->name('service.form.destroy');
 
         Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
+    });
+
+    // HR Routes
+    Route::prefix('hr')->group(function () {
+        // e-Appraisal Routes
+        Route::prefix('appraisal')->group(function () {
+            // My Record Appraisal Routes
+            Route::prefix('my-record')->group(function () {
+                // New Employee Appraisal (My Record) Routes
+                Route::resource('new-employees', NewRecordAppraisalController::class)
+                    ->parameters(['new-employees' => 'newEmployee'])
+                    ->names('appraisal.my.record.new.employee');
+                // Regular Employee Appraisal (My Record) Routes
+            });
+        });  
     });
 
     // OKR Routes

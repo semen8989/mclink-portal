@@ -373,6 +373,18 @@ return [
                 'title' => 'MPS Service Report',
                 'url_segment' => 'service-forms'
             ],
+            'hr' => [
+                'title' => 'HR',
+                'url_segment' => 'hr'
+            ],
+            'e_appraisal' => [
+                'title' => 'e-Appraisal',
+                'url_segment' => 'appraisal'
+            ],
+            'e_appraisal_my_record' => [
+                'title' => 'My Record',
+                'url_segment' => 'my-record'
+            ],
             'performance' => [
                 'title' => 'Performance',
                 'url_segment' => 'performance'
@@ -631,5 +643,8 @@ return [
                 'rating' => 'Select Rating'
             ]
         ],
-    ]
+    ],
+    // 'kpi_variable' => [
+
+    // ]
 ];

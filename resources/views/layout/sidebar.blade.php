@@ -43,6 +43,21 @@
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.expenses'))) ? 'c-active c-show' : '' }}" href="{{ route('expenses.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.expense') }}</a></li>
                 </ul>
+            </li>          
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == strtolower(__('label.global.module.hr.url_segment'))) ? 'c-active c-show' : '' }}">
+                <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+                <svg class="c-sidebar-nav-icon">
+                  <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-contact') }}"></use>
+                </svg> {{ __('label.global.module.hr.title') }}</a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(2) == strtolower(__('label.global.module.e_appraisal.url_segment'))) ? 'c-active c-show' : '' }}"><a
+                        class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">{{ __('label.global.module.e_appraisal.title') }}</a>
+                          <ul class="c-sidebar-nav-dropdown-items">
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(3) == strtolower(__('label.global.module.e_appraisal_my_record.url_segment'))) ? 'c-active' : ''}}" href="{{ route('appraisal.new.employees.index') }}">
+                                <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.e_appraisal_my_record.title') }}</a></li>
+                          </ul>
+                    </li>
+                </ul>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('hr_calendar') }}">
                 <svg class="c-sidebar-nav-icon">
@@ -64,5 +79,6 @@
         </ul>
         
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
-            data-class="c-sidebar-minimized"></button>
+            data-class="c-sidebar-minimized">
+        </button>
     </div>
