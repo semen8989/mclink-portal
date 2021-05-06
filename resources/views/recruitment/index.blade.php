@@ -32,7 +32,6 @@
                 "url": "{{ route('fetch_applicant') }}"
             },
             columns: [
-                {data: 'index', name: 'index', title: '#'},
                 {data: 'name', name: 'name', title: 'Name'},
                 {data: 'position', name: 'position', title:'Position Apply For'},
                 {data: 'gender', name: 'gender', title:'Gender'}

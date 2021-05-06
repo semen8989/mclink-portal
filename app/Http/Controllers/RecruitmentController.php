@@ -30,18 +30,21 @@ class RecruitmentController extends Controller
         $i = 1;
 
         $api = Http::get('https://api.jotform.com/form/'.env('APPLICATION_FORM_ID').'/submissions?apiKey='.env('APPLICATION_FORM_API').'&limit=50');
-        $applicants = new Collection;
-        $collection = $api['content'];
+        $collection = array_values($api['content']);
 
-       foreach($collection as $item) {
-           $applicants->push([
-                'index' => $i++,
-                'name' => $item['answers']['15']['prettyFormat'],
-                'position' => $item['answers']['11']['answer'],
-                'gender' => $item['answers']['16']['answer']
-           ]);
-       }
-
-       return DataTables::of($applicants)->make(true);
+       return DataTables::of($collection)
+            ->editColumn('name', function ($collection) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'recruitment.show',
+                    'showRouteSlug' => 'submission_id',
+                    'showRouteSlugValue' => $collection['id'],
+                    'columnData' => $collection['answers']['15']['prettyFormat']
+                ]);
+            })->editColumn('position', function ($collection) {
+                return $collection['answers']['11']['answer'];
+            })->editColumn('gender', function ($collection) {
+                return $collection['answers']['16']['answer'];
+            })
+            ->make(true);
     }
 }
