@@ -20,7 +20,7 @@ class CreateEmployeeAppraisalsTable extends Migration
             $table->date('review_period_from');
             $table->date('review_period_to');
             $table->date('review_date');
-            $table->double('total_score', 2, 2);
+            $table->double('total_score', 3, 2);
             $table->softDeletes();
             $table->timestamps();
         });
