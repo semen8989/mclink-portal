@@ -3,22 +3,8 @@
 @section('content')
     <div class="card-header">Applicant List</div>
     <div class="card-body">
-        <table class="table table-responsive-sm">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Position Applying For</th>
-                <th>Gender</th>
-            </tr>
-            <?php $i = 1; ?>
-            @foreach($collection as $item)
-                <tr>
-                    <td>{{ $i++ }}</td>
-                    <td><a href="{{ route('recruitment.show',$item['id']) }}">{{ $item['answers']['15']['answer']['first'].' '.$item['answers']['15']['answer']['last'] }}</a></td>
-                    <td>{{ $item['answers']['11']['answer'] }}</td>
-                    <td>{{ $item['answers']['16']['answer'] }}</td>
-                </tr>
-            @endforeach
+        <table class="table responsive" id="recruitment-table">
+            
         </table>
     </div>
 @stop
@@ -36,6 +22,34 @@
 
     <!-- laravel datatable button plugin js dependency -->
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+
+    <!-- Javscript -->
+    <script>
+        $('#recruitment-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                "url": "{{ route('fetch_applicant') }}"
+            },
+            columns: [
+                {data: 'index', name: 'index', title: '#'},
+                {data: 'name', name: 'name', title: 'Name'},
+                {data: 'position', name: 'position', title:'Position Apply For'},
+                {data: 'gender', name: 'gender', title:'Gender'}
+            ],
+            buttons: [
+                
+            ],
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search",
+                "loadingRecords": "&nbsp;",
+                "processing": "<div class=\"text-center\"><div class=\"spinner-border\" role=\"status\">\r\n  <span class=\"sr-only\">Loading...<\/span><\/div><\/div>"
+            },
+            "responsive": true,
+            "dom": "<'row mb-2'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>><'row'<'col-sm-12 col-md-12 table-responsive't><'col-sm-12 col-md-12'r>><'row'<'col-sm-12 col-md-6'p>>"
+        });
+    </script>
     
 @endpush
 

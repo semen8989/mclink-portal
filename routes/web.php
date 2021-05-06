@@ -124,7 +124,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/fetch-department', [FetchController::class,'fetchDepartment'])->name('fetch_department');
     Route::post('/fetch-user', [FetchController::class,'fetchUser'])->name('fetch_user');
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
-
+    Route::get('/fetch-applicant',[RecruitmentController::class, 'getListData'])->name('fetch_applicant');
 });
 
 
