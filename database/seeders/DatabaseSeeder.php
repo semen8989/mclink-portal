@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
             OfficeShiftSeeder::class,
             ExpenseTypeSeeder::class,
             ExpenseSeeder::class,
-            EventSeeder::class
+            EventSeeder::class,
+            EmployeeAppraisalSeeder::class
         ]);
     }
 }
