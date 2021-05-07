@@ -32,7 +32,9 @@ class DatabaseSeeder extends Seeder
             ExpenseTypeSeeder::class,
             ExpenseSeeder::class,
             EventSeeder::class,
-            EmployeeAppraisalSeeder::class
+            EmployeeAppraisalSeeder::class,
+            NewEmployeeAppraisalSeeder::class,
+            RegularEmployeeAppraisalSeeder::class
         ]);
     }
 }
