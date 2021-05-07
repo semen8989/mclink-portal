@@ -10,6 +10,7 @@ class RecruitmentInfo extends Model
     protected $table = 'recruitment_info';
 
     const STATUS = [
+        "Pending" => 0,
         "KIV" => 1,
         "Rejected" => 2,
         "Next Interviewer" => 3,

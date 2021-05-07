@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RecruitmentInfo;
 use Yajra\DataTables\DataTables;
@@ -15,8 +16,7 @@ class RecruitmentController extends Controller
     
     public function index()
     {
-        $collection = Http::get('https://api.jotform.com/form/'.env('APPLICATION_FORM_ID').'/submissions?apiKey='.env('APPLICATION_FORM_API').'&limit=50');
-        return view('recruitment.index',['collection'=>$collection['content'], 'title' => 'Recruitment']);
+        return view('recruitment.index');
     }
 
     public function show($submission_id)
@@ -53,8 +53,33 @@ class RecruitmentController extends Controller
                 return $collection['answers']['11']['answer'];
             })->editColumn('gender', function ($collection) {
                 return $collection['answers']['16']['answer'];
-            })->editColumn('status', function ($collection){
-                return 'On Process';
+            })->editColumn('status', function ($collection) {
+
+                if(!(RecruitmentInfo::where('submission_id', '=', $collection['id'])->exists())){
+                    $index = 0;
+                }else if(RecruitmentInfo::where('submission_id', '=', $collection['id'])->exists()){
+                    $index = RecruitmentInfo::where('submission_id', '=', $collection['id'])->first()->status;
+                }
+
+                $status = Str::ucfirst(array_search($index, RecruitmentInfo::STATUS));
+
+                if($index == 0){
+                    $badgeColor = 'warning';
+                }else if($index == 1){
+                    $badgeColor = 'info';
+                }else if($index == 2){
+                    $badgeColor = 'danger';
+                }else if($index == 3){
+                    $badgeColor = 'primary';
+                }else if($index == 4){
+                    $badgeColor = 'success';
+                }
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
+
             })->make(true);
     }
 
