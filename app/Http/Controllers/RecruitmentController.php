@@ -57,7 +57,7 @@ class RecruitmentController extends Controller
 
                 if(!(RecruitmentInfo::where('submission_id', '=', $collection['id'])->exists())){
                     $index = 0;
-                }else if(RecruitmentInfo::where('submission_id', '=', $collection['id'])->exists()){
+                }else{
                     $index = RecruitmentInfo::where('submission_id', '=', $collection['id'])->first()->status;
                 }
 
@@ -81,6 +81,28 @@ class RecruitmentController extends Controller
                 ]);
 
             })->make(true);
+    }
+
+    public function submit(Request $request)
+    {
+        switch ($request->method()){
+            case 'POST':
+                $recruitmentInfo = new RecruitmentInfo;
+                $recruitmentInfo->submission_id = $request->submission_id;
+                $recruitmentInfo->status = $recruitmentInfo->status;
+                
+                $recruitmentInfo->save();
+
+                redirect()->route('recruitment.show',$request->submission_id)->with('success', 'Applicant Information Updated Successfully!');
+
+                break;
+            case 'PUT':
+                //Update data
+                break;
+            default:
+                // Invalid request
+                break;
+        }
     }
 
 }

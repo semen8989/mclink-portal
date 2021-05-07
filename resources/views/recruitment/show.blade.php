@@ -1014,7 +1014,7 @@
         </div>
     </div>
     <div class="col-sm-12 mt-2">
-        <form action="">
+        <form>
             <div class="form-group">
                 <label for="remarks">Remarks</label>
                 <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content.."></textarea>
@@ -1022,10 +1022,11 @@
             <div class="form-group">
                 <label for="remarks">Status</label>
                 <select class="form-control" id="status" name="status">
-                    <option value="0">KIV</option>
-                    <option value="1">Rejected</option>
-                    <option value="2">Selected</option>
-                    <option value="3">Proceed to another interviewer</option>
+                    <option value="0">Pending</option>
+                    <option value="1">KIV</option>
+                    <option value="2">Rejected</option>
+                    <option value="3">Selected</option>
+                    <option value="4">Proceed to another interviewer</option>
                 </select>
             </div>
         </form>
@@ -1033,12 +1034,15 @@
     
 </div>
 
-<div class="card-footer text-right">
-    <a class="btn btn-secondary px-3 mr-1 font-weight-bold" href="{{ route('recruitment.index') }}">
+<div class="card-footer">
+    <a class="btn btn-secondary px-3 mr-1 font-weight-bold float-left" href="{{ route('recruitment.index') }}">
         <svg class="c-icon">
             <use xlink:href="http://mclink-portal.test/assets/icons/sprites/free.svg#cil-arrow-circle-left"></use>
         </svg>
         Back
+    </a>
+    <a class="btn btn-success px-3 mr-1 font-weight-bold float-right" href="#">
+        Submit
     </a>
 </div>
 @stop
