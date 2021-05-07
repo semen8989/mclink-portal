@@ -2,8 +2,6 @@
 
 namespace App\DataTables;
 
-use App\Models\KpiMaingoal;
-use Illuminate\Support\Str;
 use App\Models\EmployeeAppraisal;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -22,59 +20,46 @@ class NewRecordAppraisalDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('action', function(KpiMaingoal $kpiMain) {
+            ->addColumn('action', function(EmployeeAppraisal $appraisal) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
-                        'edit' => 'okr.kpi.maingoals.edit',
+                        'edit' => 'appraisal.my.record.new.employee.edit',
                         'delete' => ''
                     ],
-                    'itemSlug' => 'kpiMain',
-                    'itemSlugValue' => $kpiMain->id
+                    'itemSlug' => 'newEmployee',
+                    'itemSlugValue' => $appraisal->id
                 ]);
-            })->editColumn('main_kpi', function ($request) {
+            })->editColumn('employee.name', function ($request) {
                 return view('components.datatables.show-column', [
-                    'showRouteName' => 'okr.kpi.maingoals.show',
-                    'showRouteSlug' => 'kpiMain',
+                    'showRouteName' => 'appraisal.my.record.new.employee.show',
+                    'showRouteSlug' => 'newEmployee',
                     'showRouteSlugValue' => $request->id,
-                    'columnData' => $request->main_kpi
+                    'columnData' => $request->name
                 ]);
-            })->editColumn('q1', function ($request) {
-                return $request->q1 ? Str::of($request->q1)->limit(50) : __('label.global.text.na');
-            })->editColumn('q2', function ($request) {
-                return $request->q2 ? Str::of($request->q2)->limit(50) : __('label.global.text.na');
-            })->editColumn('q3', function ($request) {
-                return $request->q3 ? Str::of($request->q3)->limit(50) : __('label.global.text.na');
-            })->editColumn('q4', function ($request) {
-                return $request->q4 ? Str::of($request->q4)->limit(50) : __('label.global.text.na');
-            })->editColumn('status', function ($request) {
-                $status = Str::ucfirst(array_search($request->status, KpiMaingoal::COMPLETED_STATUS));
-                $badgeColor = $status == 'Yes' ? 'success' : 'danger';
-
-                return view('components.datatables.status-column', [
-                    'columnData' => $status,
-                    'badgeColor' => $badgeColor
+            })->editColumn('employee.avatar', function ($request) {
+                return view('components.datatables.image-column', [
+                    'imageLink' => $request->avatar
                 ]);
+            })->editColumn('review_period_from', function ($request) {
+                return $request->review_period_from->format('d/m/Y');
+            })->editColumn('review_period_to', function ($request) {
+                return $request->review_period_to->format('d/m/Y');
+            })->editColumn('review_date', function ($request) {
+                return $request->review_date->format('d/m/Y');
             })->editColumn('updated_at', function ($request) {
                 return $request->updated_at->format('d/m/Y');
-            })->filter(function ($instance) {
-                $user = auth()->user()->isDepartmentHead() 
-                    ? $this->request->filterEmployee
-                    : auth()->user()->id;
-
-                $instance->where('user_id', $user)
-                    ->whereYear('created_at', $this->request->filterYear);
-            }, true)->rawColumns(['main_kpi', 'status']);
+            })->rawColumns(['name']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\KpiMaingoal $model
+     * @param \App\Models\EmployeeAppraisal $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(KpiMaingoal $model)
+    public function query(EmployeeAppraisal $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['employee:id,name,avatar']);
     }
 
     /**
@@ -85,7 +70,7 @@ class NewRecordAppraisalDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('kpimain-table')
+            ->setTableId('newrecordappraisal-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->parameters([
@@ -119,29 +104,29 @@ class NewRecordAppraisalDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('main_kpi')
-                ->title(__('label.kpi_main.datatable.column_header.main_kpi'))
-                ->width('20%'),
-            Column::make('q1')
-                ->title(__('label.kpi_main.datatable.column_header.q1'))
+            Column::make('employee.name')
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.name'))
+                ->width('16%'),
+            Column::make('employee.avatar')
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.avatar'))
                 ->width('12%'),
-            Column::make('q2')
-                ->title(__('label.kpi_main.datatable.column_header.q2'))
-                ->width('12%'),
-            Column::make('q3')
-                ->title(__('label.kpi_main.datatable.column_header.q3'))
-                ->width('12%'),
-            Column::make('q4')
-                ->title(__('label.kpi_main.datatable.column_header.q4'))
-                ->width('12%'),
-            Column::make('status')
-                ->title(__('label.kpi_main.datatable.column_header.completed'))
+            Column::make('review_period_from')
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.review_period_from'))
+                ->width('14%'),
+            Column::make('review_period_to')
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.review_period_to'))
+                ->width('14%'),
+            Column::make('review_date')
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.review_date'))
+                ->width('10%'),
+            Column::make('total_score')
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.total_score'))
                 ->width('10%'),
             Column::make('updated_at')
-                ->title(__('label.kpi_main.datatable.column_header.updated_at'))
-                ->width('12%'),
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.updated_at'))
+                ->width('11%'),
             Column::computed('action')
-                ->title(__('label.kpi_main.datatable.column_header.action'))
+                ->title(__('label.e_appraisal_my_record.datatable.column_header.action'))
                 ->width('10%')
         ];
     }
