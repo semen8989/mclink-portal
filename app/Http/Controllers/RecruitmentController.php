@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RecruitmentInfo;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use App\Traits\RecruitmentStringTrait;
-use Yajra\DataTables\DataTables;
 
 class RecruitmentController extends Controller
 {
@@ -21,6 +22,16 @@ class RecruitmentController extends Controller
     public function show($submission_id)
     {
         $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
+        
+        if(!(RecruitmentInfo::where('submission_id', '=', $submission_id)->exists())) {
+            
+            $recruitmentInfo = new RecruitmentInfo;
+            $recruitmentInfo->submission_id = $submission_id;
+            $recruitmentInfo->status = 0;
+            $recruitmentInfo->save();
+            
+        }
+
         return view('recruitment.show',['details'=>$details['content']['answers'],'title' => 'Applicant Information']);
                 
     }
@@ -46,4 +57,5 @@ class RecruitmentController extends Controller
                 return 'On Process';
             })->make(true);
     }
+
 }
