@@ -10,6 +10,17 @@ class EmployeeAppraisal extends Model
     use HasFactory;
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'review_period_from' => 'date',
+        'review_period_to' => 'date',
+        'review_date' => 'date',
+    ];
+
+    /**
      * Get the new employee appraisal associated with the employee appraisal.
      */
     public function newEmployeeAppraisal()
