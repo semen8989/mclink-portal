@@ -33,8 +33,9 @@
             },
             columns: [
                 {data: 'name', name: 'name', title: 'Name'},
-                {data: 'position', name: 'position', title:'Position Apply For'},
-                {data: 'gender', name: 'gender', title:'Gender'}
+                {data: 'position', name: 'position', title: 'Position Apply For'},
+                {data: 'gender', name: 'gender', title: 'Gender'},
+                {data: 'status', name: 'status', title: 'Status'}
             ],
             buttons: [
                 

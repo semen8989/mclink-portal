@@ -23,7 +23,7 @@
                 <h5 class="mb-0"><a data-toggle="collapse" href="#collapseOne" aria-expanded="true"
                     aria-controls="collapseOne">1. Personal Particulars</a></h5>
             </div>
-            <div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne"
+            <div class="collapse" id="collapseOne" role="tabpanel" aria-labelledby="headingOne"
                 data-parent="#accordion">
                 <div class="card-body">
                     <table class="table table-striped table-bordered" style="table-layout: fixed;">
@@ -992,7 +992,7 @@
         <div class="card mb-0">
             <div class="card-header" id="headingTwelve" role="tab">
                 <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#collapseTwelve"
-                        aria-expanded="false" aria-controls="collapseTwelve">12. Uploaded Files</a></h5>
+                        aria-expanded="false" aria-controls="collapseTwelve">12. Attachments</a></h5>
             </div>
             <div class="collapse" id="collapseTwelve" role="tabpanel" aria-labelledby="headingTwelve"
                 data-parent="#accordion">
@@ -1013,6 +1013,24 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-12 mt-2">
+        <form action="">
+            <div class="form-group">
+                <label for="remarks">Remarks</label>
+                <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content.."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="remarks">Status</label>
+                <select class="form-control" id="status" name="status">
+                    <option value="0">KIV</option>
+                    <option value="1">Rejected</option>
+                    <option value="2">Selected</option>
+                    <option value="3">Proceed to another interviewer</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    
 </div>
 
 <div class="card-footer text-right">

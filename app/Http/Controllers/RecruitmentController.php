@@ -27,12 +27,10 @@ class RecruitmentController extends Controller
 
     public function getListData()
     {
-        $i = 1;
-
         $api = Http::get('https://api.jotform.com/form/'.env('APPLICATION_FORM_ID').'/submissions?apiKey='.env('APPLICATION_FORM_API').'&limit=50');
         $collection = array_values($api['content']);
 
-       return DataTables::of($collection)
+        return DataTables::of($collection)
             ->editColumn('name', function ($collection) {
                 return view('components.datatables.show-column', [
                     'showRouteName' => 'recruitment.show',
@@ -44,7 +42,8 @@ class RecruitmentController extends Controller
                 return $collection['answers']['11']['answer'];
             })->editColumn('gender', function ($collection) {
                 return $collection['answers']['16']['answer'];
-            })
-            ->make(true);
+            })->editColumn('status', function ($collection){
+                return 'On Process';
+            })->make(true);
     }
 }
