@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class RegularEmployeeAppraisal extends Model
 {
     use HasFactory;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'employee_regular_appraisals';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }
