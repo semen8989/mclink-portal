@@ -436,6 +436,8 @@ return [
             'kpi_main' => 'All Main KPI',
             'kpi_variable' => 'All Variable KPI',
             'kpi_objective' => 'All Objective KPI',
+            'new_employee' => 'New Employee',
+            'regular_employee' => 'Regular Employee',
         ],
         'email' => [
             'greeting' => 'Hi',
@@ -644,7 +646,18 @@ return [
             ]
         ],
     ],
-    // 'kpi_variable' => [
-
-    // ]
+    'e_appraisal_my_record' => [
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'name' => 'Name',
+                'avatar' => 'Avatar',
+                'review_period_from' => 'Review Period From',
+                'review_period_to' => 'Review Period To',
+                'review_date' => 'Review On',
+                'total_score' => 'Total Score',
+                'updated_at' => 'Last Updated'
+            ]
+        ],
+    ]
 ];
