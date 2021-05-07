@@ -53,7 +53,7 @@
                     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(2) == strtolower(__('label.global.module.e_appraisal.url_segment'))) ? 'c-active c-show' : '' }}"><a
                         class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">{{ __('label.global.module.e_appraisal.title') }}</a>
                           <ul class="c-sidebar-nav-dropdown-items">
-                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(3) == strtolower(__('label.global.module.e_appraisal_my_record.url_segment'))) ? 'c-active' : ''}}" href="{{ route('appraisal.new.employees.index') }}">
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(3) == strtolower(__('label.global.module.e_appraisal_my_record.url_segment'))) ? 'c-active' : ''}}" href="{{ route('appraisal.my.record.new.employee.index') }}">
                                 <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.e_appraisal_my_record.title') }}</a></li>
                           </ul>
                     </li>
