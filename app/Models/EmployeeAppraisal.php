@@ -43,4 +43,12 @@ class EmployeeAppraisal extends Model
     {
         return $this->belongsToMany(User::class);
     } 
+
+    /**
+     * Get the employee that belongs to the employee appraisal.
+     */
+    public function employee()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
