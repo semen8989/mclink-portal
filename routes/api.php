@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MainKpiController;
+use App\Http\Controllers\Api\KpiRatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +17,11 @@ use App\Http\Controllers\Api\MainKpiController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 //Api auth
 Route::post('login', [AuthController::class, 'login']);
 
 //Main KPI
 Route::middleware('auth:api')->prefix('v1/')->group(function () {
     Route::apiResource('mains', MainKpiController::class);
+    Route::put('mains/rating/{kpiMain}', [KpiRatingController::class, 'update']);
 });
