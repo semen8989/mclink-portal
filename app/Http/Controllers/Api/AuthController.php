@@ -10,18 +10,12 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $data = Validator::make($request->all(), [
+        $data = $request->validate([
             'email' => 'required|email:filter',
-            'password' => 'required'
+            'password' => 'required|string'
         ]);
-
-        if ($data->fails()) {
-            return response()->json([
-                'errors' => $data->errors()
-            ]);
-        }
  
-        if (auth()->attempt(['email'=>$request->email, 'password'=>$request->password])) {
+        if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('MclinkPortalAuthApp')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {
