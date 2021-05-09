@@ -57,8 +57,8 @@
               <ul class="c-sidebar-nav-dropdown-items">
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.okr.url_segment')) ? 'c-active' : ''}}" href="{{ route('okr.kpi.maingoals.index') }}">
                     <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.okr.title') }}</a></li>
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
-                    <span class="c-sidebar-nav-icon"></span> KPI Report</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.kpi_report.url_segment')) ? 'c-active' : ''}}" href="{{ route('kpi-reports.index') }}">
+                    <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.kpi_report.title') }}</a></li>
               </ul>
             </li>
         </ul>

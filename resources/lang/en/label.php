@@ -380,6 +380,10 @@ return [
             'okr' => [
                 'title' => 'OKR',
                 'url_segment' => 'okr'
+            ],
+            'kpi_report' => [
+                'title' => 'KPI Report',
+                'url_segment' => 'kpi-reports'
             ]
         ],
         'text' => [
@@ -401,6 +405,13 @@ return [
                 'update'=> 'Update',
                 'submit' => 'Submit',
                 'download' => 'Download'
+            ],
+            'select' => [
+                'all' => 'All',
+                'first_quarter' => 'First Quarter',
+                'second_quarter' => 'Second Quarter',
+                'third_quarter' => 'Third Quarter',
+                'fourth_quarter' => 'Fourth Quarter'
             ]
         ],
         'datatable' => [
@@ -563,7 +574,8 @@ return [
                 'q3' => 'Q3',
                 'q4' => 'Q4',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'feedback' => 'Feedback'
             ]
         ],
         'form' => [
@@ -604,7 +616,10 @@ return [
                 'target_date' => 'Target Date',
                 'result' => 'Result',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'quarter' => 'Quarter',   
+                'year' => 'Year',
+                'feedback' => 'Feedback'               
             ]
         ],
         'form' => [
@@ -631,5 +646,27 @@ return [
                 'rating' => 'Select Rating'
             ]
         ],
+    ],
+    'kpi_report' => [
+        'title' => [
+            'index' => 'KPI Report',
+        ],
+        'form' => [
+            'label' => [
+                'select_kpi' => 'Select KPI',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+            ],
+            'select' => [
+                'main_kpi' => 'Main KPI',
+                'variable_kpi' => 'Variable KPI'
+            ],
+            'button' => [
+                'download' => 'Download KPI'
+            ]
+        ],
+        'page_text' => [
+            'download_kpi' => 'Download Performance KPI for all employee'
+        ]
     ]
 ];
