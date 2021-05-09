@@ -11,6 +11,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
@@ -68,6 +69,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('objectives', KpiMaingoalController::class)
             ->parameters(['objectives' => 'kpiObjective'])
             ->names('okr.kpi.objectives');
+    });
+
+    // KPI Report Routes
+    Route::prefix('performance')->group(function () {
+        Route::resource('kpi-reports', KpiReportController::class)->only(['index']);
+        Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
     });
     
     // Organizations
