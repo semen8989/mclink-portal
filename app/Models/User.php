@@ -108,4 +108,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(KpiMaingoal::class);
     }
+
+    public function variableKpi()
+    {
+        return $this->hasMany(KpiVariable::class);
+    }
 }
