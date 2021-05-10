@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
                 'email' => 'root' . strval($counter + 1) . '@mclinkgroup.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
+                'avatar' => 'https://ui-avatars.com/api/?name=Root' . strval($counter + 1) . '&size=96&background=random&length=2&color=fff',
                 'employee_id' => '0101',
                 'joining_date' => '2021-01-18',
                 'company_id' => 1,
