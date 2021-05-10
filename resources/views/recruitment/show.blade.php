@@ -1065,16 +1065,16 @@
         <div class="col-sm-12 mt-2">
             <div class="form-group">
                 <label for="remarks">Remarks</label>
-                <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content.."></textarea>
+                <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content..">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
             </div>
             <div class="form-group">
                 <label for="remarks">Status</label>
                 <select class="form-control" id="status" name="status">
-                    <option value="0">Pending</option>
-                    <option value="1">KIV</option>
-                    <option value="2">Rejected</option>
-                    <option value="3">Selected</option>
-                    <option value="4">Proceed to another interviewer</option>
+                    <option value="0" {{ $status == 0 ? 'selected' : '' }}>Pending</option>
+                    <option value="1" {{ $status == 1 ? 'selected' : '' }}>KIV</option>
+                    <option value="2" {{ $status == 2 ? 'selected' : '' }}>Rejected</option>
+                    <option value="3" {{ $status == 3 ? 'selected' : '' }}>Selected</option>
+                    <option value="4" {{ $status == 4 ? 'selected' : '' }}>Proceed to another interviewer</option>
                 </select>
             </div>
 
@@ -1082,7 +1082,7 @@
 
     </div>
 
-    <div class="card-footer">
+    <div class="card-footer clearfix">
         <a class="btn btn-secondary px-3 mr-1 font-weight-bold float-left" href="{{ route('recruitment.index') }}">
             <svg class="c-icon">
                 <use xlink:href="http://mclink-portal.test/assets/icons/sprites/free.svg#cil-arrow-circle-left"></use>

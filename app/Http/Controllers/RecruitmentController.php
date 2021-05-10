@@ -30,10 +30,29 @@ class RecruitmentController extends Controller
             $recruitmentInfo->submission_id = $submission_id;
             $recruitmentInfo->status = 0;
             $recruitmentInfo->save();
+
+            $status = 0;
+        
+        }else{
+
+            $status = RecruitmentInfo::where('submission_id', '=', $submission_id)->first()->status;
+
+        }
+
+        if(RecruitmentRemark::where('submission_id','=',$submission_id)->exists()){
+            
+            $remarks = RecruitmentRemark::where('submission_id','=',$submission_id)->first()->remarks;
+        
+        }else{
+
+            $remarks = null;
         
         }
 
-        return view('recruitment.show',['details'=>$details['content']['answers'],'submission_id' => $details['content']['id'],'title' => 'Applicant Information']);
+        $details = $details['content']['answers'];
+        $title = 'Applicant Information';
+        
+        return view('recruitment.show',compact('details','submission_id','title','remarks','status'));
                 
     }
 
