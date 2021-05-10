@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class RecruitmentRemark extends Model
 {
-    use HasFactory;
+    protected $table = 'recruitment_remarks';
+
 }

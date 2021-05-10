@@ -131,8 +131,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/',[RecruitmentController::class, 'index'])->name('recruitment.index');  
             Route::get('/{submission_id}/details',[RecruitmentController::class, 'show'])->name('recruitment.show'); 
             
-            Route::post('/submit',[RecruitmentController::class, 'show'])->name('recruitment.store');
-            Route::put('/submit',[RecruitmentController::class, 'show'])->name('recruitment.update');
+            Route::get('/submit/{submission_id}',[RecruitmentController::class, 'submit'])->name('recruitment.submit');
         });
 
     });

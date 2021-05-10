@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RecruitmentInfo;
 use Yajra\DataTables\DataTables;
+use App\Models\RecruitmentRemark;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use App\Traits\RecruitmentStringTrait;
@@ -29,10 +30,10 @@ class RecruitmentController extends Controller
             $recruitmentInfo->submission_id = $submission_id;
             $recruitmentInfo->status = 0;
             $recruitmentInfo->save();
-            
+        
         }
 
-        return view('recruitment.show',['details'=>$details['content']['answers'],'title' => 'Applicant Information']);
+        return view('recruitment.show',['details'=>$details['content']['answers'],'submission_id' => $details['content']['id'],'title' => 'Applicant Information']);
                 
     }
 
@@ -83,26 +84,25 @@ class RecruitmentController extends Controller
             })->make(true);
     }
 
-    public function submit(Request $request)
-    {
-        switch ($request->method()){
-            case 'POST':
-                $recruitmentInfo = new RecruitmentInfo;
-                $recruitmentInfo->submission_id = $request->submission_id;
-                $recruitmentInfo->status = $recruitmentInfo->status;
-                
-                $recruitmentInfo->save();
-
-                redirect()->route('recruitment.show',$request->submission_id)->with('success', 'Applicant Information Updated Successfully!');
-
-                break;
-            case 'PUT':
-                //Update data
-                break;
-            default:
-                // Invalid request
-                break;
+    public function submit(Request $request, $submission_id)
+    {   
+        if(RecruitmentRemark::where('submission_id', '=', $submission_id)->exists()){
+            $remarks = RecruitmentRemark::where('submission_id', '=', $submission_id)->first();
+            $remarks->remarks = $request->remarks;
+            $remarks->save();
+        }else{
+            $remarks = new RecruitmentRemark;
+            $remarks->submission_id = $submission_id;
+            $remarks->user_id = auth()->user()->id;
+            $remarks->remarks = $request->remarks;
+            $remarks->save();
         }
+
+        $status = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
+        $status->status = $request->status;
+        $status->save();
+
+       return redirect()->route('recruitment.show',$submission_id)->with('success', 'Applicant Information Updated Successfully!');
     }
 
 }
