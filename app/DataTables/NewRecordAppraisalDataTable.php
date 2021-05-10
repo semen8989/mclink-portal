@@ -29,16 +29,16 @@ class NewRecordAppraisalDataTable extends DataTable
                     'itemSlug' => 'newEmployee',
                     'itemSlugValue' => $appraisal->id
                 ]);
-            })->editColumn('employee.name', function ($request) {
+            })->editColumn('users.name', function ($request) {
                 return view('components.datatables.show-column', [
                     'showRouteName' => 'appraisal.my.record.new.employee.show',
                     'showRouteSlug' => 'newEmployee',
                     'showRouteSlugValue' => $request->id,
-                    'columnData' => $request->name
+                    'columnData' => $request->employee->name
                 ]);
-            })->editColumn('employee.avatar', function ($request) {
+            })->editColumn('users.avatar', function ($request) {
                 return view('components.datatables.image-column', [
-                    'imageLink' => $request->avatar
+                    'imageLink' => $request->employee->avatar
                 ]);
             })->editColumn('review_period_from', function ($request) {
                 return $request->review_period_from->format('d/m/Y');
@@ -59,7 +59,8 @@ class NewRecordAppraisalDataTable extends DataTable
      */
     public function query(EmployeeAppraisal $model)
     {
-        return $model->newQuery()->with(['employee:id,name,avatar']);
+        // dd($model->with('employee:id,name,avatar')->select('employee_appraisals.*')->get());
+        return $model->with('employee:id,name,avatar')->select('employee_appraisals.*');
     }
 
     /**
