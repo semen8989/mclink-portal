@@ -9,7 +9,9 @@ use Yajra\DataTables\DataTables;
 use App\Models\RecruitmentRemark;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use App\Traits\RecruitmentStringTrait;
+use App\Mail\RecruitmentApplicantSelected;
 
 class RecruitmentController extends Controller
 {
@@ -110,10 +112,13 @@ class RecruitmentController extends Controller
         ]);
 
         if(RecruitmentRemark::where('submission_id', '=', $submission_id)->exists()){
+            
             $remarks = RecruitmentRemark::where('submission_id', '=', $submission_id)->first();
             $remarks->remarks = $request->remarks;
             $remarks->save();
+
         }else{
+            
             $remarks = new RecruitmentRemark;
             $remarks->submission_id = $submission_id;
             $remarks->user_id = auth()->user()->id;
@@ -121,9 +126,27 @@ class RecruitmentController extends Controller
             $remarks->save();
         }
 
-        $status = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
-        $status->status = $request->status;
-        $status->save();
+        $recruitmentInfo = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
+        $recruitmentInfo->status = $request->status;
+        $recruitmentInfo->save();
+        //Send email base on condition
+        $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
+        $name = $details['content']['answers']['15']['prettyFormat'];
+        $emailData = [
+            'submission_id' => $submission_id,
+            'name' => $name
+        ];
+
+        switch($request->status){
+            case 3:
+                Mail::to(auth()->user()->email)
+                    ->queue(new RecruitmentApplicantSelected($emailData));
+                break;
+            case 4:
+                //Send Message
+                break;
+
+        }
 
         return session()->flash('success', 'Applicant Information Updated Successfully!');
 
