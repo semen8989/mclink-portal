@@ -105,6 +105,10 @@ class RecruitmentController extends Controller
 
     public function submit(Request $request, $submission_id)
     {   
+        $request->validate([
+            'remarks' => 'required',
+        ]);
+
         if(RecruitmentRemark::where('submission_id', '=', $submission_id)->exists()){
             $remarks = RecruitmentRemark::where('submission_id', '=', $submission_id)->first();
             $remarks->remarks = $request->remarks;
@@ -121,7 +125,8 @@ class RecruitmentController extends Controller
         $status->status = $request->status;
         $status->save();
 
-       return redirect()->route('recruitment.show',$submission_id)->with('success', 'Applicant Information Updated Successfully!');
+        return session()->flash('success', 'Applicant Information Updated Successfully!');
+
     }
 
 }

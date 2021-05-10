@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="card-header">Applicant Information</div>
-<form action="{{ route('recruitment.submit',$submission_id) }}">
     <div class="card-body">
         <table class="table table-striped table-bordered" style="table-layout: fixed;">
             <tbody>
@@ -1063,21 +1062,22 @@
         </div>
 
         <div class="col-sm-12 mt-2">
-            <div class="form-group">
-                <label for="remarks">Remarks</label>
-                <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content..">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="remarks">Status</label>
-                <select class="form-control" id="status" name="status">
-                    <option value="0" {{ $status == 0 ? 'selected' : '' }}>Pending</option>
-                    <option value="1" {{ $status == 1 ? 'selected' : '' }}>KIV</option>
-                    <option value="2" {{ $status == 2 ? 'selected' : '' }}>Rejected</option>
-                    <option value="3" {{ $status == 3 ? 'selected' : '' }}>Selected</option>
-                    <option value="4" {{ $status == 4 ? 'selected' : '' }}>Proceed to another interviewer</option>
-                </select>
-            </div>
-
+            <form id="submit_form" action="{{ route('recruitment.submit',$submission_id) }}">
+                <div class="form-group">
+                    <label for="remarks">Remarks</label>
+                    <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content..">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="remarks">Status</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="0" {{ $status == 0 ? 'selected' : '' }}>Pending</option>
+                        <option value="1" {{ $status == 1 ? 'selected' : '' }}>KIV</option>
+                        <option value="2" {{ $status == 2 ? 'selected' : '' }}>Rejected</option>
+                        <option value="3" {{ $status == 3 ? 'selected' : '' }}>Selected</option>
+                        <option value="4" {{ $status == 4 ? 'selected' : '' }}>Proceed to another interviewer</option>
+                    </select>
+                </div>
+            </form>
         </div>
 
     </div>
@@ -1089,9 +1089,56 @@
             </svg>
             Back
         </a>
-        <button class="btn btn-success px-3 mr-1 font-weight-bold float-right" type="submit">
+        <button class="btn btn-success px-3 mr-1 font-weight-bold float-right" id="submit" type="submit">
             Submit
         </button>
     </div>
-</form>
 @stop
+
+@push('scripts')
+    <script>
+        //Force scroll to top on page reload
+        $(window).on('beforeunload', function(){
+            $(window).scrollTop(0);
+        });
+        //Ajax Submit
+        $('#submit').click(function (){
+
+            var url = $('#submit_form').attr('action');
+            var data = $('#submit_form').serialize();
+
+            $.ajax({
+                    url: url,
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function(){
+                        location.reload();
+                    },
+                    error: function(response){
+                        //Clear previous error messages
+                        $(".help-block").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            
+                            id.after('<div class="help-block text-danger">'+value+'</div>');
+
+                            if($(".is-invalid").length) {
+                                $('html, body').animate({
+                                        scrollTop: ($(".is-invalid").first().offset().top - 95)
+                                },500);
+                            }
+                            
+                        });
+                        
+                    }
+                })
+
+        })
+    </script>
+@endpush
