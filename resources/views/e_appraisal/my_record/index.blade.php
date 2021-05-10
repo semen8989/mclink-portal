@@ -59,30 +59,7 @@
             $(this).find(':submit').prop('disabled', true);
         });
 
-        function updateTabUrl() {
-            $('#mainTabLink').attr('href', '{{ route("okr.kpi.maingoals.index") }}' 
-                + '?filterYear=' + $("#filterYear").val()  
-                + '?filterEmployee=' + $("#filterEmployee").val());
-            $('#variableTabLink').attr('href', '{{ route("okr.kpi.variables.index") }}' 
-                + '?filterYear=' + $("#filterYear").val() 
-                + '?filterQuarter=' + $("#filterQuarter").val() 
-                + '?filterEmployee=' + $("#filterEmployee").val());
-            $('#objectiveTabLink').attr('href', '{{ route("okr.kpi.objectives.index") }}' 
-                + '?filterYear=' + $("#filterYear").val() 
-                + '?filterQuarter=' + $("#filterQuarter").val()
-                + '?filterEmployee=' + $("#filterEmployee").val());
-        }
-
         $( document ).ready(function() {
-            // initialize get query parameter on load
-            updateTabUrl();
-
-            // refresh datatable and update url get parameter based on the year filter on change event
-            $('#filterYear, #filterEmployee').change(function() {
-                LaravelDataTables["kpimain-table"].ajax.reload();
-                updateTabUrl();
-            });
-
             var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 
                 '{{ asset("assets/icons/sprites/free.svg#cil-plus") }}' + 
                 '"></use></svg>';
