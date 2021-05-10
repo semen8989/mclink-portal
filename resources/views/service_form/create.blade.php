@@ -61,6 +61,11 @@
   <script>   
     $( document ).ready(function() {
 
+      // return formatted email for customer drop down
+      function concatenateEmailVal ($email) {
+        return ' ( ' + $email + ' )';
+      }
+
       // init Date field
       $dateField = $('#date').datetimepicker({
         format: 'DD/MM/YYYY',
@@ -116,12 +121,15 @@
               params.page = params.page || 1;
 
               var items = data.data.map(function(item) {
-                  return { 
-                    id: item.id,
-                    text: item.name,
-                    email: item.email,
-                    address: item.address
-                  };
+                let email = item.email ? concatenateEmailVal(item.email) : '';
+
+                return { 
+                  id: item.id,
+                  text: item.name + email,
+                  name: item.name,
+                  email: item.email,
+                  address: item.address
+                };
               });
               
               return {
@@ -173,6 +181,11 @@
             },
             cache: true
         }
+      });
+
+      $('#customer').on('select2:selecting', function (e) {
+        var data = e.params.args.data;
+        data.text = data.name;
       });
 
       $('#customer').on('select2:select', function (e) {

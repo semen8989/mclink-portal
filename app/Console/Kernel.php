@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\ServiceReportAutoSendLink::class,
+        Commands\MachineRequestAutoSendLink::class,
     ];
 
     /**
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('service-report:send-link')->hourly();
+        $schedule->command('machine-request:send-link')->daily();
     }
 
     /**

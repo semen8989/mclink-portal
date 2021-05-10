@@ -44,6 +44,19 @@
                         class="c-sidebar-nav-icon"></span> {{ __('label.expense') }}</a></li>
                 </ul>
             </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('hr_calendar') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-calendar') }}"></use>
+                </svg> {{ __('label.hr_calendar') }}</a></li>
+            </li>
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == 'machine-request') ? 'c-active c-show' : ''}}"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-dollar') }}"></use>
+                </svg> Sales</a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('machine_request.create') }}"><span class="c-sidebar-nav-icon"></span> Machine Request </a></li>
+                </ul>
+            </li>
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == __('label.global.module.performance.url_segment')) ? 'c-active c-show' : '' }}">
               <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
               <svg class="c-sidebar-nav-icon">
@@ -52,8 +65,8 @@
               <ul class="c-sidebar-nav-dropdown-items">
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.okr.url_segment')) ? 'c-active' : ''}}" href="{{ route('okr.kpi.maingoals.index') }}">
                     <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.okr.title') }}</a></li>
-                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
-                    <span class="c-sidebar-nav-icon"></span> KPI Report</a></li>
+                <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.kpi_report.url_segment')) ? 'c-active' : ''}}" href="{{ route('kpi-reports.index') }}">
+                    <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.kpi_report.title') }}</a></li>
               </ul>
             </li>
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == 'hr') ? 'c-active c-show' : '' }}"">
