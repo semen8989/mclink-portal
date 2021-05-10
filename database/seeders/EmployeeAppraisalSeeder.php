@@ -22,7 +22,7 @@ class EmployeeAppraisalSeeder extends Seeder
             array_push($appraisals, [
                 'user_id' => User::find(1)->id,
                 'employee_id' => User::find(2)->id,
-                'review_period_from' => Carbon::now()->format('Y-m-d'),
+                'review_period_from' => Carbon::now()->subMonths(3),
                 'review_period_to' => Carbon::now()->format('Y-m-d'),
                 'review_date' => Carbon::now()->format('Y-m-d'),
                 'total_score' => 5,
