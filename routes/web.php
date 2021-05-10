@@ -11,6 +11,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\NewRecordAppraisalController;
 use App\Http\Controllers\AcknowledgementFormController;
@@ -84,6 +86,12 @@ Route::middleware(['auth'])->group(function () {
             ->parameters(['objectives' => 'kpiObjective'])
             ->names('okr.kpi.objectives');
     });
+
+    // KPI Report Routes
+    Route::prefix('performance')->group(function () {
+        Route::resource('kpi-reports', KpiReportController::class)->only(['index']);
+        Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
+    });
     
     // Organizations
     Route::prefix('organizations')->group(function () {
@@ -132,6 +140,27 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
         Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
     });
+    
+    //Machine Request
+    Route::prefix('machine-request')->group(function (){
+        //Create request form
+        Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
+        Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
+        //Pending machine request
+        Route::prefix('pending')->group(function (){
+            Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
+            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
+        });
+        //Completed machine request
+        Route::prefix('completed')->group(function (){
+            Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
+            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
+        });
+        //View request details
+        Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
+        //mark as completed
+        Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
+    });
 
 });
 
@@ -151,6 +180,10 @@ Route::middleware(['guest'])->group(function () {
     Route::prefix('auth')->group(function () {
         Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
         Route::get('/callback', [socialiteController::class, 'callBack']);
+    });
+    // Machine Request Routes
+    Route::prefix('machine-request/request-details')->group(function () {
+        
     });
 });
 

@@ -392,6 +392,10 @@ return [
             'okr' => [
                 'title' => 'OKR',
                 'url_segment' => 'okr'
+            ],
+            'kpi_report' => [
+                'title' => 'KPI Report',
+                'url_segment' => 'kpi-reports'
             ]
         ],
         'text' => [
@@ -413,6 +417,13 @@ return [
                 'update'=> 'Update',
                 'submit' => 'Submit',
                 'download' => 'Download'
+            ],
+            'select' => [
+                'all' => 'All',
+                'first_quarter' => 'First Quarter',
+                'second_quarter' => 'Second Quarter',
+                'third_quarter' => 'Third Quarter',
+                'fourth_quarter' => 'Fourth Quarter'
             ]
         ],
         'datatable' => [
@@ -577,7 +588,8 @@ return [
                 'q3' => 'Q3',
                 'q4' => 'Q4',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'feedback' => 'Feedback'
             ]
         ],
         'form' => [
@@ -618,7 +630,10 @@ return [
                 'target_date' => 'Target Date',
                 'result' => 'Result',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'quarter' => 'Quarter',   
+                'year' => 'Year',
+                'feedback' => 'Feedback'               
             ]
         ],
         'form' => [
@@ -646,6 +661,28 @@ return [
             ]
         ],
     ],
+    'kpi_report' => [
+        'title' => [
+            'index' => 'KPI Report',
+        ],
+        'form' => [
+            'label' => [
+                'select_kpi' => 'Select KPI',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+            ],
+            'select' => [
+                'main_kpi' => 'Main KPI',
+                'variable_kpi' => 'Variable KPI'
+            ],
+            'button' => [
+                'download' => 'Download KPI'
+            ]
+        ],
+        'page_text' => [
+            'download_kpi' => 'Download Performance KPI for all employee'
+        ]
+    ],
     'e_appraisal_my_record' => [
         'datatable' => [
             'column_header' => [
@@ -659,5 +696,58 @@ return [
                 'updated_at' => 'Last Updated'
             ]
         ],
+    ],
+    'machine_request' => [
+        'title' => [
+            'create_index' => 'Create Machine Request',
+            'pending_index' => 'Pending Machine Requests',
+            'completed_index' => 'Completed Machine Requests',
+            'show' => 'View Request Details'
+        ],
+        'navtabs_title' => [
+            'create' => 'Create Request',
+            'pending' => 'Pending',
+            'completed' => 'Completed'
+        ],
+        'form' => [
+            'label' => [
+                'requester' => 'Requester',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'system' => 'System',
+                'qty' => 'Quantity',
+                'cassette_no' => 'Cassette Number',
+                'period_of_contract' => 'Period Of Contract',
+                'special_requirement' => 'Special Requirement',
+                'company_name' => 'Company Name',
+                'billing_address' => 'Billing Address',
+                'office_contact_no' => 'Office Contact Number',
+                'installation_address' => 'Installation Address',
+                'person_in_charge' => 'Person in-Charge',
+                'contact_no' => 'Contact Number',
+                'installation_date' => 'Installation Date',
+                'send_request' => 'Send Request To',
+                'status' => 'Status',
+                'technician' => 'Technician',
+                'cc' => 'CC',
+                'important_note' => '**Different Installation Address Different Request Form',
+                'data_check' => 'All data are correct'
+            ],
+            'button' => [
+                'mark_completed' => 'Mark As Completed'
+            ]
+        ],
+        'datatable' => [
+            'column_header' => [
+                'request_id' => 'Request ID',
+                'request_by' => 'Request By',
+                'company_name' => 'Company Name',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'details' => 'Details' 
+            ]
+        ]
     ]
 ];

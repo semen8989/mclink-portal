@@ -197,7 +197,12 @@ return [
         'company_id' => 'company',
         'department_id' => 'department',
         'expense_type_id' => 'expense type',
-        'employee_id' => 'employee'
+        'employee_id' => 'employee',
+        //Machine Request variable fields
+        'technician_id' => 'technician',
+        'cassette_no' => 'cassette number',
+        'contact_no' => 'contact number',
+        'qty' => 'quantity'
     ],
 
 ];
