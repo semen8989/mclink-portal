@@ -463,8 +463,11 @@ return [
             ],
             'action' => [
                 'created' => 'created',
+                'creating' => 'creating',
                 'updated' => 'updated',
-                'deleted' => 'deleted'
+                'updating' => 'updating',
+                'deleted' => 'deleted',
+                'deleting' => 'deleting'
             ]
         ]
     ],
