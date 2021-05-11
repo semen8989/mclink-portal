@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="card-header">{{ __('label.kpi_main.title.index') }}</div>
+    <div class="card-header">{{ __('label.e_appraisal_my_record.title.new_index') }}</div>
     <div class="card-body">
         <div class="col-md-12 mb-3">
             <div class="nav-tabs-boxed">
