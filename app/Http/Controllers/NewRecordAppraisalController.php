@@ -19,7 +19,7 @@ class NewRecordAppraisalController extends Controller
     {
         $title = __('label.e_appraisal_my_record.title.new_index');
 
-        return $dataTable->render('e_appraisal.my_record.index', compact('title'));
+        return $dataTable->render('e_appraisal.my_record.new_employee.index', compact('title'));
     }
 
     /**
