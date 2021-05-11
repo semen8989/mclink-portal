@@ -1,11 +1,10 @@
 @component('mail::message')
-# Next Interview
+# Hello {{ $recruitmentData['interviewer'] }},
 
-Submission ID: {{ $recruitmentData['submission_id'] }}
-Name: {{ $recruitmentData['name'] }}
+You have selected as next interviewer to applicant <b>{{ $recruitmentData['name'] }}</b>. Click the button below for more information about this applicant.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => route('recruitment.show',$recruitmentData['submission_id']) ])
+View Details
 @endcomponent
 
 Thanks,<br>

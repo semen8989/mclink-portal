@@ -129,6 +129,7 @@ class RecruitmentController extends Controller
             $remarks->user_id = auth()->user()->id;
             $remarks->remarks = $request->remarks;
             $remarks->save();
+        
         }
         //Send email base on condition
         $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
@@ -143,16 +144,16 @@ class RecruitmentController extends Controller
         
         switch($request->status){
             case 3:
-                
                 Mail::to(auth()->user()->email)
                     ->queue(new RecruitmentApplicantSelected($emailData));
                 
                 break;
             
             case 4:
-                $interviewer_email = User::find($request->interviewer_user_id)->first()->email;
+                $interviewer_email = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
+                $emailData['interviewer'] = $interviewer_email->user->name;
 
-                Mail::to($interviewer_email)
+                Mail::to($interviewer_email->user->email)
                     ->queue(new RecruitmentNextInterviewer($emailData));
                 
                 $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;

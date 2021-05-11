@@ -16,4 +16,8 @@ class RecruitmentInfo extends Model
         "Next Interviewer" => 3,
         "Selected" => 4
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'interviewer_user_id');    
+    }
 }
