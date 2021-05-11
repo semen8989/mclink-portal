@@ -29,7 +29,7 @@
     @include('layout.delete_modal')
 @stop
 
-@push('scripts')
+@push('stylesheet')
     <!-- jquery datatable button and responsive extension css dependency -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
