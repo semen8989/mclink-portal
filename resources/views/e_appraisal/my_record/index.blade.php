@@ -50,7 +50,7 @@
     <script>
         $(document).on('click','#delete',function() {
             let id = $(this).attr('data-id');
-            var url = "{{ route('okr.kpi.maingoals.destroy', ':id') }}"
+            var url = "{{ route('appraisal.my.record.new.employee.destroy', ':id') }}"
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });
@@ -67,7 +67,7 @@
             $('.buttons-create').find('span').html(newIcon + "{{ __('label.global.datatable.button.new') }}");
 
             $('.buttons-create').click(function () {
-                location.href = "{{ route("okr.kpi.maingoals.create") }}";
+                location.href = "{{ route("appraisal.my.record.new.employee.create") }}";
             })
         });
         
