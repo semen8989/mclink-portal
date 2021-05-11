@@ -1116,36 +1116,36 @@
             var data = $('#submit_form').serialize();
 
             $.ajax({
-                    url: url,
-                    data: data,
-                    processData: false,
-                    contentType: false,
-                    success: function(){
-                        location.reload();
-                    },
-                    error: function(response){
-                        //Clear previous error messages
-                        $(".help-block").remove();
-                        $( ".form-control" ).removeClass("is-invalid");
-                        //fetch and display error messages
-                        var errors = response.responseJSON;
-                        $.each(errors.errors, function (index, value) {
-                            var id = $("#"+index);
-                            id.closest('.form-control')
-                            .addClass('is-invalid');
-                            
-                            id.after('<div class="help-block text-danger">'+value+'</div>');
-
-                            if($(".is-invalid").length) {
-                                $('html, body').animate({
-                                        scrollTop: ($(".is-invalid").first().offset().top - 95)
-                                },500);
-                            }
-                            
-                        });
+                url: url,
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function(){
+                    location.reload();
+                },
+                error: function(response){
+                    //Clear previous error messages
+                    $(".help-block").remove();
+                    $( ".form-control" ).removeClass("is-invalid");
+                    //fetch and display error messages
+                    var errors = response.responseJSON;
+                    $.each(errors.errors, function (index, value) {
+                        var id = $("#"+index);
+                        id.closest('.form-control')
+                        .addClass('is-invalid');
                         
-                    }
-                })
+                        id.after('<div class="help-block text-danger">'+value+'</div>');
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
+                        
+                    });
+                    
+                }
+            })
 
         })
 

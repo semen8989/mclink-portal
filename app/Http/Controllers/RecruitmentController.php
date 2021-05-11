@@ -21,7 +21,8 @@ class RecruitmentController extends Controller
     
     public function index()
     {
-        return view('recruitment.index');
+        $title = 'Applicant List';
+        return view('recruitment.index',compact('title'));
     }
 
     public function show($submission_id)
