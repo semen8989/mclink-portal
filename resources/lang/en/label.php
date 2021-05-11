@@ -699,6 +699,11 @@ return [
                 'updated_at' => 'Last Updated'
             ]
         ],
+        'modal' => [
+            'msg' => [
+                'delete_new' => 'New Employee Appraisal'
+            ]
+        ]
     ],
     'machine_request' => [
         'title' => [
