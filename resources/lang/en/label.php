@@ -687,6 +687,12 @@ return [
         ]
     ],
     'e_appraisal_my_record' => [
+        'title' => [
+            'new_index' => 'New Employee Appraisal',
+            'new_create' => 'Add New Employee Appraisal',
+            'new_show' => 'View New Employee Appraisal',
+            'new_edit' => 'Edit New Employee Appraisal',
+        ],
         'datatable' => [
             'column_header' => [
                 'action' => 'Action',
