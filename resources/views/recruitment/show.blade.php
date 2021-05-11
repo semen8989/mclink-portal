@@ -1077,6 +1077,14 @@
                         <option value="4" {{ $status == 4 ? 'selected' : '' }}>Proceed to another interviewer</option>
                     </select>
                 </div>
+                <div class="form-group" style="display: none;" id="next_interviewer">
+                    <label for="remarks">Next Interviewer</label>
+                    <select class="form-control" id="interviewer_user_id" name="interviewer_user_id">
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>        
+                        @endforeach
+                    </select>
+                </div>
             </form>
         </div>
 
@@ -1140,5 +1148,17 @@
                 })
 
         })
+
+        $('#status').on('change', function() {
+            if(this.value == 4)
+            {
+                $("#next_interviewer").show();
+            }
+            else
+            {
+                $("#next_interviewer").hide();
+            }
+        });
+        
     </script>
 @endpush

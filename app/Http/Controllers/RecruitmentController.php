@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RecruitmentInfo;
@@ -11,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\RecruitmentStringTrait;
+use App\Mail\RecruitmentNextInterviewer;
 use App\Mail\RecruitmentApplicantSelected;
 
 class RecruitmentController extends Controller
@@ -24,6 +26,7 @@ class RecruitmentController extends Controller
 
     public function show($submission_id)
     {
+
         $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
         
         if(!(RecruitmentInfo::where('submission_id', '=', $submission_id)->exists())) {
@@ -53,8 +56,10 @@ class RecruitmentController extends Controller
 
         $details = $details['content']['answers'];
         $title = 'Applicant Information';
+
+        $users = User::all();
         
-        return view('recruitment.show',compact('details','submission_id','title','remarks','status'));
+        return view('recruitment.show',compact('details','submission_id','title','remarks','status','users'));
                 
     }
 
@@ -125,10 +130,6 @@ class RecruitmentController extends Controller
             $remarks->remarks = $request->remarks;
             $remarks->save();
         }
-
-        $recruitmentInfo = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
-        $recruitmentInfo->status = $request->status;
-        $recruitmentInfo->save();
         //Send email base on condition
         $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
         $name = $details['content']['answers']['15']['prettyFormat'];
@@ -136,18 +137,31 @@ class RecruitmentController extends Controller
             'submission_id' => $submission_id,
             'name' => $name
         ];
-
+        
+        $recruitmentInfo = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
+        $recruitmentInfo->status = $request->status;
+        
         switch($request->status){
             case 3:
+                
                 Mail::to(auth()->user()->email)
                     ->queue(new RecruitmentApplicantSelected($emailData));
+                
                 break;
+            
             case 4:
-                //Send Message
-                break;
+                $interviewer_email = User::find($request->interviewer_user_id)->first()->email;
 
+                Mail::to($interviewer_email)
+                    ->queue(new RecruitmentNextInterviewer($emailData));
+                
+                $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;
+                
+                break;
         }
 
+        $recruitmentInfo->save();
+        
         return session()->flash('success', 'Applicant Information Updated Successfully!');
 
     }
