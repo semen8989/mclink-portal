@@ -692,6 +692,7 @@ return [
             'new_create' => 'Add New Employee Appraisal',
             'new_show' => 'View New Employee Appraisal',
             'new_edit' => 'Edit New Employee Appraisal',
+            'regular_index' => 'Regular Employee Appraisal',
         ],
         'datatable' => [
             'column_header' => [

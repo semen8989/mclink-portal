@@ -21,10 +21,11 @@ use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\NewRecordAppraisalController;
 use App\Http\Controllers\AcknowledgementFormController;
+use App\Http\Controllers\RegularRecordAppraisalController;
 
 Auth::routes(['register' => false]);
 
@@ -67,6 +68,9 @@ Route::middleware(['auth'])->group(function () {
                     ->parameters(['new-employees' => 'newEmployee'])
                     ->names('appraisal.my.record.new.employee');
                 // Regular Employee Appraisal (My Record) Routes
+                Route::resource('regular-employees', RegularRecordAppraisalController::class)
+                    ->parameters(['regular-employees' => 'regularEmployee'])
+                    ->names('appraisal.my.record.regular.employee');
             });
         });  
     });

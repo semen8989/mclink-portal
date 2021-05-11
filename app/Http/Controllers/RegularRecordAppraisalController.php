@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\MyRecordAppraisalDataTable;
 use App\Models\EmployeeAppraisal;
+use App\DataTables\MyRecordAppraisalDataTable;
 
-class NewRecordAppraisalController extends Controller
+class RegularRecordAppraisalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class NewRecordAppraisalController extends Controller
      */
     public function index(Request $request, MyRecordAppraisalDataTable $dataTable)
     {
-        $title = __('label.e_appraisal_my_record.title.new_index');
+        $title = __('label.e_appraisal_my_record.title.regular_index');
 
-        return $dataTable->render('e_appraisal.my_record.new_employee.index', compact('title'));
+        return $dataTable->render('e_appraisal.my_record.regular_employee.index', compact('title'));
     }
 
     /**

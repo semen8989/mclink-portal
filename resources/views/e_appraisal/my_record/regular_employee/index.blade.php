@@ -1,18 +1,18 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="card-header">{{ __('label.e_appraisal_my_record.title.new_index') }}</div>
+    <div class="card-header">{{ __('label.e_appraisal_my_record.title.regular_index') }}</div>
     <div class="card-body">
         <div class="col-md-12 mb-3">
             <div class="nav-tabs-boxed">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a id="newTabLink" class="nav-link active" href="{{ route('appraisal.my.record.new.employee.index') }}" role="tab" aria-controls="main">
+                        <a id="newTabLink" class="nav-link" href="{{ route('appraisal.my.record.new.employee.index') }}" role="tab" aria-controls="new">
                             {{ __('label.global.tab.new_employee') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="regularTabLink" class="nav-link" href="{{ route('appraisal.my.record.regular.employee.index') }}" role="tab" aria-controls="variable">
+                        <a id="regularTabLink" class="nav-link active" href="{{ route('appraisal.my.record.regular.employee.index') }}" role="tab" aria-controls="regular">
                             {{ __('label.global.tab.regular_employee') }}
                         </a>
                     </li>
@@ -50,7 +50,7 @@
     <script>
         $(document).on('click','#delete',function() {
             let id = $(this).attr('data-id');
-            var url = "{{ route('appraisal.my.record.new.employee.destroy', ':id') }}"
+            var url = "{{ route('appraisal.my.record.regular.employee.destroy', ':id') }}"
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });
@@ -67,7 +67,7 @@
             $('.buttons-create').find('span').html(newIcon + "{{ __('label.global.datatable.button.new') }}");
 
             $('.buttons-create').click(function () {
-                location.href = "{{ route("appraisal.my.record.new.employee.create") }}";
+                location.href = "{{ route("appraisal.my.record.regular.employee.create") }}";
             })
         });
         
