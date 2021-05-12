@@ -10,6 +10,24 @@ use Yajra\DataTables\Services\DataTable;
 class MyRecordAppraisalDataTable extends DataTable
 {
     /**
+     * Get the employee specific data base on the employee type and data type.
+     *
+     * @param string $employeeType
+     * @param string $dataType
+     * @return string
+     */
+    public function getEmployeeData($employeeType, $dataType)
+    {
+        if ($employeeType == 'new-employees') {
+            $employee = EmployeeAppraisal::NEW_EMPLOYEE;
+        } elseif ($employeeType == 'regular-employees') {
+            $employee = EmployeeAppraisal::REGULAR_EMPLOYEE;
+        }
+
+        return $employee[$dataType];
+    }
+
+    /**
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
@@ -17,22 +35,29 @@ class MyRecordAppraisalDataTable extends DataTable
      */
     public function dataTable($query)
     {
+        // EmployeeAppraisal $employeeAppraisal;
+        $employeeSegment = last(request()->segments());
+
+        $employeeParam = $this->getEmployeeData($employeeSegment, 'param');
+        $employeeRoute = $this->getEmployeeData($employeeSegment, 'route');
+        $employeeRelationship = $this->getEmployeeData($employeeSegment, 'relationship');
+
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('action', function(EmployeeAppraisal $appraisal) {
+            ->addColumn('action', function(EmployeeAppraisal $appraisal) use ($employeeRoute, $employeeParam) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
-                        'edit' => 'appraisal.my.record.new.employee.edit',
+                        'edit' => $employeeRoute . '.edit',
                         'delete' => ''
                     ],
-                    'itemSlug' => 'newEmployee',
+                    'itemSlug' => $employeeParam,
                     'itemSlugValue' => $appraisal->id
                 ]);
-            })->editColumn('employee.name', function ($request) {
+            })->editColumn('employee.name', function ($request) use ($employeeRoute, $employeeParam) {
                 return view('components.datatables.show-column', [
-                    'showRouteName' => 'appraisal.my.record.new.employee.show',
-                    'showRouteSlug' => 'newEmployee',
+                    'showRouteName' => $employeeRoute . '.show',
+                    'showRouteSlug' => $employeeParam,
                     'showRouteSlugValue' => $request->id,
                     'columnData' => $request->employee->name
                 ]);
@@ -48,7 +73,9 @@ class MyRecordAppraisalDataTable extends DataTable
                 return $request->review_date->format('d/m/Y');
             })->editColumn('updated_at', function ($request) {
                 return $request->updated_at->format('d/m/Y');
-            });
+            })->filter(function ($instance) use ($employeeRelationship) {
+                $instance->has($employeeRelationship);
+            }, true);
     }
 
     /**

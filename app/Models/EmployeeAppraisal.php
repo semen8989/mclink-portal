@@ -10,6 +10,18 @@ class EmployeeAppraisal extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const NEW_EMPLOYEE = [
+        "param" => 'newEmployee',
+        "route" => 'appraisal.my.record.new.employee',
+        "relationship" => 'newEmployeeAppraisal'
+    ];
+
+    const REGULAR_EMPLOYEE = [
+        "param" => 'regularEmployee',
+        "route" => 'appraisal.my.record.regular.employee',
+        "relationship" => 'regularEmployeeAppraisal'
+    ];
+
     /**
      * The attributes that should be cast.
      *
