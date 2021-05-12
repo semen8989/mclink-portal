@@ -109,6 +109,7 @@ class RecruitmentController extends Controller
                 ]);
 
             })->make(true);
+
     }
 
     public function submit(Request $request, $submission_id)
@@ -151,10 +152,10 @@ class RecruitmentController extends Controller
                 break;
             
             case 4:
-                $interviewer_email = RecruitmentInfo::where('submission_id','=',$submission_id)->first();
-                $emailData['interviewer'] = $interviewer_email->user->name;
+                $interviewer_email = User::where('id','=',$request->interviewer_user_id)->first();
+                $emailData['interviewer'] = $interviewer_email->name;
 
-                Mail::to($interviewer_email->user->email)
+                Mail::to($interviewer_email->email)
                     ->queue(new RecruitmentNextInterviewer($emailData));
                 
                 $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;

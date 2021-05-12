@@ -1120,6 +1120,12 @@
                 data: data,
                 processData: false,
                 contentType: false,
+                beforeSend: function() { 
+                    $(".help-block").remove();
+                    $( ".form-control" ).removeClass("is-invalid");
+                    $("#submit").attr("disabled", true);
+                    $("#submit").html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...`);
+                },
                 success: function(){
                     location.reload();
                 },
@@ -1144,6 +1150,10 @@
                         
                     });
                     
+                },
+                complete: function() {
+                    $("#submit").attr("disabled", false);
+                    $("#submit").html('Submit');
                 }
             })
 
