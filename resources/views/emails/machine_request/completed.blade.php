@@ -30,7 +30,7 @@ Thanks,<br>
 {{-- Footer --}}
 @slot('footer')
 @component('mail::footer')
-© {{ date('Y') }} McLink Copy Services Phil Inc. @lang('All rights reserved.')
+{{ config('app.name') }}
 @endcomponent
 @endslot
 @endcomponent
