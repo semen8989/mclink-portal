@@ -152,10 +152,10 @@ class RecruitmentController extends Controller
                 break;
             
             case 4:
-                $interviewer_email = User::where('id','=',$request->interviewer_user_id)->first();
-                $emailData['interviewer'] = $interviewer_email->name;
+                $interviewer_email = $recruitmentInfo->user->email;
+                $emailData['interviewer'] = $recruitmentInfo->user->name;
 
-                Mail::to($interviewer_email->email)
+                Mail::to($interviewer_email)
                     ->queue(new RecruitmentNextInterviewer($emailData));
                 
                 $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;
