@@ -146,12 +146,6 @@ class RecruitmentController extends Controller
         
         switch($request->status){
             case 3:
-                Mail::to(auth()->user()->email)
-                    ->queue(new RecruitmentApplicantSelected($emailData));
-                
-                break;
-            
-            case 4:
                 $interviewer_email = $recruitmentInfo->user->email;
                 $emailData['interviewer'] = $recruitmentInfo->user->name;
 
@@ -161,6 +155,14 @@ class RecruitmentController extends Controller
                 $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;
                 
                 break;
+
+            case 4:
+                Mail::to(auth()->user()->email)
+                    ->queue(new RecruitmentApplicantSelected($emailData));
+                
+                break;
+            
+            
         }
 
         $recruitmentInfo->save();

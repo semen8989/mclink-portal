@@ -1073,8 +1073,8 @@
                         <option value="0" {{ $status == 0 ? 'selected' : '' }}>Pending</option>
                         <option value="1" {{ $status == 1 ? 'selected' : '' }}>KIV</option>
                         <option value="2" {{ $status == 2 ? 'selected' : '' }}>Rejected</option>
-                        <option value="3" {{ $status == 3 ? 'selected' : '' }}>Selected</option>
-                        <option value="4" {{ $status == 4 ? 'selected' : '' }}>Proceed to another interviewer</option>
+                        <option value="3" {{ $status == 3 ? 'selected' : '' }}>Proceed to another interviewer</option>
+                        <option value="4" {{ $status == 4 ? 'selected' : '' }}>Selected</option>
                     </select>
                 </div>
                 <div class="form-group" style="display: none;" id="next_interviewer">
