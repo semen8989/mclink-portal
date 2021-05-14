@@ -1053,7 +1053,7 @@
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label" for="file-multiple-input">Upload Other Files</label>
                             <div class="col-md-9">
-                                <input id="file-multiple-input" type="file" name="file-multiple-input" multiple="">
+                                <input id="custom_upload" type="file" name="custom-upload[]" multiple="true">
                             </div>
                         </div>
                     </div>
