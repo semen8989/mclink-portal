@@ -1160,7 +1160,7 @@
         })
 
         $('#status').on('change', function() {
-            if(this.value == 4)
+            if(this.value == 3)
             {
                 $("#next_interviewer").show();
             }
