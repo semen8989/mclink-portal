@@ -5,7 +5,7 @@
   @csrf
   @method('PUT')
 
-  <h5 class="card-header font-weight-bold text-center">{{ __('label.kpi_main.form.header.main') }}</h5>
+  <div class="card-header">{{ __('label.kpi_main.title.edit') }}</div>
   <div class="card-body">
 
     <x-okr.kpi.main.form :kpiMain="$kpiMain"/>
@@ -56,7 +56,7 @@
         $('#month').val('{{ old("kpi_ratings.month", $kpiMain->kpiratings[0]->month) }}');
         $('#rating').val('{{ old("kpi_ratings.rating", $kpiMain->kpiratings[0]->rating) }}');
       @else
-        $('#month').val('{{ old("kpi_ratings.month", date("n")) }}');
+        $('#month').val('{{ old("kpi_ratings.month", $selectedMonth) }}');
         $('#rating').val('{{ old("kpi_ratings.rating") }}');
       @endif
 

@@ -10,6 +10,7 @@ return [
     'add_department' => 'Add New Department',
     'add_designation' => 'Add New Designation',
     'add_expense' => 'Add New Expense',
+    'add_event' => 'Add New Event',
     'add_holiday' => 'Add New Holiday',
     'add_location' => 'Add New Location',
     'add_new' => 'Add new',
@@ -51,6 +52,7 @@ return [
     'claims_menu' => 'Claims menu',
     'classification' => 'CLASSIFICATION',
     'clear' => 'Clear',
+    'close' => 'Close',
     'companies' => 'Companies',
     'company' => 'Company',
     'company_list' => 'Company List',
@@ -126,6 +128,7 @@ return [
     'evaluate' => 'Evaluate',
     'events' => 'Events',
     'event_name' => 'Event Name',
+    'event_note' => 'Event Note',
     'expense' => 'Expense',
     'expense_list' => 'Expense List',
     'expense_type' => 'Expense Type',
@@ -198,6 +201,7 @@ return [
     'office_contact_no' => 'Office contact no',
     'office_shifts' => 'Office Shifts',
     'office_shift' => 'Office Shift',
+    'office-shifts' => 'office-shifts',
     'on_hand' => 'On hand',
     'onboarding_program' => 'Onboarding Program',
     'optional' => 'Optional',
@@ -376,6 +380,10 @@ return [
             'okr' => [
                 'title' => 'OKR',
                 'url_segment' => 'okr'
+            ],
+            'kpi_report' => [
+                'title' => 'KPI Report',
+                'url_segment' => 'kpi-reports'
             ]
         ],
         'text' => [
@@ -397,6 +405,13 @@ return [
                 'update'=> 'Update',
                 'submit' => 'Submit',
                 'download' => 'Download'
+            ],
+            'select' => [
+                'all' => 'All',
+                'first_quarter' => 'First Quarter',
+                'second_quarter' => 'Second Quarter',
+                'third_quarter' => 'Third Quarter',
+                'fourth_quarter' => 'Fourth Quarter'
             ]
         ],
         'datatable' => [
@@ -493,6 +508,9 @@ return [
                 ],
                 'subject' => 'Acknowledgement Form Email Confirmation | :company',
                 'plain_subject' => 'Acknowledgement Form Email Confirmation'
+            ],
+            'resend' => [
+                'plain_subject' => 'Service Report Acknowledgment Form (Resend)'
             ]
         ],
         'form' => [
@@ -555,13 +573,15 @@ return [
                 'q2' => 'Q2',
                 'q3' => 'Q3',
                 'q4' => 'Q4',
-                'completed' => 'Completed'
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At',
+                'feedback' => 'Feedback'
             ]
         ],
         'form' => [
             'header' => [
                 'main' => 'KPI MAIN GOALS',
-                'rating' => 'MANAGER\'S RATING'
+                'rating' => 'Manager\'s Rating'
             ],
             'label' => [
                 'main_kpi' => 'Main Goals',
@@ -595,13 +615,17 @@ return [
                 'variable_kpi' => 'Variable KPI',
                 'target_date' => 'Target Date',
                 'result' => 'Result',
-                'completed' => 'Completed'
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At',
+                'quarter' => 'Quarter',   
+                'year' => 'Year',
+                'feedback' => 'Feedback'               
             ]
         ],
         'form' => [
             'header' => [
                 'main' => 'KPI VARIABLES',
-                'rating' => 'MANAGER\'S RATING'
+                'rating' => 'Manager\'s Rating'
             ],
             'label' => [
                 'variable_kpi' => 'Variable',
@@ -665,4 +689,79 @@ return [
             ]
         ],
     ],
+    'machine_request' => [
+        'title' => [
+            'create_index' => 'Create Machine Request',
+            'pending_index' => 'Pending Machine Requests',
+            'completed_index' => 'Completed Machine Requests',
+            'show' => 'View Request Details'
+        ],
+        'navtabs_title' => [
+            'create' => 'Create Request',
+            'pending' => 'Pending',
+            'completed' => 'Completed'
+        ],
+        'form' => [
+            'label' => [
+                'requester' => 'Requester',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'system' => 'System',
+                'qty' => 'Quantity',
+                'cassette_no' => 'Cassette Number',
+                'period_of_contract' => 'Period Of Contract',
+                'special_requirement' => 'Special Requirement',
+                'company_name' => 'Company Name',
+                'billing_address' => 'Billing Address',
+                'office_contact_no' => 'Office Contact Number',
+                'installation_address' => 'Installation Address',
+                'person_in_charge' => 'Person in-Charge',
+                'contact_no' => 'Contact Number',
+                'installation_date' => 'Installation Date',
+                'send_request' => 'Send Request To',
+                'status' => 'Status',
+                'technician' => 'Technician',
+                'cc' => 'CC',
+                'important_note' => '**Different Installation Address Different Request Form',
+                'data_check' => 'All data are correct'
+            ],
+            'button' => [
+                'mark_completed' => 'Mark As Completed'
+            ]
+        ],
+        'datatable' => [
+            'column_header' => [
+                'request_id' => 'Request ID',
+                'request_by' => 'Request By',
+                'company_name' => 'Company Name',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'details' => 'Details' 
+            ]
+        ]
+    ],
+    'kpi_report' => [
+        'title' => [
+            'index' => 'KPI Report',
+        ],
+        'form' => [
+            'label' => [
+                'select_kpi' => 'Select KPI',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+            ],
+            'select' => [
+                'main_kpi' => 'Main KPI',
+                'variable_kpi' => 'Variable KPI'
+            ],
+            'button' => [
+                'download' => 'Download KPI'
+            ]
+        ],
+        'page_text' => [
+            'download_kpi' => 'Download Performance KPI for all employee'
+        ]
+    ]
 ];

@@ -108,6 +108,6 @@ class OfficeShiftController extends Controller
         $action = __('label.global.response.action.deleted');
         $message = __('label.global.response.success.general', ['module' => __('label.office_shift'), 'action' => $action]);
 
-        return redirect()->route('office_shifts.index')->with('success',$message);
+        return redirect()->route('office-shifts.index')->with('success',$message);
     }
 }

@@ -84,7 +84,7 @@ class KpiVariableController extends Controller
         $resultStatus = $result ? 'success' : 'error';
 
         $msg = $result
-            ? __('label.global.response.success.general', ['module' => 'KPI Main Goal', 'action' => 'created'])
+            ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'created'])
             : __('label.global.response.error.general', ['action' => 'creating']);
         
         return redirect()->route('okr.kpi.variables.index')->with($resultStatus, $msg);
@@ -114,11 +114,13 @@ class KpiVariableController extends Controller
     {
         $title = __('label.kpi_variable.title.edit');
 
-        $kpiVariable->load(['kpiratings' => function ($query) {
-            $query->where('month', date('n'));
+        $selectedMonth = request('month') ?? date('n');
+
+        $kpiVariable->load(['kpiratings' => function ($query) use ($selectedMonth) {
+            $query->where('month', $selectedMonth);
         }]);
 
-        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable'));
+        return view('okr.kpi.variable.edit', compact('title', 'kpiVariable', 'selectedMonth'));
     }
 
     /**
@@ -134,6 +136,7 @@ class KpiVariableController extends Controller
         
         $ratingInput = array();
         $kpiRating = null;
+        $selectedMonth = null;
         
         if (!empty($validated['kpi_ratings'])) {
             $kpiVariable->load(['kpiratings' => function ($query) use ($validated) {
@@ -143,6 +146,7 @@ class KpiVariableController extends Controller
             $ratingInput['month'] = $validated['kpi_ratings']['month']; 
             $ratingInput['rating'] = $validated['kpi_ratings']['rating']; 
             $ratingInput['manager_comment'] = $validated['kpi_ratings']['manager_comment'];
+            $selectedMonth = $ratingInput['month'];
     
             if ($kpiVariable->kpiratings->isNotEmpty()) {
                 $kpiRating = $kpiVariable->kpiratings[0];
@@ -178,7 +182,11 @@ class KpiVariableController extends Controller
             ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'updated'])
             : __('label.global.response.error.general', ['action' => 'updating']);
 
-        return redirect()->route('okr.kpi.variables.show', [$kpiVariable->id])->with($resultStatus, $msg);
+        return redirect()->route('okr.kpi.variables.show', [$kpiVariable->id])
+            ->with([
+                $resultStatus => $msg, 
+                'selectedMonth' => $selectedMonth
+            ]);
     }
 
     /**
@@ -201,7 +209,7 @@ class KpiVariableController extends Controller
     }
 
     /**
-     * Fetch a rating based on the main kpi
+     * Fetch a rating based on the variable kpi
      * 
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\KpiVariable  $kpiVariable

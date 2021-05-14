@@ -26,11 +26,18 @@ class Location extends Model
         'current_user_id'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class,'location_head');
+    public function locationHeadUser()
+    {
+        return $this->hasOne(User::class,'id','location_head');
     }
 
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class);
+    }
+
+    public function addedByUser()
+    {
+        return $this->hasOne(User::class,'id','current_user_id');
     }
 }

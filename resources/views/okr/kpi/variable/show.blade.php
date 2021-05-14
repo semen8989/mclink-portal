@@ -14,27 +14,28 @@
             </div>
         </div>
         <div class="row">
-
-                    <div class="col-md-3">
-                        <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_variable.form.label.target_date') }}</p>
-                        <p class="guest-form-data mb-4">{{ $kpiVariable->target_date->format('d/m/Y') ?? __('label.global.text.na') }}</p>
-                    </div>
-
-                    <div class="col-md-3">
-                        <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_variable.form.label.status') }}</p>
-                        <p class="guest-form-data mb-4">{{ $kpiVariable->getStringStatus() ?? __('label.global.text.na') }}</p>
-                    </div>       
+            <div class="col-md-3">
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_variable.form.label.target_date') }}</p>
+                <p class="guest-form-data mb-4">{{ $kpiVariable->target_date->format('d/m/Y') ?? __('label.global.text.na') }}</p>
+            </div>
+            <div class="col-md-3">
+                <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_variable.form.label.status') }}</p>
+                <p class="guest-form-data mb-4">{{ $kpiVariable->getStringStatus() ?? __('label.global.text.na') }}</p>
+            </div>       
             <div class="col-md-6">
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_variable.form.label.feedback') }}</p>
                 <p class="guest-form-data mb-4">{{ $kpiVariable->feedback ?? __('label.global.text.na') }}</p>
             </div>
         </div> 
         
-        @if (auth()->user()->isDepartmentHead())
-        <hr>
-        <h5 class="font-weight-bold text-center">{{ __('label.kpi_variable.form.header.rating') }}</h5>
-        <hr>
+    @if (auth()->user()->isDepartmentHead())
+    </div>
+    
+    <hr class="mb-3">
+    <div class="px-4">{{ __('label.kpi_variable.form.header.rating') }}</div>
+    <hr class="mt-3 mb-0">
 
+    <div class="card-body px-5">
         <div class="row">
             <div class="col-md-3">
                 <p class="guest-form-label font-weight-bold mb-2">{{ __('label.kpi_variable.form.label.month') }}</p>
@@ -59,11 +60,8 @@
                 <p class="guest-form-label font-weight-bold mb-1">{{ __('label.kpi_variable.form.label.manager_comment') }}</p>
                 <p class="guest-form-data mb-4" id="comment">{{ __('label.global.text.na') }}</p>
             </div>
-        </div>
-        <div class="row">
-            
-        </div>   
-        @endif 
+        </div>  
+    @endif 
 
         <div class="row float-right">
             <div class="col-md-12">
@@ -73,7 +71,7 @@
                     </svg>
                     {{ __('label.global.form.button.back') }}
                 </a>
-                <a class="btn btn-primary px-3 font-weight-bold" href="{{ route('okr.kpi.variables.edit', [$kpiVariable->id]) }}">
+                <a id="editBtn" class="btn btn-primary px-3 font-weight-bold" href="{{ route('okr.kpi.variables.edit', [$kpiVariable->id]) }}">
                     <svg class="c-icon">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-pencil') }}"></use>
                     </svg>
@@ -98,6 +96,9 @@
                     },
                     dataType: 'json',
                     success: function (result) {
+                        $('#editBtn').attr('href', function(index, attr) {
+                            return attr.split("?")[0] + '?month=' + $("#month").val();
+                        });
                         $('#rating').text(result.length > 0 ? result[0].rating : "{{ __('label.global.text.na') }}");
                         $('#comment').text(result.length > 0 ? result[0].manager_comment : "{{ __('label.global.text.na') }}");
                     }
@@ -110,12 +111,15 @@
                 $('#comment').text("{{ __('label.global.text.na') }}");
             @else
                 @foreach ($kpiVariable->kpiratings as $kpirating)
-                    @if($kpirating->month == date('n'))           
+                    @if($kpirating->month == (Session::get('selectedMonth') ?? date('n')))           
                         $('#month').val('{{ $kpirating->month }}'); 
                         $('#rating').text('{{ $kpirating->rating }}');
                         $('#comment').text('{{ $kpirating->manager_comment }}');
                     @endif
                 @endforeach
+                $('#editBtn').attr('href', function(index, attr) {
+                    return attr.split("?")[0] + '?month=' + $("#month").val();
+                });
             @endif
         });
     </script>

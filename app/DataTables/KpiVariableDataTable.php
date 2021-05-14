@@ -20,13 +20,7 @@ class KpiVariableDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('', function(KpiVariable $kpiVariable) {
-                return view('components.datatables.show-column', [
-                    'showRouteName' => 'okr.kpi.variables.show',
-                    'showRouteSlug' => 'kpiVariable',
-                    'showRouteSlugValue' => $kpiVariable->id
-                ]);
-            })->addColumn('action', function(KpiVariable $kpiVariable) {
+            ->addColumn('action', function(KpiVariable $kpiVariable) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
                         'edit' => 'okr.kpi.variables.edit',
@@ -35,8 +29,15 @@ class KpiVariableDataTable extends DataTable
                     'itemSlug' => 'kpiVariable',
                     'itemSlugValue' => $kpiVariable->id
                 ]);
+            })->editColumn('variable_kpi', function ($request) {
+                return view('components.datatables.show-column', [
+                    'showRouteName' => 'okr.kpi.variables.show',
+                    'showRouteSlug' => 'kpiVariable',
+                    'showRouteSlugValue' => $request->id,
+                    'columnData' => $request->variable_kpi
+                ]);
             })->editColumn('result', function ($request) {
-                return $request->result ?? __('label.global.text.na');
+                return $request->result ? Str::of($request->result)->limit(50) : __('label.global.text.na');
             })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, KpiVariable::COMPLETED_STATUS));
                 $badgeColor = $status == 'Yes' ? 'success' : 'danger';
@@ -45,6 +46,8 @@ class KpiVariableDataTable extends DataTable
                     'columnData' => $status,
                     'badgeColor' => $badgeColor
                 ]);
+            })->editColumn('updated_at', function ($request) {
+                return $request->updated_at->format('d/m/Y');
             })->filter(function ($instance) {
                 $user = auth()->user()->isDepartmentHead() 
                     ? $this->request->filterEmployee
@@ -113,20 +116,21 @@ class KpiVariableDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('')
-                ->width('5%'),
             Column::make('variable_kpi')
                 ->title(__('label.kpi_variable.datatable.column_header.variable_kpi'))
-                ->width('30%'),
+                ->width('28%'),
             Column::make('target_date')
                 ->title(__('label.kpi_variable.datatable.column_header.target_date'))
                 ->width('15%'),
             Column::make('result')
                 ->title(__('label.kpi_variable.datatable.column_header.result'))
-                ->width('30%'),
+                ->width('25%'),
             Column::make('status')
                 ->title(__('label.kpi_variable.datatable.column_header.completed'))
                 ->width('10%'),
+            Column::make('updated_at')
+                ->title(__('label.kpi_variable.datatable.column_header.updated_at'))
+                ->width('12%'),
             Column::computed('action')
                 ->title(__('label.kpi_variable.datatable.column_header.action'))
                 ->width('10%')

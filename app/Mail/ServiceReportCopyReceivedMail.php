@@ -38,7 +38,7 @@ class ServiceReportCopyReceivedMail extends Mailable
     {
         return $this->markdown('emails.acknowledgement_form.receipt')
             ->subject(__('label.service_report.email.receipt.subject', ['company' => config('app.mps_name')]))
-            ->attachFromStorage('service_report\pdf\\' . $this->serviceReport->report_pdf, 'service_report_customer_copy.pdf', [
+            ->attachFromStorageDisk ('local', 'private\service_report\pdf\\' . $this->serviceReport->report_pdf, 'service_report_customer_copy.pdf', [
                 'mime' => 'application/pdf'
             ]);
     }
