@@ -1077,7 +1077,7 @@
                         <option value="4" {{ $status == 4 ? 'selected' : '' }}>Selected</option>
                     </select>
                 </div>
-                <div class="form-group" style="display: none;" id="next_interviewer">
+                <div class="form-group" style="{{ $status != 3 ? 'display: none;' : '' }}" id="next_interviewer">
                     <label for="remarks">Next Interviewer</label>
                     <select class="form-control" id="interviewer_user_id" name="interviewer_user_id">
                         @foreach($users as $user)
