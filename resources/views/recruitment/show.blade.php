@@ -1065,7 +1065,7 @@
             <form id="submit_form" action="{{ route('recruitment.submit',$submission_id) }}">
                 <div class="form-group">
                     <label for="remarks">Remarks</label>
-                    <textarea class="form-control" id="remarks" name="remarks" rows="9" placeholder="Content..">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
+                    <textarea class="form-control" id="remarks" name="remarks" rows="9">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="remarks">Status</label>
@@ -1084,6 +1084,9 @@
                             <option value="{{ $user->id }}">{{ $user->name }}</option>        
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group" style="display: none;" id="selected_message">
+                    <span class="badge badge-warning" style="font-size: 15px"><em><b>Selected/Hired</b> applicant is subject for confirmation from CEO.</em></span>
                 </div>
             </form>
         </div>
@@ -1167,6 +1170,15 @@
             else
             {
                 $("#next_interviewer").hide();
+            }
+
+            if(this.value == 4)
+            {
+                $("#selected_message").show();
+            }
+            else
+            {
+                $("#selected_message").hide();
             }
         });
         

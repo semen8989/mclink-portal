@@ -146,26 +146,32 @@ class RecruitmentController extends Controller
         
         switch($request->status){
             case 3:
-                $interviewer_email = $recruitmentInfo->user->email;
+                $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;
+                $recruitmentInfo->number_of_interview = $recruitmentInfo->number_of_interview + 1;
+
+                $recruitmentInfo->save();
+                
                 $emailData['interviewer'] = $recruitmentInfo->user->name;
+                $interviewer_email = $recruitmentInfo->user->email;
 
                 Mail::to($interviewer_email)
                     ->queue(new RecruitmentNextInterviewer($emailData));
                 
-                $recruitmentInfo->interviewer_user_id = $request->interviewer_user_id;
-                
                 break;
 
             case 4:
+                $recruitmentInfo->save();
+                
                 Mail::to(auth()->user()->email)
                     ->queue(new RecruitmentApplicantSelected($emailData));
+
                 
                 break;
             
             
         }
 
-        $recruitmentInfo->save();
+        
         
         return session()->flash('success', 'Applicant Information Updated Successfully!');
 
