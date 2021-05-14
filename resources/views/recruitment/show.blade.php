@@ -1070,11 +1070,9 @@
                 <div class="form-group">
                     <label for="remarks">Status</label>
                     <select class="form-control" id="status" name="status">
-                        <option value="0" {{ $status == 0 ? 'selected' : '' }}>Pending</option>
-                        <option value="1" {{ $status == 1 ? 'selected' : '' }}>KIV</option>
-                        <option value="2" {{ $status == 2 ? 'selected' : '' }}>Rejected</option>
-                        <option value="3" {{ $status == 3 ? 'selected' : '' }}>Proceed to another interviewer</option>
-                        <option value="4" {{ $status == 4 ? 'selected' : '' }}>Selected</option>
+                        @foreach ($statusArray as $statusName => $statusId)
+                            <option value="{{ $statusId }}" {{ $statusId == $status ? 'selected' : '' }}>{{ ucfirst($statusName) }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group" style="{{ $status != 3 ? 'display: none;' : '' }}" id="next_interviewer">
@@ -1087,6 +1085,14 @@
                 </div>
                 <div class="form-group" style="display: none;" id="selected_message">
                     <span class="badge badge-warning" style="font-size: 15px"><em><b>Selected/Hired</b> applicant is subject for confirmation from CEO.</em></span>
+                </div>
+                <div class="form-group" style="{{ $status == 4 && auth()->user()->id == 1 ? '' : 'display: none;' }}">
+                    <label for="confirmed">CEO's Decision</label>
+                    <select class="form-control" id="confirmed" name="confirmed">
+                        @foreach ($confirmArray as $confirmName => $confirmId)
+                            <option value="{{ $confirmId }}">{{ ucfirst($confirmName) }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </form>
         </div>

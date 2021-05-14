@@ -59,8 +59,10 @@ class RecruitmentController extends Controller
         $title = 'Applicant Information';
 
         $users = User::all();
+        $statusArray = RecruitmentInfo::STATUS;
+        $confirmArray = RecruitmentInfo::CONFIRM;
         
-        return view('recruitment.show',compact('details','submission_id','title','remarks','status','users'));
+        return view('recruitment.show',compact('details','submission_id','title','remarks','status','statusArray','confirmArray','users'));
                 
     }
 
@@ -160,14 +162,20 @@ class RecruitmentController extends Controller
                 break;
 
             case 4:
+                
+                if($recruitmentInfo->confirmed == null)
+                {
+                    Mail::to(auth()->user()->email)
+                        ->queue(new RecruitmentApplicantSelected($emailData));
+                }
+
+                $recruitmentInfo->confirmed = $request->confirmed;
                 $recruitmentInfo->save();
                 
-                Mail::to(auth()->user()->email)
-                    ->queue(new RecruitmentApplicantSelected($emailData));
-
-                
                 break;
-            
+                
+            default:
+                $recruitmentInfo->save();
             
         }
 

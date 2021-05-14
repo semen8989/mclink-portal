@@ -19,7 +19,7 @@ class CreateRecruitmentInfoTable extends Migration
             $table->tinyInteger('status');
             $table->integer('number_of_interview')->nullable();
             $table->integer('interviewer_user_id')->nullable();
-            $table->string('confirmed')->nullable();
+            $table->tinyInteger('confirmed')->nullable();
             $table->timestamps();
         });
     }

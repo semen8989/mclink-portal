@@ -13,8 +13,14 @@ class RecruitmentInfo extends Model
         "Pending" => 0,
         "KIV" => 1,
         "Rejected" => 2,
-        "Next Interviewer" => 3,
+        "Next Interview" => 3,
         "Selected" => 4
+    ];
+
+    const CONFIRM = [
+        "Waiting" => 0,
+        "No" => 1,
+        "Yes" => 2
     ];
 
     public function user(){
