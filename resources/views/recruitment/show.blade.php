@@ -1050,12 +1050,17 @@
                                 <a class="btn btn-primary" href="{{ $details['123']['answer'][0] }}">Download Resume</a>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 col-form-label" for="file-multiple-input">Upload Other Files</label>
-                            <div class="col-md-9">
-                                <input id="custom_upload" type="file" name="custom-upload[]" multiple="true">
+                        <form action="">
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label" for="file-multiple-input">Upload Other Files</label>
+                                <div class="col-md-9">
+                                    <input id="custom_upload" type="file" name="custom_upload[]" multiple>
+                                </div>
                             </div>
-                        </div>
+                            <button class="btn btn-primary px-3 mr-1 mb-2 font-weight-bold float-right" id="submit" type="submit">
+                                Save
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

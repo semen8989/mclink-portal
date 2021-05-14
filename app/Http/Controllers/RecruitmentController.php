@@ -54,7 +54,7 @@ class RecruitmentController extends Controller
             $remarks = null;
         
         }
-
+        
         $details = $details['content']['answers'];
         $title = 'Applicant Information';
 
