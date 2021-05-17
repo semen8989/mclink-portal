@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             EmployeeAppraisalSeeder::class,
             NewEmployeeAppraisalSeeder::class,
-            RegularEmployeeAppraisalSeeder::class
+            RegularEmployeeAppraisalSeeder::class,
+            EmployeeAppraisalAccessSeeder::class
         ]);
     }
 }
