@@ -25,7 +25,7 @@ class NewEmployeeAppraisal extends Model
     public $timestamps = false;
 
     /**
-     * Get all of the appraisal access data for the regular employee appraisal.
+     * Get all of the appraisal access data for the new employee appraisal.
      */
     public function appraisalAccess()
     {
