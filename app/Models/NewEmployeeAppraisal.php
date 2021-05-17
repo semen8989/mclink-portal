@@ -10,6 +10,14 @@ class NewEmployeeAppraisal extends Model
 {
     use HasFactory;
 
+    const STATUS = [
+        1 => 'Outstanding',
+        2 => 'Exceeds Requirements',
+        3 => 'Meets Requirements',
+        4 => 'Needs Improvement',
+        5 => 'Unsatisfactory',
+    ];
+
     /**
      * The table associated with the model.
      *

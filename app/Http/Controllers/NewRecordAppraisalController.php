@@ -23,6 +23,17 @@ class NewRecordAppraisalController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title = __('label.e_appraisal_my_record.title.new_index');
+        return view('e_appraisal.my_record.new_employee.create', compact('title'));
+    }
+
+    /**
      * Remove the specified resource from storage (soft delete).
      *
      * @param  \App\Models\EmployeeAppraisal  $newEmployee
