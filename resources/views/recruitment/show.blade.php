@@ -1050,14 +1050,15 @@
                                 <a class="btn btn-primary" href="{{ $details['123']['answer'][0] }}">Download Resume</a>
                             </div>
                         </div>
-                        <form action="">
+                        <form action="{{ route('recruitment.custom_upload',$submission_id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label" for="file-multiple-input">Upload Other Files</label>
                                 <div class="col-md-9">
                                     <input id="custom_upload" type="file" name="custom_upload[]" multiple>
                                 </div>
                             </div>
-                            <button class="btn btn-primary px-3 mr-1 mb-2 font-weight-bold float-right" id="submit" type="submit">
+                            <button class="btn btn-primary px-3 mr-1 mb-2 font-weight-bold float-right" id="custom_upload" name="custom_upload" type="submit">
                                 Save
                             </button>
                         </form>

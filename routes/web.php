@@ -132,6 +132,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{submission_id}/details',[RecruitmentController::class, 'show'])->name('recruitment.show'); 
             
             Route::get('/submit/{submission_id}',[RecruitmentController::class, 'submit'])->name('recruitment.submit');
+            Route::post('/custom-upload/{submission_id}',[RecruitmentController::class, 'customUpload'])->name('recruitment.custom_upload');
         });
 
     });

@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\RecruitmentStringTrait;
+use App\Models\RecruitmentCustomUpload;
 use App\Mail\RecruitmentNextInterviewer;
 use App\Mail\RecruitmentApplicantSelected;
 
@@ -182,6 +183,31 @@ class RecruitmentController extends Controller
         
         
         return session()->flash('success', 'Applicant Information Updated Successfully!');
+
+    }
+
+    public function customUpload(Request $request,$submission_id)
+    {
+        if($request->hasFile('custom_upload')){   
+            
+            foreach ($request->file('custom_upload') as $file) {
+                $name = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time().'.'.$extension;
+                
+                $file->storeAs('recruitment_custom_upload',$fileName);
+
+                $upload = new RecruitmentCustomUpload;
+                $upload->submission_id = $submission_id;
+                $upload->orig_filename = $name;
+                $upload->file_name = $fileName;
+                $upload->save();
+                
+            }
+            
+            return back()->with('success','Custom Files Uploaded Successfully');
+        }
+
 
     }
 
