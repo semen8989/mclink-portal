@@ -1050,7 +1050,7 @@
                                 <a class="btn btn-primary" href="{{ $details['123']['answer'][0] }}">Download Resume</a>
                             </div>
                         </div>
-                        <form action="{{ route('recruitment.custom_upload',$submission_id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('recruitment.custom_upload',$data['submission_id']) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label" for="file-multiple-input">Upload Other Files</label>
@@ -1062,13 +1062,21 @@
                                 Save
                             </button>
                         </form>
+                        <table class="table table-condensed table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Uploaded Files</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-sm-12 mt-2">
-            <form id="submit_form" action="{{ route('recruitment.submit',$submission_id) }}">
+            <form id="submit_form" action="{{ route('recruitment.submit',$data['submission_id']) }}">
                 <div class="form-group">
                     <label for="remarks">Remarks</label>
                     <textarea class="form-control" id="remarks" name="remarks" rows="9">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
@@ -1076,15 +1084,15 @@
                 <div class="form-group">
                     <label for="remarks">Status</label>
                     <select class="form-control" id="status" name="status">
-                        @foreach ($statusArray as $statusName => $statusId)
-                            <option value="{{ $statusId }}" {{ $statusId == $status ? 'selected' : '' }}>{{ ucfirst($statusName) }}</option>
+                        @foreach ($data['statusArray'] as $statusName => $statusId)
+                            <option value="{{ $statusId }}" {{ $statusId == $data['status'] ? 'selected' : '' }}>{{ ucfirst($statusName) }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group" style="{{ $status != 3 ? 'display: none;' : '' }}" id="next_interviewer">
+                <div class="form-group" style="{{ $data['status'] != 3 ? 'display: none;' : '' }}" id="next_interviewer">
                     <label for="remarks">Next Interviewer</label>
                     <select class="form-control" id="interviewer_user_id" name="interviewer_user_id">
-                        @foreach($users as $user)
+                        @foreach($data['users'] as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>        
                         @endforeach
                     </select>
@@ -1092,10 +1100,10 @@
                 <div class="form-group" style="display: none;" id="selected_message">
                     <span class="badge badge-warning" style="font-size: 15px"><em><b>Selected/Hired</b> applicant is subject for confirmation from CEO.</em></span>
                 </div>
-                <div class="form-group" style="{{ $status == 4 && auth()->user()->id == 1 ? '' : 'display: none;' }}">
+                <div class="form-group" style="{{ $data['status'] == 4 && auth()->user()->id == 1 ? '' : 'display: none;' }}">
                     <label for="confirmed">CEO's Decision</label>
                     <select class="form-control" id="confirmed" name="confirmed">
-                        @foreach ($confirmArray as $confirmName => $confirmId)
+                        @foreach ($data['confirmArray'] as $confirmName => $confirmId)
                             <option value="{{ $confirmId }}">{{ ucfirst($confirmName) }}</option>
                         @endforeach
                     </select>

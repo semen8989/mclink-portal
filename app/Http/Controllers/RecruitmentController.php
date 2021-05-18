@@ -59,11 +59,16 @@ class RecruitmentController extends Controller
         $details = $details['content']['answers'];
         $title = 'Applicant Information';
 
-        $users = User::all();
-        $statusArray = RecruitmentInfo::STATUS;
-        $confirmArray = RecruitmentInfo::CONFIRM;
+        $data = [
+            'submission_id' => $submission_id,
+            'users' => User::all(),
+            'statusArray' => RecruitmentInfo::STATUS,
+            'confirmArray' => RecruitmentInfo::CONFIRM,
+            'remarks' => $remarks,
+            'status' => $status
+        ];
         
-        return view('recruitment.show',compact('details','submission_id','title','remarks','status','statusArray','confirmArray','users'));
+        return view('recruitment.show',compact('details','title','data'));
                 
     }
 
@@ -207,7 +212,6 @@ class RecruitmentController extends Controller
             
             return back()->with('success','Custom Files Uploaded Successfully');
         }
-
 
     }
 
