@@ -119,7 +119,7 @@
                     data-parent="#accordion">
                     <div class="card-body">
                         <p class="guest-form-label font-weight-bold mb-1">A. Written</p>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
@@ -180,7 +180,7 @@
                             </tbody>
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">B. Spoken</p>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
@@ -282,7 +282,7 @@
                             </tr>
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">Children</p>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -326,7 +326,7 @@
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">Other relatives in similar industry/sector as
                             Mclink</p>
-                        <table class="table table-responsive-sm table-bordered table-striped">
+                        <table class="table table-sm table-responsive-sm table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -391,7 +391,7 @@
                 <div class="collapse" id="collapseFour" role="tabpanel" aria-labelledby="headingFour"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped">
+                        <table class="table table-sm table-responsive-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Name of School/Institution (fill in where applicable)</th>
@@ -472,7 +472,7 @@
                 <div class="collapse" id="collapseFive" role="tabpanel" aria-labelledby="headingFive"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped">
+                        <table class="table table-sm table-responsive-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Name</th>
@@ -531,7 +531,7 @@
                 <div class="collapse" id="collapseSix" role="tabpanel" aria-labelledby="headingSix"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Organisation name</th>
@@ -570,7 +570,7 @@
                 <div class="collapse" id="collapseSeven" role="tabpanel" aria-labelledby="headingSeven"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped">
+                        <table class="table table-sm table-responsive-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Course</th>
@@ -617,7 +617,7 @@
                 <div class="collapse" id="collapseEight" role="tabpanel" aria-labelledby="headingEight"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Skill</th>
@@ -659,7 +659,7 @@
                     data-parent="#accordion">
                     <div class="card-body">
                         <p class="guest-form-label font-weight-bold mb-1">Employment History (1 of 5)</p>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-sm table-striped table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Period of Employment</th>
@@ -698,7 +698,7 @@
                             </tbody>
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">Employment History (2 of 5)</p>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-sm table-striped table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Period of Employment</th>
@@ -737,7 +737,7 @@
                             </tbody>
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">Employment History (3 of 5)</p>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-sm table-striped table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Period of Employment</th>
@@ -776,7 +776,7 @@
                             </tbody>
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">Employment History (4 of 5)</p>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-sm table-striped table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Period of Employment</th>
@@ -815,7 +815,7 @@
                             </tbody>
                         </table>
                         <p class="guest-form-label font-weight-bold mb-1">Employment History (5 of 5)</p>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-sm table-striped table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Period of Employment</th>
@@ -870,7 +870,7 @@
                 <div class="collapse" id="collapseTen" role="tabpanel" aria-labelledby="headingTen"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
@@ -897,7 +897,7 @@
                         </table>
 
                         <p class="guest-form-label font-weight-bold mb-1">Person to contact in-case of emergencies</p>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
@@ -924,7 +924,7 @@
                 <div class="collapse" id="collapseEleven" role="tabpanel" aria-labelledby="headingEleven"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Question</th>
@@ -1004,7 +1004,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-sm table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Question</th>
