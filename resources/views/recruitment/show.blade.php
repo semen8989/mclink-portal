@@ -231,36 +231,28 @@
                 <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingThree"
                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table table-striped table-bordered" style="table-layout: fixed;">
-                            <tr>
-                                <th>Name of Spouse</th>
-                                <td>{{ (!empty($details['37']['answer'])) ? $details['37']['answer'] : '---' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Age</th>
-                                <td>{{ (!empty($details['38']['answer'])) ? $details['38']['answer'] : '---' }}</td>
-                            </tr>
-                            <tr>
-                                <th>ID No. / Password No.</th>
-                                <td>{{ (!empty($details['39']['answer'])) ? $details['39']['answer'] : '---' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Occupation</th>
-                                <td>{{ (!empty($details['40']['answer'])) ? $details['40']['answer'] : '---' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Contact Number</th>
-                                <td>{{ (!empty($details['41']['answer'])) ? $details['41']['answer'] : '---' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Employer</th>
-                                <td>{{ (!empty($details['42']['answer'])) ? $details['42']['answer'] : '---' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Number of Children</th>
-                                <td>{{ (!empty($details['43']['answer'])) ? $details['43']['answer'] : '---' }}</td>
-                            </tr>
-                        </table>
+                        <dl class="row">
+                            <dt class="col-sm-3">Name of Spouse</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['37']['answer'])) ? $details['37']['answer'] : '---' }}</dd>
+
+                            <dt class="col-sm-3">Age</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['38']['answer'])) ? $details['38']['answer'] : '---' }}</dd>
+
+                            <dt class="col-sm-3">ID No. / Password No.</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['39']['answer'])) ? $details['39']['answer'] : '---' }}</dd>
+
+                            <dt class="col-sm-3">Occupation</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['40']['answer'])) ? $details['40']['answer'] : '---' }}</dd>
+
+                            <dt class="col-sm-3">Contact Number</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['41']['answer'])) ? $details['41']['answer'] : '---' }}</dd>
+
+                            <dt class="col-sm-3">Employer</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['42']['answer'])) ? $details['42']['answer'] : '---' }}</dd>
+
+                            <dt class="col-sm-3">Number of Children</dt>
+                            <dd class="col-sm-9">{{ (!empty($details['43']['answer'])) ? $details['43']['answer'] : '---' }}</dd>
+                        </dl>
                         <p class="guest-form-label font-weight-bold mb-1">Children</p>
                         <table class="table table-sm table-bordered table-striped">
                             <thead>
