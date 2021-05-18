@@ -198,7 +198,7 @@ class RecruitmentController extends Controller
             foreach ($request->file('custom_upload') as $file) {
                 $name = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
-                $fileName = time().'.'.$extension;
+                $fileName = uniqid().'.'.$extension;
                 
                 $file->storeAs('recruitment_custom_upload',$fileName);
 
