@@ -3,17 +3,15 @@
 @section('content')
 <form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
   @csrf
-  <select class="form-control" name="customer[]" id="customer" multiple></select>
-    
+
   <div class="card-header">{{ __('label.service_report.form.header.main') }}</div>
   <div class="card-body">
     
-   
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
             <label class="col-form-label font-weight-bold" for="customer">{{ __('label.service_report.form.label.cust_name') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
-                
+                <select class="form-control custom-select @error('customer') is-invalid @enderror" name="customer" id="customer"></select>
                 @error('customer')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
@@ -29,6 +27,48 @@
             </div>
         </div> --}}
     </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label" for="review_period_from">{{ __('label.service_report.form.label.service_start') }}</label>
+            <div class="controls">
+                <input class="form-control @error('review_period_from') is-invalid @enderror" name="review_period_from" id="review_period_from" type="text" value=""> 
+                @error('review_period_from')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label" for="review_period_to">{{ __('label.service_report.form.label.service_end') }}</label>
+            <div class="controls">
+                <input class="form-control @error('review_period_to') is-invalid @enderror" name="review_period_to" id="review_period_to" type="text" value=""> 
+                @error('review_period_to')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="customer">{{ __('label.service_report.form.label.cust_name') }} <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <select class="form-control" name="customer[]" id="customer" multiple></select>
+                @error('customer')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        {{-- <div class="form-group col-md-6">
+            <label class="col-form-label" for="custEmail">{{ __('label.service_report.form.label.cust_email') }}</label>
+            <div class="controls">
+                <input class="form-control @error('custEmail') is-invalid @enderror" name="custEmail" id="custEmail" type="email" value="{{ old('custEmail', $csrNo ? '' : $serviceReport->customer->email) }}"> 
+                @error('custEmail')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div> --}}
 
     {{-- <div class="form-row">
         <div class="form-group col-md-6">
@@ -276,8 +316,8 @@
     $( document ).ready(function() {
 
       // return formatted email for customer drop down
-      function concatenateEmailVal ($email) {
-        return ' ( ' + $email + ' )';
+      function concatenateDesignation ($designation) {
+        return ' ( ' + $designation + ' )';
       }
 
       // init Date field
@@ -287,12 +327,12 @@
 
       // init Start of Service field
       $serviceStartField = $('#serviceStart').datetimepicker({
-        format: 'DD/MM/YYYY hh:mm A'
+        format: 'DD/MM/YYYY'
       });
 
       // init End of Service field
       $serviceEndField = $('#serviceEnd').datetimepicker({
-        format: 'DD/MM/YYYY hh:mm A'
+        format: 'DD/MM/YYYY'
       });
 
       // init Service Rendered field
@@ -318,7 +358,7 @@
       $('#customer').select2({
         theme: "bootstrap",
         ajax: {
-            url: "{{ route('get.customers') }}",
+            url: "{{ route('get.employees') }}",
             type: 'get',
             dataType: 'json',
             delay: 250,
@@ -335,14 +375,12 @@
               params.page = params.page || 1;
 
               var items = data.data.map(function(item) {
-                let email = item.email ? concatenateEmailVal(item.email) : '';
+                let designation = item.designation.designation_name ? concatenateDesignation(item.designation.designation_name) : '';
 
                 return { 
                   id: item.id,
-                  text: item.name + email,
-                  name: item.name,
-                  email: item.email,
-                  address: item.address
+                  text: item.name + designation,
+                  name: item.name
                 };
               });
               

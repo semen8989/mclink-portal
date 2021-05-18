@@ -69,6 +69,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
+
+    /**
+     * Get the designation that owns the user.
+     */
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
   
     public function roles()
     {

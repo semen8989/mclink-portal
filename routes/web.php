@@ -10,6 +10,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
@@ -117,8 +118,11 @@ Route::middleware(['auth'])->group(function () {
         // Customer Route
         Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
 
+        // Employee Route
+        Route::get('/employees/typeahead', [EmployeeController::class, 'get'])->name('get.employees');
+
         // User Route
-        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');    
 
         // KPI Main Rating Route
         Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
