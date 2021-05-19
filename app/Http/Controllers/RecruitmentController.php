@@ -47,15 +47,7 @@ class RecruitmentController extends Controller
 
         }
 
-        if(RecruitmentRemark::where('submission_id','=',$submission_id)->exists()){
-            
-            $remarks = RecruitmentRemark::where('submission_id','=',$submission_id)->first()->remarks;
-        
-        }else{
-
-            $remarks = null;
-        
-        }
+        $remarks = RecruitmentRemark::where('submission_id','=',$submission_id)->get();
         
         $details = $details['content']['answers'];
         $title = 'Applicant Information';
@@ -124,24 +116,13 @@ class RecruitmentController extends Controller
 
     public function submit(Request $request, $submission_id)
     {   
-        $request->validate([
-            'remarks' => 'required',
-        ]);
-
-        if(RecruitmentRemark::where('submission_id', '=', $submission_id)->exists()){
-            
-            $remarks = RecruitmentRemark::where('submission_id', '=', $submission_id)->first();
-            $remarks->remarks = $request->remarks;
-            $remarks->save();
-
-        }else{
-            
+        if($request->remarks != null)
+        {
             $remarks = new RecruitmentRemark;
             $remarks->submission_id = $submission_id;
             $remarks->user_id = auth()->user()->id;
             $remarks->remarks = $request->remarks;
-            $remarks->save();
-        
+            $remarks->save();   
         }
         //Send email base on condition
         $details = Http::get('https://api.jotform.com/submission/'.$submission_id.'?apiKey='.env('APPLICATION_FORM_API'));
@@ -203,7 +184,7 @@ class RecruitmentController extends Controller
                 
                 $storagePath = Storage::putFile('recruitment_files', $file);
                 $fileName = basename($storagePath);
-                
+
                 $upload = new RecruitmentCustomUpload;
                 $upload->submission_id = $submission_id;
                 $upload->orig_filename = $name;

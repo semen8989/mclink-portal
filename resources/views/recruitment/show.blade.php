@@ -1062,12 +1062,26 @@
 
         <div class="col-sm-12 mt-2">
             <form id="submit_form" action="{{ route('recruitment.submit',$data['submission_id']) }}">
+                @if(count($data['remarks']) > 0)     
+                    <div class="form-group">
+                        <label for="remarks"><h3>Feedback</h3></label>
+                        <blockquote class="blockquote">
+                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        </blockquote>
+                        <label for="remarks"><h3>Feedback</h3></label>
+                        <blockquote class="blockquote">
+                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        </blockquote>
+                    </div>
+                @endif
                 <div class="form-group">
-                    <label for="remarks">Remarks</label>
-                    <textarea class="form-control" id="remarks" name="remarks" rows="9">{{ (!empty($remarks)) ? $remarks : '' }}</textarea>
+                    <label for="remarks"><h3>Remarks</h3></label>
+                    <textarea class="form-control" id="remarks" name="remarks" rows="9"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="remarks">Status</label>
+                    <label for="remarks"><h3>Status</h3></label>
                     <select class="form-control" id="status" name="status">
                         @foreach ($data['statusArray'] as $statusName => $statusId)
                             <option value="{{ $statusId }}" {{ $statusId == $data['status'] ? 'selected' : '' }}>{{ ucfirst($statusName) }}</option>
