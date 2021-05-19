@@ -133,7 +133,7 @@ Route::middleware(['auth'])->group(function () {
             
             Route::get('/submit/{submission_id}',[RecruitmentController::class, 'submit'])->name('recruitment.submit');
             Route::post('/custom-upload/{submission_id}',[RecruitmentController::class, 'customUpload'])->name('recruitment.custom_upload');
-            Route::get('/download-attachment/{file_name}',[RecruitmentController::class, 'downloadAttachment'])->name('recruitment.download_attachment');
+            Route::get('/download-attachment/{fileName}/{origFilename}',[RecruitmentController::class, 'downloadAttachment'])->name('recruitment.download_attachment');
         });
 
     });

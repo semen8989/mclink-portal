@@ -200,26 +200,26 @@ class RecruitmentController extends Controller
             foreach ($request->file('custom_upload') as $file) {
                 $name = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
-                $fileName = uniqid().'.'.$extension;
                 
-                $file->storeAs('recruitment_files',$fileName);
-
+                $storagePath = Storage::putFile('recruitment_files', $file);
+                $fileName = basename($storagePath);
+                
                 $upload = new RecruitmentCustomUpload;
                 $upload->submission_id = $submission_id;
                 $upload->orig_filename = $name;
                 $upload->file_name = $fileName;
                 $upload->save();
                 
+                return back()->with('success','Custom Files Uploaded Successfully');
             }
             
-            return back()->with('success','Custom Files Uploaded Successfully');
         }
 
     }
 
-    public function downloadAttachment($file_name)
+    public function downloadAttachment($fileName,$origFileName)
     {
-        return Storage::disk('public')->download('recruitment_files/'.$file_name);
+        return Storage::disk('public')->download('recruitment_files/'.$fileName,$origFileName);
     }
 
 }

@@ -1049,7 +1049,7 @@
                                     @foreach($data['customUploads'] as $upload)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td><a href="{{ route('recruitment.download_attachment',$upload->file_name) }}">{{ $upload->orig_filename }}</a></td>
+                                            <td><a href="{{ route('recruitment.download_attachment',['fileName' => $upload->file_name,'origFilename' => $upload->orig_filename]) }}">{{ $upload->orig_filename }}</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
