@@ -1034,14 +1034,27 @@
                                 Save
                             </button>
                         </form>
-                        <table class="table table-condensed table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Uploaded Files</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        @if(!empty($data['customUploads']))    
+                            <table class="table table-condensed table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Uploaded Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach($data['customUploads'] as $upload)
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            <td><a href="{{ route('recruitment.download_attachment',$upload->file_name) }}">{{ $upload->orig_filename }}</a></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
                 </div>
             </div>

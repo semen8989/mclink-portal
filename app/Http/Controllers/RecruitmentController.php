@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\RecruitmentStringTrait;
 use App\Models\RecruitmentCustomUpload;
+use Illuminate\Support\Facades\Storage;
 use App\Mail\RecruitmentNextInterviewer;
 use App\Mail\RecruitmentApplicantSelected;
 
@@ -64,6 +65,7 @@ class RecruitmentController extends Controller
             'users' => User::all(),
             'statusArray' => RecruitmentInfo::STATUS,
             'confirmArray' => RecruitmentInfo::CONFIRM,
+            'customUploads' => RecruitmentCustomUpload::where('submission_id','=',$submission_id)->get(),
             'remarks' => $remarks,
             'status' => $status
         ];
@@ -200,7 +202,7 @@ class RecruitmentController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $fileName = uniqid().'.'.$extension;
                 
-                $file->storeAs('recruitment_custom_upload',$fileName);
+                $file->storeAs('recruitment_files',$fileName);
 
                 $upload = new RecruitmentCustomUpload;
                 $upload->submission_id = $submission_id;
@@ -213,6 +215,11 @@ class RecruitmentController extends Controller
             return back()->with('success','Custom Files Uploaded Successfully');
         }
 
+    }
+
+    public function downloadAttachment($file_name)
+    {
+        return Storage::disk('public')->download('recruitment_files/'.$file_name);
     }
 
 }
