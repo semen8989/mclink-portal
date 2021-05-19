@@ -9,28 +9,19 @@
     
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="customer">{{ __('label.service_report.form.label.cust_name') }} <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="user_id">{{ __('label.service_report.form.label.cust_name') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
-                <select class="form-control custom-select @error('customer') is-invalid @enderror" name="customer" id="customer"></select>
-                @error('customer')
+                <select class="form-control custom-select @error('user_id') is-invalid @enderror" name="user_id" id="user_id"></select>
+                @error('user_id')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        {{-- <div class="form-group col-md-6">
-            <label class="col-form-label" for="custEmail">{{ __('label.service_report.form.label.cust_email') }}</label>
-            <div class="controls">
-                <input class="form-control @error('custEmail') is-invalid @enderror" name="custEmail" id="custEmail" type="email" value="{{ old('custEmail', $csrNo ? '' : $serviceReport->customer->email) }}"> 
-                @error('custEmail')
-                <span class="help-block text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div> --}}
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label" for="review_period_from">{{ __('label.service_report.form.label.service_start') }}</label>
+            <label class="col-form-label font-weight-bold" for="review_period_from">{{ __('label.service_report.form.label.service_start') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <input class="form-control @error('review_period_from') is-invalid @enderror" name="review_period_from" id="review_period_from" type="text" value=""> 
                 @error('review_period_from')
@@ -39,7 +30,7 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label" for="review_period_to">{{ __('label.service_report.form.label.service_end') }}</label>
+            <label class="col-form-label font-weight-bold" for="review_period_to">{{ __('label.service_report.form.label.service_end') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <input class="form-control @error('review_period_to') is-invalid @enderror" name="review_period_to" id="review_period_to" type="text" value=""> 
                 @error('review_period_to')
@@ -48,6 +39,310 @@
             </div>
         </div>
     </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold">Purpose of Appraisal <span class="font-weight-bold">*</span></label>
+            <div class="controls">               
+                @foreach($purposeOptions as $optionKey => $optionVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="purpose" id="purpose{{ $optionKey }}" value="{{ $optionKey }}">
+                        <label class="form-check-label" for="purpose{{ $optionKey }}">{{ $optionVal }} </label>
+                    </div>  
+                @endforeach
+                @error('review_period_from')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold" for="pf_score">1. Performance factor <span class="font-weight-bold">*</span></label><br>
+            <span>Enter score (0 - 5)</span>
+            <div class="controls pt-2">
+                <input class="form-control @error('pf_score') is-invalid @enderror" name="pf_score" id="pf_score" type="text" value="" placeholder="ex. 2.5"> 
+                @error('pf_score')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="qow_score">2. Quality of work <span class="font-weight-bold">*</span></label><br>
+            <span>Enter score (0 - 5)</span>
+            <div class="controls pt-2">
+                <input class="form-control @error('qow_score') is-invalid @enderror" name="qow_score" id="qow_score" type="text" value="" placeholder="ex. 2.5"> 
+                @error('qow_score')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="wh_score">3. Work habits <span class="font-weight-bold">*</span></label><br>
+            <span>Enter score (0 - 5)</span>
+            <div class="controls pt-2">
+                <input class="form-control @error('wh_score') is-invalid @enderror" name="wh_score" id="wh_score" type="text" value="" placeholder="ex. 2.5"> 
+                @error('wh_score')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold">Consider: accuracy; neatness; timeliness; attention to detail; volume/quantity requirements; adherence to duties and procedures in Job Description and Work Instruction. <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                @foreach($appraisalStatus as $statusKey => $statusVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="qow_level" id="qow_level{{ $statusKey }}" value="{{ $statusKey }}">
+                        <label class="form-check-label" for="qow_level{{ $statusKey }}">{{ $statusVal }} </label>
+                    </div>  
+                @endforeach
+                @error('qow_level')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold">Consider: attendance; punctuality; organization. Does the employee stay busy; look for things to do; and follow company policies and work procedures? <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                @foreach($appraisalStatus as $statusKey => $statusVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="wh_level" id="wh_level{{ $statusKey }}" value="{{ $statusKey }}">
+                        <label class="form-check-label" for="wh_level{{ $statusKey }}">{{ $statusVal }} </label>
+                    </div>  
+                @endforeach
+                @error('wh_level')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="qow_comment">Comments <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <textarea class="form-control @error('qow_comment') is-invalid @enderror" name="qow_comment" id="qow_comment" rows="5"></textarea>
+                @error('qow_comment')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="wh_comment">Comments <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <textarea class="form-control @error('wh_comment') is-invalid @enderror" name="wh_comment" id="wh_comment" rows="5"></textarea>
+                @error('wh_comment')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="jk_score">4. Job Knowledge <span class="font-weight-bold">*</span></label><br>
+            <span>Enter score (0 - 5)</span>
+            <div class="controls pt-2">
+                <input class="form-control @error('jk_score') is-invalid @enderror" name="jk_score" id="jk_score" type="text" value="" placeholder="ex. 2.5"> 
+                @error('jk_score')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="bro_score">5. Behavior/Relations with others <span class="font-weight-bold">*</span></label><br>
+            <span>Enter score (0 - 5)</span>
+            <div class="controls pt-2">
+                <input class="form-control @error('bro_score') is-invalid @enderror" name="bro_score" id="bro_score" type="text" value="" placeholder="ex. 2.5"> 
+                @error('bro_score')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold">For example, has the employee demonstrated the skill and ability to perform the job satisfactorily, shown interest in learning and improving, and become familiar with our rules and policies in the Employee Handbook? <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                @foreach($appraisalStatus as $statusKey => $statusVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jk_level" id="jk_level{{ $statusKey }}" value="{{ $statusKey }}">
+                        <label class="form-check-label" for="jk_level{{ $statusKey }}">{{ $statusVal }} </label>
+                    </div>
+                @endforeach
+                @error('jk_level')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold">For example, does the employee cooperate and contribute to team efforts, respond positively to suggestions and instructions or criticism, keep supervisors informed of important details, and adapt well to changing circumstances? <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                @foreach($appraisalStatus as $statusKey => $statusVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bro_level" id="bro_level{{ $statusKey }}" value="{{ $statusKey }}">
+                        <label class="form-check-label" for="bro_level{{ $statusKey }}">{{ $statusVal }} </label>
+                    </div>  
+                @endforeach
+                @error('bro_level')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="jk_comment">Comments <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <textarea class="form-control @error('jk_comment') is-invalid @enderror" name="jk_comment" id="jk_comment" rows="5"></textarea>
+                @error('jk_comment')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label font-weight-bold" for="bro_comment">Comments <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <textarea class="form-control @error('bro_comment') is-invalid @enderror" name="bro_comment" id="bro_comment" rows="5"></textarea>
+                @error('bro_comment')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+    
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold">6. Overall Progress <span class="font-weight-bold">*</span></label>
+            <div class="controls">            
+                @foreach($progressStatus as $statusKey => $statusVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="overall_progress" id="overall_progress{{ $statusKey }}" value="{{ $statusKey }}">
+                        <label class="form-check-label" for="overall_progress{{ $statusKey }}">{{ $statusVal }} </label>
+                    </div>
+                @endforeach
+                @error('overall_progress')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold" for="progress_comment">Comment <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <textarea class="form-control @error('progress_comment') is-invalid @enderror" name="progress_comment" id="progress_comment" rows="5"></textarea>
+                @error('progress_comment')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold">7. Recommendation <span class="font-weight-bold">*</span></label>
+            <div class="controls">            
+                @foreach($recommendationOptions as $optionKey => $optionVal)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="recommendation" id="recommendation{{ $optionKey }}" value="{{ $optionKey }}">
+                        <label class="form-check-label" for="recommendation{{ $optionKey }}">{{ $optionVal }} </label>
+                    </div>
+                @endforeach
+                @error('review_period_from')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold" for="review_date">8. Review On <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <input class="form-control @error('review_date') is-invalid @enderror" name="review_date" id="review_date" type="text" value=""> 
+                @error('review_date')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold" for="final_comment">9. Final Comments <span class="font-weight-bold">*</span></label>
+            <div class="controls">
+                <textarea class="form-control @error('final_comment') is-invalid @enderror" name="final_comment" id="final_comment" rows="5"></textarea>
+                @error('final_comment')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="col-form-label font-weight-bold" for="shared">10. Share this appraisal to</label>
+            <div class="controls">
+                <select class="form-control custom-select @error('shared') is-invalid @enderror" name="shared[]" id="shared" multiple></select>
+                @error('shared')
+                <span class="help-block text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    {{-- <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <label class="form-check-label" for="gridRadios1">
+                First radio
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+              <label class="form-check-label" for="gridRadios2">
+                Second radio
+              </label>
+            </div>
+            <div class="form-check disabled">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+              <label class="form-check-label" for="gridRadios3">
+                Third disabled radio
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset> --}}
 
     {{-- <div class="form-row">
         <div class="form-group col-md-6">
@@ -320,19 +615,19 @@
         return ' ( ' + $designation + ' )';
       }
 
-      // init Date field
-      $dateField = $('#date').datetimepicker({
-        format: 'DD/MM/YYYY',
-      });
-
       // init Start of Service field
-      $serviceStartField = $('#serviceStart').datetimepicker({
+      $reviewPeriodFrom = $('#review_period_from').datetimepicker({
         format: 'DD/MM/YYYY'
       });
 
       // init End of Service field
-      $serviceEndField = $('#serviceEnd').datetimepicker({
+      $reviewPeriodTo = $('#review_period_to').datetimepicker({
         format: 'DD/MM/YYYY'
+      });
+
+      // init Date field
+      $dateField = $('#date').datetimepicker({
+        format: 'DD/MM/YYYY',
       });
 
       // init Service Rendered field
@@ -355,7 +650,7 @@
       $('#usedItCredit').inputSpinner();
 
       // init Customer Name select2
-      $('#customer').select2({
+      $('#user_id').select2({
         theme: "bootstrap",
         ajax: {
             url: "{{ route('get.employees') }}",
@@ -394,8 +689,6 @@
             cache: true
         }
       });
-      $('#customer').next().css('display', "{{ old('isNewCustomer') ? 'none' : 'block' }}");
-      $('#customer').prop('disabled', "{{ old('isNewCustomer') }}");
 
       // init Service Engineer Name select2
       $('#engineerId').select2({
@@ -435,30 +728,52 @@
         }
       });
 
-      $('#customer').on('select2:selecting', function (e) {
+      // init Customer Name select2
+      $('#shared').select2({
+        ajax: {
+            url: "{{ route('get.employees') }}",
+            type: 'get',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                var query = {
+                    search: params.term || '',
+                    page: params.page || 1
+                }
+
+                return query;
+            },
+            processResults: function (data, params) {
+
+              params.page = params.page || 1;
+
+              var items = data.data.map(function(item) {
+                return { 
+                  id: item.id,
+                  text: item.name
+                };
+              });
+              
+              return {
+                results: items,
+                pagination: {
+                  more: (params.page * 10) < data.total
+                }
+              };
+            },
+            cache: true
+        }
+      });
+
+      $('#user_id').on('select2:selecting', function (e) {
         var data = e.params.args.data;
         data.text = data.name;
       });
 
-      $('#customer').on('select2:select', function (e) {
+      $('#user_id').on('select2:select', function (e) {
         var data = e.params.data;
         $('#custEmail').val(data.email);
         $('#address').val(data.address);
-      });
-
-      $('#isNewCustomer').change(function() {
-        if (this.checked) {
-          $('#newCustomer').val('');
-          $('#custEmail').val('');
-          $('#address').val('');
-        }
-
-        $('#customer').next().css('display',  this.checked ? 'none' : 'block');
-        $('#customer ~ .help-block').css('display',  this.checked ? 'none' : 'block');
-        $('#customer').prop('disabled', this.checked);
-        $('#newCustomer').attr('type', this.checked ? 'text' : 'hidden');
-        $('#newCustomer ~ .help-block').css('display',  this.checked ? 'block' : 'none');
-        $('#newCustomer').prop('disabled', !this.checked);
       });
       
       $('#serviceReportForm').find(':submit').click(function() {
@@ -469,8 +784,8 @@
         $(this).find(':submit').prop('disabled', true);
         
         $dateField.data("DateTimePicker").format('YYYY-MM-DD');
-        $serviceStartField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
-        $serviceEndField.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
+        $reviewPeriodFrom.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
+        $reviewPeriodTo.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
       });
     });
   </script>

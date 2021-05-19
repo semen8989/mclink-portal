@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DataTables\MyRecordAppraisalDataTable;
 use App\Models\EmployeeAppraisal;
+use App\Models\NewEmployeeAppraisal;
 
 class NewRecordAppraisalController extends Controller
 {
@@ -30,7 +31,13 @@ class NewRecordAppraisalController extends Controller
     public function create()
     {
         $title = __('label.e_appraisal_my_record.title.new_index');
-        return view('e_appraisal.my_record.new_employee.create', compact('title'));
+
+        $purposeOptions = NewEmployeeAppraisal::getPurposeOptionList();
+        $appraisalStatus = NewEmployeeAppraisal::getAppraisalStatusList();
+        $progressStatus = NewEmployeeAppraisal::getProgressStatusList();
+        $recommendationOptions = NewEmployeeAppraisal::getrecommendationOptionList();   
+
+        return view('e_appraisal.my_record.new_employee.create', compact('title', 'purposeOptions', 'appraisalStatus', 'progressStatus', 'recommendationOptions'));
     }
 
     /**
