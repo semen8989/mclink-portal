@@ -81,9 +81,13 @@ class RecruitmentController extends Controller
                 return $collection['answers']['11']['answer'];
             })->editColumn('gender', function ($collection) {
                 return $collection['answers']['16']['answer'];
+            })->editColumn('date_applied', function ($collection) {
+                return $this->dateFormat($collection['created_at']);
+            })->editColumn('sort_date', function ($collection) {
+                return substr($collection['created_at'],0,10);
             })->editColumn('status', function ($collection) {
 
-                if(!(RecruitmentInfo::where('submission_id', '=', $collection['id'])->exists())){
+                if(!(RecruitmentInfo::where('submission_id','=', $collection['id'])->exists())){
                     $index = 0;
                 }else{
                     $index = RecruitmentInfo::where('submission_id', '=', $collection['id'])->first()->status;

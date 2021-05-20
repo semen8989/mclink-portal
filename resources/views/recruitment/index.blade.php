@@ -26,6 +26,7 @@
     <!-- Javscript -->
     <script>
         $('#recruitment-table').DataTable({
+            scrollX: false,
             processing: true,
             serverSide: true,
             ajax: {
@@ -35,8 +36,18 @@
                 {data: 'name', name: 'name', title: 'Name'},
                 {data: 'position', name: 'position', title: 'Position Apply For'},
                 {data: 'gender', name: 'gender', title: 'Gender'},
+                {data: 'date_applied', name: 'date_applied', type: 'date', title: 'Date Applied'},
+                {data: 'sort_date', name: 'sort_date', type: 'date', title: 'Sort Date'},
                 {data: 'status', name: 'status', title: 'Status'}
             ],
+            columnDefs: [
+                {
+                    targets: [ 4 ],
+                    visible: false,
+                    searchable: false
+                }
+            ],
+            order: [[ 4, "desc" ]],
             buttons: [
                 
             ],
