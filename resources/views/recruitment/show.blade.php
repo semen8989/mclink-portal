@@ -1109,16 +1109,16 @@
                 </label>
                 <select class="form-control" id="status" name="status">
                     @foreach ($data['statusArray'] as $statusName => $statusId)
-                    <option value="{{ $statusId }}" {{ $statusId == $data['status'] ? 'selected' : '' }}>
-                        {{ ucfirst($statusName) }}</option>
+                        <option value="{{ $statusId }}" {{ $statusId == $data['recruitmentInfo']->status ? 'selected' : '' }}>
+                            {{ ucfirst($statusName) }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="form-group" style="{{ $data['status'] != 3 ? 'display: none;' : '' }}" id="next_interviewer">
+            <div class="form-group" style="{{ $data['recruitmentInfo']->status != 3 ? 'display: none;' : '' }}" id="next_interviewer">
                 <label for="remarks">Next Interviewer</label>
                 <select class="form-control" id="interviewer_user_id" name="interviewer_user_id">
                     @foreach($data['users'] as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -1126,11 +1126,13 @@
                 <span class="badge badge-warning" style="font-size: 15px"><em><b>Selected/Hired</b> applicant is subject
                         for confirmation from CEO.</em></span>
             </div>
-            <div class="form-group" style="{{ $data['status'] == 4 && auth()->user()->id == 1 ? '' : 'display: none;' }}">
-                <label for="confirmed">CEO's Decision</label>
+            <div class="form-group" style="{{ $data['recruitmentInfo']->status == 4 && auth()->user()->id == 1 ? '' : 'display: none;' }}">
+                <label for="confirmed">
+                    <h3>CEO's Decision</h3>
+                </label>
                 <select class="form-control" id="confirmed" name="confirmed">
-                    @foreach ($data['confirmArray'] as $confirmName => $confirmId)
-                    <option value="{{ $confirmId }}">{{ ucfirst($confirmName) }}</option>
+                    @foreach($data['confirmArray'] as $confirmName => $confirmId)
+                        <option value="{{ $confirmId }}" {{ $confirmId == $data['recruitmentInfo']->confirmed ? 'selected' : '' }}>{{ ucfirst($confirmName) }}</option>
                     @endforeach
                 </select>
             </div>

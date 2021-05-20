@@ -38,12 +38,10 @@ class RecruitmentController extends Controller
             $recruitmentInfo->submission_id = $submission_id;
             $recruitmentInfo->status = 0;
             $recruitmentInfo->save();
-
-            $status = 0;
         
         }else{
 
-            $status = RecruitmentInfo::where('submission_id', '=', $submission_id)->first()->status;
+            $recruitmentInfo = RecruitmentInfo::where('submission_id', '=', $submission_id)->first();
 
         }
 
@@ -59,7 +57,7 @@ class RecruitmentController extends Controller
             'confirmArray' => RecruitmentInfo::CONFIRM,
             'customUploads' => RecruitmentCustomUpload::where('submission_id','=',$submission_id)->get(),
             'remarks' => $remarks,
-            'status' => $status
+            'recruitmentInfo' => $recruitmentInfo
         ];
         
         return view('recruitment.show',compact('details','title','data'));
