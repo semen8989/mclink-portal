@@ -47,7 +47,7 @@ class RecruitmentController extends Controller
 
         $remarks = RecruitmentRemark::where('submission_id','=',$submission_id)->get();
         
-        $details = $details['content']['answers'];
+        $details = $details['content'];
         $title = 'Applicant Information';
 
         $data = [

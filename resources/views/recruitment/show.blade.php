@@ -8,12 +8,16 @@
     <table class="table table-striped table-bordered" style="table-layout: fixed;">
         <tbody>
             <tr>
+                <th>Date Applied</th>
+                <td>{{ $details['created_at'] }}</td>
+            </tr>
+            <tr>
                 <th>Position Applying For</th>
-                <td>{{ $details['11']['answer'] }}</td>
+                <td>{{ $details['answers']['11']['answer'] }}</td>
             </tr>
             <tr>
                 <th>Expected Salary</th>
-                <td>{{ $details['12']['answer'] }}</td>
+                <td>{{ $details['answers']['12']['answer'] }}</td>
             </tr>
         </tbody>
     </table>
@@ -29,73 +33,73 @@
                     <dl class="row">
                         <dt class="col-sm-3">Name</dt>
                         <dd class="col-sm-9">
-                            {{ $details['15']['answer']['first'] ." ". $details['15']['answer']['last'] }}</dd>
+                            {{ $details['answers']['15']['answer']['first'] ." ". $details['answers']['15']['answer']['last'] }}</dd>
 
                         <dt class="col-sm-3">Gender</dt>
-                        <dd class="col-sm-9">{{ $details['16']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ $details['answers']['16']['answer'] }}</dd>
 
                         <dt class="col-sm-3">Religion</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['17']['answer'])) ? $details['17']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['17']['answer'])) ? $details['answers']['17']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">ID No. / Passport No.</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['18']['answer'])) ? $details['18']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['18']['answer'])) ? $details['answers']['18']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Date of Birth(DD/MM/YYYY)</dt>
                         <dd class="col-sm-9">
-                            {{ (!empty($details['19']['answer'])) ? $details['19']['prettyFormat'] : '---' }}</dd>
+                            {{ (!empty($details['answers']['19']['answer'])) ? $details['answers']['19']['prettyFormat'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Age</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['20']['answer'])) ? $details['20']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['20']['answer'])) ? $details['answers']['20']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Country of Birth</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['21']['answer'])) ? $details['21']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['21']['answer'])) ? $details['answers']['21']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Nationality</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['22']['answer'])) ? $details['22']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['22']['answer'])) ? $details['answers']['22']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Citizenship</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['23']['answer'])) ? $details['23']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['23']['answer'])) ? $details['answers']['23']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Permanent Residence</dt>
-                        <dd class="col-sm-9">{{ $details['24']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ $details['answers']['24']['answer'] }}</dd>
 
                         <dt class="col-sm-3">Marital Status</dt>
                         <dd class="col-sm-9">
-                            @if(!empty($details['25']['answer']['other']))
-                            {{ $details['25']['answer']['other'] }}
-                            @elseif(!empty($details['25']['answer']))
-                            {{ $details['25']['answer'] }}
+                            @if(!empty($details['answers']['25']['answer']['other']))
+                            {{ $details['answers']['25']['answer']['other'] }}
+                            @elseif(!empty($details['answers']['25']['answer']))
+                            {{ $details['answers']['25']['answer'] }}
                             @else
                             ---
                             @endif
                         </dd>
 
                         <dt class="col-sm-3">Driving License</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['26']['answer'])) ? $details['26']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['26']['answer'])) ? $details['answers']['26']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Home Address</dt>
-                        <dd class="col-sm-9">{{ $details['27']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ $details['answers']['27']['answer'] }}</dd>
 
                         <dt class="col-sm-3">Mailing Address</dt>
                         <dd class="col-sm-9">
-                            {{ (!empty($details['128']['answer'])) ? $details['128']['answer'] : '---' }}</dd>
+                            {{ (!empty($details['answers']['128']['answer'])) ? $details['answers']['128']['answer'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Email</dt>
-                        <dd class="col-sm-9">{{ $details['28']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ $details['answers']['28']['answer'] }}</dd>
 
                         <dt class="col-sm-3">Home Telephone</dt>
                         <dd class="col-sm-9">
-                            {{ (!empty($details['29']['prettyFormat'])) ? $details['29']['prettyFormat'] : '---' }}</dd>
+                            {{ (!empty($details['answers']['29']['prettyFormat'])) ? $details['answers']['29']['prettyFormat'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Mobile Phone</dt>
-                        <dd class="col-sm-9">{{ $details['30']['prettyFormat'] }}</dd>
+                        <dd class="col-sm-9">{{ $details['answers']['30']['prettyFormat'] }}</dd>
                     </dl>
                 </div>
             </div>
@@ -123,50 +127,50 @@
                             <tr>
                                 <th scope="row">English</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['English'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['English'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['English'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['English'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['English'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['English'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Mandarin</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Mandarin'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Mandarin'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Mandarin'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Mandarin'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Mandarin'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Mandarin'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Tagalog</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Tagalog'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Tagalog'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Tagalog'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Tagalog'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Tagalog'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Tagalog'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Bahasa Melayu</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Bahasa Melayu'] == "Basic" ? '✓' : '' }}
+                                    {{ $details['answers']['33']['answer']['Bahasa Melayu'] == "Basic" ? '✓' : '' }}
                                 </td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Bahasa Melayu'] == "Fluent" ? '✓' : '' }}
+                                    {{ $details['answers']['33']['answer']['Bahasa Melayu'] == "Fluent" ? '✓' : '' }}
                                 </td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Bahasa Melayu'] == "N/A" ? '✓' : '' }}
+                                    {{ $details['answers']['33']['answer']['Bahasa Melayu'] == "N/A" ? '✓' : '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Others</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Others'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Others'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Others'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Others'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['33']['answer']['Others'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['33']['answer']['Others'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -184,50 +188,50 @@
                             <tr>
                                 <th scope="row">English</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['English'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['English'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['English'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['English'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['English'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['English'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Mandarin</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Mandarin'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Mandarin'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Mandarin'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Mandarin'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Mandarin'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Mandarin'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Tagalog</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Tagalog'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Tagalog'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Tagalog'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Tagalog'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Tagalog'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Tagalog'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Bahasa Melayu</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Bahasa Melayu'] == "Basic" ? '✓' : '' }}
+                                    {{ $details['answers']['34']['answer']['Bahasa Melayu'] == "Basic" ? '✓' : '' }}
                                 </td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Bahasa Melayu'] == "Fluent" ? '✓' : '' }}
+                                    {{ $details['answers']['34']['answer']['Bahasa Melayu'] == "Fluent" ? '✓' : '' }}
                                 </td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Bahasa Melayu'] == "N/A" ? '✓' : '' }}
+                                    {{ $details['answers']['34']['answer']['Bahasa Melayu'] == "N/A" ? '✓' : '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Others</th>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Others'] == "Basic" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Others'] == "Basic" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Others'] == "Fluent" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Others'] == "Fluent" ? '✓' : '' }}</td>
                                 <td class="font-weight-bold">
-                                    {{ $details['34']['answer']['Others'] == "N/A" ? '✓' : '' }}</td>
+                                    {{ $details['answers']['34']['answer']['Others'] == "N/A" ? '✓' : '' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -244,31 +248,31 @@
                 <div class="card-body">
                     <dl class="row">
                         <dt class="col-sm-3">Name of Spouse</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['37']['answer'])) ? $details['37']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['37']['answer'])) ? $details['answers']['37']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Age</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['38']['answer'])) ? $details['38']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['38']['answer'])) ? $details['answers']['38']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">ID No. / Password No.</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['39']['answer'])) ? $details['39']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['39']['answer'])) ? $details['answers']['39']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Occupation</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['40']['answer'])) ? $details['40']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['40']['answer'])) ? $details['answers']['40']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Contact Number</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['41']['answer'])) ? $details['41']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['41']['answer'])) ? $details['answers']['41']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Employer</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['42']['answer'])) ? $details['42']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['42']['answer'])) ? $details['answers']['42']['answer'] : '---' }}
                         </dd>
 
                         <dt class="col-sm-3">Number of Children</dt>
-                        <dd class="col-sm-9">{{ (!empty($details['43']['answer'])) ? $details['43']['answer'] : '---' }}
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['43']['answer'])) ? $details['answers']['43']['answer'] : '---' }}
                         </dd>
                     </dl>
                     <p class="guest-form-label font-weight-bold mb-1">Children</p>
@@ -284,33 +288,33 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['1'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['1'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['1'],2) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['2'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['2'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['2'],2) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['3'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['3'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['3'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['3'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['3'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['3'],2) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['4'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['4'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['4'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['4'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['4'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['4'],2) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['5'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['5'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['44']['answer']['5'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['5'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['5'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['44']['answer']['5'],2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -330,43 +334,43 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['1'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['1'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['1'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['1'],4) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['2'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['2'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['2'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['2'],4) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['3'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['3'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['3'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['3'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['3'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['3'],4) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['4'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['4'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['4'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['4'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['4'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['4'],4) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['45']['answer']['5'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['5'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['5'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['5'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['5'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['45']['answer']['5'],4) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -392,61 +396,61 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Elementary</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],0) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Elementary'],0) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],1) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Elementary'],1) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],2) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Elementary'],2) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Elementary'],3) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Elementary'],3) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Secondary</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Secondary'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Secondary'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Secondary'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Secondary'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Secondary'],3) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Vocational</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],0) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Vocational'],0) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],1) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Vocational'],1) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],2) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Vocational'],2) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Vocational'],3) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Vocational'],3) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">University/College</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],0) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['University/College'],0) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],1) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['University/College'],1) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],2) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['University/College'],2) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['University/College'],3) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['University/College'],3) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Post-Graduate</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],0) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Post-Graduate'],0) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],1) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Post-Graduate'],1) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],2) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Post-Graduate'],2) }}
                                 </td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Post-Graduate'],3) }}
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Post-Graduate'],3) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Other</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['48']['answer']['Other'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Other'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Other'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Other'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['48']['answer']['Other'],3) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -473,38 +477,38 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['1'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['1'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['1'],3) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['2'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['2'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['2'],3) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['3'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['3'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['3'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['3'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['3'],3) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['4'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['4'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['4'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['4'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['4'],3) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['50']['answer']['5'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['5'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['5'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['5'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['50']['answer']['5'],3) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -531,21 +535,21 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['1'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['1'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['1'],2) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['2'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['2'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['2'],2) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['3'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['3'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['52']['answer']['3'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['3'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['3'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['52']['answer']['3'],2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -572,27 +576,27 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['1'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['1'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['1'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['1'],4) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['2'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['2'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['2'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['2'],4) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],3) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['54']['answer']['3'],4) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['3'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['3'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['3'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['3'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['54']['answer']['3'],4) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -616,23 +620,23 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['1'],1) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['2'],1) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['3'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['3'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['3'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['3'],1) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['4'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['56']['answer']['4'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['4'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['56']['answer']['4'],1) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -653,29 +657,29 @@
                         <tbody>
                             <tr>
                                 <th>Period of Employment</th>
-                                <td>{{ (!empty($details['62']['answer'])) ? $details['62']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['62']['answer'])) ? $details['answers']['62']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Company Name</th>
-                                <td>{{ (!empty($details['61']['answer'])) ? $details['61']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['61']['answer'])) ? $details['answers']['61']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Position Held</th>
-                                <td>{{ (!empty($details['63']['answer'])) ? $details['63']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['63']['answer'])) ? $details['answers']['63']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Basic Monthly Salary</th>
-                                <td>{{ (!empty($details['64']['answer'])) ? $details['64']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['64']['answer'])) ? $details['answers']['64']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Reason for Leaving</th>
-                                <td>{{ (!empty($details['65']['answer'])) ? $details['65']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['65']['answer'])) ? $details['answers']['65']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Responsibilities</th>
                                 <td>
-                                    @if(!empty($details['66']['answer']))
-                                    {!! $details['66']['answer'] !!}
+                                    @if(!empty($details['answers']['66']['answer']))
+                                    {!! $details['answers']['66']['answer'] !!}
                                     @else
                                     ---
                                     @endif
@@ -683,7 +687,7 @@
                             </tr>
                             <tr>
                                 <th>What did you enjoy most while working in this company</th>
-                                <td>{{ (!empty($details['67']['answer'])) ? $details['67']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['67']['answer'])) ? $details['answers']['67']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -692,29 +696,29 @@
                         <tbody>
                             <tr>
                                 <th>Period of Employment</th>
-                                <td>{{ (!empty($details['70']['answer'])) ? $details['70']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['70']['answer'])) ? $details['answers']['70']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Company Name</th>
-                                <td>{{ (!empty($details['71']['answer'])) ? $details['71']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['71']['answer'])) ? $details['answers']['71']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Position Held</th>
-                                <td>{{ (!empty($details['72']['answer'])) ? $details['72']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['72']['answer'])) ? $details['answers']['72']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Basic Monthly Salary</th>
-                                <td>{{ (!empty($details['73']['answer'])) ? $details['73']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['73']['answer'])) ? $details['answers']['73']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Reason for Leaving</th>
-                                <td>{{ (!empty($details['74']['answer'])) ? $details['74']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['74']['answer'])) ? $details['answers']['74']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Responsibilities</th>
                                 <td>
-                                    @if(!empty($details['75']['answer']))
-                                    {!! $details['75']['answer'] !!}
+                                    @if(!empty($details['answers']['75']['answer']))
+                                    {!! $details['answers']['75']['answer'] !!}
                                     @else
                                     ---
                                     @endif
@@ -722,7 +726,7 @@
                             </tr>
                             <tr>
                                 <th>What did you enjoy most while working in this company</th>
-                                <td>{{ (!empty($details['76']['answer'])) ? $details['76']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['76']['answer'])) ? $details['answers']['76']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -731,29 +735,29 @@
                         <tbody>
                             <tr>
                                 <th>Period of Employment</th>
-                                <td>{{ (!empty($details['78']['answer'])) ? $details['78']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['78']['answer'])) ? $details['answers']['78']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Company Name</th>
-                                <td>{{ (!empty($details['79']['answer'])) ? $details['79']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['79']['answer'])) ? $details['answers']['79']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Position Held</th>
-                                <td>{{ (!empty($details['80']['answer'])) ? $details['80']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['80']['answer'])) ? $details['answers']['80']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Basic Monthly Salary</th>
-                                <td>{{ (!empty($details['81']['answer'])) ? $details['81']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['81']['answer'])) ? $details['answers']['81']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Reason for Leaving</th>
-                                <td>{{ (!empty($details['82']['answer'])) ? $details['82']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['82']['answer'])) ? $details['answers']['82']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Responsibilities</th>
                                 <td>
-                                    @if(!empty($details['83']['answer']))
-                                    {!! $details['83']['answer'] !!}
+                                    @if(!empty($details['answers']['83']['answer']))
+                                    {!! $details['answers']['83']['answer'] !!}
                                     @else
                                     ---
                                     @endif
@@ -761,7 +765,7 @@
                             </tr>
                             <tr>
                                 <th>What did you enjoy most while working in this company</th>
-                                <td>{{ (!empty($details['84']['answer'])) ? $details['84']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['84']['answer'])) ? $details['answers']['84']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -770,29 +774,29 @@
                         <tbody>
                             <tr>
                                 <th>Period of Employment</th>
-                                <td>{{ (!empty($details['88']['answer'])) ? $details['88']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['88']['answer'])) ? $details['answers']['88']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Company Name</th>
-                                <td>{{ (!empty($details['89']['answer'])) ? $details['89']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['89']['answer'])) ? $details['answers']['89']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Position Held</th>
-                                <td>{{ (!empty($details['90']['answer'])) ? $details['90']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['90']['answer'])) ? $details['answers']['90']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Basic Monthly Salary</th>
-                                <td>{{ (!empty($details['91']['answer'])) ? $details['91']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['91']['answer'])) ? $details['answers']['91']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Reason for Leaving</th>
-                                <td>{{ (!empty($details['92']['answer'])) ? $details['92']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['92']['answer'])) ? $details['answers']['92']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
                                 <th>Responsibilities</th>
                                 <td>
-                                    @if(!empty($details['93']['answer']))
-                                    {!! $details['93']['answer'] !!}
+                                    @if(!empty($details['answers']['93']['answer']))
+                                    {!! $details['answers']['93']['answer'] !!}
                                     @else
                                     ---
                                     @endif
@@ -800,7 +804,7 @@
                             </tr>
                             <tr>
                                 <th>What did you enjoy most while working in this company</th>
-                                <td>{{ (!empty($details['94']['answer'])) ? $details['94']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['94']['answer'])) ? $details['answers']['94']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -809,34 +813,34 @@
                         <tbody>
                             <tr>
                                 <th>Period of Employment</th>
-                                <td>{{ (!empty($details['133']['answer'])) ? $details['133']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['133']['answer'])) ? $details['answers']['133']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Company Name</th>
-                                <td>{{ (!empty($details['134']['answer'])) ? $details['134']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['134']['answer'])) ? $details['answers']['134']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Position Held</th>
-                                <td>{{ (!empty($details['135']['answer'])) ? $details['135']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['135']['answer'])) ? $details['answers']['135']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Basic Monthly Salary</th>
-                                <td>{{ (!empty($details['136']['answer'])) ? $details['136']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['136']['answer'])) ? $details['answers']['136']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Reason for Leaving</th>
-                                <td>{{ (!empty($details['137']['answer'])) ? $details['137']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['137']['answer'])) ? $details['answers']['137']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Responsibilities</th>
                                 <td>
-                                    @if(!empty($details['138']['answer']))
-                                    {!! $details['138']['answer'] !!}
+                                    @if(!empty($details['answers']['138']['answer']))
+                                    {!! $details['answers']['138']['answer'] !!}
                                     @else
                                     ---
                                     @endif
@@ -844,7 +848,7 @@
                             </tr>
                             <tr>
                                 <th>What did you enjoy most while working in this company</th>
-                                <td>{{ (!empty($details['139']['answer'])) ? $details['139']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['139']['answer'])) ? $details['answers']['139']['answer'] : '---' }}
                                 </td>
                             </tr>
                         </tbody>
@@ -871,17 +875,17 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['1'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['1'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['1'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['1'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['1'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['1'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['1'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['1'],3) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['2'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['2'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['2'],2) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['97']['answer']['2'],3) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['2'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['2'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['2'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['97']['answer']['2'],3) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -897,9 +901,9 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>{{ $Recruitment->trimAndExplode($details['98']['answer']['1.'],0) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['98']['answer']['1.'],1) }}</td>
-                                <td>{{ $Recruitment->trimAndExplode($details['98']['answer']['1.'],2) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['98']['answer']['1.'],0) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['98']['answer']['1.'],1) }}</td>
+                                <td>{{ $Recruitment->trimAndExplode($details['answers']['98']['answer']['1.'],2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -927,16 +931,16 @@
                                 <th scope="row">1. Have you suffered, or are suffering from any medical condition,
                                     illness, disease,
                                     mental illness, substance dependence or physical impairment?</th>
-                                <td>{{ (!empty($details['125']['answer'])) ? $details['125']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['125']['answer'])) ? $details['answers']['125']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['126']['answer'])) ? $details['126']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['126']['answer'])) ? $details['answers']['126']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">2a. Do you have any existing criminal records?</th>
-                                <td>{{ (!empty($details['104']['answer'])) ? $details['104']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['104']['answer'])) ? $details['answers']['104']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['103']['answer'])) ? $details['103']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['103']['answer'])) ? $details['answers']['103']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
@@ -944,9 +948,9 @@
                                     any
                                     other country for
                                     which the outcome is pending (excluding parking offences)?</th>
-                                <td>{{ (!empty($details['105']['answer'])) ? $details['105']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['105']['answer'])) ? $details['answers']['105']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['106']['answer'])) ? $details['106']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['106']['answer'])) ? $details['answers']['106']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
@@ -954,9 +958,9 @@
                                     any
                                     other country for
                                     which the outcome is pending (excluding parking offences)?</th>
-                                <td>{{ (!empty($details['107']['answer'])) ? $details['107']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['107']['answer'])) ? $details['answers']['107']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['108']['answer'])) ? $details['108']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['108']['answer'])) ? $details['answers']['108']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
@@ -964,9 +968,9 @@
                                     in
                                     any other
                                     country following allegations made against you?</th>
-                                <td>{{ (!empty($details['109']['answer'])) ? $details['109']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['109']['answer'])) ? $details['answers']['109']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['110']['answer'])) ? $details['110']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['110']['answer'])) ? $details['answers']['110']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
@@ -978,18 +982,18 @@
                                     than 3 months of
                                     last-drawn pay, (d) have signed a promissory note or an acknowledgement of
                                     indebtedness?</th>
-                                <td>{{ (!empty($details['111']['answer'])) ? $details['111']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['111']['answer'])) ? $details['answers']['111']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['112']['answer'])) ? $details['112']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['112']['answer'])) ? $details['answers']['112']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">6. Has your employment ever been terminated as a result of
                                     misconduct of
                                     service?</th>
-                                <td>{{ (!empty($details['113']['answer'])) ? $details['113']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['113']['answer'])) ? $details['answers']['113']['answer'] : '---' }}
                                 </td>
-                                <td>{{ (!empty($details['114']['answer'])) ? $details['114']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['114']['answer'])) ? $details['answers']['114']['answer'] : '---' }}
                                 </td>
                             </tr>
                         </tbody>
@@ -1008,17 +1012,17 @@
                                     and received a
                                     job offer from us, when is the earliest date that you will be available to start
                                     work?</th>
-                                <td>{{ (!empty($details['115']['prettyFormat'])) ? $details['115']['prettyFormat'] : '---' }}
+                                <td>{{ (!empty($details['answers']['115']['prettyFormat'])) ? $details['answers']['115']['prettyFormat'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">8. What is your personal strength?</th>
-                                <td>{{ (!empty($details['116']['answer'])) ? $details['116']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['116']['answer'])) ? $details['answers']['116']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">9. List your hobbies</th>
-                                <td>{{ (!empty($details['117']['answer'])) ? $details['117']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['117']['answer'])) ? $details['answers']['117']['answer'] : '---' }}
                                 </td>
                             </tr>
                         </tbody>
@@ -1037,7 +1041,7 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="email-input">Resume File</label>
                         <div class="col-md-9">
-                            <a class="btn btn-primary" href="{{ $details['123']['answer'][0] }}">Download Resume</a>
+                            <a class="btn btn-primary" href="{{ $details['answers']['123']['answer'][0] }}">Download Resume</a>
                         </div>
                     </div>
                     <form action="{{ route('recruitment.custom_upload',$data['submission_id']) }}" method="POST"
