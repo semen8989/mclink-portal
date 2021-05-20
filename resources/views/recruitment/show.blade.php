@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Date Applied</th>
-                <td>{{ $details['created_at'] }}</td>
+                <td>{{ substr($details['created_at'],0,10) }}</td>
             </tr>
             <tr>
                 <th>Position Applying For</th>
@@ -656,27 +656,27 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tbody>
                             <tr>
-                                <th>Period of Employment</th>
+                                <th class="employment-section-th">Period of Employment</th>
                                 <td>{{ (!empty($details['answers']['62']['answer'])) ? $details['answers']['62']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Company Name</th>
+                                <th class="employment-section-th">Company Name</th>
                                 <td>{{ (!empty($details['answers']['61']['answer'])) ? $details['answers']['61']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Position Held</th>
+                                <th class="employment-section-th">Position Held</th>
                                 <td>{{ (!empty($details['answers']['63']['answer'])) ? $details['answers']['63']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Basic Monthly Salary</th>
+                                <th class="employment-section-th">Basic Monthly Salary</th>
                                 <td>{{ (!empty($details['answers']['64']['answer'])) ? $details['answers']['64']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Reason for Leaving</th>
+                                <th class="employment-section-th">Reason for Leaving</th>
                                 <td>{{ (!empty($details['answers']['65']['answer'])) ? $details['answers']['65']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Responsibilities</th>
+                                <th class="employment-section-th">Responsibilities</th>
                                 <td>
                                     @if(!empty($details['answers']['66']['answer']))
                                     {!! $details['answers']['66']['answer'] !!}
@@ -686,7 +686,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>What did you enjoy most while working in this company</th>
+                                <th class="employment-section-th">What did you enjoy most while working in this company</th>
                                 <td>{{ (!empty($details['answers']['67']['answer'])) ? $details['answers']['67']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
@@ -695,27 +695,27 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tbody>
                             <tr>
-                                <th>Period of Employment</th>
+                                <th class="employment-section-th">Period of Employment</th>
                                 <td>{{ (!empty($details['answers']['70']['answer'])) ? $details['answers']['70']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Company Name</th>
+                                <th class="employment-section-th">Company Name</th>
                                 <td>{{ (!empty($details['answers']['71']['answer'])) ? $details['answers']['71']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Position Held</th>
+                                <th class="employment-section-th">Position Held</th>
                                 <td>{{ (!empty($details['answers']['72']['answer'])) ? $details['answers']['72']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Basic Monthly Salary</th>
+                                <th class="employment-section-th">Basic Monthly Salary</th>
                                 <td>{{ (!empty($details['answers']['73']['answer'])) ? $details['answers']['73']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Reason for Leaving</th>
+                                <th class="employment-section-th">Reason for Leaving</th>
                                 <td>{{ (!empty($details['answers']['74']['answer'])) ? $details['answers']['74']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Responsibilities</th>
+                                <th class="employment-section-th">Responsibilities</th>
                                 <td>
                                     @if(!empty($details['answers']['75']['answer']))
                                     {!! $details['answers']['75']['answer'] !!}
@@ -725,7 +725,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>What did you enjoy most while working in this company</th>
+                                <th class="employment-section-th">What did you enjoy most while working in this company</th>
                                 <td>{{ (!empty($details['answers']['76']['answer'])) ? $details['answers']['76']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
@@ -734,27 +734,27 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tbody>
                             <tr>
-                                <th>Period of Employment</th>
+                                <th class="employment-section-th">Period of Employment</th>
                                 <td>{{ (!empty($details['answers']['78']['answer'])) ? $details['answers']['78']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Company Name</th>
+                                <th class="employment-section-th">Company Name</th>
                                 <td>{{ (!empty($details['answers']['79']['answer'])) ? $details['answers']['79']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Position Held</th>
+                                <th class="employment-section-th">Position Held</th>
                                 <td>{{ (!empty($details['answers']['80']['answer'])) ? $details['answers']['80']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Basic Monthly Salary</th>
+                                <th class="employment-section-th">Basic Monthly Salary</th>
                                 <td>{{ (!empty($details['answers']['81']['answer'])) ? $details['answers']['81']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Reason for Leaving</th>
+                                <th class="employment-section-th">Reason for Leaving</th>
                                 <td>{{ (!empty($details['answers']['82']['answer'])) ? $details['answers']['82']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Responsibilities</th>
+                                <th class="employment-section-th">Responsibilities</th>
                                 <td>
                                     @if(!empty($details['answers']['83']['answer']))
                                     {!! $details['answers']['83']['answer'] !!}
@@ -764,7 +764,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>What did you enjoy most while working in this company</th>
+                                <th class="employment-section-th">What did you enjoy most while working in this company</th>
                                 <td>{{ (!empty($details['answers']['84']['answer'])) ? $details['answers']['84']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
@@ -773,27 +773,27 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tbody>
                             <tr>
-                                <th>Period of Employment</th>
+                                <th class="employment-section-th">Period of Employment</th>
                                 <td>{{ (!empty($details['answers']['88']['answer'])) ? $details['answers']['88']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Company Name</th>
+                                <th class="employment-section-th">Company Name</th>
                                 <td>{{ (!empty($details['answers']['89']['answer'])) ? $details['answers']['89']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Position Held</th>
+                                <th class="employment-section-th">Position Held</th>
                                 <td>{{ (!empty($details['answers']['90']['answer'])) ? $details['answers']['90']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Basic Monthly Salary</th>
+                                <th class="employment-section-th">Basic Monthly Salary</th>
                                 <td>{{ (!empty($details['answers']['91']['answer'])) ? $details['answers']['91']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Reason for Leaving</th>
+                                <th class="employment-section-th">Reason for Leaving</th>
                                 <td>{{ (!empty($details['answers']['92']['answer'])) ? $details['answers']['92']['answer'] : '---' }}</td>
                             </tr>
                             <tr>
-                                <th>Responsibilities</th>
+                                <th class="employment-section-th">Responsibilities</th>
                                 <td>
                                     @if(!empty($details['answers']['93']['answer']))
                                     {!! $details['answers']['93']['answer'] !!}
@@ -803,7 +803,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>What did you enjoy most while working in this company</th>
+                                <th class="employment-section-th">What did you enjoy most while working in this company</th>
                                 <td>{{ (!empty($details['answers']['94']['answer'])) ? $details['answers']['94']['answer'] : '---' }}</td>
                             </tr>
                         </tbody>
@@ -812,32 +812,32 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tbody>
                             <tr>
-                                <th>Period of Employment</th>
+                                <th class="employment-section-th">Period of Employment</th>
                                 <td>{{ (!empty($details['answers']['133']['answer'])) ? $details['answers']['133']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Company Name</th>
+                                <th class="employment-section-th">Company Name</th>
                                 <td>{{ (!empty($details['answers']['134']['answer'])) ? $details['answers']['134']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Position Held</th>
+                                <th class="employment-section-th">Position Held</th>
                                 <td>{{ (!empty($details['answers']['135']['answer'])) ? $details['answers']['135']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Basic Monthly Salary</th>
+                                <th class="employment-section-th">Basic Monthly Salary</th>
                                 <td>{{ (!empty($details['answers']['136']['answer'])) ? $details['answers']['136']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Reason for Leaving</th>
+                                <th class="employment-section-th">Reason for Leaving</th>
                                 <td>{{ (!empty($details['answers']['137']['answer'])) ? $details['answers']['137']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Responsibilities</th>
+                                <th class="employment-section-th">Responsibilities</th>
                                 <td>
                                     @if(!empty($details['answers']['138']['answer']))
                                     {!! $details['answers']['138']['answer'] !!}
@@ -847,7 +847,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>What did you enjoy most while working in this company</th>
+                                <th class="employment-section-th">What did you enjoy most while working in this company</th>
                                 <td>{{ (!empty($details['answers']['139']['answer'])) ? $details['answers']['139']['answer'] : '---' }}
                                 </td>
                             </tr>
@@ -921,14 +921,14 @@
                     <table class="table table-sm table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Question</th>
+                                <th class="info-section-th">Question</th>
                                 <th scope="col">Answer</th>
                                 <th scope="col">If yes, please specify</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1. Have you suffered, or are suffering from any medical condition,
+                                <th class="info-section-th">1. Have you suffered, or are suffering from any medical condition,
                                     illness, disease,
                                     mental illness, substance dependence or physical impairment?</th>
                                 <td>{{ (!empty($details['answers']['125']['answer'])) ? $details['answers']['125']['answer'] : '---' }}
@@ -937,14 +937,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">2a. Do you have any existing criminal records?</th>
+                                <th class="info-section-th">2a. Do you have any existing criminal records?</th>
                                 <td>{{ (!empty($details['answers']['104']['answer'])) ? $details['answers']['104']['answer'] : '---' }}
                                 </td>
                                 <td>{{ (!empty($details['answers']['103']['answer'])) ? $details['answers']['103']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">2b. Have you been charged with any offence in a court of law or in
+                                <th class="info-section-th">2b. Have you been charged with any offence in a court of law or in
                                     any
                                     other country for
                                     which the outcome is pending (excluding parking offences)?</th>
@@ -954,7 +954,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">3. Have you been charged with any offence in a court of law or in
+                                <th class="info-section-th">3. Have you been charged with any offence in a court of law or in
                                     any
                                     other country for
                                     which the outcome is pending (excluding parking offences)?</th>
@@ -964,7 +964,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">4. Are you aware of being under any current police investigations or
+                                <th class="info-section-th">4. Are you aware of being under any current police investigations or
                                     in
                                     any other
                                     country following allegations made against you?</th>
@@ -974,7 +974,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">5. Have you been or are you under any financial embarrassment i.e.
+                                <th class="info-section-th">5. Have you been or are you under any financial embarrassment i.e.
                                     (a)
                                     an undischarged
                                     bankrupt, (b) a judgement debtor, (c) have unsecured debts and liabilities of
@@ -988,7 +988,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">6. Has your employment ever been terminated as a result of
+                                <th class="info-section-th">6. Has your employment ever been terminated as a result of
                                     misconduct of
                                     service?</th>
                                 <td>{{ (!empty($details['answers']['113']['answer'])) ? $details['answers']['113']['answer'] : '---' }}
@@ -1001,13 +1001,13 @@
                     <table class="table table-sm table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Question</th>
+                                <th class="info-section-th">Question</th>
                                 <th scope="col">Answer</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">7. In the event where you have successfully passed the job
+                                <th class="info-section-th">7. In the event where you have successfully passed the job
                                     interview(s)
                                     and received a
                                     job offer from us, when is the earliest date that you will be available to start
@@ -1016,12 +1016,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">8. What is your personal strength?</th>
+                                <th class="info-section-th">8. What is your personal strength?</th>
                                 <td>{{ (!empty($details['answers']['116']['answer'])) ? $details['answers']['116']['answer'] : '---' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">9. List your hobbies</th>
+                                <th class="info-section-th">9. List your hobbies</th>
                                 <td>{{ (!empty($details['answers']['117']['answer'])) ? $details['answers']['117']['answer'] : '---' }}
                                 </td>
                             </tr>
@@ -1158,7 +1158,16 @@
     </form>
 </div>
 @stop
-
+@push('stylesheet')
+    <style>
+        .employment-section-th{
+            width: 30%;
+        }
+        .info-section-th{
+            width: 58%;
+        }
+    </style>
+@endpush
 @push('scripts')
 <script>
     $("#submit_form").submit(function (e) {
