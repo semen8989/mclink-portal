@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Date Applied</th>
-                <td>{{ substr($details['created_at'],0,10) }}</td>
+                <td>{{ $Recruitment->dateFormat(substr($details['created_at'],0,10)) }}</td>
             </tr>
             <tr>
                 <th>Position Applying For</th>
@@ -46,9 +46,9 @@
                         <dd class="col-sm-9">{{ (!empty($details['answers']['18']['answer'])) ? $details['answers']['18']['answer'] : '---' }}
                         </dd>
 
-                        <dt class="col-sm-3">Date of Birth(DD/MM/YYYY)</dt>
+                        <dt class="col-sm-3">Date of Birth</dt>
                         <dd class="col-sm-9">
-                            {{ (!empty($details['answers']['19']['answer'])) ? $details['answers']['19']['prettyFormat'] : '---' }}</dd>
+                            {{ (!empty($details['answers']['19']['answer'])) ? $Recruitment->dateFormat($details['answers']['19']['prettyFormat']) : '---' }}</dd>
 
                         <dt class="col-sm-3">Age</dt>
                         <dd class="col-sm-9">{{ (!empty($details['answers']['20']['answer'])) ? $details['answers']['20']['answer'] : '---' }}
@@ -657,7 +657,7 @@
                         <tbody>
                             <tr>
                                 <th class="employment-section-th">Period of Employment</th>
-                                <td>{{ (!empty($details['answers']['62']['answer'])) ? $details['answers']['62']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['62']['answer'])) ? $Recruitment->removeDifferenceValue($details['answers']['62']['answer']) : '---' }}</td>
                             </tr>
                             <tr>
                                 <th class="employment-section-th">Company Name</th>
@@ -696,7 +696,7 @@
                         <tbody>
                             <tr>
                                 <th class="employment-section-th">Period of Employment</th>
-                                <td>{{ (!empty($details['answers']['70']['answer'])) ? $details['answers']['70']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['70']['answer'])) ? $Recruitment->removeDifferenceValue($details['answers']['70']['answer']) : '---' }}</td>
                             </tr>
                             <tr>
                                 <th class="employment-section-th">Company Name</th>
@@ -735,7 +735,7 @@
                         <tbody>
                             <tr>
                                 <th class="employment-section-th">Period of Employment</th>
-                                <td>{{ (!empty($details['answers']['78']['answer'])) ? $details['answers']['78']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['78']['answer'])) ? $Recruitment->removeDifferenceValue($details['answers']['78']['answer']) : '---' }}</td>
                             </tr>
                             <tr>
                                 <th class="employment-section-th">Company Name</th>
@@ -774,7 +774,7 @@
                         <tbody>
                             <tr>
                                 <th class="employment-section-th">Period of Employment</th>
-                                <td>{{ (!empty($details['answers']['88']['answer'])) ? $details['answers']['88']['answer'] : '---' }}</td>
+                                <td>{{ (!empty($details['answers']['88']['answer'])) ? $Recruitment->removeDifferenceValue($details['answers']['88']['answer']): '---' }}</td>
                             </tr>
                             <tr>
                                 <th class="employment-section-th">Company Name</th>
@@ -813,7 +813,7 @@
                         <tbody>
                             <tr>
                                 <th class="employment-section-th">Period of Employment</th>
-                                <td>{{ (!empty($details['answers']['133']['answer'])) ? $details['answers']['133']['answer'] : '---' }}
+                                <td>{{ (!empty($details['answers']['133']['answer'])) ? $Recruitment->removeDifferenceValue($details['answers']['133']['answer']) : '---' }}
                                 </td>
                             </tr>
                             <tr>
@@ -1012,7 +1012,7 @@
                                     and received a
                                     job offer from us, when is the earliest date that you will be available to start
                                     work?</th>
-                                <td>{{ (!empty($details['answers']['115']['prettyFormat'])) ? $details['answers']['115']['prettyFormat'] : '---' }}
+                                <td>{{ (!empty($details['answers']['115']['prettyFormat'])) ? $Recruitment->dateFormat($details['answers']['115']['prettyFormat']) : '---' }}
                                 </td>
                             </tr>
                             <tr>
