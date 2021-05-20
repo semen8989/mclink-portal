@@ -1058,7 +1058,7 @@
                             Save
                         </button>
                     </form>
-                    @if(!empty($data['customUploads']))
+                    @if(count($data['customUploads']) > 0)
                     <table class="table table-condensed table-bordered table-sm">
                         <thead>
                             <tr>
@@ -1068,16 +1068,16 @@
                         </thead>
                         <tbody>
                             @php
-                            $i = 1;
+                                $i = 1;
                             @endphp
-                            @foreach($data['customUploads'] as $upload)
-                            <tr>
-                                <td>{{ $i++ }}</td>
-                                <td><a
-                                        href="{{ route('recruitment.download_attachment',['fileName' => $upload->file_name,'origFilename' => $upload->orig_filename]) }}">{{ $upload->orig_filename }}</a>
-                                </td>
-                            </tr>
-                            @endforeach
+                                @foreach($data['customUploads'] as $upload)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td><a
+                                            href="{{ route('recruitment.download_attachment',['fileName' => $upload->file_name,'origFilename' => $upload->orig_filename]) }}">{{ $upload->orig_filename }}</a>
+                                    </td>
+                                </tr>
+                                @endforeach
                         </tbody>
                     </table>
                     @endif
