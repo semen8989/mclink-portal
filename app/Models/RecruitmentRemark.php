@@ -10,7 +10,7 @@ class RecruitmentRemark extends Model
     protected $table = 'recruitment_remarks';
 
     public function user(){
-        return $this->belongsTo(User::class,'interviewer_user_id');    
+        return $this->belongsTo(User::class);    
     }
 
 }

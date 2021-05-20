@@ -170,7 +170,7 @@ class RecruitmentController extends Controller
 
         
         
-        return session()->flash('success', 'Applicant Information Updated Successfully!');
+        return back()->with('success', 'Applicant Information Updated Successfully!');
 
     }
 
