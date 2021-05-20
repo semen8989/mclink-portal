@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ServiceReportSeeder::class,        
             KpiMaingoalSeeder::class,
             KpiVariableSeeder::class,
+            KpiObjectiveSeeder::class,
             KpiRatingSeeder::class,
             CompanySeeder::class,
             DepartmentSeeder::class,

@@ -21,6 +21,7 @@ use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\KpiObjectiveController;
 use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\AcknowledgementFormController;
@@ -66,9 +67,10 @@ Route::middleware(['auth'])->group(function () {
             ->parameters(['variables' => 'kpiVariable'])
             ->names('okr.kpi.variables');
         // KPI Objectives Routes
-        Route::resource('objectives', KpiMaingoalController::class)
-            ->parameters(['objectives' => 'kpiObjective'])
-            ->names('okr.kpi.objectives');
+        // Disabled KPI Objectives for now
+        // Route::resource('objectives', KpiObjectiveController::class)
+        //     ->parameters(['objectives' => 'kpiObjective'])
+        //     ->names('okr.kpi.objectives');
     });
 
     // KPI Report Routes
@@ -105,6 +107,10 @@ Route::middleware(['auth'])->group(function () {
 
         // KPI Variable Rating Route
         Route::get('/okr/kpi/variables/{kpiVariable}/rating', [KpiVariableController::class, 'getRating'])->name('get.kpi.variable.rating');
+
+        // KPI Objective Rating Route
+        // Disabled KPI Objectives for now
+        // Route::get('/okr/kpi/objectives/{kpiObjective}/rating', [KpiObjectiveController::class, 'getRating'])->name('get.kpi.objective.rating');
     });
 
     //Basic Routes

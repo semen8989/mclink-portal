@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="card-header">{{ __('label.kpi_variable.title.index') }}</div>
+    <div class="card-header">{{ __('label.kpi_objective.title.index') }}</div>
     <div class="card-body">
         <div class="col-md-12">
             <div class="row">
@@ -60,10 +60,14 @@
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_main') }}</a></li>
-                <li class="nav-item"><a id="variableTabLink" class="nav-link active" href="{{ route('okr.kpi.variables.index') }}" role="tab" aria-controls="variable">
+                <li class="nav-item"><a id="variableTabLink" class="nav-link" href="{{ route('okr.kpi.variables.index') }}" role="tab" aria-controls="variable">
                     <svg class="c-icon mr-1">
                         <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-chart-line') }}"></use>
                     </svg> {{ __('label.global.tab.kpi_variable') }}</a></li>
+                <li class="nav-item"><a id="objectiveTabLink" class="nav-link active" href="{{ route('okr.kpi.objectives.index') }}" role="tab" aria-controls="objective">
+                    <svg class="c-icon mr-1">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-paperclip') }}"></use>
+                    </svg> {{ __('label.global.tab.kpi_objective') }}</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel">
@@ -98,7 +102,7 @@
     <script>
         $(document).on('click','#delete',function() {
             let id = $(this).attr('data-id');
-            var url = "{{ route('okr.kpi.variables.destroy', ':id') }}"
+            var url = "{{ route('okr.kpi.objectives.destroy', ':id') }}"
             url = url.replace(':id', id)
             $('#delete_form').attr('action',url);
         });
@@ -108,7 +112,7 @@
         });
 
         // event for handling changes before datatable send request
-        $("#kpivariable-table").on('preXhr.dt', function (e, settings, data) {
+        $("#kpiobjective-table").on('preXhr.dt', function (e, settings, data) {
             data.filterEmployee = $('#filterEmployee').val();
             data.filterQuarter = $('#filterQuarter').val();
             data.filterYear = $('#filterYear').val();
@@ -122,6 +126,10 @@
                 + '?filterYear=' + $("#filterYear").val() 
                 + '?filterQuarter=' + $("#filterQuarter").val() 
                 + '?filterEmployee=' + $("#filterEmployee").val());
+            $('#objectiveTabLink').attr('href', '{{ route("okr.kpi.objectives.index") }}' 
+                + '?filterYear=' + $("#filterYear").val() 
+                + '?filterQuarter=' + $("#filterQuarter").val()
+                + '?filterEmployee=' + $("#filterEmployee").val());
         }
 
         $( document ).ready(function() {
@@ -130,7 +138,7 @@
 
             // refresh datatable and update url get parameter based on the year filter on change event
             $('#filterYear, #filterQuarter, #filterEmployee').change(function() {
-                LaravelDataTables["kpivariable-table"].ajax.reload();
+                LaravelDataTables["kpiobjective-table"].ajax.reload();
                 updateTabUrl();
             });
 
@@ -141,7 +149,7 @@
             $('.buttons-create').find('span').html(newIcon + "{{ __('label.global.datatable.button.new') }}");
 
             $('.buttons-create').click(function () {
-                location.href = "{{ route("okr.kpi.variables.create") }}";         
+                location.href = "{{ route("okr.kpi.objectives.create") }}";         
             })
         });
         
