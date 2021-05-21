@@ -75,12 +75,12 @@ class RecruitmentController extends Controller
                     'showRouteName' => 'recruitment.show',
                     'showRouteSlug' => 'submission_id',
                     'showRouteSlugValue' => $collection['id'],
-                    'columnData' => $collection['answers']['15']['prettyFormat']
+                    'columnData' => $collection['answers']['129']['prettyFormat']
                 ]);
             })->editColumn('position', function ($collection) {
                 return $collection['answers']['11']['answer'];
             })->editColumn('gender', function ($collection) {
-                return $collection['answers']['16']['answer'];
+                return (!empty($collection['answers']['16']['answer'])) ? $collection['answers']['16']['answer'] : '---';
             })->editColumn('date_applied', function ($collection) {
                 return $this->dateFormat($collection['created_at']);
             })->editColumn('sort_date', function ($collection) {

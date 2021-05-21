@@ -33,10 +33,10 @@
                     <dl class="row">
                         <dt class="col-sm-3">Name</dt>
                         <dd class="col-sm-9">
-                            {{ $details['answers']['15']['answer']['first'] ." ". $details['answers']['15']['answer']['last'] }}</dd>
+                            {{  $details['answers']['129']['prettyFormat'] }}</dd>
 
                         <dt class="col-sm-3">Gender</dt>
-                        <dd class="col-sm-9">{{ $details['answers']['16']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['16']['answer'])) ? $details['answers']['16']['answer'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Religion</dt>
                         <dd class="col-sm-9">{{ (!empty($details['answers']['17']['answer'])) ? $details['answers']['17']['answer'] : '---' }}
@@ -67,7 +67,7 @@
                         </dd>
 
                         <dt class="col-sm-3">Permanent Residence</dt>
-                        <dd class="col-sm-9">{{ $details['answers']['24']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['24']['answer'])) ? $details['answers']['24']['answer'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Marital Status</dt>
                         <dd class="col-sm-9">
@@ -85,21 +85,21 @@
                         </dd>
 
                         <dt class="col-sm-3">Home Address</dt>
-                        <dd class="col-sm-9">{{ $details['answers']['27']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['27']['answer'])) ? $details['answers']['27']['answer'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Mailing Address</dt>
                         <dd class="col-sm-9">
                             {{ (!empty($details['answers']['128']['answer'])) ? $details['answers']['128']['answer'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Email</dt>
-                        <dd class="col-sm-9">{{ $details['answers']['28']['answer'] }}</dd>
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['28']['answer'])) ? $details['answers']['28']['answer'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Home Telephone</dt>
                         <dd class="col-sm-9">
                             {{ (!empty($details['answers']['29']['prettyFormat'])) ? $details['answers']['29']['prettyFormat'] : '---' }}</dd>
 
                         <dt class="col-sm-3">Mobile Phone</dt>
-                        <dd class="col-sm-9">{{ $details['answers']['30']['prettyFormat'] }}</dd>
+                        <dd class="col-sm-9">{{ (!empty($details['answers']['30']['prettyFormat'])) ? $details['answers']['30']['prettyFormat'] : '---' }}</dd>
                     </dl>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="card-header">Applicant List</div>
     <div class="card-body">
-        <table class="table responsive" id="recruitment-table">
+        <table class="table responsive" id="recruitment-table" style="overflow-x:hidden !important;">
             
         </table>
     </div>
@@ -26,7 +26,8 @@
     <!-- Javscript -->
     <script>
         $('#recruitment-table').DataTable({
-            scrollX: false,
+            autoWidth: false,
+            fixedColumns:  true,
             processing: true,
             serverSide: true,
             ajax: {
@@ -36,8 +37,8 @@
                 {data: 'name', name: 'name', title: 'Name'},
                 {data: 'position', name: 'position', title: 'Position Apply For'},
                 {data: 'gender', name: 'gender', title: 'Gender'},
-                {data: 'date_applied', name: 'date_applied', type: 'date', title: 'Date Applied'},
-                {data: 'sort_date', name: 'sort_date', type: 'date', title: 'Sort Date'},
+                {data: 'date_applied', name: 'date_applied', title: 'Date Applied'},
+                {data: 'sort_date', name: 'sort_date', type: 'date'},
                 {data: 'status', name: 'status', title: 'Status'}
             ],
             columnDefs: [
