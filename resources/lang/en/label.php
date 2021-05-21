@@ -647,6 +647,48 @@ return [
             ]
         ],
     ],
+    'kpi_objective' => [
+        'title' => [
+            'index' => 'KPI Objectives',
+            'create' => 'Add New Objective',
+            'show' => 'View Objective',
+            'edit' => 'Edit Objective',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'objective_kpi' => 'Objective KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI OBJECTIVES',
+                'rating' => 'Manager\'s Rating'
+            ],
+            'label' => [
+                'objective_kpi' => 'Objective',
+                'objective_quarter' => 'Quarter',
+                'objective_year' => 'Year',
+                'target_date' => 'Target Date',
+                'status' => 'Completed',
+                'result' => 'Result',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
     'machine_request' => [
         'title' => [
             'create_index' => 'Create Machine Request',
