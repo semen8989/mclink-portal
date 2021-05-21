@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\MyRecordAppraisalDataTable;
 use App\Models\EmployeeAppraisal;
 use App\Models\NewEmployeeAppraisal;
+use App\DataTables\MyRecordAppraisalDataTable;
+use App\Http\Requests\StoreNewRecordAppraisalRequest;
 
 class NewRecordAppraisalController extends Controller
 {
@@ -38,6 +39,37 @@ class NewRecordAppraisalController extends Controller
         $recommendationOptions = NewEmployeeAppraisal::getrecommendationOptionList();   
 
         return view('e_appraisal.my_record.new_employee.create', compact('title', 'purposeOptions', 'appraisalStatus', 'progressStatus', 'recommendationOptions'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreNewRecordAppraisalRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreNewRecordAppraisalRequest $request)
+    {
+        dd($request->all());
+        // $validated = $request->validated();    
+        // $validated['user_id'] = auth()->user()->id;
+
+        // $result = true;
+        
+        // try {
+        //     DB::transaction(function () use ($validated) {
+        //         KpiVariable::create($validated);
+        //     });
+        // } catch (\Exception $e) {
+        //     $result = false;
+        // }
+
+        // $resultStatus = $result ? 'success' : 'error';
+
+        // $msg = $result
+        //     ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'created'])
+        //     : __('label.global.response.error.general', ['action' => 'creating']);
+        
+        // return redirect()->route('okr.kpi.variables.index')->with($resultStatus, $msg);
     }
 
     /**
