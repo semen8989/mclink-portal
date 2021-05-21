@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
+<form class="form-horizontal" id="appraisalForm" action="{{ route('appraisal.my.record.new.employee.store') }}" method="POST">
   @csrf
 
   <div class="card-header">{{ __('label.e_appraisal_my_record.form.header.new_employee_appraisal') }}</div>
@@ -9,10 +9,10 @@
     
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="user_id">{{ __('label.e_appraisal_my_record.form.label.employee') }} <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="employee_id">{{ __('label.e_appraisal_my_record.form.label.employee') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
-                <select class="form-control custom-select @error('user_id') is-invalid @enderror" name="user_id" id="user_id"></select>
-                @error('user_id')
+                <select class="form-control custom-select @error('employee_id') is-invalid @enderror" name="employee_id" id="employee_id"></select>
+                @error('employee_id')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
             </div>
@@ -602,8 +602,6 @@
   <script src="{{ asset('plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
   <!-- TinyMCE js dependency -->
   <script src="https://cdn.tiny.cloud/1/{{ env('TINY_MCE_API') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <!-- bootstrap-input-spinner js dependency -->
-  <script src="{{ asset('plugin/bootstrap-input-spinner/js/bootstrap-input-spinner.js') }}"></script>
   <!-- select2 js dependency -->
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- Page js codes -->
@@ -646,11 +644,8 @@
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
       });
 
-      // init IT Credit Used field
-      $('#usedItCredit').inputSpinner();
-
       // init Customer Name select2
-      $('#user_id').select2({
+      $('#employee_id').select2({
         theme: "bootstrap",
         ajax: {
             url: "{{ route('get.employees') }}",
@@ -765,22 +760,22 @@
         }
       });
 
-      $('#user_id').on('select2:selecting', function (e) {
+      $('#employee_id').on('select2:selecting', function (e) {
         var data = e.params.args.data;
         data.text = data.name;
       });
 
-      $('#user_id').on('select2:select', function (e) {
+      $('#employee_id').on('select2:select', function (e) {
         var data = e.params.data;
         $('#custEmail').val(data.email);
         $('#address').val(data.address);
       });
       
-      $('#serviceReportForm').find(':submit').click(function() {
+      $('#appraisalForm').find(':submit').click(function() {
         $('#action').val($(this).val());
       });
 
-      $('#serviceReportForm').submit(function (event) {
+      $('#appraisalForm').submit(function (event) {
         $(this).find(':submit').prop('disabled', true);
         
         $dateField.data("DateTimePicker").format('YYYY-MM-DD');
