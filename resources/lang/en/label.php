@@ -706,6 +706,47 @@ return [
                 'updated_at' => 'Last Updated'
             ]
         ],
+        'form' => [
+            'header' => [
+                'new_employee_appraisal' => 'New Employee Appraisal'
+            ],
+            'label' => [
+                'employee' => 'Employee',
+                'review_from' => 'Review Period From',
+                'review_to' => 'Review Period To',
+                'review_on' => 'Review On',
+                'appraisal_purpose' => 'Purpose of Appraisal',
+                'score_range' => 'Enter score (0 - 5)',
+                'criteria_one' => '1. Performance factor',
+                'criteria_two' => '2. Quality of work',
+                'criteria_two_desc' => 'Consider: accuracy; neatness; timeliness; attention to detail; volume/quantity requirements; adherence to duties and procedures in Job Description and Work Instruction.',
+                'criteria_three' => '3. Work habits',
+                'criteria_three_desc' => 'Consider: attendance; punctuality; organization. Does the employee stay busy; look for things to do; and follow company policies and work procedures?',
+                'criteria_four' => '4. Job knowledge',
+                'criteria_four_desc' => 'For example, has the employee demonstrated the skill and ability to perform the job satisfactorily, shown interest in learning and improving, and become familiar with our rules and policies in the Employee Handbook?',
+                'criteria_five' => '5. Behavior/Relations with others',
+                'criteria_five_desc' => 'For example, does the employee cooperate and contribute to team efforts, respond positively to suggestions and instructions or criticism, keep supervisors informed of important details, and adapt well to changing circumstances?',
+                'o_progress' => '6. Overall progress',
+                'comment' => 'Comments',
+                'recommendation' => 'Recommendation',
+                'f_comment' => 'Final Comments',
+                'share_appraisal' => 'Share this appraisal to'
+            ],
+            'radio' => [
+                'purpose_one' => 'For current employees during their 1st 3 months in a new position',
+                'purpose_two' => 'For current employee during 2nd 3 months in a position',
+                'level_option_one' => 'Outstanding',
+                'level_option_two' => 'Exceeds Requirements',
+                'level_option_three' => 'Meets Requirements',
+                'level_option_four' => 'Needs Improvement',
+                'level_option_five' => 'Unsatisfactory',
+                'o_progress_one' => 'Employee performance and learning is unsatisfactory and failing to improve at a satisfactory rate',
+                'o_progress_two' => 'Employee performance and learning is acceptable and improving at a satisfactory rate',
+                'o_progress_three' => 'Employee has successfully completed the orientation/probation period for this position',
+                'recommendation_one' => 'Extend the Orientation/Training Period for further assessment (please indicate next review date)',
+                'recommendation_two' => 'Convert employee to regular at-will employment status'
+            ]
+        ],
         'modal' => [
             'msg' => [
                 'delete_new' => 'New Employee Appraisal'

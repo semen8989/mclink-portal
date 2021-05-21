@@ -4,12 +4,12 @@
 <form class="form-horizontal" id="serviceReportForm" action="{{ route('service.form.store') }}" method="POST">
   @csrf
 
-  <div class="card-header">{{ __('label.service_report.form.header.main') }}</div>
+  <div class="card-header">{{ __('label.e_appraisal_my_record.form.header.new_employee_appraisal') }}</div>
   <div class="card-body">
     
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="user_id">{{ __('label.service_report.form.label.cust_name') }} <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="user_id">{{ __('label.e_appraisal_my_record.form.label.employee') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <select class="form-control custom-select @error('user_id') is-invalid @enderror" name="user_id" id="user_id"></select>
                 @error('user_id')
@@ -21,7 +21,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="review_period_from">{{ __('label.service_report.form.label.service_start') }} <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="review_period_from">{{ __('label.e_appraisal_my_record.form.label.review_from') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <input class="form-control @error('review_period_from') is-invalid @enderror" name="review_period_from" id="review_period_from" type="text" value=""> 
                 @error('review_period_from')
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="review_period_to">{{ __('label.service_report.form.label.service_end') }} <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="review_period_to">{{ __('label.e_appraisal_my_record.form.label.review_to') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <input class="form-control @error('review_period_to') is-invalid @enderror" name="review_period_to" id="review_period_to" type="text" value=""> 
                 @error('review_period_to')
@@ -42,7 +42,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold">Purpose of Appraisal <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.appraisal_purpose') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">               
                 @foreach($purposeOptions as $optionKey => $optionVal)
                     <div class="form-check">
@@ -61,8 +61,8 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="pf_score">1. Performance factor <span class="font-weight-bold">*</span></label><br>
-            <span>Enter score (0 - 5)</span>
+            <label class="col-form-label font-weight-bold" for="pf_score">{{ __('label.e_appraisal_my_record.form.label.criteria_one') }} <span class="font-weight-bold">*</span></label><br>
+            <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }} </span>
             <div class="controls pt-2">
                 <input class="form-control @error('pf_score') is-invalid @enderror" name="pf_score" id="pf_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('pf_score')
@@ -76,8 +76,8 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="qow_score">2. Quality of work <span class="font-weight-bold">*</span></label><br>
-            <span>Enter score (0 - 5)</span>
+            <label class="col-form-label font-weight-bold" for="qow_score">{{ __('label.e_appraisal_my_record.form.label.criteria_two') }} <span class="font-weight-bold">*</span></label><br>
+            <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
                 <input class="form-control @error('qow_score') is-invalid @enderror" name="qow_score" id="qow_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('qow_score')
@@ -86,8 +86,8 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="wh_score">3. Work habits <span class="font-weight-bold">*</span></label><br>
-            <span>Enter score (0 - 5)</span>
+            <label class="col-form-label font-weight-bold" for="wh_score">{{ __('label.e_appraisal_my_record.form.label.criteria_three') }} <span class="font-weight-bold">*</span></label><br>
+            <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
                 <input class="form-control @error('wh_score') is-invalid @enderror" name="wh_score" id="wh_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('wh_score')
@@ -99,7 +99,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold">Consider: accuracy; neatness; timeliness; attention to detail; volume/quantity requirements; adherence to duties and procedures in Job Description and Work Instruction. <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.criteria_two_desc') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 @foreach($appraisalStatus as $statusKey => $statusVal)
                     <div class="form-check">
@@ -113,7 +113,7 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold">Consider: attendance; punctuality; organization. Does the employee stay busy; look for things to do; and follow company policies and work procedures? <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.criteria_three_desc') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 @foreach($appraisalStatus as $statusKey => $statusVal)
                     <div class="form-check">
@@ -130,7 +130,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="qow_comment">Comments <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="qow_comment">{{ __('label.e_appraisal_my_record.form.label.comment') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <textarea class="form-control @error('qow_comment') is-invalid @enderror" name="qow_comment" id="qow_comment" rows="5"></textarea>
                 @error('qow_comment')
@@ -139,7 +139,7 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="wh_comment">Comments <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="wh_comment">{{ __('label.e_appraisal_my_record.form.label.comment') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <textarea class="form-control @error('wh_comment') is-invalid @enderror" name="wh_comment" id="wh_comment" rows="5"></textarea>
                 @error('wh_comment')
@@ -153,8 +153,8 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="jk_score">4. Job Knowledge <span class="font-weight-bold">*</span></label><br>
-            <span>Enter score (0 - 5)</span>
+            <label class="col-form-label font-weight-bold" for="jk_score">{{ __('label.e_appraisal_my_record.form.label.criteria_four') }} <span class="font-weight-bold">*</span></label><br>
+            <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
                 <input class="form-control @error('jk_score') is-invalid @enderror" name="jk_score" id="jk_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('jk_score')
@@ -163,8 +163,8 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="bro_score">5. Behavior/Relations with others <span class="font-weight-bold">*</span></label><br>
-            <span>Enter score (0 - 5)</span>
+            <label class="col-form-label font-weight-bold" for="bro_score">{{ __('label.e_appraisal_my_record.form.label.criteria_five') }} <span class="font-weight-bold">*</span></label><br>
+            <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
                 <input class="form-control @error('bro_score') is-invalid @enderror" name="bro_score" id="bro_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('bro_score')
@@ -176,7 +176,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold">For example, has the employee demonstrated the skill and ability to perform the job satisfactorily, shown interest in learning and improving, and become familiar with our rules and policies in the Employee Handbook? <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.criteria_four_desc') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 @foreach($appraisalStatus as $statusKey => $statusVal)
                     <div class="form-check">
@@ -190,7 +190,7 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold">For example, does the employee cooperate and contribute to team efforts, respond positively to suggestions and instructions or criticism, keep supervisors informed of important details, and adapt well to changing circumstances? <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.criteria_five_desc') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 @foreach($appraisalStatus as $statusKey => $statusVal)
                     <div class="form-check">
@@ -207,7 +207,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="jk_comment">Comments <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="jk_comment">{{ __('label.e_appraisal_my_record.form.label.comment') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <textarea class="form-control @error('jk_comment') is-invalid @enderror" name="jk_comment" id="jk_comment" rows="5"></textarea>
                 @error('jk_comment')
@@ -216,7 +216,7 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="col-form-label font-weight-bold" for="bro_comment">Comments <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="bro_comment">{{ __('label.e_appraisal_my_record.form.label.comment') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <textarea class="form-control @error('bro_comment') is-invalid @enderror" name="bro_comment" id="bro_comment" rows="5"></textarea>
                 @error('bro_comment')
@@ -230,7 +230,7 @@
     
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold">6. Overall Progress <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.o_progress') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">            
                 @foreach($progressStatus as $statusKey => $statusVal)
                     <div class="form-check">
@@ -247,7 +247,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="progress_comment">Comment <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="progress_comment">{{ __('label.e_appraisal_my_record.form.label.comment') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <textarea class="form-control @error('progress_comment') is-invalid @enderror" name="progress_comment" id="progress_comment" rows="5"></textarea>
                 @error('progress_comment')
@@ -261,7 +261,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold">7. Recommendation <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold">{{ __('label.e_appraisal_my_record.form.label.recommendation') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">            
                 @foreach($recommendationOptions as $optionKey => $optionVal)
                     <div class="form-check">
@@ -280,7 +280,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="review_date">8. Review On <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="review_date">{{ __('label.e_appraisal_my_record.form.label.review_on') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <input class="form-control @error('review_date') is-invalid @enderror" name="review_date" id="review_date" type="text" value=""> 
                 @error('review_date')
@@ -294,7 +294,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="final_comment">9. Final Comments <span class="font-weight-bold">*</span></label>
+            <label class="col-form-label font-weight-bold" for="final_comment">{{ __('label.e_appraisal_my_record.form.label.f_comment') }} <span class="font-weight-bold">*</span></label>
             <div class="controls">
                 <textarea class="form-control @error('final_comment') is-invalid @enderror" name="final_comment" id="final_comment" rows="5"></textarea>
                 @error('final_comment')
@@ -308,7 +308,7 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label class="col-form-label font-weight-bold" for="shared">10. Share this appraisal to</label>
+            <label class="col-form-label font-weight-bold" for="shared">{{ __('label.e_appraisal_my_record.form.label.share_appraisal') }} </label>
             <div class="controls">
                 <select class="form-control custom-select @error('shared') is-invalid @enderror" name="shared[]" id="shared" multiple></select>
                 @error('shared')
