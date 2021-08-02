@@ -1038,12 +1038,14 @@
             <div class="collapse" id="collapseTwelve" role="tabpanel" aria-labelledby="headingTwelve"
                 data-parent="#accordion">
                 <div class="card-body">
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label" for="email-input">Resume File</label>
-                        <div class="col-md-9">
-                            <a class="btn btn-primary" href="{{ $details['answers']['123']['answer'][0] }}">Download Resume</a>
+                    @if(!empty($details['answers']['123']['answer'][0]))     
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label" for="email-input">Resume File</label>
+                            <div class="col-md-9">
+                                <a class="btn btn-primary" href="{{ $details['answers']['123']['answer'][0] }}">Download Resume</a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <form action="{{ route('recruitment.custom_upload',$data['submission_id']) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf

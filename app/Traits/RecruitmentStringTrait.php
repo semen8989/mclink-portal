@@ -26,9 +26,13 @@ trait RecruitmentStringTrait {
     {
         $strSplit = explode(" ",$value);
         $startDate = DateTime::createFromFormat('d/m/Y',$strSplit[2]);
-        $endDate = DateTime::createFromFormat('d/m/Y',$strSplit[5]);
-        $value = $startDate->format('F j, Y') .' - '. $endDate->format('F j, Y');
-
+        if(DateTime::createFromFormat('d/m/Y',$strSplit[5]) !== false){
+            $endDate = DateTime::createFromFormat('d/m/Y',$strSplit[5]);
+            $value = $startDate->format('F j, Y') .' - '. $endDate->format('F j, Y');
+        }else{
+            $endDate = $strSplit[5];
+            $value = $startDate->format('F j, Y') .' - '. $endDate;
+        }
         return $value;
     }
 }
