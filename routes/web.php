@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WiiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
@@ -22,8 +23,8 @@ use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\KpiObjectiveController;
-use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -118,17 +119,25 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/fetch-user', [FetchController::class,'fetchUser'])->name('fetch_user');
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
 
-    //HR Calendar
-    Route::prefix('hr-calendar')->group(function (){
-        Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
-        //Events
-        Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
-        Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
-        Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
-        //Holidays
-        Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
-        Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
-        Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+    Route::prefix('hr')->group(function (){
+        //HR Calendar
+        Route::prefix('calendar')->group(function (){
+            Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
+            //Events
+            Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
+            Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
+            Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
+            //Holidays
+            Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
+            Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
+            Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+        });
+
+        Route::prefix('wii')->group(function (){
+            Route::get('/',[WiiController::class, 'create'])->name('wii.create');
+            Route::post('/store',[WiiController::class, 'store'])->name('wii.store');
+        });
+
     });
     
     //Machine Request
