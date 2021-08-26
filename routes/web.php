@@ -134,8 +134,11 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('wii')->group(function (){
+            //Submit Wii
             Route::get('/',[WiiController::class, 'create'])->name('wii.create');
             Route::post('/store',[WiiController::class, 'store'])->name('wii.store');
+            //My Wii
+            Route::get('/my-wii',[WiiController::class, 'myWiiIndex'])->name('wii.my_wii');
         });
 
     });

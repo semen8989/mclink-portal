@@ -10,7 +10,9 @@ class WiiController extends Controller
 {
     public function create()
     {
-        return view('wii.create');
+        $title = 'Submit Wii';
+        
+        return view('wii.create',compact('title'));
     }
 
     public function store(StoreWiiRequest $request)
@@ -23,5 +25,12 @@ class WiiController extends Controller
             return session()->flash('success','Wii Submitted');
         }
 
+    }
+
+    public function myWiiIndex()
+    {
+        $title = 'My Wii';
+
+        return view('wii.my_wii.index',compact('title'));
     }
 }
