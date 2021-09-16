@@ -25,8 +25,8 @@ class StoreWiiRequest extends FormRequest
     {
         return [
             'purpose' => 'required',
-            'current_problem' => 'required',
-            'suggestion_to_resolve' => 'required',
+            'problem' => 'required',
+            'solution' => 'required',
         ];
     }
 }

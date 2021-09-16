@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkImprovementIdeas extends Migration
+class CreateWiiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateWorkImprovementIdeas extends Migration
      */
     public function up()
     {
-        Schema::create('work_improvement_ideas', function (Blueprint $table) {
+        Schema::create('wii', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('purpose');
-            $table->text('current_problem');
-            $table->text('suggestion_to_resolve');
+            $table->text('problem');
+            $table->text('solution');
+            $table->double('incentive_payment')->default(0);
             $table->tinyInteger('status')->default(0);
-            $table->softDeletes();
+            $table->tinyInteger('category_status')->default(0);
+            $table->integer('mark_by')->default(0);
+            $table->text('remarks')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +36,6 @@ class CreateWorkImprovementIdeas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_improvement_ideas');
+        Schema::dropIfExists('wii');
     }
 }

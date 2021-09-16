@@ -10,13 +10,12 @@ class Wii extends Model
 {
     use SoftDeletes, HasFactory;
 
-    protected $table = 'work_improvement_ideas';
+    protected $table = 'wii';
 
     protected $fillable = [
         'user_id',
         'purpose',
-        'current_problem',
-        'suggestion_to_resolve',
-        'status'
+        'problem',
+        'solution',
     ];
 }

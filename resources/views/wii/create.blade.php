@@ -13,11 +13,11 @@
             </div>
             <div class="form-group">
                 <label for="title">Current Problem</label>
-                <textarea class="form-control" name="current_problem" id="current_problem" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="problem" id="problem" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
                 <label for="title">Suggestion to resolve</label>
-                <textarea class="form-control" name="suggestion_to_resolve" id="suggestion_to_resolve" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="solution" id="solution" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
                 <span class="badge badge-light" style="font-size: 15px"><em>All information / suggestions will be strictly kept as confidential</em></span>
