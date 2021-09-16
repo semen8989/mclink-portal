@@ -28,6 +28,21 @@ class WiiController extends Controller
 
     }
 
+    public function show(Wii $wii)
+    {   
+
+    }
+
+    public function edit(Wii $wii)
+    {
+        
+    }
+
+    public function delete(Wii $wii)
+    {
+        
+    }
+
     public function myWiiIndex(MyWiiDataTable $dataTable)
     {
         $title = 'My Wii';

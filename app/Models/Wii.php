@@ -18,4 +18,11 @@ class Wii extends Model
         'problem',
         'solution',
     ];
+
+    const STATUS = [
+        'pending' => 0,
+        'approved' => 1,
+        'not approved' => 2,
+        'KIV' => 3
+    ];
 }

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Wii;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -21,14 +22,45 @@ class MyWiiDataTable extends DataTable
     {
         return datatables()
         ->eloquent($query)
-        ->editColumn('id', function ($request) {
+        ->addColumn('action', function(Wii $wii) {
+            return view('components.datatables.action', [
+                'actionRoutes' => [
+                    'edit' => 'wii.edit',
+                    'delete' => ''
+                ],
+                'itemSlug' => 'wii',
+                'itemSlugValue' => $wii->id
+            ]);
+        })->editColumn('id', function ($request) {
             return '#'.$request->id;
         })->editColumn('purpose', function ($request) {
-            return $request->purpose;
+            return view('components.datatables.show-column', [
+                'showRouteName' => 'wii.show',
+                'showRouteSlug' => 'wii',
+                'showRouteSlugValue' => $request->id,
+                'columnData' => $request->purpose
+            ]);
         })->editColumn('status', function ($request) {
-            return $request->status;
+            $status = ucwords(array_search($request->status, Wii::STATUS));
+            $index = $request->status;
+
+            if($index == 0){
+                $badgeColor = 'dark';
+            }else if($index == 1){
+                $badgeColor = 'success';
+            }else if($index == 2){
+                $badgeColor = 'danger';
+            }else if($index == 3){
+                $badgeColor = 'warning';
+            }
+
+            return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+            ]);
+
         })->editColumn('remarks', function ($request) {
-            return $request->remakrs;
+            return $request->remarks;
         })->editColumn('created_at', function ($request) {
             return $request->created_at->format('F j, Y');
         });
@@ -97,7 +129,9 @@ class MyWiiDataTable extends DataTable
             Column::make('remarks')
                 ->title('Remarks'),
             Column::make('created_at')
-                ->title('Date Submitted')
+                ->title('Date Submitted'),
+            Column::computed('action')
+                ->title(__('label.action'))
         ];
     }
 

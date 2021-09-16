@@ -5,6 +5,11 @@
 <div class="card-body">
     @include('components.wii.nav-tabs')
     <div class="tab-content mt-3" id="myTab1Content">
+            Wii Status:
+            <span class="badge badge-dark">Pending</span>
+            <span class="badge badge-success">Approved</span>
+            <span class="badge badge-danger">Not Approved</span>
+            <span class="badge badge-warning">KIV</span>
         {!! $dataTable->table() !!}
     </div>
 </div>
