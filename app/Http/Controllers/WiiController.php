@@ -30,7 +30,20 @@ class WiiController extends Controller
 
     public function show(Wii $wii)
     {   
+        $status = ucwords(array_search($wii->status, Wii::STATUS));
+        $index = $wii->status;
 
+        if($index == 0){
+            $badgeColor = 'dark';
+        }else if($index == 1){
+            $badgeColor = 'success';
+        }else if($index == 2){
+            $badgeColor = 'danger';
+        }else if($index == 3){
+            $badgeColor = 'warning';
+        }
+
+        return view('wii.show',compact('wii','status','badgeColor'));
     }
 
     public function edit(Wii $wii)
