@@ -12,9 +12,10 @@
     <h3>Solution:</h3>
     <p>{{ $wii->solution }}</p>
     <h3>Status:</h3>
-    <span class="badge badge-{{$badgeColor}} px-2 py-1">
+    <p><span class="badge badge-{{$badgeColor}} px-2 py-1">
         {{ $status }}
-    </span>
-    <p></p>
+    </span></p>
+    <h3>Incentive Payment:</h3>
+    <p>₱</p>
 </div>
 @stop
