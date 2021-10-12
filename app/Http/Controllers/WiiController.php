@@ -32,7 +32,8 @@ class WiiController extends Controller
     {   
         $status = ucwords(array_search($wii->status, Wii::STATUS));
         $index = $wii->status;
-
+        $statusArray = Wii::STATUS;
+        
         if($index == 0){
             $badgeColor = 'dark';
         }else if($index == 1){
@@ -43,12 +44,22 @@ class WiiController extends Controller
             $badgeColor = 'warning';
         }
 
-        return view('wii.show',compact('wii','status','badgeColor'));
+        return view('wii.show',compact('wii','status','statusArray','badgeColor'));
     }
 
-    public function edit(Wii $wii)
+    public function update(Request $request, Wii $wii)
     {
+        $wii->remarks = $request->remarks;
+        $wii->status = $request->status;
+
+        if($request->incentive_payment !=  null){
+            $wii->incentive_payment = $request->incentive_payment;
+        }
         
+        if($wii->save()){
+            return back()->with('success', 'Wii Updated Successfully!');
+        }
+
     }
 
     public function delete(Wii $wii)

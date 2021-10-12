@@ -142,6 +142,7 @@ Route::middleware(['auth'])->group(function () {
             //Actions
             Route::get('/view-details/{wii}',[WiiController::class, 'show'])->name('wii.show');
             Route::get('/edit/{wii}',[WiiController::class, 'edit'])->name('wii.edit');
+            Route::put('/update/{wii}',[WiiController::class, 'update'])->name('wii.update');
         });
 
     });

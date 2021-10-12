@@ -72,9 +72,9 @@ class MyWiiDataTable extends DataTable
      * @param \App\Models\Wii $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query()
+    public function query(Wii $model)
     {
-        return Wii::where('user_id',auth()->user()->id);
+        return $model->newQuery();
     }
 
     /**
