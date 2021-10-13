@@ -25,4 +25,8 @@ class Wii extends Model
         'not approved' => 2,
         'KIV' => 3
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

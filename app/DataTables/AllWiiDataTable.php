@@ -3,14 +3,14 @@
 namespace App\DataTables;
 
 use App\Models\Wii;
-use Illuminate\Support\Str;
+use App\Models\AllWii;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class MyWiiDataTable extends DataTable
+class AllWiiDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -33,6 +33,8 @@ class MyWiiDataTable extends DataTable
             ]);
         })->editColumn('id', function ($request) {
             return '#'.$request->id;
+        })->editColumn('user.name', function ($request) {
+                return $request->user->name;
         })->editColumn('purpose', function ($request) {
             return view('components.datatables.show-column', [
                 'showRouteName' => 'wii.show',
@@ -74,7 +76,7 @@ class MyWiiDataTable extends DataTable
      */
     public function query(Wii $model)
     {
-        return $model->with('user')->select('wii.*')->where('user_id',auth()->user()->id);
+        return $model->newQuery();
     }
 
     /**
@@ -85,7 +87,7 @@ class MyWiiDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-        ->setTableId('my-wii-table')
+        ->setTableId('all-wii-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->parameters([
@@ -122,6 +124,8 @@ class MyWiiDataTable extends DataTable
         return [
             Column::make('id')
                 ->title('#'),
+            Column::make('user.name')
+                ->title('Requested By'),
             Column::make('purpose')
                 ->title('Purpose'),
             Column::make('status')
@@ -135,10 +139,5 @@ class MyWiiDataTable extends DataTable
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     
 }

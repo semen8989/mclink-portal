@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wii;
 use Illuminate\Http\Request;
 use App\DataTables\MyWiiDataTable;
+use App\DataTables\AllWiiDataTable;
 use App\Http\Requests\StoreWiiRequest;
 
 class WiiController extends Controller
@@ -73,4 +74,12 @@ class WiiController extends Controller
 
         return $dataTable->render('wii.my_wii.index',compact('title'));
     }
+
+    public function allWiiIndex(AllWiiDataTable $dataTable)
+    {
+        $title = 'All Wii';
+
+        return $dataTable->render('wii.all_wii.index',compact('title'));
+    }
+    
 }
