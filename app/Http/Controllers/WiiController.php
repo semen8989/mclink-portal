@@ -87,9 +87,16 @@ class WiiController extends Controller
 
     public function allWiiIndex(AllWiiDataTable $dataTable)
     {
-        $title = 'All Wii';
-
-        return $dataTable->render('wii.all_wii.index',compact('title'));
+        if(auth()->user()->id == 1){
+            
+            $title = 'All Wii';
+            
+            return $dataTable->render('wii.all_wii.index',compact('title'));
+        
+        }else{
+            abort(403);
+        }
+        
     }
     
 }
