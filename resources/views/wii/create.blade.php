@@ -46,6 +46,12 @@
                     url: url,
                     data: data,
                     method: method,
+                    beforeSend: function() { 
+                        $(".help-block").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        $(".btn-submit").attr("disabled", true);
+                        $(".btn-submit").html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...`);
+                    },
                     success: function(){
                         window.location.href = '{{ route("wii.create") }}'
                     },
@@ -69,6 +75,10 @@
                             }
                             
                         });
+                    },
+                    complete: function() {
+                        $(".btn-submit").attr("disabled", false);
+                        $(".btn-submit").html('Submit');
                     }
                 });
             });

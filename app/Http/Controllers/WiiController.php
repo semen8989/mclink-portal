@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wii;
+use App\Models\User;
+use App\Mail\WiiRequestSent;
 use Illuminate\Http\Request;
 use App\DataTables\MyWiiDataTable;
 use App\DataTables\AllWiiDataTable;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreWiiRequest;
 
 class WiiController extends Controller
@@ -19,13 +22,20 @@ class WiiController extends Controller
 
     public function store(StoreWiiRequest $request)
     {
-        $request['user_id'] = auth()->user()->id;
+        $mngmtEmail = User::find(1);
 
-        $store = Wii::create($request->all());
+        $wii = new Wii;
+        $wii->purpose = $request['purpose'];
+        $wii->problem = $request['problem'];
+        $wii->solution = $request['solution'];
+        $wii->user_id =  auth()->user()->id;
+        $wii->save();
 
-        if($store){
-            return session()->flash('success','Wii Submitted');
-        }
+        Mail::to($mngmtEmail->email)
+            ->queue(new WiiRequestSent($wii));
+
+        return session()->flash('success','Wii Submitted');
+        
 
     }
 
