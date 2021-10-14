@@ -13,6 +13,7 @@
         {!! $dataTable->table() !!}
     </div>
 </div>
+@include('layout.delete_modal')
 @stop
 
 @push('stylesheet')
@@ -30,4 +31,12 @@
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     <!-- laravel datatable script-->
     {!! $dataTable->scripts() !!}
+    <script>
+        $(document).on('click','#delete',function(){
+            let id = $(this).attr('data-id');
+            var url = '{{ route("wii.destroy",":id") }}'
+            url = url.replace(':id',id)
+            $('#delete_form').attr('action',url);
+        });
+    </script>
 @endpush

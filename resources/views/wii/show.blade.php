@@ -42,8 +42,10 @@
             </div>
         @endif
     </div>
-    <div class="card-footer text-right">
-        <button type="submit" class="btn btn-success">Submit</button>
-    </div>
+    @if(auth()->user()->id == 1)
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    @endif
 </form>
 @stop

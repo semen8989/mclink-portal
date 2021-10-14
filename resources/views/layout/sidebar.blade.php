@@ -53,7 +53,7 @@
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'hr-calendar') ? 'c-active c-show' : '' }}" href="{{ route('hr_calendar') }}">
                         <span class="c-sidebar-nav-icon"></span> {{ __('label.hr_calendar') }}</a>
                     </li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" {{ (request()->segment(2) == 'wii') ? 'c-active c-show' : '' }}" href="{{ route('wii.create') }}">
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'wii') ? 'c-active c-show' : '' }}" href="{{ route('wii.create') }}">
                         <span class="c-sidebar-nav-icon"></span> Wii</a>
                     </li>
                 </ul>

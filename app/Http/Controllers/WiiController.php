@@ -93,9 +93,11 @@ class WiiController extends Controller
 
     }
 
-    public function delete(Wii $wii)
+    public function destroy(Wii $wii)
     {
-        
+        if($wii->delete()){
+            return redirect()->route('wii.my_wii')->with('success','Wii deleted succssfully');
+        }
     }
 
     public function myWiiIndex(MyWiiDataTable $dataTable)

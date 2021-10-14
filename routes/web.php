@@ -145,6 +145,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/view-details/{wii}',[WiiController::class, 'show'])->name('wii.show');
             Route::get('/edit/{wii}',[WiiController::class, 'edit'])->name('wii.edit');
             Route::put('/update/{wii}',[WiiController::class, 'update'])->name('wii.update');
+            Route::delete('/destroy/{wii}',[WiiController::class, 'destroy'])->name('wii.destroy');
+            //Update by Management
             Route::put('/updateStatus/{wii}',[WiiController::class, 'updateStatus'])->name('wii.update_status');
         });
 
