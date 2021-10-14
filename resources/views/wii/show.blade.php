@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header"><b>My Wii</b></div>
-<form method="POST" id="wii_form" action="{{ route('wii.update', $wii->id) }}" autocomplete="off" novalidate>
+<form method="POST" id="wii_form" action="{{ route('wii.update_status', $wii->id) }}" autocomplete="off" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">

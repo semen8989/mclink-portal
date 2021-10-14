@@ -58,7 +58,14 @@ class WiiController extends Controller
         return view('wii.show',compact('wii','status','statusArray','badgeColor'));
     }
 
-    public function update(Request $request, Wii $wii)
+    public function edit(Wii $wii)
+    {
+        $title = 'Update Wii';
+        
+        return view('wii.my_wii.edit',compact('title','wii'));
+    }
+
+    public function updateStatus(Request $request, Wii $wii)
     {
         $wii->remarks = $request->remarks;
         $wii->status = $request->status;
@@ -70,6 +77,19 @@ class WiiController extends Controller
         if($wii->save()){
             return back()->with('success', 'Wii Updated Successfully!');
         }
+
+    }
+
+    public function update(StoreWiiRequest $request, Wii $wii)
+    {
+        $wii->purpose = $request['purpose'];
+        $wii->problem = $request['problem'];
+        $wii->solution = $request['solution'];
+        
+        if($wii->save()){
+            return session()->flash('success', 'Wii Updated Successfully!');
+        }
+
 
     }
 
