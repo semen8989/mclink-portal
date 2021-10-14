@@ -3,14 +3,13 @@
 namespace App\DataTables;
 
 use App\Models\Wii;
-use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class MyWiiDataTable extends DataTable
+class CompletedWiiDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,16 +21,6 @@ class MyWiiDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', function(Wii $wii) {
-                return view('components.datatables.action', [
-                    'actionRoutes' => [
-                        'edit' => 'wii.edit',
-                        'delete' => ''
-                    ],
-                    'itemSlug' => 'wii',
-                    'itemSlugValue' => $wii->id
-                ]);
-            })
             ->editColumn('id', function ($request) {
                 return '#'.$request->id;
             })->editColumn('purpose', function ($request) {
@@ -74,7 +63,7 @@ class MyWiiDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Wii $model
+     * @param \App\Models\CompletedWii $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Wii $model)
@@ -83,8 +72,8 @@ class MyWiiDataTable extends DataTable
                     ->select('wii.*')
                     ->where('user_id',auth()->user()->id)
                     ->where(function($query){
-                        $query->where('status',0);
-                        $query->orWhere('status',3);
+                        $query->where('status',1);
+                        $query->orWhere('status',2);
                     });
     }
 
@@ -96,7 +85,7 @@ class MyWiiDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-        ->setTableId('my-wii-table')
+        ->setTableId('completed-wii-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->parameters([
@@ -140,16 +129,7 @@ class MyWiiDataTable extends DataTable
             Column::make('remarks')
                 ->title('Remarks'),
             Column::make('created_at')
-                ->title('Date Submitted'),
-            Column::computed('action')
-                ->title(__('label.action'))
+                ->title('Date Submitted')
         ];
     }
-
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    
 }

@@ -139,6 +139,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store',[WiiController::class, 'store'])->name('wii.store');
             //My Wii
             Route::get('/my-wii',[WiiController::class, 'myWiiIndex'])->name('wii.my_wii');
+            //Completed Wii
+            Route::get('/completed-wii',[WiiController::class, 'completedWiiIndex'])->name('wii.completed_wii');
             //All Wii - For HR only
             Route::get('/all-wii',[WiiController::class, 'allWiiIndex'])->name('wii.all_wii');
             //Actions

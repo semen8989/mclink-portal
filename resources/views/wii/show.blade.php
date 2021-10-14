@@ -20,7 +20,7 @@
                 {{ $status }}
             </span></p>
             <h3>Incentive Payment:</h3>
-            <p>₱</p>
+            <p>₱</p>     
         @else
             <div class="form-group">
                 <h3>Status:</h3>

@@ -10,6 +10,7 @@ use App\DataTables\MyWiiDataTable;
 use App\DataTables\AllWiiDataTable;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreWiiRequest;
+use App\DataTables\CompletedWiiDataTable;
 
 class WiiController extends Controller
 {
@@ -105,6 +106,13 @@ class WiiController extends Controller
         $title = 'My Wii';
 
         return $dataTable->render('wii.my_wii.index',compact('title'));
+    }
+
+    public function completedWiiIndex(CompletedWiiDataTable $dataTable)
+    {
+        $title = 'Completed Wii';
+
+        return $dataTable->render('wii.completed_wii.index',compact('title'));
     }
 
     public function allWiiIndex(AllWiiDataTable $dataTable)
