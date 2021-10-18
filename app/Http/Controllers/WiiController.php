@@ -41,29 +41,41 @@ class WiiController extends Controller
     }
 
     public function show(Wii $wii)
-    {   
-        $status = ucwords(array_search($wii->status, Wii::STATUS));
-        $index = $wii->status;
-        $statusArray = Wii::STATUS;
-        
-        if($index == 0){
-            $badgeColor = 'dark';
-        }else if($index == 1){
-            $badgeColor = 'success';
-        }else if($index == 2){
-            $badgeColor = 'danger';
-        }else if($index == 3){
-            $badgeColor = 'warning';
-        }
+    {        
+        if(auth()->user()->can('view',$wii)){
 
-        return view('wii.show',compact('wii','status','statusArray','badgeColor'));
+            $status = ucwords(array_search($wii->status, Wii::STATUS));
+            $index = $wii->status;
+            $statusArray = Wii::STATUS;
+            
+            if($index == 0){
+                $badgeColor = 'dark';
+            }else if($index == 1){
+                $badgeColor = 'success';
+            }else if($index == 2){
+                $badgeColor = 'danger';
+            }else if($index == 3){
+                $badgeColor = 'warning';
+            }
+
+            return view('wii.show',compact('wii','status','statusArray','badgeColor'));
+        
+        }else{
+            abort(403);
+        }
     }
 
     public function edit(Wii $wii)
     {
-        $title = 'Update Wii';
+        if(auth()->user()->can('view',$wii)){
+            
+            $title = 'Update Wii';
         
-        return view('wii.my_wii.edit',compact('title','wii'));
+            return view('wii.my_wii.edit',compact('title','wii'));
+
+        }else{
+            abort(403);
+        }
     }
 
     public function updateStatus(Request $request, Wii $wii)
@@ -96,7 +108,10 @@ class WiiController extends Controller
 
     public function destroy(Wii $wii)
     {
-        if($wii->delete()){
+        if(auth()->user()->can('delete',$wii)){
+            
+            $wii->delete();
+
             return redirect()->route('wii.my_wii')->with('success','Wii deleted succssfully');
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Models\Wii;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class WiiPolicy
@@ -10,11 +11,83 @@ class WiiPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
+     * Determine whether the user can view any models.
      *
-     * @return void
+     * @param  \App\Models\User  $user
+     * @return mixed
      */
-    public function __construct()
+    public function viewAny(User $user)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Wii  $wii
+     * @return mixed
+     */
+    public function view(User $user, Wii $wii)
+    {
+        return $user->id === $wii->user->id;
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Wii  $wii
+     * @return mixed
+     */
+    public function update(User $user, Wii $wii)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Wii  $wii
+     * @return mixed
+     */
+    public function delete(User $user, Wii $wii)
+    {
+        return $user->id === $wii->user->id;
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Wii  $wii
+     * @return mixed
+     */
+    public function restore(User $user, Wii $wii)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Wii  $wii
+     * @return mixed
+     */
+    public function forceDelete(User $user, Wii $wii)
     {
         //
     }
