@@ -1,7 +1,11 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header"><b>My Wii</b></div>
+@if (auth()->user()->id == 1)
+    <div class="card-header"><b>{{ ucfirst($wii->user->name) }} - Wii</b></div>
+@else
+    <div class="card-header"><b>My Wii</b></div>
+@endif
 <form method="POST" id="wii_form" action="{{ route('wii.update_status', $wii->id) }}" autocomplete="off" novalidate>
     @csrf
     @method('PUT')

@@ -22,16 +22,7 @@ class AllWiiDataTable extends DataTable
     {
         return datatables()
         ->eloquent($query)
-        ->addColumn('action', function(Wii $wii) {
-            return view('components.datatables.action', [
-                'actionRoutes' => [
-                    'edit' => 'wii.edit',
-                    'delete' => ''
-                ],
-                'itemSlug' => 'wii',
-                'itemSlugValue' => $wii->id
-            ]);
-        })->editColumn('id', function ($request) {
+        ->editColumn('id', function ($request) {
             return '#'.$request->id;
         })->editColumn('user.name', function ($request) {
                 return $request->user->name;
@@ -62,7 +53,11 @@ class AllWiiDataTable extends DataTable
             ]);
 
         })->editColumn('remarks', function ($request) {
-            return $request->remarks;
+            if($request->remarks != null){
+                return $request->remarks;
+            }else{
+                return 'No Remarks Available';
+            }
         })->editColumn('created_at', function ($request) {
             return $request->created_at->format('F j, Y');
         });
@@ -134,8 +129,6 @@ class AllWiiDataTable extends DataTable
                 ->title('Remarks'),
             Column::make('created_at')
                 ->title('Date Submitted'),
-            Column::computed('action')
-                ->title(__('label.action'))
         ];
     }
 
