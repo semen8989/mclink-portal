@@ -10,6 +10,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HandbookController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
@@ -22,8 +23,8 @@ use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\KpiObjectiveController;
-use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -119,16 +120,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
 
     //HR Calendar
-    Route::prefix('hr-calendar')->group(function (){
-        Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
-        //Events
-        Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
-        Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
-        Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
-        //Holidays
-        Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
-        Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
-        Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+    Route::prefix('hr')->group(function (){
+        //HR Calendar
+        Route::prefix('calendar')->group(function (){
+            Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
+            //Events
+            Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
+            Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
+            Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
+            //Holidays
+            Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
+            Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
+            Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+        });
+        //Handbook
+        Route::prefix('handbook')->group(function (){
+            Route::get('/',[HandbookController::class, 'index'])->name('handbook.index'); 
+            Route::post('/upload',[HandbookController::class, 'upload'])->name('handbook.upload');   
+        });
+
     });
     
     //Machine Request
