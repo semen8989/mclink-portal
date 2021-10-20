@@ -12,7 +12,7 @@ class HandbookController extends Controller
     {
         $latestRecord = Handbook::latest()->first();
         $files = Handbook::where('id','!=',$latestRecord->id)->orderBy('id','DESC')->get();
-        return view('handbook.index',compact('files'));
+        return view('handbook.index',compact('files','latestRecord'));
     }
 
     public function upload(Request $request)

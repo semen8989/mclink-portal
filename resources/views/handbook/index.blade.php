@@ -16,6 +16,7 @@
                 Save
             </button>
         </form>
+        <iframe src="{{ asset('storage/handbook/'.$latestRecord->file_name) }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe>
         <h4>Old Version Of Indoctrination</h4>
         <ul>
             @foreach($files as $item)
