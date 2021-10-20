@@ -135,7 +135,9 @@ Route::middleware(['auth'])->group(function () {
         });
         //Handbook
         Route::prefix('handbook')->group(function (){
-            Route::get('/',[HandbookController::class, 'index'])->name('handbook.index'); 
+            Route::get('/mca-indoctrination',[HandbookController::class, 'indoctrinationIndex'])->name('handbook.mca_indoctrination'); 
+            Route::get('/ph-handbook',[HandbookController::class, 'phHandbookIndex'])->name('handbook.ph_handbook');
+            Route::get('/ch-handbook',[HandbookController::class, 'chHandbookIndex'])->name('handbook.ch_handbook');
             Route::post('/upload',[HandbookController::class, 'upload'])->name('handbook.upload');   
         });
 

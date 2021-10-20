@@ -53,7 +53,7 @@
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'calendar') ? 'c-active c-show' : '' }}" href="{{ route('hr_calendar') }}">
                         <span class="c-sidebar-nav-icon"></span> {{ __('label.hr_calendar') }}</a>
                     </li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'handbook') ? 'c-active c-show' : '' }}" href="{{ route('handbook.index') }}">
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'handbook') ? 'c-active c-show' : '' }}" href="{{ route('handbook.mca_indoctrination') }}">
                         <span class="c-sidebar-nav-icon"></span> Handbook</a>
                     </li>
                 </ul>

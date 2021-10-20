@@ -8,11 +8,21 @@ use Illuminate\Support\Facades\Storage;
 
 class HandbookController extends Controller
 {
-    public function index()
+    public function indoctrinationIndex()
     {
         $latestRecord = Handbook::latest()->first();
         $files = Handbook::where('id','!=',$latestRecord->id)->orderBy('id','DESC')->get();
-        return view('handbook.index',compact('files','latestRecord'));
+        return view('handbook.indoctrination',compact('files','latestRecord'));
+    }
+
+    public function phHandbookIndex()
+    {
+        return view('handbook.ph_handbook');
+    }
+
+    public function chHandbookIndex()
+    {
+        return view('handbook.ch_handbook');
     }
 
     public function upload(Request $request)
