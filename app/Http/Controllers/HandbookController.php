@@ -18,11 +18,11 @@ class HandbookController extends Controller
     public function upload(Request $request)
     {
         if($request->hasFile('upload')){
-            $storagePath = Storage::putFile('handbook', $request->file('upload'));
+            $storagePath = Storage::putFile('handbook\indoctrination', $request->file('upload'));
             $fileName = basename($storagePath);
             
             $upload = new Handbook;
-            $upload->orig_filename = 'MCA Indoctrination Version 2022';
+            $upload->orig_filename = 'Version 2021';
             $upload->file_name = $fileName;
             $upload->save();
 

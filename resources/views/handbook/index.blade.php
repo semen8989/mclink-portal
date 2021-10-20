@@ -5,22 +5,26 @@
         Handbook
     </div>
     <div class="card-body">
-        <form action="{{ route('handbook.upload') }}" method="POST" enctype="multipart/form-data">
+        <form class="form-inline" action="{{ route('handbook.upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="logo">Indoctrination</label>
-                <input type="file" class="form-control-file" name="upload" id="upload">
-                <small>Upload files only: pdf</small>
+            <div class="form-group mb-2">
+                <input type="text" readonly class="form-control-plaintext" value="Upload Indoctrination">
             </div>
-            <button class="btn btn-primary font-weight-bold float-right" type="submit">
-                Save
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="file" class="form-control-file" name="upload" id="upload">
+            </div>
+            <button class="btn btn-primary font-weight-bold mb-2" type="submit">
+                Upload
             </button>
         </form>
-        <iframe src="{{ asset('storage/handbook/'.$latestRecord->file_name) }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe>
+        <hr>
+        <h2>MCA Indoctrination</h2>
+        <iframe src="{{ asset('storage/handbook/indoctrination/'.$latestRecord->file_name) }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe>
+        <hr>
         <h4>Old Version Of Indoctrination</h4>
         <ul>
             @foreach($files as $item)
-                 <li>{{ $item->orig_filename }}</li>
+                <li><a href="{{ asset('storage/handbook/indoctrination/'.$item->file_name) }}" target="_blank">{{ $item->orig_filename }}</a></li>
             @endforeach
         </ul>
     </div>
