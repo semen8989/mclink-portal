@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
+use App\Http\Controllers\SalesLeadController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
@@ -22,8 +23,8 @@ use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\KpiObjectiveController;
-use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\AcknowledgementFormController;
 
 Auth::routes(['register' => false]);
@@ -151,7 +152,12 @@ Route::middleware(['auth'])->group(function () {
         //mark as completed
         Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
     });
-
+    //Sales
+    Route::prefix('sales-lead')->group(function (){
+        Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
+        Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
+    });
+    
 });
 
 

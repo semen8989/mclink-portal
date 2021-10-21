@@ -55,6 +55,7 @@
                 </svg> Sales</a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('machine_request.create') }}"><span class="c-sidebar-nav-icon"></span> Machine Request </a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('sales_lead.index') }}"><span class="c-sidebar-nav-icon"></span> Sales Lead </a></li>
                 </ul>
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == __('label.global.module.performance.url_segment')) ? 'c-active c-show' : '' }}">
               <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
