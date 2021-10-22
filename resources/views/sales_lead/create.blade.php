@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Create Sales Lead</div>
-<form method="POST" id="request_form" action="#" autocomplete="off" novalidate>
+<form method="POST" id="sales_form" action="{{ route('sales_lead.store') }}" autocomplete="off" novalidate>
     @csrf
     <div class="card-body">
         @include('components.sales-lead.nav-tabs')
@@ -18,7 +18,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="title">Tel#</label>
-                        <input class="form-control" name="tel_number" id="tel_number" type="text">
+                        <input class="form-control" name="tel_num" id="tel_num" type="text">
                     </div>
                 </div>
             </div>
@@ -96,13 +96,27 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">Select Sales Manager (The Sales Manager will assign this lead to his/her sales team)</label>
-                        <input class="form-control" name="mclink_base_model" id="mclink_base_model" type="text">
+                        <select class="form-control select2" id="sales_manager" name="sales_manager">
+                            <option></option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}">
+                                    {{ $user->name }}
+                                </option>        
+                            @endforeach 
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">Approved by(Approver)</label>
-                        <input class="form-control" name="non_mclink_base_model" id="non_mclink_base_model" type="text">
+                        <select class="form-control select2" id="approve_by" name="approve_by">
+                            <option></option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}">
+                                    {{ $user->name }}
+                                </option>        
+                            @endforeach 
+                        </select>
                     </div>
                 </div>
             </div>
@@ -116,3 +130,72 @@
     </div>
 </form>
 @stop
+
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $('document').ready(function (){
+            //Scroll to top when page refresh
+            $(window).on('beforeunload', function() {
+                $(window).scrollTop(0);
+            });
+
+             //Select2
+            $('.select2').select2({
+                theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+
+            $('#sales_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+                
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    success: function(){
+                        window.location.href = '{{ route("sales_lead.create") }}';
+                    },
+                    error: function(response){
+                        //Clear previous error messages
+                        $(".help-block").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
+                            }else{
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
+                            }
+                        });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
+                        
+                    }
+                })
+            })
+
+        });
+    </script>
+@endpush
