@@ -153,10 +153,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
     });
     //Sales
-    Route::prefix('sales-lead')->group(function (){
-        Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
-        Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
-
+    Route::prefix('sales')->group(function (){
+        Route::prefix('sales-lead')->group(function (){
+            Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
+            Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
+            Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
+        });
     });
     
 });

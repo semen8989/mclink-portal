@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\SalesLead;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\DataTables\SalesLeadDataTable;
 use App\Http\Requests\StoreSalesLeadRequest;
 
 class SalesLeadController extends Controller
 {
-    public function index()
+    public function index(SalesLeadDataTable $dataTable)
     {
-        return view('sales_lead.index');
+        $title = 'Sales Lead';
+        
+        return $dataTable->render('sales_lead.index',compact('title'));
     }
 
     public function create()
@@ -22,6 +26,7 @@ class SalesLeadController extends Controller
 
     public function store(StoreSalesLeadRequest $request)
     {
+        $request['user_id'] = Auth::user()->id;
         SalesLead::create($request->all());
 
         return session()->flash('success','Sales Lead Created Successfully!');

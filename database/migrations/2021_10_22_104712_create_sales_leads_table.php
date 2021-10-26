@@ -34,6 +34,7 @@ class CreateSalesLeadsTable extends Migration
             $table->integer('amount_payable')->nullable();
             $table->integer('sales_manager');
             $table->integer('approve_by');
+            $table->tinyInteger('is_approved')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -11,6 +11,7 @@ class SalesLead extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'company_name',
         'tel_num',
         'address',
@@ -19,9 +20,24 @@ class SalesLead extends Model
         'mclink_base_reason',
         'mclink_base_model',
         'serial_number',
+        'date_of_installation',
         'existing_brand',
         'non_mclink_base_model',
+        'assigned_sales',
+        'status',
+        'reason',
+        'model_closed_and_qty',
+        'amount_payable',
         'sales_manager',
-        'approve_by'
+        'approve_by',
+        'is_approved'
     ];
+
+    public function assignedSalesUser(){
+        return $this->hasOne(User::class,'id','assigned_sales');
+    }
+
+    public function salesManagerUser(){
+        return $this->hasOne(User::class,'id','sales_manager');
+    }
 }
