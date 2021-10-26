@@ -50,7 +50,7 @@
                         <label class="form-check-label" for="purpose{{ $optionKey }}">{{ $optionVal }} </label>
                     </div>  
                 @endforeach
-                @error('review_period_from')
+                @error('purpose')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
             </div>
@@ -64,7 +64,7 @@
             <label class="col-form-label font-weight-bold" for="pf_score">{{ __('label.e_appraisal_my_record.form.label.criteria_one') }} <span class="font-weight-bold">*</span></label><br>
             <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }} </span>
             <div class="controls pt-2">
-                <input class="form-control @error('pf_score') is-invalid @enderror" name="pf_score" id="pf_score" type="text" value="" placeholder="ex. 2.5"> 
+                <input class="form-control score-factor @error('pf_score') is-invalid @enderror" name="pf_score" id="pf_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('pf_score')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
@@ -79,7 +79,7 @@
             <label class="col-form-label font-weight-bold" for="qow_score">{{ __('label.e_appraisal_my_record.form.label.criteria_two') }} <span class="font-weight-bold">*</span></label><br>
             <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
-                <input class="form-control @error('qow_score') is-invalid @enderror" name="qow_score" id="qow_score" type="text" value="" placeholder="ex. 2.5"> 
+                <input class="form-control score-factor @error('qow_score') is-invalid @enderror" name="qow_score" id="qow_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('qow_score')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
@@ -89,7 +89,7 @@
             <label class="col-form-label font-weight-bold" for="wh_score">{{ __('label.e_appraisal_my_record.form.label.criteria_three') }} <span class="font-weight-bold">*</span></label><br>
             <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
-                <input class="form-control @error('wh_score') is-invalid @enderror" name="wh_score" id="wh_score" type="text" value="" placeholder="ex. 2.5"> 
+                <input class="form-control score-factor @error('wh_score') is-invalid @enderror" name="wh_score" id="wh_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('wh_score')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
@@ -156,7 +156,7 @@
             <label class="col-form-label font-weight-bold" for="jk_score">{{ __('label.e_appraisal_my_record.form.label.criteria_four') }} <span class="font-weight-bold">*</span></label><br>
             <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
-                <input class="form-control @error('jk_score') is-invalid @enderror" name="jk_score" id="jk_score" type="text" value="" placeholder="ex. 2.5"> 
+                <input class="form-control score-factor @error('jk_score') is-invalid @enderror" name="jk_score" id="jk_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('jk_score')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
@@ -166,7 +166,7 @@
             <label class="col-form-label font-weight-bold" for="bro_score">{{ __('label.e_appraisal_my_record.form.label.criteria_five') }} <span class="font-weight-bold">*</span></label><br>
             <span>{{ __('label.e_appraisal_my_record.form.label.score_range') }}</span>
             <div class="controls pt-2">
-                <input class="form-control @error('bro_score') is-invalid @enderror" name="bro_score" id="bro_score" type="text" value="" placeholder="ex. 2.5"> 
+                <input class="form-control score-factor @error('bro_score') is-invalid @enderror" name="bro_score" id="bro_score" type="text" value="" placeholder="ex. 2.5"> 
                 @error('bro_score')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
@@ -269,7 +269,7 @@
                         <label class="form-check-label" for="recommendation{{ $optionKey }}">{{ $optionVal }} </label>
                     </div>
                 @endforeach
-                @error('review_period_from')
+                @error('recommendation')
                 <span class="help-block text-danger">{{ $message }}</span>
                 @enderror
             </div>
@@ -558,30 +558,39 @@
         @endif
     </div> --}}
 
-    <div class="row float-right mb-4 mt-3 mr-1">
-        <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('service.form.index') }}">
-            <svg class="c-icon">
-                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
-            </svg>
-            {{ __('label.global.form.button.back') }}
-        </a>
-        <div class="btn-group">
-            <button class="btn btn-success font-weight-bold px-3" value="sent" type="submit">
-            <svg class="c-icon">
-                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-send') }}"></use>
-            </svg>
-            {{ __('label.service_report.form.button.send') }}
-            </button>
-            <button class="btn btn-success dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu">
-            <button class="dropdown-item font-weight-bold px-3" value="draft" type="submit">
-                {{ __('label.service_report.form.button.draft') }}
-            </button>
+    <div class="row">
+        <div class="col-md-6">
+            <h5>
+                <strong>
+                    TOTAL SCORE: <span id="total_score">0</span> / 5
+                </strong>
+            </h5>
+        </div>
+        <div class="col-md-6">
+            <div class="float-right">
+                <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="{{ route('appraisal.my.record.new.employee.index') }}">
+                    <svg class="c-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-arrow-circle-left') }}"></use>
+                    </svg>
+                    {{ __('label.global.form.button.back') }}
+                </a>     
+                <button class="btn btn-success font-weight-bold px-3" type="submit">
+                    <svg class="c-icon">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-task') }}"></use>
+                    </svg>
+                    {{ __('label.global.form.button.submit') }}
+                </button>
             </div>
         </div>
     </div>
+
+    {{-- <div class="row float-right mb-4 mt-2 mr-1">
+        
+    </div> --}}
+
+    {{-- <a class="btn btn-secondary font-weight-bold px-3 mr-2" href="" id="testBtn">
+    test
+    </a>  --}}
 
   </div>
 
@@ -613,38 +622,34 @@
         return ' ( ' + $designation + ' )';
       }
 
+      // compute total score on change event
+      $('.score-factor').change(function() {
+        var pf = Number($('#pf_score').val());
+        var qow = Number($('#qow_score').val());
+        var wh = Number($('#wh_score').val());
+        var jk = Number($('#jk_score').val());
+        var bro = Number($('#bro_score').val());
+        var total = (pf + qow + wh + jk + bro) / 5;
+
+        $('#total_score').text(total);
+      });
+
       // init Start of Service field
       $reviewPeriodFrom = $('#review_period_from').datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'DD/MM/YYYY hh:mm A'
       });
 
       // init End of Service field
       $reviewPeriodTo = $('#review_period_to').datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'DD/MM/YYYY hh:mm A'
       });
 
       // init Date field
-      $dateField = $('#date').datetimepicker({
-        format: 'DD/MM/YYYY',
+      $reviewDate = $('#review_date').datetimepicker({
+        format: 'DD/MM/YYYY'
       });
 
-      // init Service Rendered field
-      tinymce.init({
-        selector: 'textarea#serviceRendered',
-        height: 400,
-        menubar: false,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar: 'undo redo | bold italic | ' +
-        'alignleft aligncenter alignright alignjustify | ' +
-        'bullist numlist outdent indent | help',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-      });
-
-      // init Customer Name select2
+      // init employee select2
       $('#employee_id').select2({
         theme: "bootstrap",
         ajax: {
@@ -685,45 +690,18 @@
         }
       });
 
-      // init Service Engineer Name select2
-      $('#engineerId').select2({
-        theme: "bootstrap",
-        ajax: {
-            url: "{{ route('get.engineers') }}",
-            type: 'get',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                var query = {
-                    search: params.term || '',
-                    page: params.page || 1
-                }
-
-                return query;
-            },
-            processResults: function (data, params) {
-
-              params.page = params.page || 1;
-
-              var items = data.data.map(function(item) {
-                  return { 
-                    id: item.id,
-                    text: item.name
-                  };
-              });
-
-              return {
-                results: items,
-                pagination: {
-                  more: (params.page * 10) < data.total
-                }
-              };
-            },
-            cache: true
-        }
+      $('#employee_id').on('select2:selecting', function (e) {
+        var data = e.params.args.data;
+        data.text = data.name;
       });
 
-      // init Customer Name select2
+      $('#employee_id').on('select2:select', function (e) {
+        var data = e.params.data;
+        $('#custEmail').val(data.email);
+        $('#address').val(data.address);
+      });
+
+      // init shared to employee select2
       $('#shared').select2({
         ajax: {
             url: "{{ route('get.employees') }}",
@@ -760,27 +738,12 @@
         }
       });
 
-      $('#employee_id').on('select2:selecting', function (e) {
-        var data = e.params.args.data;
-        data.text = data.name;
-      });
-
-      $('#employee_id').on('select2:select', function (e) {
-        var data = e.params.data;
-        $('#custEmail').val(data.email);
-        $('#address').val(data.address);
-      });
-      
-      $('#appraisalForm').find(':submit').click(function() {
-        $('#action').val($(this).val());
-      });
-
       $('#appraisalForm').submit(function (event) {
         $(this).find(':submit').prop('disabled', true);
         
-        $dateField.data("DateTimePicker").format('YYYY-MM-DD');
         $reviewPeriodFrom.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
         $reviewPeriodTo.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
+        $reviewDate.data("DateTimePicker").format('YYYY-MM-DD');
       });
     });
   </script>

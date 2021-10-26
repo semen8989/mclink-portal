@@ -33,12 +33,10 @@ class StoreNewRecordAppraisalRequest extends FormRequest
             'wh_score' => 'bail|required|numeric|between:0,5',
             'jk_score' => 'bail|required|numeric|between:0,5',
             'bro_score' => 'bail|required|numeric|between:0,5',
-            'pf_level' => 'bail|required|in:1,5',
-            'qow_level' => 'bail|required|in:1,5',
-            'wh_level' => 'bail|required|in:1,5',
-            'jk_level' => 'bail|required|in:1,5',
-            'bro_level' => 'bail|required|in:1,5',
-            'pf_comment' => 'bail|required',
+            'qow_level' => 'bail|required|in:1,2,3,4,5',
+            'wh_level' => 'bail|required|in:1,2,3,4,5',
+            'jk_level' => 'bail|required|in:1,2,3,4,5',
+            'bro_level' => 'bail|required|in:1,2,3,4,5',
             'qow_comment' => 'bail|required',
             'wh_comment' => 'bail|required',
             'jk_comment' => 'bail|required',
@@ -46,8 +44,9 @@ class StoreNewRecordAppraisalRequest extends FormRequest
             'overall_progress' => 'bail|required|in:1,2,3',
             'progress_comment' => 'bail|required',
             'recommendation' => 'bail|required|in:1,2',
-            'review_date' => 'bail|required|date',
-            'final_comment' => 'bail|required',        
+            'review_date' => 'bail|required|date|before_or_equal:today',
+            'final_comment' => 'bail|required',
+            'shared' => 'exists:users,id',
         ];
     }
 }

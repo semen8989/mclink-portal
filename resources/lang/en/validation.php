@@ -198,11 +198,35 @@ return [
         'department_id' => 'department',
         'expense_type_id' => 'expense type',
         'employee_id' => 'employee',
-        //Machine Request variable fields
+        // machine Request variable fields
         'technician_id' => 'technician',
         'cassette_no' => 'cassette number',
         'contact_no' => 'contact number',
-        'qty' => 'quantity'
+        'qty' => 'quantity',
+        // e appraisal fields
+        'employee_id' => 'employee',
+        'review_period_from' => 'start of review period',
+        'review_period_to' => 'end of review period',
+        'purpose' => 'appraisal purpose',
+        'pf_score' => 'performance factor score',
+        'qow_score' => 'work quality score',
+        'wh_score' => 'work habits score',
+        'jk_score' => 'job knowledge score',
+        'bro_score' => 'behavior/relations score',
+        'qow_level' => 'work quality option',
+        'wh_level' => 'work habits option',
+        'jk_level' => 'job knowledge option',
+        'bro_level' => 'behavior/relations option',
+        'qow_comment' => 'work quality comment',
+        'wh_comment' => 'work habits comment',
+        'jk_comment' => 'job knowledge comment',
+        'bro_comment' => 'behavior/relations comment',
+        'overall_progress' => 'progress option',
+        'progress_comment' => 'progress comment',
+        'recommendation' => 'recommendation option',
+        'review_date' => 'review date',
+        'final_comment' => 'final comment',
+        'shared' => 'shared employee',
     ],
 
 ];
