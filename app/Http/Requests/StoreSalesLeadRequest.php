@@ -26,9 +26,7 @@ class StoreSalesLeadRequest extends FormRequest
         return [
             'company_name' => 'required',
             'tel_num' => 'required',
-            'address' => 'required',
             'contact_person' => 'required',
-            'mclink_base_reason' => 'required',
             'sales_manager' => 'required',
             'approve_by' => 'required'
         ];

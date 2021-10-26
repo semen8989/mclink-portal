@@ -154,7 +154,6 @@ Route::middleware(['auth'])->group(function () {
     });
     //Sales
     Route::prefix('sales-lead')->group(function (){
-        Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
         Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
         Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
 

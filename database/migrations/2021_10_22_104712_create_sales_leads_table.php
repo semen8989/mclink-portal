@@ -15,16 +15,23 @@ class CreateSalesLeadsTable extends Migration
     {
         Schema::create('sales_leads', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('company_name');
             $table->string('tel_num');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('contact_person');
             $table->string('department')->nullable();
-            $table->string('mclink_base_reason');
+            $table->string('mclink_base_reason')->nullable();
             $table->string('mclink_base_model')->nullable();
             $table->string('serial_number')->nullable();
+            $table->date('date_of_installation')->nullable();
             $table->string('existing_brand')->nullable();
             $table->string('non_mclink_base_model')->nullable();
+            $table->string('assigned_sales')->nullable();
+            $table->tinyInteger('status')->nullable();
+            $table->string('reason')->nullable();
+            $table->string('model_closed_and_qty')->nullable();
+            $table->integer('amount_payable')->nullable();
             $table->integer('sales_manager');
             $table->integer('approve_by');
             $table->softDeletes();
