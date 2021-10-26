@@ -318,6 +318,8 @@
         </div>
     </div>
 
+    <input name="total_score" id="total_score" type="hidden">
+
     {{-- <fieldset class="form-group">
         <div class="row">
           <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
@@ -562,7 +564,7 @@
         <div class="col-md-6">
             <h5>
                 <strong>
-                    TOTAL SCORE: <span id="total_score">0</span> / 5
+                    TOTAL SCORE: <span id="display_score">0</span> / 5
                 </strong>
             </h5>
         </div>
@@ -631,7 +633,8 @@
         var bro = Number($('#bro_score').val());
         var total = (pf + qow + wh + jk + bro) / 5;
 
-        $('#total_score').text(total);
+        $('#display_score').text(total);
+        $('#total_score').val(total);
       });
 
       // init Start of Service field
