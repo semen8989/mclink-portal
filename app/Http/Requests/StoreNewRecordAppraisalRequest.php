@@ -47,6 +47,7 @@ class StoreNewRecordAppraisalRequest extends FormRequest
             'review_date' => 'bail|required|date|before_or_equal:today',
             'final_comment' => 'bail|required',
             'shared' => 'exists:users,id',
+            'total_score' => 'nullable'
         ];
     }
 }

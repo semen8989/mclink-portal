@@ -318,7 +318,7 @@
         </div>
     </div>
 
-    <input name="total_score" id="total_score" type="hidden">
+    <input type="hidden" name="total_score" id="total_score">
 
     {{-- <fieldset class="form-group">
         <div class="row">
