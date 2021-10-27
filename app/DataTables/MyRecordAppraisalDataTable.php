@@ -35,7 +35,7 @@ class MyRecordAppraisalDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        // EmployeeAppraisal $employeeAppraisal;
+        // get employee related initial info
         $employeeSegment = last(request()->segments());
 
         $employeeParam = $this->getEmployeeData($employeeSegment, 'param');
@@ -48,7 +48,6 @@ class MyRecordAppraisalDataTable extends DataTable
             ->addColumn('action', function(EmployeeAppraisal $appraisal) use ($employeeRoute, $employeeParam) {
                 return view('components.datatables.action', [
                     'actionRoutes' => [
-                        'edit' => $employeeRoute . '.edit',
                         'delete' => ''
                     ],
                     'itemSlug' => $employeeParam,
@@ -74,7 +73,8 @@ class MyRecordAppraisalDataTable extends DataTable
             })->editColumn('updated_at', function ($request) {
                 return $request->updated_at->format('d/m/Y');
             })->filter(function ($instance) use ($employeeRelationship) {
-                $instance->has($employeeRelationship);
+                $instance->where('user_id', auth()->user()->id)
+                    ->has($employeeRelationship);
             }, true);
     }
 
