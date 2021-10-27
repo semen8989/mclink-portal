@@ -22,6 +22,15 @@ class EmployeeAppraisal extends Model
         "relationship" => 'regularEmployeeAppraisal'
     ];
 
+    protected $fillable = [
+        'user_id',
+        'employee_id',
+        'review_period_from',
+        'review_period_to',
+        'review_date',
+        'total_score'
+    ];
+
     /**
      * The attributes that should be cast.
      *

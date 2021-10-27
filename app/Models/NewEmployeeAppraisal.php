@@ -24,6 +24,27 @@ class NewEmployeeAppraisal extends Model
      */
     public $timestamps = false;
 
+    protected $fillable = [
+        'purpose',
+        'pf_score',
+        'qow_score',
+        'wh_score',
+        'jk_score',
+        'bro_score',
+        'qow_level',
+        'wh_level',
+        'jk_level',
+        'bro_level',
+        'qow_comment',
+        'wh_comment',
+        'jk_comment',
+        'bro_comment',
+        'overall_progress',
+        'progress_comment',
+        'recommendation',
+        'final_comment',
+    ];
+
     public static function getPurposeOptionList()
     {
         return [

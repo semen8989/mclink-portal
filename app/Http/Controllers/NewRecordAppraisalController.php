@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\EmployeeAppraisal;
+use Illuminate\Support\Facades\DB;
 use App\Models\NewEmployeeAppraisal;
 use App\DataTables\MyRecordAppraisalDataTable;
 use App\Http\Requests\StoreNewRecordAppraisalRequest;
@@ -49,27 +52,42 @@ class NewRecordAppraisalController extends Controller
      */
     public function store(StoreNewRecordAppraisalRequest $request)
     {
-        dd($request->all());
-        // $validated = $request->validated();    
-        // $validated['user_id'] = auth()->user()->id;
-
-        // $result = true;
+        $validated = $request->validated(); 
+        $validated['user_id'] = auth()->user()->id;
+        $result = true;
+        $mainAppraisalCols = [
+            'user_id',
+            'employee_id',
+            'review_period_from',
+            'review_period_to',
+            'review_date',
+            'total_score'
+        ];
         
-        // try {
-        //     DB::transaction(function () use ($validated) {
-        //         KpiVariable::create($validated);
-        //     });
-        // } catch (\Exception $e) {
-        //     $result = false;
-        // }
+        try {
+            DB::transaction(function () use ($validated, $mainAppraisalCols) {
+                $appraisal = EmployeeAppraisal::create(Arr::only($validated, $mainAppraisalCols));
+                $validated['employee_appraisal_id'] = $appraisal->id;
+                $appraisal->newEmployeeAppraisal()->create(Arr::except($validated, $mainAppraisalCols));
 
-        // $resultStatus = $result ? 'success' : 'error';
+                foreach ($validated['shared'] as $user) {
+                    $appraisal->users()->attach($user, [
+                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                    ]);
+                }  
+            });
+        } catch (\Exception $event) {
+            $result = false;
+        }
 
-        // $msg = $result
-        //     ? __('label.global.response.success.general', ['module' => 'KPI Variable', 'action' => 'created'])
-        //     : __('label.global.response.error.general', ['action' => 'creating']);
+        $resultStatus = $result ? 'success' : 'error';
+
+        $msg = $result
+            ? __('label.global.response.success.general', ['module' => 'e-Appraisal', 'action' => 'created'])
+            : __('label.global.response.error.general', ['action' => 'creating']);
         
-        // return redirect()->route('okr.kpi.variables.index')->with($resultStatus, $msg);
+        return redirect()->route('appraisal.my.record.new.employee.index')->with($resultStatus, $msg);
     }
 
     /**
