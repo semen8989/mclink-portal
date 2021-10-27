@@ -639,12 +639,12 @@
 
       // init Start of Service field
       $reviewPeriodFrom = $('#review_period_from').datetimepicker({
-        format: 'DD/MM/YYYY hh:mm A'
+        format: 'DD/MM/YYYY'
       });
 
       // init End of Service field
       $reviewPeriodTo = $('#review_period_to').datetimepicker({
-        format: 'DD/MM/YYYY hh:mm A'
+        format: 'DD/MM/YYYY'
       });
 
       // init Date field
@@ -744,8 +744,8 @@
       $('#appraisalForm').submit(function (event) {
         $(this).find(':submit').prop('disabled', true);
         
-        $reviewPeriodFrom.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
-        $reviewPeriodTo.data("DateTimePicker").format('YYYY-MM-DD HH:mm:ss');
+        $reviewPeriodFrom.data("DateTimePicker").format('YYYY-MM-DD');
+        $reviewPeriodTo.data("DateTimePicker").format('YYYY-MM-DD');
         $reviewDate.data("DateTimePicker").format('YYYY-MM-DD');
       });
     });
