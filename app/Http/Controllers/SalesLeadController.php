@@ -7,6 +7,7 @@ use App\Models\SalesLead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\DataTables\SalesLeadDataTable;
+use App\DataTables\AssignSalesLeadDataTable;
 use App\Http\Requests\StoreSalesLeadRequest;
 
 class SalesLeadController extends Controller
@@ -30,6 +31,17 @@ class SalesLeadController extends Controller
         SalesLead::create($request->all());
 
         return session()->flash('success','Sales Lead Created Successfully!');
+    }
+
+    public function assignIndex(AssignSalesLeadDataTable $dataTable)
+    {
+        $title = 'Assign';
+        return $dataTable->render('sales_lead.assign.index',compact('title'));
+    }
+
+    public function show(SalesLead $salesLead)
+    {
+        return view('sales_lead.assign.show',compact('salesLead'));
     }
 
 }

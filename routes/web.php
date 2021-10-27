@@ -158,6 +158,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
             Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
             Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
+            Route::get('/assign',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
+            Route::get('/view/{salesLead}',[SalesLeadController::class, 'show'])->name('sales_lead.show');
         });
     });
     
