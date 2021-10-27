@@ -6,11 +6,13 @@ use Illuminate\Auth\Events\Registered;
 use App\Events\AcknowledgementFormSent;
 use App\Listeners\SendCustomerCopyMail;
 use App\Events\AcknowledgementFormSigned;
+use App\Events\AppraisalCreated;
 use App\Events\UnsignedServiceReportFound;
 use App\Listeners\SendAcknowledgementFormMail;
 use App\Listeners\SendCustomerConfirmationMail;
 use App\Listeners\ResendAcknowledgementFormMail;
 use App\Listeners\SendAcknowledgementFormConfirmationMail;
+use App\Listeners\SendSharedAppraisalMail;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -35,6 +37,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UnsignedServiceReportFound::class => [
             ResendAcknowledgementFormMail::class,
+        ],
+        AppraisalCreated::class => [
+            SendSharedAppraisalMail::class,
         ],
     ];
 

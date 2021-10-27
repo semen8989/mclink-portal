@@ -9,6 +9,7 @@ use App\Models\EmployeeAppraisal;
 use Illuminate\Support\Facades\DB;
 use App\Models\NewEmployeeAppraisal;
 use App\DataTables\MyRecordAppraisalDataTable;
+use App\Events\AppraisalCreated;
 use App\Http\Requests\StoreNewRecordAppraisalRequest;
 
 class NewRecordAppraisalController extends Controller
@@ -52,6 +53,7 @@ class NewRecordAppraisalController extends Controller
      */
     public function store(StoreNewRecordAppraisalRequest $request)
     {
+        // $appraisal = null;
         $validated = $request->validated(); 
         $validated['user_id'] = auth()->user()->id;
         $result = true;
@@ -76,9 +78,15 @@ class NewRecordAppraisalController extends Controller
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                     ]);
                 }  
+
+                // dd($appraisal);
             });
         } catch (\Exception $event) {
             $result = false;
+        }
+        dd($appraisal->employee_id);
+        if ($result) {
+            AppraisalCreated::dispatch($appraisal);
         }
 
         $resultStatus = $result ? 'success' : 'error';
