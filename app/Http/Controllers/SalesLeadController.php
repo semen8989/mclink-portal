@@ -41,7 +41,8 @@ class SalesLeadController extends Controller
 
     public function show(SalesLead $salesLead)
     {
-        return view('sales_lead.assign.show',compact('salesLead'));
+        $users = User::all('id','name');
+        return view('sales_lead.assign.show',compact('salesLead','users'));
     }
 
 }
