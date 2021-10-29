@@ -2,17 +2,16 @@
 
 namespace App\Listeners;
 
-use Illuminate\Support\Facades\Mail;
-use App\Events\AcknowledgementFormSent;
 use App\Events\AppraisalCreated;
+use App\Traits\EmailLoggerTrait;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SharedAppraisalNotifMail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Mail\ServiceFormSentConfirmationMail;
-use App\Traits\ServiceReportEmailLoggerTrait;
 
 class SendSharedAppraisalMail
 {
-    use ServiceReportEmailLoggerTrait;
+    use EmailLoggerTrait;
     
     /**
      * Create the event listener.
@@ -33,17 +32,19 @@ class SendSharedAppraisalMail
     public function handle(AppraisalCreated $event)
     {
         $appraisal = $event->appraisal;
-        dd($appraisal->users());
-        $email = $appraisal->user->email;
-        $subject = __('label.service_report.email.confirm.plain_subject');
 
-        try {
-            // Mail::to($email)
-            //     ->queue(new ServiceFormSentConfirmationMail($appraisal));
+        foreach ($appraisal->sharedUsers as $sharedUser) {
+            $email = $sharedUser->email;
+            $subject = __('label.e_appraisal_my_record.email.new_sent.subject');
 
-            $this->writeLog('info', $appraisal, $subject);
-        } catch(\Exception $e) {
-            $this->writeLog('warning', $appraisal, $subject, $e->getMessage());
+            try {     
+                Mail::to($email)
+                    ->queue(new SharedAppraisalNotifMail($appraisal, $sharedUser));
+    
+                $this->writeEmailLog('info', $email, $subject);
+            } catch(\Exception $e) {
+                $this->writeEmailLog('warning', $email, $subject, $e->getMessage());
+            }
         }
     }
 }

@@ -53,10 +53,11 @@ class NewRecordAppraisalController extends Controller
      */
     public function store(StoreNewRecordAppraisalRequest $request)
     {
-        // $appraisal = null;
+        $appraisal = null;
+        $result = true;
+
         $validated = $request->validated(); 
         $validated['user_id'] = auth()->user()->id;
-        $result = true;
         $mainAppraisalCols = [
             'user_id',
             'employee_id',
@@ -65,26 +66,24 @@ class NewRecordAppraisalController extends Controller
             'review_date',
             'total_score'
         ];
-        
+
         try {
-            DB::transaction(function () use ($validated, $mainAppraisalCols) {
+            DB::transaction(function () use (&$appraisal, $validated, $mainAppraisalCols) {
                 $appraisal = EmployeeAppraisal::create(Arr::only($validated, $mainAppraisalCols));
                 $validated['employee_appraisal_id'] = $appraisal->id;
                 $appraisal->newEmployeeAppraisal()->create(Arr::except($validated, $mainAppraisalCols));
 
                 foreach ($validated['shared'] as $user) {
-                    $appraisal->users()->attach($user, [
+                    $appraisal->sharedUsers()->attach($user, [
                         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                     ]);
-                }  
-
-                // dd($appraisal);
+                }
             });
         } catch (\Exception $event) {
             $result = false;
         }
-        dd($appraisal->employee_id);
+
         if ($result) {
             AppraisalCreated::dispatch($appraisal);
         }
