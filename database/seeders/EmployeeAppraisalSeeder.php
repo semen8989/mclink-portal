@@ -36,7 +36,7 @@ class EmployeeAppraisalSeeder extends Seeder
             $employeeAppraisal = EmployeeAppraisal::create($appraisal);
 
             //Generate a row in the pivot table based on the employee appraisal and user
-            $employeeAppraisal->users()->attach(2, [
+            $employeeAppraisal->sharedUsers()->attach(2, [
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
