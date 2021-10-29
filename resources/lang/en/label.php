@@ -452,7 +452,13 @@ return [
         ],
         'email' => [
             'greeting' => 'Hi',
-            'closing' => 'Thanks'
+            'closing' => 'Thanks',
+            'log' => [
+                'general' => [
+                    'success' => 'The :subject email to :email was successfully sent.',
+                    'fail' => 'There is a problem in sending the :subject email to :email . The error given was :error'
+                ]
+            ],
         ],
         'response' => [
             'success' => [
@@ -704,6 +710,15 @@ return [
                 'review_date' => 'Review On',
                 'total_score' => 'Total Score',
                 'updated_at' => 'Last Updated'
+            ]
+        ],
+        'email' => [
+            'new_sent' => [
+                'message' => ':sender shared appraisal of :employee with you. Click the button below to view the details.',
+                'button' => [
+                    'view_details' => 'Review Details'
+                ],
+                'subject' => 'Shared Appraisal | New Employee'
             ]
         ],
         'form' => [

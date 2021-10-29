@@ -132,6 +132,19 @@ return [
     |
     */
 
+    'mclink_ph_name' => env('MCLINK_PH_NAME', 'McLink Copy Services Phil Inc'),
+
+    'mclink_ph_url' => env('MCLINK_PH_URL', 'https://www.mclinkphil.com/'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Service Report Company
+    |--------------------------------------------------------------------------
+    |
+    | This is the details of mps solutions needed by the service report module
+    |
+    */
+
     'mps_name' => env('MPS_NAME', 'MPS Solutions Pte Ltd'),
     
     'mps_url' => env('MPS_URL', 'https://mpssolutions.com.sg/'),
