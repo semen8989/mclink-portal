@@ -59,12 +59,20 @@ class EmployeeAppraisal extends Model
     }
 
     /**
-     * Get the users that belong to the employee appraisal.
+     * Get the shared users that belong to the employee appraisal.
      */
-    public function users()
+    public function sharedUsers()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'employee_appraisal_user', 'employee_appraisal_id', 'user_id');
     } 
+
+    /**
+     * Get the user that belongs to the employee appraisal.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the employee that belongs to the employee appraisal.
