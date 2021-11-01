@@ -35,6 +35,8 @@
         "moment": "^2.29.1",
         "perfect-scrollbar": "1.5.0",
         "select2-bootstrap-theme": "0.1.0-beta.10",
+        "select2-bootstrap4-theme": "^1.0.0",
+        "select2-theme-bootstrap4": "^1.0.0",
         "signature_pad": "^3.0.0-beta.4"
     }
 }

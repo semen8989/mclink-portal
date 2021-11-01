@@ -7,11 +7,11 @@ use Illuminate\View\Component;
 class Action extends Component
 {
     /**
-     * Edit route name.
+     * List of action with matching routes.
      *
-     * @var string
+     * @var array
      */
-    public $editRouteName;
+    public $actionRoutes;
 
     /**
      * Item Slug Name.
@@ -35,9 +35,9 @@ class Action extends Component
      * @param  string  $itemSlugValue
      * @return void
      */
-    public function __construct($editRouteName, $itemSlug, $itemSlugValue)
+    public function __construct($actionRoutes, $itemSlug, $itemSlugValue)
     {
-        $this->editRouteName = $editRouteName;
+        $this->actionRoutes = $actionRoutes;
         $this->itemSlug = $itemSlug;
         $this->itemSlugValue = $itemSlugValue;
     }

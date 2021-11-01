@@ -10,16 +10,23 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\KpiMaingoalController;
+use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
+use App\Http\Controllers\NewRecordAppraisalController;
 use App\Http\Controllers\AcknowledgementFormController;
+use App\Http\Controllers\RegularRecordAppraisalController;
 
 Auth::routes(['register' => false]);
 
@@ -51,13 +58,44 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
     });
 
-    // Typeahead Routes
-    Route::prefix('get')->group(function () {
-        // Customer Route
-        Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
+    // HR Routes
+    Route::prefix('hr')->group(function () {
+        // e-Appraisal Routes
+        Route::prefix('appraisal')->group(function () {
+            // My Record Appraisal Routes
+            Route::prefix('my-record')->group(function () {
+                // New Employee Appraisal (My Record) Routes
+                Route::resource('new-employees', NewRecordAppraisalController::class)
+                    ->parameters(['new-employees' => 'newEmployee'])
+                    ->names('appraisal.my.record.new.employee');
+                // Regular Employee Appraisal (My Record) Routes
+                Route::resource('regular-employees', RegularRecordAppraisalController::class)
+                    ->parameters(['regular-employees' => 'regularEmployee'])
+                    ->names('appraisal.my.record.regular.employee');
+            });
+        });  
+    });
 
-        // User Route
-        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+    // OKR Routes
+    Route::prefix('performance/okr/kpi')->group(function () {
+        // KPI Maingoal Routes
+        Route::resource('maingoals', KpiMaingoalController::class)
+            ->parameters(['maingoals' => 'kpiMain'])
+            ->names('okr.kpi.maingoals');
+        // KPI Variable Routes
+        Route::resource('variables', KpiVariableController::class)
+            ->parameters(['variables' => 'kpiVariable'])
+            ->names('okr.kpi.variables');
+        // KPI Objectives Routes
+        Route::resource('objectives', KpiMaingoalController::class)
+            ->parameters(['objectives' => 'kpiObjective'])
+            ->names('okr.kpi.objectives');
+    });
+
+    // KPI Report Routes
+    Route::prefix('performance')->group(function () {
+        Route::resource('kpi-reports', KpiReportController::class)->only(['index']);
+        Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
     });
     
     // Organizations
@@ -70,27 +108,66 @@ Route::middleware(['auth'])->group(function () {
             'policies' => PolicyController::class,
             'holidays' => HolidayController::class,
             'locations' => LocationController::class,
-            'office_shifts' => OfficeShiftController::class,
+            'office-shifts' => OfficeShiftController::class,
             'expenses' => ExpenseController::class
         ]); 
     });
 
+    // Ajax Routes
+    Route::prefix('get')->group(function () {
+        // Customer Route
+        Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
+
+        // Employee Route
+        Route::get('/employees/typeahead', [EmployeeController::class, 'get'])->name('get.employees');
+
+        // User Route
+        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');    
+
+        // KPI Main Rating Route
+        Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
+
+        // KPI Variable Rating Route
+        Route::get('/okr/kpi/variables/{kpiVariable}/rating', [KpiVariableController::class, 'getRating'])->name('get.kpi.variable.rating');
+    });
+
     //Basic Routes
-    Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
-    Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');
+    Route::post('/fetch-department', [FetchController::class,'fetchDepartment'])->name('fetch_department');
+    Route::post('/fetch-user', [FetchController::class,'fetchUser'])->name('fetch_user');
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
 
     //HR Calendar
-    Route::prefix('hr_calendar')->group(function (){
+    Route::prefix('hr-calendar')->group(function (){
         Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
         //Events
-        Route::get('/fetch_events',[HrCalendarController::class,'fetch_events'])->name('hr_calendar.fetch_events');
-        Route::post('/store_event',[HrCalendarController::class, 'store_event'])->name('hr_calendar.store_event');
-        Route::post('/view_event/{event}',[HrCalendarController::class, 'view_event'])->name('hr_calendar.view_event');
+        Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
+        Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
+        Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
         //Holidays
-        Route::get('/fetch_holidays',[HrCalendarController::class,'fetch_holidays'])->name('hr_calendar.fetch_holidays');
-        Route::post('/store_holiday',[HrCalendarController::class,'store_holiday'])->name('hr_calendar.store_holiday');
-        Route::post('/view_holiday/{holiday}',[HrCalendarController::class, 'view_holiday'])->name('hr_calendar.view_holiday');
+        Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
+        Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
+        Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+    });
+    
+    //Machine Request
+    Route::prefix('machine-request')->group(function (){
+        //Create request form
+        Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
+        Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
+        //Pending machine request
+        Route::prefix('pending')->group(function (){
+            Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
+            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
+        });
+        //Completed machine request
+        Route::prefix('completed')->group(function (){
+            Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
+            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
+        });
+        //View request details
+        Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
+        //mark as completed
+        Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
     });
 
 });
@@ -111,6 +188,10 @@ Route::middleware(['guest'])->group(function () {
     Route::prefix('auth')->group(function () {
         Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
         Route::get('/callback', [socialiteController::class, 'callBack']);
+    });
+    // Machine Request Routes
+    Route::prefix('machine-request/request-details')->group(function () {
+        
     });
 });
 

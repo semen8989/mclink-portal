@@ -21,7 +21,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="amount">{{ __('label.amount') }}</label>
-                <input type="number" class="form-control" id="amount" name="amount">
+                <input type="number" class="form-control" id="amount" name="amount" min="0">
             </div>
         </div>
         <div class="form-row">
@@ -156,10 +156,8 @@
                         window.location.href = '{{ route("expenses.index") }}';
                     },
                     error: function(response){
-                        //Scroll up
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         //Clear previous error messages
-                        $(".invalid-feedback").remove();
+                        $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
                         //fetch and display error messages
                         var errors = response.responseJSON;
@@ -169,11 +167,17 @@
                             .addClass('is-invalid');
                             
                             if(id.next('.select2-container').length > 0){
-                                id.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
                             }else{
-                                id.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

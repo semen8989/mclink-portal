@@ -55,11 +55,27 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the service reports that owns the user.
+     * Get the service reports that the user owns.
      */
     public function servicereports()
     {
         return $this->hasMany(ServiceReport::class);
+    }
+
+    /**
+     * Get the department that owns the user.
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * Get the designation that owns the user.
+     */
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
     }
   
     public function roles()
@@ -86,4 +102,12 @@ class User extends Authenticatable
         return $this->roles()->where('name', 'Administrator')->exists();
     }
     
+    public function isDepartmentHead()
+    {
+        return $this->department()
+            ->where([
+                ['company_id', $this->company_id],
+                ['user_id', $this->id],
+            ])->exists();
+    }
 }

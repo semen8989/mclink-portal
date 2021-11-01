@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\ServiceReportAutoSendLink::class,
+        Commands\MachineRequestAutoSendLink::class,
     ];
 
     /**
@@ -24,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('service-report:send-link')->hourly();
+        $schedule->command('machine-request:send-link')->daily();
     }
 
     /**

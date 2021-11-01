@@ -10,6 +10,7 @@ return [
     'add_department' => 'Add New Department',
     'add_designation' => 'Add New Designation',
     'add_expense' => 'Add New Expense',
+    'add_event' => 'Add New Event',
     'add_holiday' => 'Add New Holiday',
     'add_location' => 'Add New Location',
     'add_new' => 'Add new',
@@ -51,6 +52,7 @@ return [
     'claims_menu' => 'Claims menu',
     'classification' => 'CLASSIFICATION',
     'clear' => 'Clear',
+    'close' => 'Close',
     'companies' => 'Companies',
     'company' => 'Company',
     'company_list' => 'Company List',
@@ -126,6 +128,7 @@ return [
     'evaluate' => 'Evaluate',
     'events' => 'Events',
     'event_name' => 'Event Name',
+    'event_note' => 'Event Note',
     'expense' => 'Expense',
     'expense_list' => 'Expense List',
     'expense_type' => 'Expense Type',
@@ -198,6 +201,7 @@ return [
     'office_contact_no' => 'Office contact no',
     'office_shifts' => 'Office Shifts',
     'office_shift' => 'Office Shift',
+    'office-shifts' => 'office-shifts',
     'on_hand' => 'On hand',
     'onboarding_program' => 'Onboarding Program',
     'optional' => 'Optional',
@@ -364,15 +368,47 @@ return [
     'new' => 'New',
     'confirm' => 'Confirm',
     'global' => [
-        'module' => [
+        'module' => [ 
             'service_report' => [
                 'title' => 'MPS Service Report',
                 'url_segment' => 'service-forms'
+            ],
+            'hr' => [
+                'title' => 'HR',
+                'url_segment' => 'hr'
+            ],
+            'e_appraisal' => [
+                'title' => 'e-Appraisal',
+                'url_segment' => 'appraisal'
+            ],
+            'e_appraisal_my_record' => [
+                'title' => 'My Record',
+                'url_segment' => 'my-record'
+            ],
+            'performance' => [
+                'title' => 'Performance',
+                'url_segment' => 'performance'
+            ],
+            'okr' => [
+                'title' => 'OKR',
+                'url_segment' => 'okr'
+            ],
+            'kpi_report' => [
+                'title' => 'KPI Report',
+                'url_segment' => 'kpi-reports'
             ]
         ],
         'text' => [
             'na' => 'N/A',
-            'full_na' => 'Not Applicable (NA)'
+            'full_na' => 'Not Applicable (NA)',
+            'me' => 'Me'
+        ],
+        'numeric' => [
+            '1' => '1',
+            '2' => '2',
+            '3' => '3',
+            '4' => '4',
+            '5' => '5'
         ],
         'form' => [
             'button' => [
@@ -381,6 +417,13 @@ return [
                 'update'=> 'Update',
                 'submit' => 'Submit',
                 'download' => 'Download'
+            ],
+            'select' => [
+                'all' => 'All',
+                'first_quarter' => 'First Quarter',
+                'second_quarter' => 'Second Quarter',
+                'third_quarter' => 'Third Quarter',
+                'fourth_quarter' => 'Fourth Quarter'
             ]
         ],
         'datatable' => [
@@ -394,14 +437,28 @@ return [
             ],
             'action' => [
                 'title' => [
+                    'show' => 'Show',
                     'edit' => 'Edit',
                     'delete' => 'Delete'
                 ]
             ]
         ],
+        'tab' => [
+            'kpi_main' => 'All Main KPI',
+            'kpi_variable' => 'All Variable KPI',
+            'kpi_objective' => 'All Objective KPI',
+            'new_employee' => 'New Employee',
+            'regular_employee' => 'Regular Employee',
+        ],
         'email' => [
             'greeting' => 'Hi',
-            'closing' => 'Thanks'
+            'closing' => 'Thanks',
+            'log' => [
+                'general' => [
+                    'success' => 'The :subject email to :email was successfully sent.',
+                    'fail' => 'There is a problem in sending the :subject email to :email . The error given was :error'
+                ]
+            ],
         ],
         'response' => [
             'success' => [
@@ -412,8 +469,11 @@ return [
             ],
             'action' => [
                 'created' => 'created',
+                'creating' => 'creating',
                 'updated' => 'updated',
-                'deleted' => 'deleted'
+                'updating' => 'updating',
+                'deleted' => 'deleted',
+                'deleting' => 'deleting'
             ]
         ]
     ],
@@ -471,6 +531,9 @@ return [
                 ],
                 'subject' => 'Acknowledgement Form Email Confirmation | :company',
                 'plain_subject' => 'Acknowledgement Form Email Confirmation'
+            ],
+            'resend' => [
+                'plain_subject' => 'Service Report Acknowledgment Form (Resend)'
             ]
         ],
         'form' => [
@@ -516,6 +579,246 @@ return [
             'feedback_header' => 'An email has been sent to your email containing your copy of the service report',
             'feedback_body' => 'Thank you for doing business with us. Can you take a couple of minutes to leave a feedback about your experience with us? Just go to this <a href="https://form.jotform.me/83401151973453?companyName=:customer" ' . 
                 'target="_blank">page</a>. Thanks for your help!'
+        ]
+    ],
+    'kpi_main' => [
+        'title' => [
+            'index' => 'KPI Main Goals',
+            'create' => 'Add New Main Goal',
+            'show' => 'View Main Goal',
+            'edit' => 'Edit Main Goal',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'main_kpi' => 'Main KPI',
+                'q1' => 'Q1',
+                'q2' => 'Q2',
+                'q3' => 'Q3',
+                'q4' => 'Q4',
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At',
+                'feedback' => 'Feedback'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI MAIN GOALS',
+                'rating' => 'Manager\'s Rating'
+            ],
+            'label' => [
+                'main_kpi' => 'Main Goals',
+                'q1' => 'Q1',
+                'q2' => 'Q2',
+                'q3' => 'Q3',
+                'q4' => 'Q4',
+                'status' => 'Completed',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
+    'kpi_variable' => [
+        'title' => [
+            'index' => 'KPI Variables',
+            'create' => 'Add New Variable',
+            'show' => 'View Variable',
+            'edit' => 'Edit Variable',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'variable_kpi' => 'Variable KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At',
+                'quarter' => 'Quarter',   
+                'year' => 'Year',
+                'feedback' => 'Feedback'               
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI VARIABLES',
+                'rating' => 'Manager\'s Rating'
+            ],
+            'label' => [
+                'variable_kpi' => 'Variable',
+                'variable_quarter' => 'Quarter',
+                'variable_year' => 'Year',
+                'target_date' => 'Target Date',
+                'status' => 'Completed',
+                'result' => 'Result',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
+    'kpi_report' => [
+        'title' => [
+            'index' => 'KPI Report',
+        ],
+        'form' => [
+            'label' => [
+                'select_kpi' => 'Select KPI',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+            ],
+            'select' => [
+                'main_kpi' => 'Main KPI',
+                'variable_kpi' => 'Variable KPI'
+            ],
+            'button' => [
+                'download' => 'Download KPI'
+            ]
+        ],
+        'page_text' => [
+            'download_kpi' => 'Download Performance KPI for all employee'
+        ]
+    ],
+    'e_appraisal_my_record' => [
+        'title' => [
+            'new_index' => 'New Employee Appraisal',
+            'new_create' => 'Add New Employee Appraisal',
+            'new_show' => 'View New Employee Appraisal',
+            'new_edit' => 'Edit New Employee Appraisal',
+            'regular_index' => 'Regular Employee Appraisal',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'name' => 'Name',
+                'avatar' => 'Avatar',
+                'review_period_from' => 'Review Period From',
+                'review_period_to' => 'Review Period To',
+                'review_date' => 'Review On',
+                'total_score' => 'Total Score',
+                'updated_at' => 'Last Updated'
+            ]
+        ],
+        'email' => [
+            'new_sent' => [
+                'message' => ':sender shared appraisal of :employee with you. Click the button below to view the details.',
+                'button' => [
+                    'view_details' => 'Review Details'
+                ],
+                'subject' => 'Shared Appraisal | New Employee'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'new_employee_appraisal' => 'New Employee Appraisal'
+            ],
+            'label' => [
+                'employee' => 'Employee',
+                'review_from' => 'Review Period From',
+                'review_to' => 'Review Period To',
+                'review_on' => 'Review On',
+                'appraisal_purpose' => 'Purpose of Appraisal',
+                'score_range' => 'Enter score (0 - 5)',
+                'criteria_one' => '1. Performance factor',
+                'criteria_two' => '2. Quality of work',
+                'criteria_two_desc' => 'Consider: accuracy; neatness; timeliness; attention to detail; volume/quantity requirements; adherence to duties and procedures in Job Description and Work Instruction.',
+                'criteria_three' => '3. Work habits',
+                'criteria_three_desc' => 'Consider: attendance; punctuality; organization. Does the employee stay busy; look for things to do; and follow company policies and work procedures?',
+                'criteria_four' => '4. Job knowledge',
+                'criteria_four_desc' => 'For example, has the employee demonstrated the skill and ability to perform the job satisfactorily, shown interest in learning and improving, and become familiar with our rules and policies in the Employee Handbook?',
+                'criteria_five' => '5. Behavior/Relations with others',
+                'criteria_five_desc' => 'For example, does the employee cooperate and contribute to team efforts, respond positively to suggestions and instructions or criticism, keep supervisors informed of important details, and adapt well to changing circumstances?',
+                'o_progress' => '6. Overall progress',
+                'comment' => 'Comments',
+                'recommendation' => 'Recommendation',
+                'f_comment' => 'Final Comments',
+                'share_appraisal' => 'Share this appraisal to'
+            ],
+            'radio' => [
+                'purpose_one' => 'For current employees during their 1st 3 months in a new position',
+                'purpose_two' => 'For current employee during 2nd 3 months in a position',
+                'level_option_one' => 'Outstanding',
+                'level_option_two' => 'Exceeds Requirements',
+                'level_option_three' => 'Meets Requirements',
+                'level_option_four' => 'Needs Improvement',
+                'level_option_five' => 'Unsatisfactory',
+                'o_progress_one' => 'Employee performance and learning is unsatisfactory and failing to improve at a satisfactory rate',
+                'o_progress_two' => 'Employee performance and learning is acceptable and improving at a satisfactory rate',
+                'o_progress_three' => 'Employee has successfully completed the orientation/probation period for this position',
+                'recommendation_one' => 'Extend the Orientation/Training Period for further assessment (please indicate next review date)',
+                'recommendation_two' => 'Convert employee to regular at-will employment status'
+            ]
+        ],
+        'modal' => [
+            'msg' => [
+                'delete_new' => 'New Employee Appraisal'
+            ]
+        ]
+    ],
+    'machine_request' => [
+        'title' => [
+            'create_index' => 'Create Machine Request',
+            'pending_index' => 'Pending Machine Requests',
+            'completed_index' => 'Completed Machine Requests',
+            'show' => 'View Request Details'
+        ],
+        'navtabs_title' => [
+            'create' => 'Create Request',
+            'pending' => 'Pending',
+            'completed' => 'Completed'
+        ],
+        'form' => [
+            'label' => [
+                'requester' => 'Requester',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'system' => 'System',
+                'qty' => 'Quantity',
+                'cassette_no' => 'Cassette Number',
+                'period_of_contract' => 'Period Of Contract',
+                'special_requirement' => 'Special Requirement',
+                'company_name' => 'Company Name',
+                'billing_address' => 'Billing Address',
+                'office_contact_no' => 'Office Contact Number',
+                'installation_address' => 'Installation Address',
+                'person_in_charge' => 'Person in-Charge',
+                'contact_no' => 'Contact Number',
+                'installation_date' => 'Installation Date',
+                'send_request' => 'Send Request To',
+                'status' => 'Status',
+                'technician' => 'Technician',
+                'cc' => 'CC',
+                'important_note' => '**Different Installation Address Different Request Form',
+                'data_check' => 'All data are correct'
+            ],
+            'button' => [
+                'mark_completed' => 'Mark As Completed'
+            ]
+        ],
+        'datatable' => [
+            'column_header' => [
+                'request_id' => 'Request ID',
+                'request_by' => 'Request By',
+                'company_name' => 'Company Name',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'details' => 'Details' 
+            ]
         ]
     ]
 ];

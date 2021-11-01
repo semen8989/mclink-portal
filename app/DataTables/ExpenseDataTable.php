@@ -24,7 +24,10 @@ class ExpenseDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Expense $expense) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'expenses.edit',
+                    'actionRoutes' => [
+                        'edit' => 'expenses.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'expense',
                     'itemSlugValue' => $expense->id
                 ]);

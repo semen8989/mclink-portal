@@ -23,7 +23,10 @@ class PolicyDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Policy $policy) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'policies.edit',
+                    'actionRoutes' => [
+                        'edit' => 'policies.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'policy',
                     'itemSlugValue' => $policy->id
                 ]);

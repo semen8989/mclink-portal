@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             AbilityRoleSeeder::class,
             UserSeeder::class,
             CustomerSeeder::class,
-            ServiceReportSeeder::class,
+            ServiceReportSeeder::class,        
+            KpiMaingoalSeeder::class,
+            KpiVariableSeeder::class,
+            KpiRatingSeeder::class,
             CompanySeeder::class,
             DepartmentSeeder::class,
             DesignationSeeder::class,
@@ -28,7 +31,11 @@ class DatabaseSeeder extends Seeder
             OfficeShiftSeeder::class,
             ExpenseTypeSeeder::class,
             ExpenseSeeder::class,
-            EventSeeder::class
+            EventSeeder::class,
+            EmployeeAppraisalSeeder::class,
+            NewEmployeeAppraisalSeeder::class,
+            RegularEmployeeAppraisalSeeder::class,
+            EmployeeAppraisalAccessSeeder::class
         ]);
     }
 }

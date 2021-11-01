@@ -30,7 +30,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <strong><label>{{ __('label.location_head') }}</label></strong>
-                    <input class="form-control-plaintext" readonly value="{{ $location->user->where('id',$location->user_id)->first()->name }}">
+                    <input class="form-control-plaintext" readonly value="{{ $location->locationHeadUser->name }}">
                 </div>
                 <div class="form-group">
                     <strong><label>{{ __('label.address_1') }}</label></strong>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-4">
                         <strong><label>{{ __('label.added_by') }}</label></strong>
-                        <input class="form-control-plaintext" readonly value="{{ $location->user->where('id',$location->added_by)->first()->name }}">
+                        <input class="form-control-plaintext" readonly value="{{ $location->addedByUser->name }}">
                     </div>
                 </div>
             </div>
