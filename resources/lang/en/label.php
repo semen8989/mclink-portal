@@ -718,7 +718,8 @@ return [
                 'button' => [
                     'view_details' => 'Review Details'
                 ],
-                'subject' => 'Shared Appraisal | New Employee'
+                'subject' => 'Shared Appraisal | New Employee',
+                'plain_subject' => 'Shared Appraisal for New Employee'
             ]
         ],
         'form' => [

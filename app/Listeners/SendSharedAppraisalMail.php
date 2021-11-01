@@ -35,7 +35,7 @@ class SendSharedAppraisalMail
 
         foreach ($appraisal->sharedUsers as $sharedUser) {
             $email = $sharedUser->email;
-            $subject = __('label.e_appraisal_my_record.email.new_sent.subject');
+            $subject = __('label.e_appraisal_my_record.email.new_sent.plain_subject');
 
             try {     
                 Mail::to($email)
