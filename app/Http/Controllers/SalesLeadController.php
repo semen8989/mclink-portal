@@ -7,6 +7,7 @@ use App\Models\SalesLead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\DataTables\SalesLeadDataTable;
+use App\DataTables\AssignedToMeDataTable;
 use App\DataTables\AssignSalesLeadDataTable;
 use App\Http\Requests\StoreSalesLeadRequest;
 
@@ -43,6 +44,12 @@ class SalesLeadController extends Controller
     {
         $users = User::all('id','name');
         return view('sales_lead.assign.show',compact('salesLead','users'));
+    }
+
+    public function assignedToMeIndex(AssignedToMeDataTable $dataTable)
+    {
+        $title = 'Assign To Me';
+        return $dataTable->render('sales_lead.assigned_to_me.index',compact('title'));
     }
 
 }

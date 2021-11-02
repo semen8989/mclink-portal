@@ -24,9 +24,13 @@ class AssignSalesLeadDataTable extends DataTable
             ->editColumn('company_name', function ($request) {
                 return $request->company_name;
             })->editColumn('assigned_sales', function ($request) {
-                return $request->assigned_sales;
-            })->editColumn('salesManagerUser.name', function ($request) {
-                return $request->salesManagerUser->name;
+                if($request->assigned_sales != null){
+                    return $request->assigned_sales;
+                }else{
+                    return 'Unassigned';
+                }
+            })->editColumn('createdByUser.name', function ($request) {
+                return $request->createdByUser->name;
             })->editColumn('status', function ($request) {
                 return $request->status;
             })->editColumn('is_approved', function ($request) {
@@ -50,7 +54,7 @@ class AssignSalesLeadDataTable extends DataTable
      */
     public function query(SalesLead $model)
     {
-        return $model->with('salesManagerUser')->select('sales_leads.*');
+        return $model->with('salesManagerUser')->select('sales_leads.*')->where('sales_manager',auth()->user()->id);
     }
 
     /**
@@ -100,8 +104,8 @@ class AssignSalesLeadDataTable extends DataTable
                 ->title('Company Name'),
             Column::make('assigned_sales')
                 ->title('Assigned Sales'),
-            Column::make('salesManagerUser.name')
-                ->title('Sales Manager'),
+            Column::make('createdByUser.name')
+                ->title('Created By'),
             Column::make('status')
                 ->title('Status'),
             Column::make('is_approved')

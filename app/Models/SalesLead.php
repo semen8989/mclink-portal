@@ -40,4 +40,8 @@ class SalesLead extends Model
     public function salesManagerUser(){
         return $this->hasOne(User::class,'id','sales_manager');
     }
+
+    public function createdByUser(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }
