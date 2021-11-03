@@ -120,6 +120,11 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="form-check form-check ml-2">
+                <input type="checkbox" class="form-check-input" name="data_check" id="data_check">
+                <label class="form-check-label data-check" for="data_check">{{ __('label.machine_request.form.label.data_check') }}</label>
+            </div>
         </div>
     </div>
     <div class="card-footer">
@@ -165,8 +170,15 @@
                     url: url,
                     data: data,
                     method: method,
-                    success: function(){
-                        window.location.href = '{{ route("sales_lead.create") }}';
+                    success: function(data){
+                        if(data.success == false)
+                        {
+                            $('.data-check').after('<div class="invalid-feedback d-block">Please confirm if all data are correct</div>');
+                        }
+                        else
+                        {
+                            window.location.reload();
+                        }
                     },
                     error: function(response){
                         //Clear previous error messages

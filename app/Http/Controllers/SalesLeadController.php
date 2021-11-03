@@ -28,10 +28,21 @@ class SalesLeadController extends Controller
 
     public function store(StoreSalesLeadRequest $request)
     {
-        $request['user_id'] = Auth::user()->id;
-        SalesLead::create($request->all());
+        if($request['data_check'] == "on")
+        {
+            $request['user_id'] = Auth::user()->id;
+            SalesLead::create($request->all());
 
-        return session()->flash('success','Sales Lead Created Successfully!');
+            return session()->flash('success','Sales Lead Created Successfully!');
+
+            $data['success'] = true;
+        }
+        else
+        {
+            $data['success'] = false;
+        }
+
+        return response()->json($data);
     }
 
     public function assignIndex(AssignSalesLeadDataTable $dataTable)
