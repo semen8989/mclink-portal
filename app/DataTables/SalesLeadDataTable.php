@@ -21,7 +21,16 @@ class SalesLeadDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('company_name', function ($request) {
+            ->addColumn('action', function(SalesLead $salesLead) {
+                return view('components.datatables.action', [
+                    'actionRoutes' => [
+                        'edit' => 'sales_lead.edit',
+                        'delete' => ''
+                    ],
+                    'itemSlug' => 'salesLead',
+                    'itemSlugValue' => $salesLead->id
+                ]);
+            })->editColumn('company_name', function ($request) {
                 return $request->company_name;
             })->editColumn('assigned_sales', function ($request) {
                 return $request->assigned_sales;
@@ -101,7 +110,9 @@ class SalesLeadDataTable extends DataTable
             Column::make('is_approved')
                 ->title('Approved'),
             Column::make('created_at')
-                ->title('Created At')
+                ->title('Created At'),
+            Column::computed('action')
+                ->title(__('label.action'))
         ];
     }
 }

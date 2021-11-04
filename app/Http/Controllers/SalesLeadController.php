@@ -45,6 +45,31 @@ class SalesLeadController extends Controller
         return response()->json($data);
     }
 
+    public function edit(SalesLead $salesLead)
+    {
+        $users = User::all('id','name');
+        return view('sales_lead.edit',compact('salesLead','users'));
+    }
+
+    public function update(StoreSalesLeadRequest $request, SalesLead $salesLead)
+    {
+        if($request['data_check'] == "on")
+        {
+            $salesLead->update($request->all());
+
+            return session()->flash('success','Sales Lead Updated Successfully!');
+
+            $data['success'] = true;
+        }
+        else
+        {
+            $data['success'] = false;
+        }
+
+        return response()->json($data);
+
+    }
+
     public function assignIndex(AssignSalesLeadDataTable $dataTable)
     {
         $title = 'Assign';

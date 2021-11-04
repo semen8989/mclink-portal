@@ -1,9 +1,10 @@
 @extends('layout.master')
 
 @section('content')
-<div class="card-header">Create Sales Lead</div>
-<form method="POST" id="sales_form" action="{{ route('sales_lead.store') }}" autocomplete="off" novalidate>
+<div class="card-header">Edit Sales Lead</div>
+<form method="POST" id="sales_form" action="{{ route('sales_lead.update',$salesLead->id) }}" autocomplete="off" novalidate>
     @csrf
+    @method('PUT')
     <div class="card-body">
         @include('components.sales-lead.nav-tabs')
         <div class="tab-content mt-3" id="myTab1Content">
@@ -12,31 +13,31 @@
                 <div class="col-md-9">
                     <div class="form-group">
                         <label for="title">Company Name</label>
-                        <input class="form-control" name="company_name" id="company_name" type="text">
+                        <input class="form-control" name="company_name" id="company_name" type="text" value="{{ $salesLead->company_name }}">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="title">Tel#</label>
-                        <input class="form-control" name="tel_num" id="tel_num" type="text">
+                        <input class="form-control" name="tel_num" id="tel_num" type="text" value="{{ $salesLead->tel_num }}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="title">Address</label>
-                <input class="form-control" name="address" id="address" type="text">
+                <input class="form-control" name="address" id="address" type="text" value="{{ $salesLead->address }}">
             </div>
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
                         <label for="title">Contact Person</label>
-                        <input class="form-control" name="contact_person" id="contact_person" type="text">
+                        <input class="form-control" name="contact_person" id="contact_person" type="text" value="{{ $salesLead->contact_person }}">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="title">Department</label>
-                        <input class="form-control" name="department" id="department" type="text">
+                        <input class="form-control" name="department" id="department" type="text" value="{{ $salesLead->department }}">
                     </div>
                 </div>
             </div>
@@ -47,17 +48,17 @@
                 <div class="col-md-9 col-form-label">
                     <div class="form-check form-check-inline mr-1">
                         <input class="form-check-input" name="mclink_base_reason" id="inline-radio1" type="radio" value="option1"
-                            name="inline-radios">
+                            name="inline-radios" {{ $salesLead->mclink_base_reason == 'option1' ? 'checked' : '' }}>
                         <label class="form-check-label" for="inline-radio1">M/C Expired</label>
                     </div>
                     <div class="form-check form-check-inline mr-1">
                         <input class="form-check-input" name="mclink_base_reason" id="inline-radio2" type="radio" value="option2"
-                            name="inline-radios">
+                            name="inline-radios" {{ $salesLead->mclink_base_reason == 'option2' ? 'checked' : '' }}>
                         <label class="form-check-label" for="inline-radio2">M/C Overload</label>
                     </div>
                     <div class="form-check form-check-inline mr-1">
                         <input class="form-check-input" name="mclink_base_reason" id="inline-radio3" type="radio" value="option3"
-                            name="inline-radios">
+                            name="inline-radios" {{ $salesLead->mclink_base_reason == 'option3' ? 'checked' : '' }}>
                         <label class="form-check-label" for="inline-radio3">Others</label>
                     </div>
                 </div>
@@ -66,13 +67,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">Model</label>
-                        <input class="form-control" name="mclink_base_model" id="mclink_base_model" type="text">
+                        <input class="form-control" name="mclink_base_model" id="mclink_base_model" type="text" value="{{ $salesLead->mclink_base_model }}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">Serial Number</label>
-                        <input class="form-control" name="serial_number" id="serial_number" type="text">
+                        <input class="form-control" name="serial_number" id="serial_number" type="text" value="{{ $salesLead->serial_number }}">
                     </div>
                 </div>
             </div>
@@ -81,13 +82,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">Existing Brand</label>
-                        <input class="form-control" name="mclink_base_model" id="mclink_base_model" type="text">
+                        <input class="form-control" name="mclink_base_model" id="mclink_base_model" type="text" value="{{ $salesLead->mclink_base_model }}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">Model</label>
-                        <input class="form-control" name="non_mclink_base_model" id="non_mclink_base_model" type="text">
+                        <input class="form-control" name="non_mclink_base_model" id="non_mclink_base_model" type="text" value="{{ $salesLead->non_mclink_base_model }}">
                     </div>
                 </div>
             </div>
@@ -99,7 +100,7 @@
                         <select class="form-control select2" id="sales_manager" name="sales_manager">
                             <option></option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}">
+                                <option value="{{ $user->id }}" {{ $salesLead->sales_manager == $user->id ? 'selected' : '' }}>
                                     {{ $user->name }}
                                 </option>        
                             @endforeach 
@@ -112,7 +113,7 @@
                         <select class="form-control select2" id="approve_by" name="approve_by">
                             <option></option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}">
+                                <option value="{{ $user->id }}" {{ $salesLead->approve_by == $user->id ? 'selected' : '' }}>
                                     {{ $user->name }}
                                 </option>        
                             @endforeach 
@@ -145,14 +146,14 @@
 @push('scripts')
     <!-- select2 js dependency -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         $('document').ready(function (){
             //Scroll to top when page refresh
             $(window).on('beforeunload', function() {
                 $(window).scrollTop(0);
             });
-
-             //Select2
+            //Select2
             $('.select2').select2({
                 theme: "bootstrap",
                 placeholder: '{{ __('label.choose') }}',
@@ -212,7 +213,6 @@
                     }
                 })
             })
-
         });
     </script>
 @endpush

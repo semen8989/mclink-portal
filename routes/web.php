@@ -155,9 +155,11 @@ Route::middleware(['auth'])->group(function () {
     //Sales
     Route::prefix('sales')->group(function (){
         Route::prefix('sales-lead')->group(function (){
+            Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
             Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
             Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
-            Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
+            Route::get('/edit/{salesLead}',[SalesLeadController::class, 'edit'])->name('sales_lead.edit');
+            Route::put('/update/{salesLead}',[SalesLeadController::class, 'update'])->name('sales_lead.update');
             Route::get('/assign',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
             Route::get('/view/{salesLead}',[SalesLeadController::class, 'show'])->name('sales_lead.show');
             Route::get('/assigned-to-me',[SalesLeadController::class, 'assignedToMeIndex'])->name('sales_lead.assigned_to_me_index');
