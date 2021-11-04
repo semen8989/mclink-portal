@@ -8,6 +8,7 @@
             {!! $dataTable->table() !!}
         </div>
     </div>
+@include('layout.delete_modal')
 @stop
 
 @push('stylesheet')
@@ -25,4 +26,20 @@
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
      <!-- laravel datatable script-->
      {!! $dataTable->scripts() !!}
+     <script>
+        $(document).on('click', '#delete', function () {
+            let id = $(this).attr('data-id');
+            var url = '{{ route("sales_lead.destroy",":id") }}'
+            url = url.replace(':id', id)
+            $('#delete_form').attr('action', url);
+        });
+
+        $(document).ready(function() {
+            var newIcon = '<svg class="c-icon mr-2"><use xlink:href="' + 
+                '{{ asset("assets/icons/sprites/free.svg#cil-plus") }}' + 
+                '"></use></svg>';
+
+            $('.buttons-create').find('span').html(newIcon + "{{ __('label.global.datatable.button.new') }}");
+        });
+    </script>
 @endpush

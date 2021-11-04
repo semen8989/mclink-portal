@@ -70,6 +70,13 @@ class SalesLeadController extends Controller
 
     }
 
+    public function destroy(SalesLead $salesLead)
+    {
+        $salesLead->delete();
+
+        return redirect()->route('sales_lead.index')->with('success','Sales Lead Deleted Successfully!');
+    }
+
     public function assignIndex(AssignSalesLeadDataTable $dataTable)
     {
         $title = 'Assign';
