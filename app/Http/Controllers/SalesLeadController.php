@@ -83,6 +83,13 @@ class SalesLeadController extends Controller
         return $dataTable->render('sales_lead.assign.index',compact('title'));
     }
 
+    public function assignSalesMan(Request $request, SalesLead $salesLead)
+    {
+        $salesLead->update(array('assigned_sales' => $request->assigned_sales));
+
+        return session()->flash('success','Salesman Assigned Successfully!');
+    }
+
     public function show(SalesLead $salesLead)
     {
         $users = User::all('id','name');

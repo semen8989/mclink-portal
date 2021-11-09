@@ -164,6 +164,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/assign',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
             Route::get('/view/{salesLead}',[SalesLeadController::class, 'show'])->name('sales_lead.show');
             Route::get('/assigned-to-me',[SalesLeadController::class, 'assignedToMeIndex'])->name('sales_lead.assigned_to_me_index');
+            Route::put('/assign-sales-man/{salesLead}',[SalesLeadController::class, 'assignSalesMan'])->name('sales_lead.assign_salesman');
         });
     });
     
