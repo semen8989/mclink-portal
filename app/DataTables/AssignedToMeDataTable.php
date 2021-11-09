@@ -30,7 +30,9 @@ class AssignedToMeDataTable extends DataTable
             })->editColumn('status', function ($request) {
                 return $request->status;
             })->editColumn('created_at', function ($request) {
-                return $request->created_at->format('M d Y');
+                return date("F j, Y",strtotime($request->created_at->format('M d Y')));
+            })->editColumn('date_of_installation', function ($request) {
+                return date("F j, Y",strtotime($request->date_of_installation));
             });
     }
 
@@ -42,7 +44,7 @@ class AssignedToMeDataTable extends DataTable
      */
     public function query(SalesLead $model)
     {
-        return $model->with('assignedSalesUser')->select('sales_leads.*')->where('assigned_sales',auth()->user()->id);
+        return $model->with('createdByUser')->select('sales_leads.*')->where('assigned_sales',auth()->user()->id);
     }
 
     /**
@@ -97,7 +99,9 @@ class AssignedToMeDataTable extends DataTable
             Column::make('status')
                 ->title('Status'),
             Column::make('created_at')
-                ->title('Created At')
+                ->title('Created At'),
+            Column::make('date_of_installation')
+                ->title('Valid Until')
         ];
     }
 }

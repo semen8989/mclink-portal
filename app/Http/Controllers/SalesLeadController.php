@@ -85,7 +85,15 @@ class SalesLeadController extends Controller
 
     public function assignSalesMan(Request $request, SalesLead $salesLead)
     {
-        $salesLead->update(array('assigned_sales' => $request->assigned_sales));
+        $currentDate = date('Y-m-d');
+        $validity = date('Y-m-d', strtotime('+6 months', strtotime($currentDate)));  
+
+        $updateArray = [
+            'assigned_sales' => $request->assigned_sales,
+            'date_of_installation' => $validity
+        ];
+        
+        $salesLead->update($updateArray);
 
         return session()->flash('success','Salesman Assigned Successfully!');
     }
