@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\SalesLead;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -28,11 +29,31 @@ class AssignedToMeDataTable extends DataTable
             })->editColumn('company_name', function ($request) {
                 return $request->company_name;
             })->editColumn('status', function ($request) {
-                return $request->status;
+                $status = Str::ucfirst(array_search($request->status, SalesLead::STATUS));
+
+                if($request->status == 1){
+                    $badgeColor = 'warning';
+                }else if($request->status == 2){
+                    $badgeColor = 'danger';
+                }else if($request->status == 3){
+                    $badgeColor = 'success';
+                }
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
+
             })->editColumn('created_at', function ($request) {
                 return date("F j, Y",strtotime($request->created_at->format('M d Y')));
             })->editColumn('date_of_installation', function ($request) {
                 return date("F j, Y",strtotime($request->date_of_installation));
+            })->addColumn('detail', function(SalesLead $salesLead) {
+                return view('components.datatables.detail', [
+                    'editRouteName' => 'sales_lead.lead_details',
+                    'itemSlug' => 'salesLead',
+                    'itemSlugValue' => $salesLead->id
+                ]);
             });
     }
 
@@ -101,7 +122,9 @@ class AssignedToMeDataTable extends DataTable
             Column::make('created_at')
                 ->title('Created At'),
             Column::make('date_of_installation')
-                ->title('Valid Until')
+                ->title('Valid Until'),
+            Column::computed('detail')
+                ->title('Action')
         ];
     }
 }

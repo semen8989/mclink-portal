@@ -10,6 +10,12 @@ class SalesLead extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS = [
+        "on-going" => 1,
+        "unsuccessful" => 2,
+        "successful" => 3
+    ];
+
     protected $fillable = [
         'user_id',
         'company_name',

@@ -110,4 +110,19 @@ class SalesLeadController extends Controller
         return $dataTable->render('sales_lead.assigned_to_me.index',compact('title'));
     }
 
+    public function assignedToMeDetails(SalesLead $salesLead)
+    {
+        $title = 'Assign To Me';
+        $status = SalesLead::STATUS;
+        return view('sales_lead.assigned_to_me.show',compact('title','salesLead','status'));
+    }
+
+    public function updateStatus(Request $request, SalesLead $salesLead)
+    {
+        $salesLead->update(array('status' => $request->status));
+
+        return session()->flash('success','Status Updated Successfully!');
+    }
+
+
 }
