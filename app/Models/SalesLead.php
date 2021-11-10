@@ -11,9 +11,10 @@ class SalesLead extends Model
     use HasFactory, SoftDeletes;
 
     const STATUS = [
-        "on-going" => 1,
-        "unsuccessful" => 2,
-        "successful" => 3
+        'unassigned' => 0,
+        'on-going' => 1,
+        'unsuccessful' => 2,
+        'successful' => 3
     ];
 
     protected $fillable = [
@@ -26,7 +27,7 @@ class SalesLead extends Model
         'mclink_base_reason',
         'mclink_base_model',
         'serial_number',
-        'date_of_installation',
+        'valid_until',
         'existing_brand',
         'non_mclink_base_model',
         'assigned_sales',

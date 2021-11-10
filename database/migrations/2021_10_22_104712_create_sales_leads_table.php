@@ -24,11 +24,11 @@ class CreateSalesLeadsTable extends Migration
             $table->string('mclink_base_reason')->nullable();
             $table->string('mclink_base_model')->nullable();
             $table->string('serial_number')->nullable();
-            $table->date('date_of_installation')->nullable();
+            $table->date('valid_until')->nullable();
             $table->string('existing_brand')->nullable();
             $table->string('non_mclink_base_model')->nullable();
             $table->string('assigned_sales')->nullable();
-            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->string('reason')->nullable();
             $table->string('model_closed_and_qty')->nullable();
             $table->integer('amount_payable')->nullable();
