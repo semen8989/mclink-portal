@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td>Name of Staff</td>
-                <td></td>
+                <td>{{ $salesLead->createdByUser->name }}</td>
             </tr>
         </table>
         <h2>Contact Information</h2>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>Address</td>
-                <td></td>
+                <td>{{ $salesLead->address }}</td>
             </tr>
         </table>
         <h2>Sales Lead Information</h2>
@@ -60,7 +60,10 @@
             </tr>
             <tr>
                 <td>Non Mclink Base</td>
-                <td></td>
+                <td>
+                    <p>Existing Brand: {{ $salesLead->existing_brand }}</p>
+                    <p>Model:  {{ $salesLead->non_mclink_base_model }}</p>
+                </td>
             </tr>
         </table>
         <h2>Sales Lead Status</h2>
@@ -91,7 +94,9 @@
             </form>
             <tr>
                 <td>Status</td>
-                <td></td>
+                <td><span class="badge badge-{{ $badgeColor }} px-2 py-1">
+                    {{ ucfirst($status) }}
+                </span></td>
             </tr>
             <tr>
                 <td>Reason</td>

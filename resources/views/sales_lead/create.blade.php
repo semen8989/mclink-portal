@@ -46,17 +46,17 @@
             <div class="form-group row">
                 <div class="col-md-9 col-form-label">
                     <div class="form-check form-check-inline mr-1">
-                        <input class="form-check-input" name="mclink_base_reason" id="inline-radio1" type="radio" value="option1"
+                        <input class="form-check-input" name="mclink_base_reason" id="inline-radio1" type="radio" value="M/C Expired"
                             name="inline-radios">
                         <label class="form-check-label" for="inline-radio1">M/C Expired</label>
                     </div>
                     <div class="form-check form-check-inline mr-1">
-                        <input class="form-check-input" name="mclink_base_reason" id="inline-radio2" type="radio" value="option2"
+                        <input class="form-check-input" name="mclink_base_reason" id="inline-radio2" type="radio" value="M/C Overload"
                             name="inline-radios">
                         <label class="form-check-label" for="inline-radio2">M/C Overload</label>
                     </div>
                     <div class="form-check form-check-inline mr-1">
-                        <input class="form-check-input" name="mclink_base_reason" id="inline-radio3" type="radio" value="option3"
+                        <input class="form-check-input" name="mclink_base_reason" id="inline-radio3" type="radio" value="Others"
                             name="inline-radios">
                         <label class="form-check-label" for="inline-radio3">Others</label>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\SalesLead;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\DataTables\SalesLeadDataTable;
@@ -101,7 +102,17 @@ class SalesLeadController extends Controller
     public function show(SalesLead $salesLead)
     {
         $users = User::all('id','name');
-        return view('sales_lead.assign.show',compact('salesLead','users'));
+        $status = Str::ucfirst(array_search($salesLead->status, SalesLead::STATUS));
+
+        if($salesLead->status == 1){
+            $badgeColor = 'warning';
+        }else if($salesLead->status == 2){
+            $badgeColor = 'danger';
+        }else if($salesLead->status == 3){
+            $badgeColor = 'success';
+        }
+
+        return view('sales_lead.assign.show',compact('salesLead','users','status','badgeColor'));
     }
 
     public function assignedToMeIndex(AssignedToMeDataTable $dataTable)
