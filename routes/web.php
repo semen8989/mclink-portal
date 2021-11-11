@@ -13,6 +13,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\DesignationController;
@@ -22,16 +23,23 @@ use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\KpiObjectiveController;
-use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\AcknowledgementFormController;
 
+/**
+ * Authentication Routes
+ */
 Auth::routes(['register' => false]);
+
+// 2FA routes
+Route::get('/2fa', [TwoFactorController::class, 'showTwoFactorForm'])->name('2fa.form');
+Route::post('/2fa', [TwoFactorController::class, 'verifyTwoFactor'])->name('2fa.verify');
 
 /**
  * Authenticated Routes
  */
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'two_factor'])->group(function () {
     // Dashboard Route
     Route::get('/', function () {
         return view('dashboard', ['title'=>__('label.dashboard')]);
@@ -153,8 +161,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
-
-
 
 /**
  * Guest Routes

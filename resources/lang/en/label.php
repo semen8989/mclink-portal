@@ -454,6 +454,19 @@ return [
             ]
         ]
     ],
+    'auth' => [
+        'form' => [
+            'label' => [
+                '2fa_main_title' => 'One Time Password',
+                '2fa_sec_title' => 'Enter the OTP code'
+            ]
+        ],
+        'response' => [
+            'error' => [
+                'token_error' => 'The OTP code is invalid or expired.'
+            ]
+        ]
+    ],
     'service_report' => [
         'title' => [
             'index' => 'Service Reports',

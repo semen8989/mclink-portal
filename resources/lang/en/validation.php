@@ -164,6 +164,8 @@ return [
     */
 
     'attributes' => [
+        // 2FA
+        'token_2fa' => 'OTP code',
         // service report fields
         'csrNo' => 'csr number',
         'newCustomer' => 'customer name',
