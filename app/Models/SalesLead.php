@@ -17,6 +17,11 @@ class SalesLead extends Model
         'successful' => 3
     ];
 
+    const APPROVED = [
+        'no' => 0,
+        'yes' => 1
+    ];
+
     protected $fillable = [
         'user_id',
         'company_name',

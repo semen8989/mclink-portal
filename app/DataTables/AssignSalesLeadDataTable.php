@@ -25,7 +25,7 @@ class AssignSalesLeadDataTable extends DataTable
                 return $request->company_name;
             })->editColumn('assigned_sales', function ($request) {
                 if($request->assigned_sales != null){
-                    return $request->assigned_sales;
+                    return $request->assignedSalesUser->name;
                 }else{
                     return 'Unassigned';
                 }

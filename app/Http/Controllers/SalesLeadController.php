@@ -49,7 +49,9 @@ class SalesLeadController extends Controller
     public function edit(SalesLead $salesLead)
     {
         $users = User::all('id','name');
-        return view('sales_lead.edit',compact('salesLead','users'));
+        $status = SalesLead::STATUS;
+        
+        return view('sales_lead.edit',compact('salesLead','users','status'));
     }
 
     public function update(StoreSalesLeadRequest $request, SalesLead $salesLead)
@@ -95,7 +97,7 @@ class SalesLeadController extends Controller
 
         $updateArray = [
             'assigned_sales' => $request->assigned_sales,
-            'date_of_installation' => $validity
+            'valid_until' => $validity
         ];
         
         $salesLead->update($updateArray);

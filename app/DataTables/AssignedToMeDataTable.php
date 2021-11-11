@@ -45,12 +45,12 @@ class AssignedToMeDataTable extends DataTable
                 ]);
 
             })->editColumn('created_at', function ($request) {
-                return date("F j, Y",strtotime($request->created_at->format('M d Y')));
-            })->editColumn('date_of_installation', function ($request) {
-                return date("F j, Y",strtotime($request->date_of_installation));
+                return date('F j, Y',strtotime($request->created_at));
+            })->editColumn('valid_until', function ($request) {
+                return date('F j, Y',strtotime($request->valid_until));
             })->addColumn('detail', function(SalesLead $salesLead) {
                 return view('components.datatables.detail', [
-                    'editRouteName' => 'sales_lead.lead_details',
+                    'editRouteName' => 'sales_lead.edit',
                     'itemSlug' => 'salesLead',
                     'itemSlugValue' => $salesLead->id
                 ]);
@@ -121,7 +121,7 @@ class AssignedToMeDataTable extends DataTable
                 ->title('Status'),
             Column::make('created_at')
                 ->title('Created At'),
-            Column::make('date_of_installation')
+            Column::make('valid_until')
                 ->title('Valid Until'),
             Column::computed('detail')
                 ->title('Action')

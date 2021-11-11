@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\SalesLead;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -22,26 +23,68 @@ class SalesLeadDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function(SalesLead $salesLead) {
-                return view('components.datatables.action', [
-                    'actionRoutes' => [
-                        'edit' => 'sales_lead.edit',
-                        'delete' => ''
-                    ],
-                    'itemSlug' => 'salesLead',
-                    'itemSlugValue' => $salesLead->id
-                ]);
+                if($salesLead->assigned_sales == null)
+                {
+                    return view('components.datatables.action', [
+                        'actionRoutes' => [
+                            'edit' => 'sales_lead.edit',
+                            'delete' => ''
+                        ],
+                        'itemSlug' => 'salesLead',
+                        'itemSlugValue' => $salesLead->id
+                    ]);
+
+                }else{
+                    return view('components.datatables.detail', [
+                        'editRouteName' => 'sales_lead.show',
+                        'itemSlug' => 'salesLead',
+                        'itemSlugValue' => $salesLead->id
+                    ]);
+                }
             })->editColumn('company_name', function ($request) {
                 return $request->company_name;
             })->editColumn('assigned_sales', function ($request) {
-                return $request->assigned_sales;
+                if($request->assigned_sales == null){
+                    return 'Unassigned';
+                }else{
+                    return $request->assignedSalesUser->name;
+                }
             })->editColumn('salesManagerUser.name', function ($request) {
                 return $request->salesManagerUser->name;
             })->editColumn('status', function ($request) {
-                return $request->status;
+                $status = Str::ucfirst(array_search($request->status, SalesLead::STATUS));
+                
+                if($request->status == 0){
+                    $badgeColor = 'secondary';
+                }else if($request->status == 1){
+                    $badgeColor = 'warning';
+                }else if($request->status == 2){
+                    $badgeColor = 'danger';
+                }else if($request->status == 3){
+                    $badgeColor = 'success';
+                }
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $status,
+                    'badgeColor' => $badgeColor
+                ]);
+
             })->editColumn('is_approved', function ($request) {
-                return $request->is_approved;
+                $approved  = Str::ucfirst(array_search($request->is_approved, SalesLead::APPROVED));
+                
+                if($request->is_approved == 0){
+                    $badgeColor = 'warning';
+                }else if($request->is_approved == 1){
+                    $badgeColor = 'success';
+                }
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $approved,
+                    'badgeColor' => $badgeColor
+                ]);
+
             })->editColumn('created_at', function ($request) {
-                return $request->created_at->format('M d Y');
+                return date("F j, Y",strtotime($request->created_at));
             });
     }
 

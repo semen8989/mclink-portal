@@ -72,26 +72,30 @@
                 <th class="custom-width">Title</th>
                 <th>Data</th>
             </tr>
-            <form action="{{ route('sales_lead.assign_salesman',$salesLead->id) }}" id="assign_form" method="post">
-                @csrf
-                @method('PUT')
                 <tr>
                     <td>Assigned Salesman</td>
-                    <td>
-                        <div class="form-group">
-                            <select class="form-control select2" id="assigned_sales" name="assigned_sales">
-                                <option></option>
-                                @foreach($users as $user)
-                                    <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
-                                        {{ $user->name }}
-                                    </option>        
-                                @endforeach 
-                            </select>
-                        </div>
-                        <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
-                    </td>
+                    @if($salesLead->assigned_sales == null)
+                        <form action="{{ route('sales_lead.assign_salesman',$salesLead->id) }}" id="assign_form" method="post">
+                            @csrf
+                            @method('PUT')
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-control select2" id="assigned_sales" name="assigned_sales">
+                                        <option></option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
+                                                {{ $user->name }}
+                                            </option>        
+                                        @endforeach 
+                                    </select>
+                                </div>
+                                <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                            </td>
+                        </form>
+                    @else
+                        <td>{{ $salesLead->assignedSalesUser->name }}</td>
+                    @endif
                 </tr>
-            </form>
             <tr>
                 <td>Reason</td>
                 <td>{{ $salesLead->reason }}</td>
