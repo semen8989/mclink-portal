@@ -8,9 +8,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\DataTables\SalesLeadDataTable;
+use App\DataTables\ApprovalLeadDataTable;
 use App\DataTables\AssignedToMeDataTable;
 use App\DataTables\AssignSalesLeadDataTable;
 use App\Http\Requests\StoreSalesLeadRequest;
+use App\Http\Requests\UpdateSalesLeadRequest;
 
 class SalesLeadController extends Controller
 {
@@ -122,14 +124,31 @@ class SalesLeadController extends Controller
     {
         $title = 'Assign To Me';
         $status = SalesLead::STATUS;
-        return view('sales_lead.assigned_to_me.show',compact('title','salesLead','status'));
+        return view('sales_lead.assigned_to_me.edit',compact('title','salesLead','status'));
     }
 
-    public function updateStatus(Request $request, SalesLead $salesLead)
+    public function updateLeadDetails(UpdateSalesLeadRequest $request, SalesLead $salesLead)
     {
-        $salesLead->update(array('status' => $request->status));
+        if($request['data_check'] == "on")
+        {
+            $salesLead->update($request->all());
 
-        return session()->flash('success','Status Updated Successfully!');
+            return session()->flash('success','Sales Lead Updated Successfully!');
+
+            $data['success'] = true;
+        }
+        else
+        {
+            $data['success'] = false;
+        }
+
+        return response()->json($data);
+    }
+
+    public function approvalIndex(ApprovalLeadDataTable $dataTable)
+    {
+        $title = 'Approval';
+        return $dataTable->render('sales_lead.approval.index',compact('title'));
     }
 
 

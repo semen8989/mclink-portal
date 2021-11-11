@@ -169,7 +169,9 @@ Route::middleware(['auth'])->group(function () {
             //Assign To Me
             Route::get('/assigned-to-me',[SalesLeadController::class, 'assignedToMeIndex'])->name('sales_lead.assigned_to_me_index');
             Route::get('/lead-details/{salesLead}',[SalesLeadController::class, 'assignedToMeDetails'])->name('sales_lead.lead_details');
-            Route::put('/update-status/{salesLead}',[SalesLeadController::class, 'updateStatus'])->name('sales_lead.update_status');
+            Route::put('/update-lead-details/{salesLead}',[SalesLeadController::class, 'updateLeadDetails'])->name('sales_lead.update_lead');
+            //Approval
+            Route::get('/approval',[SalesLeadController::class, 'approvalIndex'])->name('sales_lead.approval');
         });
     });
     

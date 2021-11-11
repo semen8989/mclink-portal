@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">Edit Sales Lead</div>
-<form method="POST" id="sales_form" action="{{ route('sales_lead.update',$salesLead->id) }}" autocomplete="off" novalidate>
+<form method="POST" id="sales_form" action="{{ route('sales_lead.update_lead',$salesLead->id) }}" autocomplete="off" novalidate>
     @csrf
     @method('PUT')
     <div class="card-body">
@@ -92,35 +92,24 @@
                     </div>
                 </div>
             </div>
-            <h3>Sales Lead Assigner/Approver</h3>
+            <h3>Update Status</h3>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="title">Select Sales Manager (The Sales Manager will assign this lead to his/her sales team)</label>
-                        <select class="form-control select2" id="sales_manager" name="sales_manager">
+                        <select class="form-control select2" name="status" id="status">
                             <option></option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ $salesLead->sales_manager == $user->id ? 'selected' : '' }}>
-                                    {{ $user->name }}
-                                </option>        
-                            @endforeach 
+                            @foreach($status as $statusName => $statusId)
+                                @if($statusId > 0)
+                                    <option value="{{ $statusId }}" {{ $statusId == $salesLead->status ? 'selected' : '' }}>{{ ucfirst($statusName) }}</option>
+                                @endif
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="title">Approved by(Approver)</label>
-                        <select class="form-control select2" id="approve_by" name="approve_by">
-                            <option></option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ $salesLead->approve_by == $user->id ? 'selected' : '' }}>
-                                    {{ $user->name }}
-                                </option>        
-                            @endforeach 
-                        </select>
-                    </div>
+                    <!-- No Content -->
                 </div>
-            </div>                
+            </div>
             <hr>
             <div class="form-check form-check ml-2">
                 <input type="checkbox" class="form-check-input" name="data_check" id="data_check">

@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AssignedToMeDataTable extends DataTable
+class ApprovalLeadDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,6 +24,8 @@ class AssignedToMeDataTable extends DataTable
             ->eloquent($query)
             ->editColumn('createdByUser.name', function ($request) {
                 return $request->createdByUser->name;
+            })->editColumn('assignedSalesUser.name', function ($request) {
+                return $request->assignedSalesUser->name;
             })->editColumn('salesManagerUser.name', function ($request) {
                 return $request->salesManagerUser->name;
             })->editColumn('company_name', function ($request) {
@@ -48,19 +50,33 @@ class AssignedToMeDataTable extends DataTable
                 return date('F j, Y',strtotime($request->created_at));
             })->editColumn('valid_until', function ($request) {
                 return date('F j, Y',strtotime($request->valid_until));
+            })->editColumn('is_approved', function ($request) {
+                $approved = Str::ucfirst(array_search($request->is_approved, SalesLead::APPROVED));
+                
+                if($request->is_approved == 0){
+                    $badgeColor = 'warning';
+                }else if($request->is_approved == 1){
+                    $badgeColor = 'success';
+                }
+
+                return view('components.datatables.status-column', [
+                    'columnData' => $approved,
+                    'badgeColor' => $badgeColor
+                ]);
+
             })->addColumn('detail', function(SalesLead $salesLead) {
                 return view('components.datatables.detail', [
                     'editRouteName' => 'sales_lead.lead_details',
                     'itemSlug' => 'salesLead',
                     'itemSlugValue' => $salesLead->id
                 ]);
-            });
+            });;
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\AssignToMe $model
+     * @param \App\Models\ApprovalLead $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(SalesLead $model)
@@ -76,7 +92,7 @@ class AssignedToMeDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-        ->setTableId('assign-sales-lead-table')
+        ->setTableId('approval-lead-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->parameters([
@@ -113,8 +129,10 @@ class AssignedToMeDataTable extends DataTable
         return [
             Column::make('createdByUser.name')
                 ->title('Created By'),
+            Column::make('assignedSalesUser.name')
+                ->title('Assigned Sales'),
             Column::make('salesManagerUser.name')
-                ->title('Assigned to you by'),
+                ->title('Assigned By'),
             Column::make('company_name')
                 ->title('Company Name'),
             Column::make('status')
@@ -123,8 +141,11 @@ class AssignedToMeDataTable extends DataTable
                 ->title('Created At'),
             Column::make('valid_until')
                 ->title('Valid Until'),
+            Column::make('is_approved')
+                ->title('Approved'),
             Column::computed('detail')
                 ->title('Action')
         ];
     }
+
 }
