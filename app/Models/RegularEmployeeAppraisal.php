@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\EmployeeAppraisalAccess;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -24,11 +23,4 @@ class RegularEmployeeAppraisal extends Model
      */
     public $timestamps = false;
 
-    /**
-     * Get all of the appraisal access data for the regular employee appraisal.
-     */
-    public function appraisalAccess()
-    {
-        return $this->morphMany(EmployeeAppraisalAccess::class, 'employee_appraisal_access');
-    }
 }
