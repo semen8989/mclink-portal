@@ -455,6 +455,14 @@ return [
         ]
     ],
     'auth' => [
+        'email' => [
+            'otp_sent' => [
+                'message_header' => 'Verify your login',
+                'message_subheader' => 'Below is your one time password:',
+                'message_notice' => 'Please use the code before it expires in 15 minutes.',
+                'subject' => 'One Time Password'
+            ]
+        ],
         'form' => [
             'label' => [
                 '2fa_main_title' => 'One Time Password',

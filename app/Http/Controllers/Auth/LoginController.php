@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Events\TwoFactorTokenGenerated;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -51,7 +52,12 @@ class LoginController extends Controller
         $user = Auth::user();
         $user->token_2fa = mt_rand(100000,999999);
         $user->token_2fa_expiry = Carbon::now()->addMinutes(15);
-        $user->save();
+
+        if ($user->save()) {
+            // send the new token via email
+            TwoFactorTokenGenerated::dispatch($user);
+        }
+
 
         return redirect('/2fa');
     }
