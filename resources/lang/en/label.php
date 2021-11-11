@@ -697,8 +697,9 @@ return [
             'new_index' => 'New Employee Appraisal',
             'new_create' => 'Add New Employee Appraisal',
             'new_show' => 'View New Employee Appraisal',
-            'new_edit' => 'Edit New Employee Appraisal',
             'regular_index' => 'Regular Employee Appraisal',
+            'regular_create' => 'Add Regular Employee Appraisal',
+            'regular_show' => 'View Regular Employee Appraisal',
         ],
         'datatable' => [
             'column_header' => [
@@ -746,7 +747,38 @@ return [
                 'comment' => 'Comments',
                 'recommendation' => 'Recommendation',
                 'f_comment' => 'Final Comments',
-                'share_appraisal' => 'Share this appraisal to'
+                'share_appraisal' => 'Share this appraisal to',
+                'jks_title' => 'Job Knowledge & Skills',
+                'jks_one' => '1. Understand Thoroughly & Follows Correct Procedure, Show Comprehensive understanding of all aspects of the job',
+                'jks_two' => '2. Always take initiative to come out of new, original and creative ideas',
+                'jks_three' => '3. Always share good idea & solution to fellowman',
+                'aos_title' => 'Action Orientation / Speed',
+                'aos_one' => '1. Persevere and overcome difficulties in solving problems',
+                'aos_two' => '2. Perform job with passion and speed',
+                'aos_three' => '3. Approach new job/challenges positively & proactively',
+                'qow_title' => 'Quantity of Work',
+                'qow_one' => '1. Always take utmost effort to achieve targets & try to exceed expectation',
+                'qow_two' => '2. Cooperation with related divisions to achieve Company targets',
+                'qow_three' => '3. Understand the need for change and contribute positively towards Company Goal',
+                'its_title' => 'Integrity and Trust / Sincerity',
+                'its_one' => '1. Comply with Company requirements and take action to expel illegal practices in the Company',
+                'its_two' => '2. Being honest, sincere and earnest in everything. Honestly admit mistakes and take corrective actions immediately',
+                'its_three' => '3. Use proper speech, behaviour and attitude towards customer & colleague',
+                'its_four' => '4. Being punctual for work, always at work on time',
+                'td_title' => 'Team Dynamics',
+                'td_one' => '1. Decide action based on company viewpoint and not just solely on personal viewpoint',
+                'td_two' => '2. Decide action not only to satisfy short term goals but long term strategies',
+                'td_three' => '3. Maintain good communication and relationship with all colleague in the organisation and sincerely appreciate their support',
+                'upcp_title' => 'Understanding & Participating Company Projects',
+                'upcp_one' => '1. Strongly support better enviroment to make the office clean & tidy all the time',
+                'upcp_two' => '2. Actively attend with great passion and professionlism at all time',
+                'upcp_three' => '3. Be willing to participate any new projects initiated by the Company',
+                'eval_comment_title' => 'Evaluator’s Comment',
+                'eval_criteria_one' => 'A. Positive Comments',
+                'eval_criteria_two' => 'B. Issues: (knowledge and skill, personality, attitude, others)',
+                'eval_criteria_three' => 'C. Suggestions and Reminders',
+                'eval_criteria_four' => 'D. Warnings',
+                'eval_criteria_five' => 'E. Training or Further Development Needs'
             ],
             'radio' => [
                 'purpose_one' => 'For current employees during their 1st 3 months in a new position',
@@ -760,12 +792,20 @@ return [
                 'o_progress_two' => 'Employee performance and learning is acceptable and improving at a satisfactory rate',
                 'o_progress_three' => 'Employee has successfully completed the orientation/probation period for this position',
                 'recommendation_one' => 'Extend the Orientation/Training Period for further assessment (please indicate next review date)',
-                'recommendation_two' => 'Convert employee to regular at-will employment status'
+                'recommendation_two' => 'Convert employee to regular at-will employment status',
+                'rating_option_one' => 'Unacceptable',
+                'rating_option_two' => 'Unsatisfactory',
+                'rating_option_three' => 'Below Satisfactory',
+                'rating_option_four' => 'Satisfactory',
+                'rating_option_five' => 'Above Satisfactory',
+                'rating_option_six' => 'Excellent',
+                'rating_option_seven' => 'Outstanding'
             ]
         ],
         'modal' => [
             'msg' => [
-                'delete_new' => 'New Employee Appraisal'
+                'delete_new' => 'New Employee Appraisal',
+                'delete_regular' => 'Regular Employee Appraisal'
             ]
         ]
     ],
