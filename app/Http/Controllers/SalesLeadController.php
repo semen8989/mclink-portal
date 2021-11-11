@@ -86,6 +86,10 @@ class SalesLeadController extends Controller
 
     public function assignSalesMan(Request $request, SalesLead $salesLead)
     {
+        $request->validate([
+            'assigned_sales' => 'required',
+        ]);
+
         $currentDate = date('Y-m-d');
         $validity = date('Y-m-d', strtotime('+6 months', strtotime($currentDate)));  
 
@@ -102,17 +106,8 @@ class SalesLeadController extends Controller
     public function show(SalesLead $salesLead)
     {
         $users = User::all('id','name');
-        $status = Str::ucfirst(array_search($salesLead->status, SalesLead::STATUS));
 
-        if($salesLead->status == 1){
-            $badgeColor = 'warning';
-        }else if($salesLead->status == 2){
-            $badgeColor = 'danger';
-        }else if($salesLead->status == 3){
-            $badgeColor = 'success';
-        }
-
-        return view('sales_lead.assign.show',compact('salesLead','users','status','badgeColor'));
+        return view('sales_lead.assign.show',compact('salesLead','users'));
     }
 
     public function assignedToMeIndex(AssignedToMeDataTable $dataTable)

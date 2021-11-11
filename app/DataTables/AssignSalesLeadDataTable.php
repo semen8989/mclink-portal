@@ -31,10 +31,6 @@ class AssignSalesLeadDataTable extends DataTable
                 }
             })->editColumn('createdByUser.name', function ($request) {
                 return $request->createdByUser->name;
-            })->editColumn('status', function ($request) {
-                return $request->status;
-            })->editColumn('is_approved', function ($request) {
-                return $request->is_approved;
             })->editColumn('created_at', function ($request) {
                 return $request->created_at->format('M d Y');
             })->addColumn('detail', function(SalesLead $salesLead) {
@@ -106,10 +102,6 @@ class AssignSalesLeadDataTable extends DataTable
                 ->title('Assigned Sales'),
             Column::make('createdByUser.name')
                 ->title('Created By'),
-            Column::make('status')
-                ->title('Status'),
-            Column::make('is_approved')
-                ->title('Approved'),
             Column::make('created_at')
                 ->title('Created At'),
             Column::computed('detail')

@@ -79,8 +79,8 @@
                     <td>Assigned Salesman</td>
                     <td>
                         <div class="form-group">
-                            <select class="form-control" id="assigned_sales" name="assigned_sales">
-                                <option value="0">Unassigned</option>
+                            <select class="form-control select2" id="assigned_sales" name="assigned_sales">
+                                <option></option>
                                 @foreach($users as $user)
                                     <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
                                         {{ $user->name }}
@@ -93,12 +93,6 @@
                 </tr>
             </form>
             <tr>
-                <td>Status</td>
-                <td><span class="badge badge-{{ $badgeColor }} px-2 py-1">
-                    {{ ucfirst($status) }}
-                </span></td>
-            </tr>
-            <tr>
                 <td>Reason</td>
                 <td>{{ $salesLead->reason }}</td>
             </tr>
@@ -107,31 +101,6 @@
                 <td>{{ $salesLead->model_closed_and_qty }}</td>
             </tr>
         </table>
-        <div class="row">
-            <div class="form-group col-sm-6">
-                <label for="ccmonth">Amount Payable</label>
-                <input class="form-control" name="amount_payable" id="amount_payable" type="number">
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="ccyear">Notify</label>
-                <select class="form-control" id="notify" name="notify">
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">
-                            {{ $user->name }}
-                        </option>        
-                    @endforeach 
-                </select>
-            </div>
-        </div>
-        <div class="form-check form-check-inline mr-1">
-            <input class="form-check-input" id="inline-checkbox1" type="checkbox" value="check1">
-            <label class="form-check-label" for="inline-checkbox1">Confirm</label>
-        </div>
-    </div>
-</div>
-<div class="card-footer">
-    <div class="form-group mt-2 text-right">
-        <button type="submit" class="btn btn-success btn-submit">Approve</button>
     </div>
 </div>
 
@@ -144,14 +113,27 @@
     }
 
 </style>
+<!-- select2 css dependency -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <script>
         $(document).ready(function(){
              //Scroll to top when page refresh
              $(window).on('beforeunload', function() {
                 $(window).scrollTop(0);
+            });
+
+            //Select2
+            $('.select2').select2({
+                theme: "bootstrap",
+                placeholder: 'Unassigned',
+                allowClear: true
             });
 
             $('#assign_form').submit(function (e){
