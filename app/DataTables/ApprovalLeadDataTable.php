@@ -81,7 +81,7 @@ class ApprovalLeadDataTable extends DataTable
      */
     public function query(SalesLead $model)
     {
-        return $model->with('createdByUser')->select('sales_leads.*')->where('assigned_sales',auth()->user()->id);
+        return $model->with('assignedSalesUser','createdByUser','salesManagerUser')->select('sales_leads.*')->where('assigned_sales',auth()->user()->id);
     }
 
     /**

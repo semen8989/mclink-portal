@@ -50,7 +50,7 @@ class AssignSalesLeadDataTable extends DataTable
      */
     public function query(SalesLead $model)
     {
-        return $model->with('salesManagerUser')->select('sales_leads.*')->where('sales_manager',auth()->user()->id);
+        return $model->with('assignedSalesUser','createdByUser')->select('sales_leads.*')->where('sales_manager',auth()->user()->id);
     }
 
     /**

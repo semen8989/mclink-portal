@@ -96,7 +96,7 @@ class SalesLeadDataTable extends DataTable
      */
     public function query(SalesLead $model)
     {
-        return $model->with('salesManagerUser')->select('sales_leads.*')->where('user_id',auth()->user()->id);
+        return $model->with('assignedSalesUser','salesManagerUser')->select('sales_leads.*')->where('user_id',auth()->user()->id);
     }
 
     /**
