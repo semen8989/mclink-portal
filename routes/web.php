@@ -32,14 +32,10 @@ use App\Http\Controllers\AcknowledgementFormController;
  */
 Auth::routes(['register' => false]);
 
-// 2FA routes
-Route::get('/2fa', [TwoFactorController::class, 'showTwoFactorForm'])->name('2fa.form');
-Route::post('/2fa', [TwoFactorController::class, 'verifyTwoFactor'])->name('2fa.verify');
-
 /**
  * Authenticated Routes
  */
-Route::middleware(['auth', 'two_factor'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // Dashboard Route
     Route::get('/', function () {
         return view('dashboard', ['title'=>__('label.dashboard')]);
@@ -166,6 +162,10 @@ Route::middleware(['auth', 'two_factor'])->group(function () {
  * Guest Routes
  */
 Route::middleware(['guest'])->group(function () { 
+    // 2FA routes
+    Route::get('/2fa', [TwoFactorController::class, 'showTwoFactorForm'])->name('2fa.form');
+    Route::post('/2fa', [TwoFactorController::class, 'verifyTwoFactor'])->name('2fa.verify');
+
     // Acknowledgement Routes
     Route::prefix('service-form/acknowledgement')->group(function () {
         Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service.form.acknowledgment.sign');

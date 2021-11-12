@@ -23,12 +23,20 @@ class TwoFactorTokenGenerated
     public $user;
 
     /**
+     * A variable storing the generated token.
+     *
+     * @var string
+     */
+    public $token;
+
+    /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $token)
     {
         $this->user = $user;
+        $this->token = $token;
     }
 }

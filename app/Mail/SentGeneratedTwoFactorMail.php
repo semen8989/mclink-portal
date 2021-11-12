@@ -12,16 +12,29 @@ class SentGeneratedTwoFactorMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * The user instance.
+     *
+     * @var \App\Models\User
+     */
     public $user;
+
+    /**
+     * A variable storing the generated token.
+     *
+     * @var string
+     */
+    public $token;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $token)
     {
         $this->user = $user;
+        $this->token = $token;
     }
 
     /**

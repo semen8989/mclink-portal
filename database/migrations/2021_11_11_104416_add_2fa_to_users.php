@@ -14,7 +14,6 @@ class Add2faToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('token_2fa')->nullable();
             $table->datetime('token_2fa_expiry')->nullable();
         });
     }
@@ -27,7 +26,7 @@ class Add2faToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['token_2fa', 'token_2fa_expiry']);
+            $table->dropColumn(['token_2fa_expiry']);
         });
     }
 }

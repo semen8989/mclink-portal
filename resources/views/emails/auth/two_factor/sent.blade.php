@@ -12,7 +12,7 @@
 <h2>{{ __('label.auth.email.otp_sent.message_header') }}</h2>
 
 {{ __('label.auth.email.otp_sent.message_subheader') }}<br>
-{{ $user->token_2fa }} 
+{{ $token }} 
 
 {{ __('label.auth.email.otp_sent.message_notice') }}
 
