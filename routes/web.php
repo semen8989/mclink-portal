@@ -163,17 +163,24 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update/{salesLead}',[SalesLeadController::class, 'update'])->name('sales_lead.update');
             Route::delete('/delete/{salesLead}',[SalesLeadController::class, 'destroy'])->name('sales_lead.destroy');
             //Assign
-            Route::get('/assign',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
-            Route::get('/view/{salesLead}',[SalesLeadController::class, 'show'])->name('sales_lead.show');
-            Route::put('/assign-sales-man/{salesLead}',[SalesLeadController::class, 'assignSalesMan'])->name('sales_lead.assign_salesman');
+            Route::prefix('assign')->group(function (){
+                Route::get('/',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'show'])->name('sales_lead.show');
+                Route::put('/assign-sales-man/{salesLead}',[SalesLeadController::class, 'assignSalesMan'])->name('sales_lead.assign_salesman');
+            });
             //Assign To Me
-            Route::get('/assigned-to-me',[SalesLeadController::class, 'assignedToMeIndex'])->name('sales_lead.assigned_to_me_index');
-            Route::get('/lead-details/{salesLead}',[SalesLeadController::class, 'assignedToMeDetails'])->name('sales_lead.lead_details');
-            Route::put('/update-lead-details/{salesLead}',[SalesLeadController::class, 'updateLeadDetails'])->name('sales_lead.update_lead');
+            Route::prefix('assigned-to-me')->group(function (){
+                Route::get('/',[SalesLeadController::class, 'assignedToMeIndex'])->name('sales_lead.assigned_to_me_index');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'assignedToMeDetails'])->name('sales_lead.lead_details');
+                Route::put('/update-lead-details/{salesLead}',[SalesLeadController::class, 'updateLeadDetails'])->name('sales_lead.update_lead');
+            });
             //Approval
-            Route::get('/approval',[SalesLeadController::class, 'approvalIndex'])->name('sales_lead.approval');
-            Route::get('/approval/details/{salesLead}',[SalesLeadController::class, 'approvalDetails'])->name('sales_lead.approval_details');
-            Route::put('/approval/update/{salesLead}',[SalesLeadController::class, 'approve'])->name('sales_lead.approve');
+            Route::prefix('approval')->group(function (){
+                Route::get('/',[SalesLeadController::class, 'approvalIndex'])->name('sales_lead.approval');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'approvalDetails'])->name('sales_lead.approval_details');
+                Route::put('/approve/{salesLead}',[SalesLeadController::class, 'approve'])->name('sales_lead.approve');
+            });
+
         });
     });
     
