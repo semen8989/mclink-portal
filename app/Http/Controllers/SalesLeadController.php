@@ -151,5 +151,34 @@ class SalesLeadController extends Controller
         return $dataTable->render('sales_lead.approval.index',compact('title'));
     }
 
+    public function approvalDetails(SalesLead $salesLead)
+    {
+        $users = User::all('id','name');
+        return view('sales_lead.assign.show',compact('salesLead','users'));
+    }
+
+    public function approve(Request $request, SalesLead $salesLead)
+    {
+        if($request['confirm'] == 'on')
+        {
+            $update = [
+                'amount_payable' => $request->amount_payable,
+                'is_approved' => 1
+            ];
+
+            $salesLead->update($update);
+
+            return session()->flash('success','Sales Lead Updated Successfully!');
+
+            $data['success'] = true;
+        }
+        else
+        {
+            $data['success'] = false;
+        }
+
+        return response()->json($data);
+    }
+
 
 }

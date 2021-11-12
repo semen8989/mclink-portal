@@ -66,7 +66,7 @@ class ApprovalLeadDataTable extends DataTable
 
             })->addColumn('detail', function(SalesLead $salesLead) {
                 return view('components.datatables.detail', [
-                    'editRouteName' => 'sales_lead.lead_details',
+                    'editRouteName' => 'sales_lead.approval_details',
                     'itemSlug' => 'salesLead',
                     'itemSlugValue' => $salesLead->id
                 ]);

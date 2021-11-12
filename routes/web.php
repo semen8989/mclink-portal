@@ -172,6 +172,8 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update-lead-details/{salesLead}',[SalesLeadController::class, 'updateLeadDetails'])->name('sales_lead.update_lead');
             //Approval
             Route::get('/approval',[SalesLeadController::class, 'approvalIndex'])->name('sales_lead.approval');
+            Route::get('/approval/details/{salesLead}',[SalesLeadController::class, 'approvalDetails'])->name('sales_lead.approval_details');
+            Route::put('/approval/update/{salesLead}',[SalesLeadController::class, 'approve'])->name('sales_lead.approve');
         });
     });
     

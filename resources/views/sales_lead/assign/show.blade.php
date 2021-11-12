@@ -105,6 +105,34 @@
                 <td>{{ $salesLead->model_closed_and_qty }}</td>
             </tr>
         </table>
+        <form action="{{ route('sales_lead.approve',$salesLead->id) }}" id="approve_form" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="amount_payable">Amount Payable</label>
+                    <input class="form-control" id="amount_payable" name="amount_payable" type="number">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="postal-code">Notify</label>
+                    <select class="form-control select2" id="assigned_sales" name="assigned_sales">
+                        <option></option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
+                                {{ $user->name }}
+                            </option>        
+                        @endforeach 
+                    </select>
+                </div>
+            </div>
+            <div class="form-check form-check-inline mr-1 confirm-check">
+                <input class="form-check-input" id="confirm" type="checkbox" name="confirm">
+                <label class="form-check-label" for="confirm">Confirm</label>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-success" type="submit"> Approve</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -180,7 +208,62 @@
                         
                     }
                 })
-            }); 
+            });
+
+            $('#approve_form').submit(function (e){
+                e.preventDefault();
+
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    beforeSend: function() { 
+                        $(".help-block").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                    },
+                    success: function(data){
+                        if(data.success == false)
+                        {
+                            $(".invalid-feedback").remove();   
+                            $('.confirm-check').after('<div class="invalid-feedback d-block">Please confirm</div>');
+                        }
+                        else
+                        {
+                            window.location.reload();
+                        }
+                    },
+                    error: function(response){
+                        //Clear previous error messages
+                        $(".help-block").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                        //fetch and display error messages
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
+                            }else{
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
+                            }
+                        });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
+                        
+                    }
+                })
+
+            });
         });
     </script>
 @endpush
