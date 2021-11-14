@@ -21,19 +21,19 @@ class TwoFactorController extends Controller
     public function verifyTwoFactor(VerifyTwoFactorRequest $request)
     {
         $validated = $request->validated();
-        $token = 'token_' . $validated['token_2fa'];
+        $cookieName = md5($validated['token_2fa']);
         $user = null;
 
-        if (session()->has($token)) {
-            $userId = session()->get($token);
-            $user = User::find($userId)->first();
+        if ($cookieVal = $request->cookie($cookieName)) {
+            $user = User::find($cookieVal)->first();
         }
 
         if (!empty($user) && Carbon::now()->lt($user->token_2fa_expiry)) {
+            $user->timestamps = false;
             $user->token_2fa_expiry = null;
 
             if ($user->save()) {
-                session()->forget($token);
+                cookie()->forget($cookieName);
                 
                 Auth::login($user);
             }    
