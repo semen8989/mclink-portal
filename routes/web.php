@@ -9,6 +9,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
@@ -46,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
     
     // Change password
     Route::resource('change-password', ChangePasswordController::class)->only(['update']);
+
+    // Setting
+    Route::resource('setting', SettingController::class)->only(['index', 'update']);
 
     // Service Report Routes
     Route::prefix('service-forms')->group(function () {

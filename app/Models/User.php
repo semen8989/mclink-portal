@@ -70,6 +70,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
+
+    /**
+     * Get the setting associated with the user.
+     */
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
+    }
   
     public function roles()
     {
