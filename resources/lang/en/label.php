@@ -455,6 +455,9 @@ return [
         ]
     ],
     'auth' => [
+        'title' => [
+            'form' => 'OTP'
+        ],
         'email' => [
             'otp_sent' => [
                 'message_header' => 'Verify your login',
