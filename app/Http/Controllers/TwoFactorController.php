@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,17 +29,13 @@ class TwoFactorController extends Controller
             $user = User::find($cookieVal)->first();
         }
 
-        if (!empty($user) && Carbon::now()->lt($user->token_2fa_expiry)) {
-            $user->timestamps = false;
-            $user->token_2fa_expiry = null;
+        if (!empty($user)) {
+            cookie()->forget($cookieName);
+            
+            Auth::login($user);
+            $request->session()->regenerate();
 
-            if ($user->save()) {
-                cookie()->forget($cookieName);
-                
-                Auth::login($user);
-            }    
-
-            return redirect('/');
+            return redirect()->intended($this->redirectPath());
         } else {
             return redirect()->back()->with('token_error', __('label.auth.response.error.token_error'));
         }

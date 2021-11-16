@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Events\TwoFactorTokenGenerated;
 use App\Providers\RouteServiceProvider;
@@ -73,19 +75,23 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (Hash::check($request->password, $user->password)) {
-            $user->timestamps = false;
-            $user->token_2fa_expiry = Carbon::now()->addMinutes(15);
+        if ($user && Hash::check($request->password, $user->password)) {
+            if (empty($user->setting->twofa_enabled)) {
+                Auth::login($user);
+                $request->session()->regenerate();
 
-            $token = strval(mt_rand(100000,999999));
-            $cookie = cookie(md5($token), $user->id, 15);
+                return redirect()->intended($this->redirectPath());
+            } else {
+                $token = strval(mt_rand(100000,999999));
+                $cookie = cookie(md5($token), $user->id, 15);
 
-            if ($user->save()) {
                 // send the new token via email
                 TwoFactorTokenGenerated::dispatch($user, $token);
-            }
 
-            return redirect('/2fa')->withCookie($cookie);
+                return redirect(URL::temporarySignedRoute(
+                    '2fa.form', now()->addMinutes(15)
+                ))->withCookie($cookie);
+            }
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts

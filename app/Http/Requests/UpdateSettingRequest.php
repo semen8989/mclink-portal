@@ -24,7 +24,7 @@ class UpdateSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            '2fa_enabled' => 'required|boolean'
+            'twofa_enabled' => 'required|boolean'
         ];
     }
 }

@@ -149,7 +149,9 @@ return [
         'target_date' => [
             'after_or_equal' => 'The :attribute should be today or a date in the future',
         ],
-
+        'twofa_enabled' => [
+            'boolean' => 'The :attribute should only be toggled on or off.',
+        ],
     ],
 
     /*
@@ -166,6 +168,8 @@ return [
     'attributes' => [
         // 2FA
         'token_2fa' => 'OTP code',
+        // setting
+        'twofa_enabled' => 'two-factor authentication',
         // service report fields
         'csrNo' => 'csr number',
         'newCustomer' => 'customer name',

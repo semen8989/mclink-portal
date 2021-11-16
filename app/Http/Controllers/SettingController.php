@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateSettingRequest;
 
@@ -16,7 +16,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $title = __('label.kpi_objective.title.show');
+        $title = __('label.setting.title.form');
         return view('setting.index', compact('title'));
     }
 
@@ -24,16 +24,14 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateSettingRequest  $request
-     * @param  \App\Models\User  $setting
+     * @param  \App\Models\Setting $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSettingRequest $request, User $setting)
+    public function update(UpdateSettingRequest $request, Setting $setting)
     {
-        dd('da');
         $validated = $request->validated();
-        dd($validated);
-        $profile->update($validated);
+        $setting->update($validated);
 
-        return back()->with('success', __('flash.updated_profile'));
+        return back()->with('success', __('label.setting.response.success'));
     }
 }

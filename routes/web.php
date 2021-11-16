@@ -167,7 +167,7 @@ Route::middleware(['auth'])->group(function () {
  */
 Route::middleware(['guest'])->group(function () { 
     // 2FA routes
-    Route::get('/2fa', [TwoFactorController::class, 'showTwoFactorForm'])->name('2fa.form');
+    Route::get('/2fa', [TwoFactorController::class, 'showTwoFactorForm'])->name('2fa.form')->middleware('signed');
     Route::post('/2fa', [TwoFactorController::class, 'verifyTwoFactor'])->name('2fa.verify');
 
     // Acknowledgement Routes

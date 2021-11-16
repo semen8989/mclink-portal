@@ -478,6 +478,21 @@ return [
             ]
         ]
     ],
+    'setting' => [
+        'title' => [
+            'form' => 'Setting'
+        ],
+        'form' => [
+            'label' => [
+                'priv_sec_title' => 'Privacy and Security',
+                'priv_sec_desc' => "Configuration to help in protecting the user's account and privacy",
+                '2fa_title' => 'Enable Two-Factor Authentication'
+            ]
+        ],
+        'response' => [
+            'success' => 'Updated Setting'
+        ]
+    ],
     'service_report' => [
         'title' => [
             'index' => 'Service Reports',

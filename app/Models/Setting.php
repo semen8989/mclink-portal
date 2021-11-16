@@ -15,6 +15,6 @@ class Setting extends Model
      * @var array
      */
     protected $fillable = [
-        '2fa_enabled',
+        'twofa_enabled',
     ];
 }
