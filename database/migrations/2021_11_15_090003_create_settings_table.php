@@ -16,7 +16,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->boolean('2fa_enabled')->default(1);
+            $table->boolean('twofa_enabled')->default(1);
             $table->timestamps();
         });
     }
