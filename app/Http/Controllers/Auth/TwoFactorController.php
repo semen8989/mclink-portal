@@ -15,7 +15,7 @@ class TwoFactorController extends Controller
 
     public function showTwoFactorForm()
     {
-        $title = __('label.auth.title.form');
+        $title = __('label.auth.title.otp_form');
 
         return view('auth.two_factor', compact('title'));
     }

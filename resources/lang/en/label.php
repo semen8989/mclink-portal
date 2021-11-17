@@ -456,7 +456,7 @@ return [
     ],
     'auth' => [
         'title' => [
-            'form' => 'OTP'
+            'otp_form' => 'OTP'
         ],
         'email' => [
             'otp_sent' => [
@@ -464,6 +464,12 @@ return [
                 'message_subheader' => 'Below is your one time password:',
                 'message_notice' => 'Please use the code before it expires in 15 minutes.',
                 'subject' => 'One Time Password'
+            ],
+            'password_sent' => [
+                'message_header' => 'Update your password',
+                'message_subheader' => 'Below is your temporary password:',
+                'message_notice' => 'You can use the temporary password to login in the portal login page. Once you successfully logged in, please update immediately your password.',
+                'subject' => 'Temporary Password'
             ]
         ],
         'form' => [
