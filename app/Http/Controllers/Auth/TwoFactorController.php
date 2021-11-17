@@ -27,7 +27,7 @@ class TwoFactorController extends Controller
         $user = null;
 
         if ($cookieVal = $request->cookie($cookieName)) {
-            $user = User::find($cookieVal)->first();
+            $user = User::find($cookieVal);
         }
 
         if (!empty($user)) {

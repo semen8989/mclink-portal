@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,11 @@ class SocialiteController extends Controller
                 'password' => Hash::make('password'),
                 'avatar' => "https://ui-avatars.com/api/?name={$userGoogle->getName()}&size=96&background=random&length=2&color=fff"
             ]);
+            
+            //set default value for setting table
+            $setting = new Setting(['twofa_enabled' => 0]);
+            $user->setting()->save($setting);
+
             //assign role
             $user->assignRole('Employee');
             //sign in user
