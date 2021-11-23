@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AbilityRoleSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
+            UserExistSettingSeeder::class,
             CustomerSeeder::class,
             ServiceReportSeeder::class,        
             KpiMaingoalSeeder::class,
