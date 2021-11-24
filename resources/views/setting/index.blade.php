@@ -4,7 +4,11 @@
     <div class="card-header">{{ __('label.setting.title.form') }}</div>
     <div class="card-body">
         <div class="row">
-
+            <div class="row col-md-12">
+                <img src="data:image/png;base64, {{ $QR_Image }} "/>
+                
+            </div>
+            
             <div class="col-md-7">
                 <h4>{{ __('label.setting.form.label.priv_sec_title') }}</h4>
                 <p>{{ __('label.setting.form.label.priv_sec_desc') }}</p>
@@ -45,3 +49,27 @@
         </div>
     </div>
 @stop
+
+@push('scripts')
+  <!-- Page js codes -->
+  <script>   
+    $( document ).ready(function() {
+      
+        $('#twofa_enabled').change(function() {
+            // console.log('hdahd');
+            $.ajax({
+                url: "",
+                type: 'get',
+                data: { 
+                    month: $(this).val()
+                },
+                dataType: 'json',
+                success: function (result) {
+                   
+                }
+            });
+        });
+
+    });
+  </script>
+@endpush

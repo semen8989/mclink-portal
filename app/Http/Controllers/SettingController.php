@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use BaconQrCode\Writer;
 use Illuminate\Http\Request;
+use PragmaRX\Google2FA\Google2FA;
+use BaconQrCode\Renderer\ImageRenderer;
 use App\Http\Requests\UpdateSettingRequest;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 
 class SettingController extends Controller
 {
@@ -16,8 +21,40 @@ class SettingController extends Controller
      */
     public function index()
     {
+        // $google2fa = new \PragmaRX\Google2FAQRCode\Google2FA();
+        // $fa = $google2fa->generateSecretKey();
+        
+        // $QR_Image = $google2fa->getQRCodeInline(
+        //     config('app.name'),
+        //     'root@mclinkgroup.com',
+        //     $fa
+        // );
+        // dd($QR_Image);
+        // dd(is_string($QR_Image));
+        // dd('dsad');
+
+
+        $google2fa = app(Google2FA::class);
+
+        $g2faUrl = $google2fa->getQRCodeUrl(
+            config('app.name'),
+            'root@mclinkgroup.com',
+            $google2fa->generateSecretKey()
+        );
+
+        $writer = new Writer(
+            new ImageRenderer(
+                new RendererStyle(400),
+                new ImagickImageBackEnd()
+            )
+        );
+
+        $qrcode_image = base64_encode($writer->writeString($g2faUrl));
+
+
+
         $title = __('label.setting.title.form');
-        return view('setting.index', compact('title'));
+        return view('setting.index', ['QR_Image' => $qrcode_image]);
     }
 
     /**
