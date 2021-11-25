@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Setting
     Route::resource('setting', SettingController::class)->only(['index', 'update']);
+    Route::post('/setting/auth/2fa', [SettingController::class, 'authTwoFactor'])->name('setting.auth.2fa');
 
     // Service Report Routes
     Route::prefix('service-forms')->group(function () {

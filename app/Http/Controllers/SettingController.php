@@ -19,42 +19,36 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $google2fa = new \PragmaRX\Google2FAQRCode\Google2FA();
-        // $fa = $google2fa->generateSecretKey();
+        $google2fa = new \PragmaRX\Google2FAQRCode\Google2FA();
+        $fa = $google2fa->generateSecretKey();
         
-        // $QR_Image = $google2fa->getQRCodeInline(
-        //     config('app.name'),
-        //     'root@mclinkgroup.com',
-        //     $fa
-        // );
-        // dd($QR_Image);
-        // dd(is_string($QR_Image));
-        // dd('dsad');
-
-
-        $google2fa = app(Google2FA::class);
-
-        $g2faUrl = $google2fa->getQRCodeUrl(
+        $QR_Image = $google2fa->getQRCodeInline(
             config('app.name'),
             'root@mclinkgroup.com',
-            $google2fa->generateSecretKey()
+            $fa
         );
 
-        $writer = new Writer(
-            new ImageRenderer(
-                new RendererStyle(400),
-                new ImagickImageBackEnd()
-            )
-        );
+        // $google2fa = app(Google2FA::class);
 
-        $qrcode_image = base64_encode($writer->writeString($g2faUrl));
+        // $g2faUrl = $google2fa->getQRCodeUrl(
+        //     config('app.name'),
+        //     'root@mclinkgroup.com',
+        //     $google2fa->generateSecretKey()
+        // );
 
+        // $writer = new Writer(
+        //     new ImageRenderer(
+        //         new RendererStyle(400),
+        //         new ImagickImageBackEnd()
+        //     )
+        // );
 
+        // $qrcode_image = base64_encode($writer->writeString($g2faUrl));
 
         $title = __('label.setting.title.form');
-        return view('setting.index', ['QR_Image' => $qrcode_image]);
+        return view('setting.index', ['QR_Image' => $QR_Image]);
     }
 
     /**
@@ -70,5 +64,10 @@ class SettingController extends Controller
         $setting->update($validated);
 
         return back()->with('success', __('label.setting.response.success'));
+    }
+
+    public function authTwoFactor(Request $request)
+    {
+        dd($request->all());
     }
 }
