@@ -17,12 +17,12 @@ class AbilityRoleSeeder extends Seeder
     {
         //Admin role and abilities
         $admin = Role::create(['name'=>'Administrator']);
-        $allowAll = Ability::create(['name'=>'allow-all']);
+        $allowAll = Ability::create(['name'=>'allow-all', 'label'=>'Allow all']);
         $admin->allowTo($allowAll);
 
         //Employee role and abilities
         $employee = Role::create(['name'=>'Employee']);
-        $viewDashboard = Ability::create(['name'=>'view-dashboard']);
+        $viewDashboard = Ability::create(['name'=>'view-dashboard', 'View dashboard']);
         $employee->allowTo($viewDashboard);
         
     }

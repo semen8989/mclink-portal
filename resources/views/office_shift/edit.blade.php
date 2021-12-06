@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">{{ __('label.edit_shift') }}</div>
-<form action="{{ route('office_shifts.update',$officeShift->id) }}" id="shift_form" method="post" autocomplete="off">
+<form action="{{ route('office-shifts.update',$officeShift->id) }}" id="shift_form" method="post" autocomplete="off">
     @csrf
     @method('PUT')
     <div class="card-body">
@@ -168,13 +168,11 @@
                     data: data,
                     method: method,
                     success: function(){
-                        window.location.href = '{{ route("office_shifts.index") }}';
+                        window.location.href = '{{ route("office-shifts.index") }}';
                     },
                     error: function(response){
-                        //Scroll up
-                        window.scrollTo({ top: 70, behavior: 'smooth' });
                         //Clear previous error messages
-                        $(".invalid-feedback").remove();
+                        $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
                         //fetch and display error messages
                         var errors = response.responseJSON;
@@ -184,11 +182,17 @@
                             .addClass('is-invalid');
 
                             if(name.next('.select2-container').length > 0){
-                                name.next('.select2-container').after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                name.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
                             }else{
-                                name.after('<div class="invalid-feedback d-block">'+value+'</div>');
+                                name.after('<div class="help-block text-danger">'+value+'</div>');
                             }
                         });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
                         
                     }
                 })

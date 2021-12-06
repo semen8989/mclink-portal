@@ -138,6 +138,13 @@ return [
         'custEmail' => [
             'required_if' => 'The :attribute field is required when sending to a customer.', 
         ],
+        'variable_year' => [
+            'before_or_equal' => 'The :attribute should be a year in the given option',
+            'after_or_equal' => 'The :attribute should be a year in the given option',
+        ],
+        'target_date' => [
+            'after_or_equal' => 'The :attribute should be today or a date in the future',
+        ],
 
     ],
 
@@ -169,6 +176,23 @@ return [
         // acknowledgement fields
         'signedCust' => 'customer name or designation',
         'signatureDataUrl' => 'customer signature',
+        // okr kpi main fields
+        'main_kpi' => 'main goals',
+        'q1' => 'q1',
+        'q2' => 'q2',
+        'q3' => 'q3',
+        'q4' => 'q4',
+        'feedback' => 'employee\'s feedback',
+        'status' => 'completed',
+        'kpi_ratings.month' => 'month',
+        'kpi_ratings.rating' => 'rating',
+        'kpi_ratings.manager_comment' => 'manager\'s comment',
+        // okr kpi variable fields
+        'variable_kpi' => 'variable',
+        'variable_year' => 'year',
+        'variable_quarter' => 'quarter',
+        'target_date' => 'target date',
+        'result' => 'result',
         // fields under organization modules
         'company_id' => 'company',
         'department_id' => 'department',

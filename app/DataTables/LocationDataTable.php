@@ -23,7 +23,10 @@ class LocationDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function(Location $location) {
                 return view('components.datatables.action', [
-                    'editRouteName' => 'locations.edit',
+                    'actionRoutes' => [
+                        'edit' => 'locations.edit',
+                        'delete' => ''
+                    ],
                     'itemSlug' => 'location',
                     'itemSlugValue' => $location->id
                 ]);
@@ -36,14 +39,14 @@ class LocationDataTable extends DataTable
                 ]);
             })->editColumn('company.company_name', function ($request) {
                 return $request->company->company_name;
-            })->editColumn('user.name', function ($request) {
-                return $request->user->where('id',$request->location_head)->first()->name;
+            })->editColumn('locationHeadUser.name', function ($request) {
+                return $request->locationHeadUser->name;
             })->editColumn('city', function ($request) {
                 return $request->city;
             })->editColumn('country', function ($request) {
                 return $request->country;
-            })->editColumn('user.name', function ($request) {
-                return $request->user->where('id',$request->current_user_id)->first()->name;
+            })->editColumn('addedByUser.name', function ($request) {
+                return $request->addedByUser->name;
             });
     }
 
@@ -55,7 +58,7 @@ class LocationDataTable extends DataTable
      */
     public function query(Location $model)
     {
-        return $model->with('company','user')->select('locations.*');
+        return $model->with('company','locationHeadUser','addedByUser')->select('locations.*');
     }
 
     /**
@@ -103,13 +106,13 @@ class LocationDataTable extends DataTable
         return [
             Column::make('location_name')
                 ->title(__('label.location_name')),
-            Column::make('user.name')
+            Column::make('locationHeadUser.name')
                 ->title(__('label.location_head')),
             Column::make('city')
                 ->title(__('label.city')),
             Column::make('country')
                 ->title(__('label.country')),
-            Column::make('user.name')
+            Column::make('addedByUser.name')
                 ->title(__('label.added_by')),
             Column::computed('action')
                 ->title(__('label.action')),

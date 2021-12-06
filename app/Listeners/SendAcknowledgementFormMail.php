@@ -3,16 +3,16 @@
 namespace App\Listeners;
 
 use App\Mail\ServiceFormSent;
-use App\Models\ServiceReport;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Events\AcknowledgementFormSent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Mail\ServiceFormSentConfirmationMail;
+use App\Traits\ServiceReportEmailLoggerTrait;
 
 class SendAcknowledgementFormMail
 {
+    use ServiceReportEmailLoggerTrait;
+    
     /**
      * Create the event listener.
      *
@@ -33,21 +33,15 @@ class SendAcknowledgementFormMail
     {
         $serviceReport = $event->serviceReport;
         $email = $serviceReport->customer->email;
+        $subject = __('label.service_report.email.sent.plain_subject');
 
         try {
             Mail::to($email)
             ->queue(new ServiceFormSent($serviceReport));
 
-            Log::info(__('label.service_report.email.log.general.success', [
-                'subject' => __('label.service_report.email.sent.plain_subject'), 
-                'email' => $email
-            ]));
+            $this->writeLog('info', $serviceReport, $subject);
         } catch(\Exception $e) {
-            Log::warning(__('label.service_report.email.log.general.fail', [
-                'subject' => __('label.service_report.email.sent.plain_subject'), 
-                'email' => $email,
-                'error' => $e->getMessage()
-            ]));
+            $this->writeLog('warning', $serviceReport, $subject, $e->getMessage());
         }
     }
 }

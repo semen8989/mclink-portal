@@ -15,6 +15,8 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\KpiMaingoalController;
+use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
@@ -51,13 +53,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{serviceReport:csr_no}/download', [ServiceFormController::class, 'download'])->name('service.form.download');
     });
 
-    // Typeahead Routes
-    Route::prefix('get')->group(function () {
-        // Customer Route
-        Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
-
-        // User Route
-        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+    // OKR Routes
+    Route::prefix('performance/okr/kpi')->group(function () {
+        // KPI Maingoal Routes
+        Route::resource('maingoals', KpiMaingoalController::class)
+            ->parameters(['maingoals' => 'kpiMain'])
+            ->names('okr.kpi.maingoals');
+        // KPI Variable Routes
+        Route::resource('variables', KpiVariableController::class)
+            ->parameters(['variables' => 'kpiVariable'])
+            ->names('okr.kpi.variables');
+        // KPI Objectives Routes
+        Route::resource('objectives', KpiMaingoalController::class)
+            ->parameters(['objectives' => 'kpiObjective'])
+            ->names('okr.kpi.objectives');
     });
     
     // Organizations
@@ -70,27 +79,42 @@ Route::middleware(['auth'])->group(function () {
             'policies' => PolicyController::class,
             'holidays' => HolidayController::class,
             'locations' => LocationController::class,
-            'office_shifts' => OfficeShiftController::class,
+            'office-shifts' => OfficeShiftController::class,
             'expenses' => ExpenseController::class
         ]); 
     });
 
+    // Ajax Routes
+    Route::prefix('get')->group(function () {
+        // Customer Route
+        Route::get('/customers/typeahead', [CustomerController::class, 'get'])->name('get.customers');
+
+        // User Route
+        Route::get('/engineers/typeahead', [UserController::class, 'getEngineers'])->name('get.engineers');
+
+        // KPI Main Rating Route
+        Route::get('/okr/kpi/maingoals/{kpiMain}/rating', [KpiMaingoalController::class, 'getRating'])->name('get.kpi.main.rating');
+
+        // KPI Variable Rating Route
+        Route::get('/okr/kpi/variables/{kpiVariable}/rating', [KpiVariableController::class, 'getRating'])->name('get.kpi.variable.rating');
+    });
+
     //Basic Routes
-    Route::post('/fetch_department', [FetchController::class,'fetch_department'])->name('fetch_department');
-    Route::post('/fetch_user', [FetchController::class,'fetch_user'])->name('fetch_user');
+    Route::post('/fetch-department', [FetchController::class,'fetchDepartment'])->name('fetch_department');
+    Route::post('/fetch-user', [FetchController::class,'fetchUser'])->name('fetch_user');
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
 
     //HR Calendar
-    Route::prefix('hr_calendar')->group(function (){
+    Route::prefix('hr-calendar')->group(function (){
         Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
         //Events
-        Route::get('/fetch_events',[HrCalendarController::class,'fetch_events'])->name('hr_calendar.fetch_events');
-        Route::post('/store_event',[HrCalendarController::class, 'store_event'])->name('hr_calendar.store_event');
-        Route::post('/view_event/{event}',[HrCalendarController::class, 'view_event'])->name('hr_calendar.view_event');
+        Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
+        Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
+        Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
         //Holidays
-        Route::get('/fetch_holidays',[HrCalendarController::class,'fetch_holidays'])->name('hr_calendar.fetch_holidays');
-        Route::post('/store_holiday',[HrCalendarController::class,'store_holiday'])->name('hr_calendar.store_holiday');
-        Route::post('/view_holiday/{holiday}',[HrCalendarController::class, 'view_holiday'])->name('hr_calendar.view_holiday');
+        Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
+        Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
+        Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
     });
 
 });

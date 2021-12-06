@@ -132,7 +132,7 @@ return [
     |
     */
 
-    'mps_name' => env('MPS_NAME', 'MPS Solutions'),
+    'mps_name' => env('MPS_NAME', 'MPS Solutions Pte Ltd'),
     
     'mps_url' => env('MPS_URL', 'https://mpssolutions.com.sg/'),
 
@@ -174,6 +174,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Package Service Providers...
