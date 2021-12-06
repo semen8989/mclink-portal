@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AbilityRoleSeeder::class,
             UserSeeder::class,
+            SettingSeeder::class,
+            UserExistSettingSeeder::class,
             CustomerSeeder::class,
             ServiceReportSeeder::class,        
             KpiMaingoalSeeder::class,
             KpiVariableSeeder::class,
+            KpiObjectiveSeeder::class,
             KpiRatingSeeder::class,
             CompanySeeder::class,
             DepartmentSeeder::class,

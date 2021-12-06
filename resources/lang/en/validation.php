@@ -138,6 +138,10 @@ return [
         'custEmail' => [
             'required_if' => 'The :attribute field is required when sending to a customer.', 
         ],
+        'objective_year' => [
+            'before_or_equal' => 'The :attribute should be a year in the given option',
+            'after_or_equal' => 'The :attribute should be a year in the given option',
+        ],
         'variable_year' => [
             'before_or_equal' => 'The :attribute should be a year in the given option',
             'after_or_equal' => 'The :attribute should be a year in the given option',
@@ -145,7 +149,9 @@ return [
         'target_date' => [
             'after_or_equal' => 'The :attribute should be today or a date in the future',
         ],
-
+        'twofa_enabled' => [
+            'boolean' => 'The :attribute should only be toggled on or off.',
+        ],
     ],
 
     /*
@@ -160,6 +166,10 @@ return [
     */
 
     'attributes' => [
+        // 2FA
+        'token_2fa' => 'OTP code',
+        // setting
+        'twofa_enabled' => 'two-factor authentication',
         // service report fields
         'csrNo' => 'csr number',
         'newCustomer' => 'customer name',
@@ -193,11 +203,20 @@ return [
         'variable_quarter' => 'quarter',
         'target_date' => 'target date',
         'result' => 'result',
+        // okr kpi objective fields
+        'objective_kpi' => 'variable',
+        'objective_year' => 'year',
+        'objective_quarter' => 'quarter',
         // fields under organization modules
         'company_id' => 'company',
         'department_id' => 'department',
         'expense_type_id' => 'expense type',
-        'employee_id' => 'employee'
+        'employee_id' => 'employee',
+        //Machine Request variable fields
+        'technician_id' => 'technician',
+        'cassette_no' => 'cassette number',
+        'contact_no' => 'contact number',
+        'qty' => 'quantity'
     ],
 
 ];

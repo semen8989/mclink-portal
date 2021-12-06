@@ -380,6 +380,10 @@ return [
             'okr' => [
                 'title' => 'OKR',
                 'url_segment' => 'okr'
+            ],
+            'kpi_report' => [
+                'title' => 'KPI Report',
+                'url_segment' => 'kpi-reports'
             ]
         ],
         'text' => [
@@ -401,6 +405,13 @@ return [
                 'update'=> 'Update',
                 'submit' => 'Submit',
                 'download' => 'Download'
+            ],
+            'select' => [
+                'all' => 'All',
+                'first_quarter' => 'First Quarter',
+                'second_quarter' => 'Second Quarter',
+                'third_quarter' => 'Third Quarter',
+                'fourth_quarter' => 'Fourth Quarter'
             ]
         ],
         'datatable' => [
@@ -441,6 +452,51 @@ return [
                 'updated' => 'updated',
                 'deleted' => 'deleted'
             ]
+        ]
+    ],
+    'auth' => [
+        'title' => [
+            'otp_form' => 'OTP'
+        ],
+        'email' => [
+            'otp_sent' => [
+                'message_header' => 'Verify your login',
+                'message_subheader' => 'Below is your one time password:',
+                'message_notice' => 'Please use the code before it expires in 15 minutes.',
+                'subject' => 'One Time Password'
+            ],
+            'password_sent' => [
+                'message_header' => 'Update your password',
+                'message_subheader' => 'Below is your temporary password:',
+                'message_notice' => 'You can use the temporary password to login in the portal login page. Once you successfully logged in, please update immediately your password.',
+                'subject' => 'Temporary Password'
+            ]
+        ],
+        'form' => [
+            'label' => [
+                '2fa_main_title' => 'One Time Password',
+                '2fa_sec_title' => 'Enter the OTP code'
+            ]
+        ],
+        'response' => [
+            'error' => [
+                'token_error' => 'The OTP code is invalid or expired.'
+            ]
+        ]
+    ],
+    'setting' => [
+        'title' => [
+            'form' => 'Setting'
+        ],
+        'form' => [
+            'label' => [
+                'priv_sec_title' => 'Privacy and Security',
+                'priv_sec_desc' => "Configuration to help in protecting the user's account and privacy",
+                '2fa_title' => 'Enable Two-Factor Authentication'
+            ]
+        ],
+        'response' => [
+            'success' => 'Updated Setting'
         ]
     ],
     'service_report' => [
@@ -563,7 +619,8 @@ return [
                 'q3' => 'Q3',
                 'q4' => 'Q4',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'feedback' => 'Feedback'
             ]
         ],
         'form' => [
@@ -604,7 +661,10 @@ return [
                 'target_date' => 'Target Date',
                 'result' => 'Result',
                 'completed' => 'Completed',
-                'updated_at' => 'Updated At'
+                'updated_at' => 'Updated At',
+                'quarter' => 'Quarter',   
+                'year' => 'Year',
+                'feedback' => 'Feedback'               
             ]
         ],
         'form' => [
@@ -631,5 +691,122 @@ return [
                 'rating' => 'Select Rating'
             ]
         ],
+    ],
+    'kpi_objective' => [
+        'title' => [
+            'index' => 'KPI Objectives',
+            'create' => 'Add New Objective',
+            'show' => 'View Objective',
+            'edit' => 'Edit Objective',
+        ],
+        'datatable' => [
+            'column_header' => [
+                'action' => 'Action',
+                'objective_kpi' => 'Objective KPI',
+                'target_date' => 'Target Date',
+                'result' => 'Result',
+                'completed' => 'Completed',
+                'updated_at' => 'Updated At'
+            ]
+        ],
+        'form' => [
+            'header' => [
+                'main' => 'KPI OBJECTIVES',
+                'rating' => 'Manager\'s Rating'
+            ],
+            'label' => [
+                'objective_kpi' => 'Objective',
+                'objective_quarter' => 'Quarter',
+                'objective_year' => 'Year',
+                'target_date' => 'Target Date',
+                'status' => 'Completed',
+                'result' => 'Result',
+                'feedback' => 'Employee\'s Feedback',
+                'month' => 'Month',
+                'rating' => 'Rating',
+                'manager_comment' => 'Manager\'s Comment',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+                'select_employee' => 'Select Employee',
+            ],
+            'placeholder' => [
+                'rating' => 'Select Rating'
+            ]
+        ],
+    ],
+    'machine_request' => [
+        'title' => [
+            'create_index' => 'Create Machine Request',
+            'pending_index' => 'Pending Machine Requests',
+            'completed_index' => 'Completed Machine Requests',
+            'show' => 'View Request Details'
+        ],
+        'navtabs_title' => [
+            'create' => 'Create Request',
+            'pending' => 'Pending',
+            'completed' => 'Completed'
+        ],
+        'form' => [
+            'label' => [
+                'requester' => 'Requester',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'system' => 'System',
+                'qty' => 'Quantity',
+                'cassette_no' => 'Cassette Number',
+                'period_of_contract' => 'Period Of Contract',
+                'special_requirement' => 'Special Requirement',
+                'company_name' => 'Company Name',
+                'billing_address' => 'Billing Address',
+                'office_contact_no' => 'Office Contact Number',
+                'installation_address' => 'Installation Address',
+                'person_in_charge' => 'Person in-Charge',
+                'contact_no' => 'Contact Number',
+                'installation_date' => 'Installation Date',
+                'send_request' => 'Send Request To',
+                'status' => 'Status',
+                'technician' => 'Technician',
+                'cc' => 'CC',
+                'important_note' => '**Different Installation Address Different Request Form',
+                'data_check' => 'All data are correct'
+            ],
+            'button' => [
+                'mark_completed' => 'Mark As Completed'
+            ]
+        ],
+        'datatable' => [
+            'column_header' => [
+                'request_id' => 'Request ID',
+                'request_by' => 'Request By',
+                'company_name' => 'Company Name',
+                'model' => 'Model',
+                'quantity' => 'Quantity',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'details' => 'Details' 
+            ]
+        ]
+    ],
+    'kpi_report' => [
+        'title' => [
+            'index' => 'KPI Report',
+        ],
+        'form' => [
+            'label' => [
+                'select_kpi' => 'Select KPI',
+                'select_year' => 'Select Year',
+                'select_quarter' => 'Select Quarter',
+            ],
+            'select' => [
+                'main_kpi' => 'Main KPI',
+                'variable_kpi' => 'Variable KPI'
+            ],
+            'button' => [
+                'download' => 'Download KPI'
+            ]
+        ],
+        'page_text' => [
+            'download_kpi' => 'Download Performance KPI for all employee'
+        ]
     ]
 ];
