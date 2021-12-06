@@ -9,6 +9,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
@@ -23,10 +24,14 @@ use App\Http\Controllers\RecruitmentController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\KpiObjectiveController;
-use App\Http\Controllers\MachineRequestController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MachineRequestController;
 use App\Http\Controllers\AcknowledgementFormController;
 
+/**
+ * Authentication Routes
+ */
 Auth::routes(['register' => false]);
 
 /**
@@ -43,6 +48,10 @@ Route::middleware(['auth'])->group(function () {
     
     // Change password
     Route::resource('change-password', ChangePasswordController::class)->only(['update']);
+
+    // Setting
+    Route::resource('setting', SettingController::class)->only(['index', 'update']);
+    Route::post('/setting/auth/2fa', [SettingController::class, 'authTwoFactor'])->name('setting.auth.2fa');
 
     // Service Report Routes
     Route::prefix('service-forms')->group(function () {
@@ -168,12 +177,14 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-
-
 /**
  * Guest Routes
  */
 Route::middleware(['guest'])->group(function () { 
+    // 2FA routes
+    Route::get('/2fa', [TwoFactorController::class, 'showTwoFactorForm'])->name('2fa.form')->middleware('signed');
+    Route::post('/2fa', [TwoFactorController::class, 'verifyTwoFactor'])->name('2fa.verify');
+
     // Acknowledgement Routes
     Route::prefix('service-form/acknowledgement')->group(function () {
         Route::get('/{serviceReport}/sign', [AcknowledgementFormController::class, 'sign'])->name('service.form.acknowledgment.sign');

@@ -52,6 +52,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'token_2fa_expiry' => 'datetime',
     ];
 
     /**
@@ -68,6 +69,14 @@ class User extends Authenticatable
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * Get the setting associated with the user.
+     */
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
     }
   
     public function roles()
