@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MainKpiController;
 use App\Http\Controllers\Api\KpiRatingController;
+use App\Http\Controllers\Api\VariableKpiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,6 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->prefix('v1/')->group(function () {
     Route::apiResource('mains', MainKpiController::class);
     Route::put('mains/rating/{kpiMain}', [KpiRatingController::class, 'update']);
+
+    Route::apiResource('variables', VariableKpiController::class);
 });
