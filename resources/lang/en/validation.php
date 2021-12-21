@@ -172,7 +172,7 @@ return [
         'twofa_enabled' => 'two-factor authentication',
         // service report fields
         'csrNo' => 'csr number',
-        'newCustomer' => 'customer name',
+        'newCustomer' => 'new customer name',
         'customer' => 'customer name',
         'custEmail' => 'customer email',
         'engineerId' => 'engineer name',
