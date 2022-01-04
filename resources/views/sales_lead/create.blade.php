@@ -173,6 +173,8 @@
                     beforeSend: function() { 
                         $(".help-block").remove();
                         $( ".form-control" ).removeClass("is-invalid");
+                        $(".btn-submit").attr("disabled", true);
+                        $(".btn-submit").html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`);
                     },
                     success: function(data){
                         if(data.success == false)
@@ -209,6 +211,10 @@
                             },500);
                         }
                         
+                    },
+                    complete: function() {
+                        $(".btn-submit").attr("disabled", false);
+                        $(".btn-submit").html('Submit');
                     }
                 })
             })
