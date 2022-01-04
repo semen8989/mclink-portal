@@ -9,12 +9,12 @@ McLink Copy Services Phil Inc
 {{-- Body --}}
 # Hello {{ $salesLead->salesManagerUser->name }},
 
-New Sales Lead created by {{ $salesLead->createdByUser->name }} at it was assigned to you. Click the button below to view full details.
-{{-- 
-@component('mail::button')
+New Sales Lead created by {{ $salesLead->createdByUser->name }} and it was assigned to you. Click the button below to view full details.
+ 
+@component('mail::button', ['url' => route('sales_lead.show', ['salesLead' => $salesLead->id])])
 Review Details
 @endcomponent
---}}
+
 Thanks,<br>
 {{ config('app.name') }}
 
