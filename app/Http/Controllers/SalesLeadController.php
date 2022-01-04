@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\SalesLead;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\SalesLeadCreated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\DataTables\SalesLeadDataTable;
 use App\DataTables\ApprovalLeadDataTable;
 use App\DataTables\AssignedToMeDataTable;
@@ -33,9 +35,30 @@ class SalesLeadController extends Controller
     {
         if($request['data_check'] == "on")
         {
-            $request['user_id'] = Auth::user()->id;
-            SalesLead::create($request->all());
+            $salesLead = new SalesLead;
+            $salesLead->user_id = Auth::user()->id;
+            $salesLead->company_name = $request['company_name'];
+            $salesLead->tel_num = $request['tel_num'];
+            $salesLead->address = $request['address'];
+            $salesLead->contact_person = $request['contact_person'];
+            $salesLead->department = $request['department'];
+            $salesLead->mclink_base_reason = $request['mclink_base_reason'];
+            $salesLead->mclink_base_model = $request['mclink_base_model'];
+            $salesLead->serial_number = $request['serial_number'];
+            $salesLead->valid_until = $request['valid_until'];
+            $salesLead->existing_brand = $request['existing_brand'];
+            $salesLead->non_mclink_base_model = $request['non_mclink_base_model'];
+            $salesLead->assigned_sales = $request['assigned_sales'];
+            $salesLead->reason = $request['reason'];
+            $salesLead->model_closed_and_qty = $request['model_closed_and_qty'];
+            $salesLead->amount_payable = $request['amount_payable'];
+            $salesLead->sales_manager = $request['sales_manager'];
+            $salesLead->approve_by = $request['approve_by'];
+            $salesLead->save();
 
+            Mail::to($salesLead->salesManagerUser->email)
+                ->queue(new SalesLeadCreated($salesLead));
+            
             return session()->flash('success','Sales Lead Created Successfully!');
 
             $data['success'] = true;
