@@ -31,14 +31,16 @@ class AssignedToMeDataTable extends DataTable
             })->editColumn('status', function ($request) {
                 $status = Str::ucfirst(array_search($request->status, SalesLead::STATUS));
 
-                if($request->status == 1){
+                if($request->status == 0){
+                    $badgeColor = 'secondary';
+                }else if($request->status == 1){
                     $badgeColor = 'warning';
                 }else if($request->status == 2){
                     $badgeColor = 'danger';
                 }else if($request->status == 3){
                     $badgeColor = 'success';
                 }
-
+                
                 return view('components.datatables.status-column', [
                     'columnData' => $status,
                     'badgeColor' => $badgeColor

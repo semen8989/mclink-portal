@@ -122,6 +122,7 @@ class SalesLeadController extends Controller
 
         $updateArray = [
             'assigned_sales' => $request->assigned_sales,
+            'status' => 1,
             'valid_until' => $validity
         ];
         

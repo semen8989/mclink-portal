@@ -80,7 +80,7 @@
                             @method('PUT')
                             <td>
                                 <div class="form-group">
-                                    <select class="form-control select2" id="assigned_sales" name="assigned_sales">
+                                    <select class="form-control select2" name="assigned_sales">
                                         <option></option>
                                         @foreach($users as $user)
                                             <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
@@ -115,7 +115,7 @@
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="postal-code">Notify</label>
-                    <select class="form-control select2" id="assigned_sales" name="assigned_sales">
+                    <select class="form-control select2" name="assigned_sales">
                         <option></option>
                         @foreach($users as $user)
                             <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
