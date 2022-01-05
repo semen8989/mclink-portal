@@ -7,11 +7,11 @@ McLink Copy Services Phil Inc
 @endslot
 
 {{-- Body --}}
-# Hello {{ $salesLead->salesManagerUser->name }},
+# Hello {{ $salesLead->assignedSalesUser->name }},
 
-New Sales Lead created by {{ $salesLead->createdByUser->name }} and you selected as assigner of this lead. Click the button below to view full details.
+New Sales Lead assigned to you. Click the button below to view full details.
  
-@component('mail::button', ['url' => route('sales_lead.show', ['salesLead' => $salesLead->id])])
+@component('mail::button', ['url' => route('sales_lead.lead_details', ['salesLead' => $salesLead->id])])
 Review Details
 @endcomponent
 

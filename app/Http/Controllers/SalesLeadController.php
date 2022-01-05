@@ -7,6 +7,7 @@ use App\Models\SalesLead;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\SalesLeadCreated;
+use App\Mail\SalesLeadAssigned;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\DataTables\SalesLeadDataTable;
@@ -120,13 +121,13 @@ class SalesLeadController extends Controller
         $currentDate = date('Y-m-d');
         $validity = date('Y-m-d', strtotime('+6 months', strtotime($currentDate)));  
 
-        $updateArray = [
-            'assigned_sales' => $request->assigned_sales,
-            'status' => 1,
-            'valid_until' => $validity
-        ];
-        
-        $salesLead->update($updateArray);
+        $salesLead->assigned_sales = $request->assigned_sales;
+        $salesLead->status = 1;
+        $salesLead->valid_until = $validity;
+        $salesLead->save();
+
+        Mail::to($salesLead->assignedSalesUser->email)
+            ->queue(new SalesLeadAssigned($salesLead));
 
         return session()->flash('success','Salesman Assigned Successfully!');
     }
