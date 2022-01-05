@@ -26,8 +26,8 @@ class StoreServiceReportRequest extends FormRequest
         return [
             'csrNo' => 'bail|required',
             'date' => 'bail|required|date',
-            'newCustomer' => 'exclude_unless:isNewCustomer,true|bail|required',
-            'customer' => 'exclude_unless:isNewCustomer,null|bail|required|exists:customers,id',
+            'newCustomer' => 'required_if:isNewCustomer,true|bail',
+            'customer' => 'required_if:isNewCustomer,null|bail|exists:customers,id',
             'custEmail' => 'bail|nullable|email:filter|required_if:action,sent',
             'address' => 'bail|required',
             'engineerId' => 'bail|required|exists:users,id',
