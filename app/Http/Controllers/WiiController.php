@@ -42,40 +42,30 @@ class WiiController extends Controller
 
     public function show(Wii $wii)
     {        
-        if(auth()->user()->can('view',$wii)){
-
-            $status = ucwords(array_search($wii->status, Wii::STATUS));
-            $index = $wii->status;
-            $statusArray = Wii::STATUS;
-            
-            if($index == 0){
-                $badgeColor = 'dark';
-            }else if($index == 1){
-                $badgeColor = 'success';
-            }else if($index == 2){
-                $badgeColor = 'danger';
-            }else if($index == 3){
-                $badgeColor = 'warning';
-            }
-
-            return view('wii.show',compact('wii','status','statusArray','badgeColor'));
+        $status = ucwords(array_search($wii->status, Wii::STATUS));
+        $index = $wii->status;
+        $statusArray = Wii::STATUS;
         
-        }else{
-            abort(403);
+        if($index == 0){
+            $badgeColor = 'dark';
+        }else if($index == 1){
+            $badgeColor = 'success';
+        }else if($index == 2){
+            $badgeColor = 'danger';
+        }else if($index == 3){
+            $badgeColor = 'warning';
         }
+
+        return view('wii.show',compact('wii','status','statusArray','badgeColor'));
+        
     }
 
     public function edit(Wii $wii)
-    {
-        if(auth()->user()->can('view',$wii)){
-            
-            $title = 'Update Wii';
-        
-            return view('wii.my_wii.edit',compact('title','wii'));
+    {       
+        $title = 'Update Wii';
+    
+        return view('wii.my_wii.edit',compact('title','wii'));
 
-        }else{
-            abort(403);
-        }
     }
 
     public function updateStatus(Request $request, Wii $wii)
@@ -102,7 +92,6 @@ class WiiController extends Controller
         if($wii->save()){
             return session()->flash('success', 'Wii Updated Successfully!');
         }
-
 
     }
 
