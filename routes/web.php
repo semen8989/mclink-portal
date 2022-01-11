@@ -202,12 +202,13 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
             Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
             Route::get('/edit/{salesLead}',[SalesLeadController::class, 'edit'])->name('sales_lead.edit');
+            Route::get('/details/{salesLead}',[SalesLeadController::class, 'showLead'])->name('sales_lead.show_lead');
             Route::put('/update/{salesLead}',[SalesLeadController::class, 'update'])->name('sales_lead.update');
             Route::delete('/delete/{salesLead}',[SalesLeadController::class, 'destroy'])->name('sales_lead.destroy');
             //Assign
             Route::prefix('assign')->group(function (){
                 Route::get('/',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
-                Route::get('/details/{salesLead}',[SalesLeadController::class, 'show'])->name('sales_lead.show');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'showAssignedLead'])->name('sales_lead.show_assigned_lead');
                 Route::put('/assign-sales-man/{salesLead}',[SalesLeadController::class, 'assignSalesMan'])->name('sales_lead.assign_salesman');
             });
             //Assign To Me

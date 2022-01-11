@@ -36,7 +36,7 @@ class SalesLeadDataTable extends DataTable
 
                 }else{
                     return view('components.datatables.detail', [
-                        'editRouteName' => 'sales_lead.show',
+                        'editRouteName' => 'sales_lead.show_lead',
                         'itemSlug' => 'salesLead',
                         'itemSlugValue' => $salesLead->id
                     ]);

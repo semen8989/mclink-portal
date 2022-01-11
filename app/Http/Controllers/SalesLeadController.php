@@ -72,6 +72,13 @@ class SalesLeadController extends Controller
         return response()->json($data);
     }
 
+    public function showLead(SalesLead $salesLead)
+    {
+        $users = User::all('id','name');
+
+        return view('sales_lead.show',compact('salesLead','users'));
+    }
+
     public function edit(SalesLead $salesLead)
     {
         $users = User::all('id','name');
@@ -132,11 +139,11 @@ class SalesLeadController extends Controller
         return session()->flash('success','Salesman Assigned Successfully!');
     }
 
-    public function show(SalesLead $salesLead)
+    public function showAssignedLead(SalesLead $salesLead)
     {
         $users = User::all('id','name');
 
-        return view('sales_lead.assign.show',compact('salesLead','users'));
+        return view('sales_lead.show',compact('salesLead','users'));
     }
 
     public function assignedToMeIndex(AssignedToMeDataTable $dataTable)

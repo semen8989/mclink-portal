@@ -35,7 +35,7 @@ class AssignSalesLeadDataTable extends DataTable
                 return $request->created_at->format('M d Y');
             })->addColumn('detail', function(SalesLead $salesLead) {
                 return view('components.datatables.detail', [
-                    'editRouteName' => 'sales_lead.show',
+                    'editRouteName' => 'sales_lead.show_assigned_lead',
                     'itemSlug' => 'salesLead',
                     'itemSlugValue' => $salesLead->id
                 ]);
