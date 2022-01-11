@@ -105,34 +105,6 @@
                 <td>{{ $salesLead->model_closed_and_qty }}</td>
             </tr>
         </table>
-        <form action="{{ route('sales_lead.approve',$salesLead->id) }}" id="approve_form" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="amount_payable">Amount Payable</label>
-                    <input class="form-control" id="amount_payable" name="amount_payable" type="number">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="postal-code">Notify</label>
-                    <select class="form-control select2" name="assigned_sales">
-                        <option></option>
-                        @foreach($users as $user)
-                            <option value="{{ $user->id }}" {{ $salesLead->assigned_sales == $user->id ? 'selected' : '' }}>
-                                {{ $user->name }}
-                            </option>        
-                        @endforeach 
-                    </select>
-                </div>
-            </div>
-            <div class="form-check form-check-inline mr-1 confirm-check">
-                <input class="form-check-input" id="confirm" type="checkbox" name="confirm">
-                <label class="form-check-label" for="confirm">Confirm</label>
-            </div>
-            <div class="float-right">
-                <button class="btn btn-success" type="submit"> Approve</button>
-            </div>
-        </form>
     </div>
 </div>
 
