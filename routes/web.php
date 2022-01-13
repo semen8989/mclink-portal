@@ -11,6 +11,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
@@ -88,7 +89,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('kpi-reports', KpiReportController::class)->only(['index']);
         Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
     });
-    
+    //Employees
+    Route::resource('employees', EmployeeController::class);
     // Organizations
     Route::prefix('organizations')->group(function () {
         Route::resources([

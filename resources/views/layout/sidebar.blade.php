@@ -18,6 +18,14 @@
                     <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-notes') }}"></use>
                 </svg> {{ __('label.global.module.service_report.title') }}</a>
             </li>
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-group') }}"></use>
+                </svg> Staff</a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('employees.index') }}"><span class="c-sidebar-nav-icon"></span> Employees </a></li>
+                </ul>
+            </li>
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == strtolower(__('label.organizations'))) ? 'c-active c-show' : '' }}"><a
               class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
               <svg class="c-sidebar-nav-icon">
