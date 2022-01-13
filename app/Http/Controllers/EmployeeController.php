@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Company;
+use App\Models\Department;
+use App\Models\Designation;
+use App\Models\OfficeShift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -23,7 +30,11 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $companies = Company::all();
+        $departments = Department::all();
+        $designations = Designation::all();
+        $officeShifts = OfficeShift::all();
+        return view('employees.create',compact('companies','departments','designations','officeShifts'));
     }
 
     /**
@@ -32,9 +43,23 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
-        //
+        $user = new User;
+        $user->name = $request['name'];
+        $user->employee_id = $request['employee_id'];
+        $user->joining_date = $request['joining_date'];
+        $user->gender = $request['gender'];
+        $user->birth_date = $request['birth_date'];
+        $user->company_id = $request['company_id'];
+        $user->department_id = $request['department_id'];
+        $user->designation_id = $request['designation_id'];
+        $user->role_id = $request['role_id'];
+        $user->contact_number = $request['contact_number'];
+        $user->shift_id = $request['shift_id'];
+        $user->email = $request['email'];
+        $user->password = Hash::make($request['password']);
+        $user->save();
     }
 
     /**
