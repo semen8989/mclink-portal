@@ -54,12 +54,14 @@ class EmployeeController extends Controller
         $user->company_id = $request['company_id'];
         $user->department_id = $request['department_id'];
         $user->designation_id = $request['designation_id'];
-        $user->role_id = $request['role_id'];
+        //$user->role_id = $request['role_id'];
         $user->contact_number = $request['contact_number'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
         $user->save();
+
+        return session()->flash('success','New Employee Data Added Successfully!');
     }
 
     /**

@@ -32,7 +32,6 @@ class StoreEmployeeRequest extends FormRequest
             'company_id' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
-            'role_id' => 'required',
             'contact_number' => 'required',
             'shift_id' => 'required',
             'email' => 'required',
