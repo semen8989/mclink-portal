@@ -27,13 +27,13 @@ class EmployeeDataTable extends DataTable
                     'edit' => 'employees.edit',
                     'delete' => ''
                 ],
-                'itemSlug' => 'employee',
+                'itemSlug' => 'user',
                 'itemSlugValue' => $user->id
             ]);
         })->editColumn('name', function ($request) {
             return view('components.datatables.show-column', [
                 'showRouteName' => 'employees.show',
-                'showRouteSlug' => 'employee',
+                'showRouteSlug' => 'user',
                 'showRouteSlugValue' => $request->id,
                 'columnData' => $request->name
             ]);

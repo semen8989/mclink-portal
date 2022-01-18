@@ -90,7 +90,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
     });
     //Employees
-    Route::resource('employees', EmployeeController::class);
+    Route::resource('employees', EmployeeController::class)->parameters([
+        'employees' => 'user',
+    ]);
     // Organizations
     Route::prefix('organizations')->group(function () {
         Route::resources([

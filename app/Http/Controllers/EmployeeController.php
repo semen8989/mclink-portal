@@ -23,7 +23,7 @@ class EmployeeController extends Controller
     {
         $title = 'Employees';
         
-        return $dataTable->render('employees.index',compact('title'));
+        return $dataTable->render('employee.index',compact('title'));
     }
 
     /**
@@ -37,7 +37,7 @@ class EmployeeController extends Controller
         $departments = Department::all();
         $designations = Designation::all();
         $officeShifts = OfficeShift::all();
-        return view('employees.create',compact('companies','departments','designations','officeShifts'));
+        return view('employee.create',compact('companies','departments','designations','officeShifts'));
     }
 
     /**
@@ -84,9 +84,18 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $id)
+    public function edit(User $user)
     {
-        //
+        $title = 'Edit Employee Details';
+        $data = [
+            'companies' => Company::all(),
+            'departments' => Department::all(),
+            'designations' => Designation::all(),
+            'officeShifts' => OfficeShift::all()
+        ];
+
+        return view('employee.edit',compact('data','title','user'));
+
     }
 
     /**
