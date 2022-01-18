@@ -9,6 +9,7 @@ use App\Models\Designation;
 use App\Models\OfficeShift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\DataTables\EmployeeDataTable;
 use App\Http\Requests\StoreEmployeeRequest;
 
 class EmployeeController extends Controller
@@ -18,9 +19,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(EmployeeDataTable $dataTable)
     {
-        return view('employees.index');
+        $title = 'Employees';
+        
+        return $dataTable->render('employees.index',compact('title'));
     }
 
     /**
@@ -81,7 +84,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $id)
     {
         //
     }
