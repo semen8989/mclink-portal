@@ -153,6 +153,50 @@
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
+            //Employee form submit
+            $('#employee_form').submit(function (e){
+                e.preventDefault();
+                
+                var url = $(this).attr('action');
+                var method = $(this).attr('method');
+                var data = $(this).serialize();
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    method: method,
+                    beforeSend: function() { 
+                        $(".help-block").remove();
+                        $( ".form-control" ).removeClass("is-invalid");
+                    },
+                    success: function(){
+                        window.location.href = '{{ route("employees.index") }}';
+                    },
+                    error: function(response){
+                        var errors = response.responseJSON;
+                        $.each(errors.errors, function (index, value) {
+                            var id = $("#"+index);
+                            id.closest('.form-control')
+                            .addClass('is-invalid');
+                            
+                            if(id.next('.select2-container').length > 0){
+                                id.next('.select2-container').after('<div class="help-block text-danger">'+value+'</div>');
+                            }else{
+                                id.after('<div class="help-block text-danger">'+value+'</div>');
+                            }
+
+                        });
+
+                        if($(".is-invalid").length) {
+                            $('html, body').animate({
+                                    scrollTop: ($(".is-invalid").first().offset().top - 95)
+                            },500);
+                        }
+                        
+                    }
+                })
+
+            })
         });
     </script>
 @endpush
