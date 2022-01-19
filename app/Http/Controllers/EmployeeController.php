@@ -108,7 +108,26 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, User $user)
     {
-        
+        $user->name = $request['name'];
+        $user->employee_id = $request['employee_id'];
+        $user->joining_date = $request['joining_date'];
+        $user->gender = $request['gender'];
+        $user->birth_date = $request['birth_date'];
+        $user->company_id = $request['company_id'];
+        $user->department_id = $request['department_id'];
+        $user->designation_id = $request['designation_id'];
+        //$user->role_id = $request['role_id'];
+        $user->contact_number = $request['contact_number'];
+        $user->shift_id = $request['shift_id'];
+        $user->email = $request['email'];
+
+        if(!empty($request['password'])){
+            $user->password = Hash::make($request['password']);
+        }
+
+        $user->save();
+
+        return session()->flash('success','Employee Data Updated Successfully!');
     }
 
     /**
