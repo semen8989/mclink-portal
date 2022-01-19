@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\DataTables\RoleDataTable;
 use App\Http\Requests\StoreRoleRequest;
 
 class RoleController extends Controller
@@ -13,11 +14,11 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RoleDataTable $dataTable)
     {
         $title = 'Roles';
 
-        return view('role.index',compact('title'));
+        return $dataTable->render('role.index',compact('title'));
     }
 
     /**
