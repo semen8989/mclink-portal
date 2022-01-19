@@ -74,9 +74,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $title = 'View Employee Details';
+        
+        return view('employee.show',compact('title','user'));
     }
 
     /**
@@ -136,8 +138,12 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        $message = 'Employee Data Deleted Successfully.';
+        
+        return redirect()->route('employees.index')->with('success',$message);
     }
 }

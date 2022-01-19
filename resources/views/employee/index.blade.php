@@ -26,7 +26,7 @@
     <script>
         $(document).on('click','#delete',function(){
             let id = $(this).attr('data-id');
-            var url = '{{ route("companies.destroy",":id") }}'
+            var url = '{{ route("employees.destroy",":id") }}'
             url = url.replace(':id',id)
             $('#delete_form').attr('action',url);
         });

@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Models\ServiceReport;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -65,6 +66,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the company that owns the user.
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
      * Get the department that owns the user.
      */
     public function department()
@@ -78,6 +87,14 @@ class User extends Authenticatable
     public function designation()
     {
         return $this->belongsTo(Designation::class);
+    }
+
+    /**
+     * Get the office shift that owns the user.
+     */
+    public function officeShift()
+    {
+        return $this->belongsTo(officeShift::class,'shift_id');
     }
 
     /**
