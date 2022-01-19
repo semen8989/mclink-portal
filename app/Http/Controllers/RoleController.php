@@ -66,9 +66,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $title = 'Edit Role Details';
+
+        return view('role.edit',compact('role','title'));
     }
 
     /**
@@ -78,9 +80,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRoleRequest $request, Role $role)
     {
-        //
+        $role->name = $request['name'];
+        $role->label = $request['label'];
+        $role->save();
+
+        return session()->flash('success','Role Record Updated Successfully!');
     }
 
     /**
@@ -89,8 +95,14 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        $message = 'Role Record Deleted Successfully!';
+
+        return redirect()->route('roles.index')->with('success',$message);
+
+
     }
 }
