@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
@@ -93,6 +94,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('employees', EmployeeController::class)->parameters([
         'employees' => 'user',
     ]);
+    //Roles
+    Route::resource('roles', RoleController::class);
     // Organizations
     Route::prefix('organizations')->group(function () {
         Route::resources([
