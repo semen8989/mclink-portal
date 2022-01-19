@@ -90,12 +90,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('kpi-reports', KpiReportController::class)->only(['index']);
         Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
     });
-    //Employees
-    Route::resource('employees', EmployeeController::class)->parameters([
-        'employees' => 'user',
-    ]);
-    //Roles
-    Route::resource('roles', RoleController::class);
+    // Staff Routes
+    Route::prefix('staff')->group(function () {
+        Route::resource('employees', EmployeeController::class)->parameters([
+            'employees' => 'user',
+        ]);
+        Route::resource('roles', RoleController::class);
+    });
     // Organizations
     Route::prefix('organizations')->group(function () {
         Route::resources([

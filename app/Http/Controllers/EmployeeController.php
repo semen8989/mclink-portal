@@ -65,7 +65,7 @@ class EmployeeController extends Controller
         $user->password = Hash::make($request['password']);
         $user->save();
 
-        return session()->flash('success','New Employee Data Added Successfully!');
+        return session()->flash('success','New Employee Record Added Successfully!');
     }
 
     /**
@@ -129,7 +129,7 @@ class EmployeeController extends Controller
 
         $user->save();
 
-        return session()->flash('success','Employee Data Updated Successfully!');
+        return session()->flash('success','Employee Record Updated Successfully!');
     }
 
     /**
@@ -142,7 +142,7 @@ class EmployeeController extends Controller
     {
         $user->delete();
 
-        $message = 'Employee Data Deleted Successfully.';
+        $message = 'Employee Record Deleted Successfully!';
         
         return redirect()->route('employees.index')->with('success',$message);
     }
