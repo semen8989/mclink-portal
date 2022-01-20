@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Designation;
 use App\Models\OfficeShift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\DataTables\EmployeeDataTable;
 use App\Http\Requests\StoreEmployeeRequest;
@@ -137,13 +138,21 @@ class EmployeeController extends Controller
         $user->company_id = $request['company_id'];
         $user->department_id = $request['department_id'];
         $user->designation_id = $request['designation_id'];
-        //$user->role_id = $request['role_id'];
         $user->contact_number = $request['contact_number'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
 
         if(!empty($request['password'])){
             $user->password = Hash::make($request['password']);
+        }
+        
+        if(count($request['role']) != count($user->roles)){
+            DB::table('role_user')->where('user_id', $user->id)->delete();
+
+            foreach($request['role'] as $role){
+                $user->assignRole($role);
+            }
+            
         }
 
         $user->save();
