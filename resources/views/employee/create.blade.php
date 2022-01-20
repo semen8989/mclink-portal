@@ -45,7 +45,7 @@
                             <label for="company_id">Company</label>
                             <select class="form-control custom-select" name="company_id" id="company_id">
                                 <option></option>
-                                @foreach ($companies as $company)
+                                @foreach ($data['companies'] as $company)
                                     <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                                 @endforeach
                             </select>
@@ -54,7 +54,7 @@
                             <label for="department_id">Department</label>
                             <select class="form-control custom-select" name="department_id" id="department_id">
                                 <option></option>
-                                @foreach ($departments as $department)
+                                @foreach ($data['departments'] as $department)
                                     <option value="{{ $department->id }}">{{ $department->department_name }}</option>
                                 @endforeach
                             </select>
@@ -69,17 +69,17 @@
                             <label for="designation_id">Designation</label>
                             <select class="form-control custom-select" name="designation_id" id="designation_id">
                                 <option></option>
-                                @foreach ($designations as $designation)
+                                @foreach ($data['designations'] as $designation)
                                     <option value="{{ $designation->id }}">{{ $designation->designation_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="role_id">Role</label>
-                            <select class="form-control custom-select" name="role_id" id="role_id">
-                                <option></option>
-                                <option value="1"> Administrator</option>
-                                <option value="2"> Employee</option>
+                            <select class="form-control" name="role[]" id="role" multiple>
+                                @foreach($data['roles'] as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -93,8 +93,7 @@
                         <div class="col-md-6">
                             <label for="role_id">Shift</label>
                             <select class="form-control custom-select" name="shift_id" id="shift_id">
-                                <option></option>
-                                @foreach($officeShifts as $officeShift)
+                                @foreach($data['officeShifts'] as $officeShift)
                                     <option value="{{ $officeShift->id }}">{{ $officeShift->shift_name }}</option>
                                 @endforeach
                             </select>
@@ -154,7 +153,11 @@
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
-
+            //Select2
+            $('#role').select2({
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
             //Employee form submit
             $('#employee_form').submit(function (e){
                 e.preventDefault();

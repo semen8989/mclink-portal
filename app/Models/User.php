@@ -112,9 +112,9 @@ class User extends Authenticatable
 
     public function assignRole($role)
     {
-        if (is_string($role)) {
+        /*if (is_string($role)) {
             $role = Role::whereName($role)->firstOrFail();
-        }
+        }*/
 
         $this->roles()->sync($role, false); //add new records but won't drop anything
     }

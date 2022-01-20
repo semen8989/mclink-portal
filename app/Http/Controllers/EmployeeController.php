@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Department;
@@ -34,11 +35,17 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
-        $departments = Department::all();
-        $designations = Designation::all();
-        $officeShifts = OfficeShift::all();
-        return view('employee.create',compact('companies','departments','designations','officeShifts'));
+        $title = 'Add New Employee';
+
+        $data = [
+            'companies' => Company::all(),
+            'departments' => Department::all(),
+            'designations' => Designation::all(),
+            'officeShifts' => OfficeShift::all(),
+            'roles' => Role::all()
+        ];
+
+        return view('employee.create',compact('data','title'));
     }
 
     /**
@@ -58,12 +65,15 @@ class EmployeeController extends Controller
         $user->company_id = $request['company_id'];
         $user->department_id = $request['department_id'];
         $user->designation_id = $request['designation_id'];
-        //$user->role_id = $request['role_id'];
         $user->contact_number = $request['contact_number'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
         $user->save();
+
+        foreach($request['role'] as $role){
+            $user->assignRole($role);
+        }
 
         return session()->flash('success','New Employee Record Added Successfully!');
     }
@@ -90,13 +100,22 @@ class EmployeeController extends Controller
     public function edit(User $user)
     {
         $title = 'Edit Employee Details';
+        
+        $selectedRole = array();
+        
+        foreach($user->roles as $role){
+            array_push($selectedRole,$role->id);
+        }
+
         $data = [
             'companies' => Company::all(),
             'departments' => Department::all(),
             'designations' => Designation::all(),
-            'officeShifts' => OfficeShift::all()
+            'officeShifts' => OfficeShift::all(),
+            'roles' => Role::all(),
+            'selectedRole' => $selectedRole
         ];
-
+        
         return view('employee.edit',compact('data','title','user'));
 
     }

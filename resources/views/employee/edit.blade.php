@@ -77,10 +77,10 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="role_id">Role</label>
-                                <select class="form-control custom-select" name="role_id" id="role_id">
-                                    <option></option>
-                                    <option value="1"> Administrator</option>
-                                    <option value="2"> Employee</option>
+                                <select class="form-control" name="role[]" id="role" multiple>
+                                    @foreach($data['roles'] as $role)
+                                        <option value="{{ $role->id }}" {{ in_array($role->id,$data['selectedRole']) ? 'selected' : '' }}> {{ $role->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -150,6 +150,11 @@
             //Select2
             $('.custom-select').select2({
                 theme: "bootstrap",
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
+            //Select2
+            $('#role').select2({
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
