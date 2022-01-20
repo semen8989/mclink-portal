@@ -31,13 +31,7 @@ class RoleDataTable extends DataTable
                 'itemSlugValue' => $role->id
             ]);
         })->editColumn('name', function ($request) {
-            
-            return view('components.datatables.show-column', [
-                'showRouteName' => 'roles.show',
-                'showRouteSlug' => 'role',
-                'showRouteSlugValue' => $request->id,
-                'columnData' => $request->name
-            ]);
+            return $request->name;
         })->editColumn('label', function ($request) {
             if($request->label == null){
                 return '---';
