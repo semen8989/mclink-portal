@@ -4,13 +4,17 @@ namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
 use App\Events\AcknowledgementFormSent;
+use App\Events\TwoFactorTokenGenerated;
 use App\Listeners\SendCustomerCopyMail;
 use App\Events\AcknowledgementFormSigned;
+use App\Events\NewAccountCreated;
 use App\Events\UnsignedServiceReportFound;
+use App\Listeners\SendNewTokenGeneratedMail;
 use App\Listeners\SendAcknowledgementFormMail;
 use App\Listeners\SendCustomerConfirmationMail;
 use App\Listeners\ResendAcknowledgementFormMail;
 use App\Listeners\SendAcknowledgementFormConfirmationMail;
+use App\Listeners\SendTemporaryPasswordMail;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -35,6 +39,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         UnsignedServiceReportFound::class => [
             ResendAcknowledgementFormMail::class,
+        ],
+        TwoFactorTokenGenerated::class => [
+            SendNewTokenGeneratedMail::class,
+        ],
+        NewAccountCreated::class => [
+            SendTemporaryPasswordMail::class,
         ],
     ];
 

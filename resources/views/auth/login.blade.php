@@ -43,11 +43,6 @@
                     </div>
                   </div>
                 </form>
-                
-              </div>
-              <div class="col-md-12">
-                <hr>
-              </div>
               <div class="col-md-12">
                 <p class="mt-2 text-center">
                   <a href="{{ route('socialite.index') }}" class="btn btn-outline-primary"><img src="https://img.icons8.com/color/20/000000/google-logo.png" class="mr-2"> {{ __('label.sign_in_with_google') }}</a>

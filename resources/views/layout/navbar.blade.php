@@ -23,7 +23,7 @@
 						<img class="c-avatar-img" src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->email }}">
 					</div>
 				</a>
-				<div class="dropdown-menu dropdown-menu-right pt-0">
+				<div class="dropdown-menu dropdown-menu-right py-0">
 					{{-- <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
 					<a class="dropdown-item" href="#">
 						<svg class="c-icon mr-2">
@@ -45,18 +45,18 @@
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-comment-square') }}"></use>
 						</svg> Comments<span class="badge badge-warning ml-auto">42</span>
 					</a> --}}
-					<div class="dropdown-header bg-light py-2"><strong>{{ __('label.settings') }}</strong></div>
+					<div class="dropdown-header bg-light py-2"><strong>User Settings</strong></div>
 					<a class="dropdown-item" href="{{ route('profile.index') }}">
 						<svg class="c-icon mr-2">
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-user') }}"></use>
 						</svg> {{ __('label.profile') }}
 					</a>
-					{{-- <a class="dropdown-item" href="#">
+					<a class="dropdown-item" href="{{ route('setting.index') }}">
 						<svg class="c-icon mr-2">
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-settings') }}"></use>
 						</svg> Settings
 					</a>
-					<a class="dropdown-item" href="#">
+					{{-- <a class="dropdown-item" href="#">
 						<svg class="c-icon mr-2">
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-credit-card') }}"></use>
 						</svg> Payments<span class="badge badge-secondary ml-auto">42</span>
@@ -66,7 +66,7 @@
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-file') }}"></use>
 						</svg> Projects<span class="badge badge-primary ml-auto">42</span>
 					</a> --}}
-					<div class="dropdown-divider"></div>
+					<div class="dropdown-divider my-0"></div>
 					{{-- <a class="dropdown-item" href="#">
 						<svg class="c-icon mr-2">
 							<use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-lock-locked') }}"></use>
