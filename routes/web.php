@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
@@ -96,6 +97,7 @@ Route::middleware(['auth'])->group(function () {
             'employees' => 'user',
         ]);
         Route::resource('roles', RoleController::class);
+        Route::resource('abilities', AbilityController::class);
     });
     // Organizations
     Route::prefix('organizations')->group(function () {

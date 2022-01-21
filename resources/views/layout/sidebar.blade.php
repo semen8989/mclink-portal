@@ -25,6 +25,7 @@
                 <ul class="c-sidebar-nav-dropdown-items">
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'employees') ? 'c-active c-show' : '' }}" href="{{ route('employees.index') }}"><span class="c-sidebar-nav-icon"></span> Employees </a></li>
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'roles') ? 'c-active c-show' : '' }}" href="{{ route('roles.index') }}"><span class="c-sidebar-nav-icon"></span> Roles </a></li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'abilities') ? 'c-active c-show' : '' }}" href="{{ route('abilities.index') }}"><span class="c-sidebar-nav-icon"></span> Abilities </a></li>
                 </ul>
             </li>
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == strtolower(__('label.organizations'))) ? 'c-active c-show' : '' }}"><a
