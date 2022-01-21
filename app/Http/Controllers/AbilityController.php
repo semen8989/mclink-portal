@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ability;
 use Illuminate\Http\Request;
+use App\DataTables\AbilityDataTable;
 use App\Http\Requests\StoreAbilityRequest;
 
 class AbilityController extends Controller
@@ -13,10 +14,11 @@ class AbilityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AbilityDataTable $dataTable)
     {
         $title = 'Abilities';
-        return view('ability.index',compact('title'));
+
+        return $dataTable->render('ability.index',compact('title'));
     }
 
     /**
@@ -64,9 +66,11 @@ class AbilityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ability $ability)
     {
-        //
+        $title = 'Edit Ability Details';
+
+        return view('ability.edit',compact('ability','title'));
     }
 
     /**
@@ -76,9 +80,13 @@ class AbilityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAbilityRequest $request, Ability $ability)
     {
-        //
+        $ability->name = $request['name'];
+        $ability->label = $request['label'];
+        $ability->save();
+
+        return session()->flash('success','Ability Record Updated Successfully!');
     }
 
     /**
@@ -87,8 +95,12 @@ class AbilityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ability $ability)
     {
-        //
+        $ability->delete();
+
+        $message = 'Ability Record Deleted Successfully!';
+
+        return redirect()->route('abilities.index')->with('success',$message);
     }
 }
