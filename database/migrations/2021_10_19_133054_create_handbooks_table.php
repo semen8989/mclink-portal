@@ -17,6 +17,7 @@ class CreateHandbooksTable extends Migration
             $table->id();
             $table->string('orig_filename');
             $table->string('file_name');
+            $table->tinyInteger('type');
             $table->softDeletes();
             $table->timestamps();
         });

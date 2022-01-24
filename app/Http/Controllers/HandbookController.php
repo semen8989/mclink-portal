@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Handbook;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class HandbookController extends Controller
 {
     public function indoctrinationIndex()
     {
-        $latestRecord = Handbook::latest()->first();
-        $files = Handbook::where('id','!=',$latestRecord->id)->orderBy('id','DESC')->get();
-        return view('handbook.indoctrination',compact('files','latestRecord'));
+        // $latestRecord = Handbook::latest()->first();
+        // $files = Handbook::where('id','!=',$latestRecord->id)->orderBy('id','DESC')->get();
+        // return view('handbook.indoctrination',compact('files','latestRecord'));
+        return view('handbook.indoctrination');
     }
 
     public function phHandbookIndex()
@@ -25,15 +29,23 @@ class HandbookController extends Controller
         return view('handbook.ch_handbook');
     }
 
+    public function uploadHandbookIndex()
+    {
+        return view('handbook.upload_handbook');
+    }
+
     public function upload(Request $request)
     {
-        if($request->hasFile('upload')){
-            $storagePath = Storage::putFile('handbook\indoctrination', $request->file('upload'));
+
+        if($request->hasFile('pdf_file')){
+            
+            $storagePath = Storage::putFile('handbook', $request->file('pdf_file'));
             $fileName = basename($storagePath);
             
             $upload = new Handbook;
-            $upload->orig_filename = 'Version 2021';
+            $upload->orig_filename = $request->file('pdf_file')->getClientOriginalName();
             $upload->file_name = $fileName;
+            $upload->type = $request['type'];
             $upload->save();
 
             return back()->with('success','Custom Files Uploaded Successfully');

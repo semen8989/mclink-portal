@@ -12,6 +12,7 @@ class Handbook extends Model
 
     protected $fillable = [
         'orig_filename',
-        'file_name'
+        'file_name',
+        'type',
     ];
 }
