@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ability;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DataTables\AbilityDataTable;
 use App\Http\Requests\StoreAbilityRequest;
@@ -41,10 +42,12 @@ class AbilityController extends Controller
      */
     public function store(StoreAbilityRequest $request)
     {
-        $ability = new Ability;
-        $ability->name = $request['name'];
-        $ability->label = $request['label'];
-        $ability->save();
+        $name = Str::of(strtolower($request['name']))->slug('-');
+
+        $request = $request->all();
+        $request['name'] = $name;
+
+        Ability::create($request);
 
         return session()->flash('success','New Ability Record Added Successfully!');
     }
@@ -82,9 +85,12 @@ class AbilityController extends Controller
      */
     public function update(StoreAbilityRequest $request, Ability $ability)
     {
-        $ability->name = $request['name'];
-        $ability->label = $request['label'];
-        $ability->save();
+        $name = Str::of(strtolower($request['name']))->slug('-');
+        
+        $request = $request->all();
+        $request['name'] = $name;
+
+        $ability->update($request);
 
         return session()->flash('success','Ability Record Updated Successfully!');
     }

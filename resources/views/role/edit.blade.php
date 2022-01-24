@@ -11,8 +11,8 @@
                 <input class="form-control" name="name" id="name" type="text" value="{{ $role->name }}">
             </div>
             <div class="form-group">
-                <label for="department_name">Label</label>
-                <input class="form-label" name="label" id="label" type="text" value="{{ $role->label }}">
+                <label for="label">Label</label>
+                <input class="form-control" name="label" id="label" type="text" value="{{ $role->label }}">
             </div>
             <div class="form-group">
                 <label for="abilities">Abilities</label>

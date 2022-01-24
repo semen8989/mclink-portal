@@ -10,7 +10,7 @@ class Ability extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','label'];
 
     public function roles()
     {
