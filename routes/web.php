@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WiiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
@@ -104,31 +105,6 @@ Route::middleware(['auth'])->group(function () {
             'expenses' => ExpenseController::class
         ]); 
     });
-    //Human Resource
-    Route::prefix('hr')->group(function (){
-        //HR Calendar
-        Route::prefix('calendar')->group(function (){
-            Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
-            //Events
-            Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
-            Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
-            Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
-            //Holidays
-            Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
-            Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
-            Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
-        });
-        //Recruitment
-        Route::prefix('recruitment')->group(function (){
-            Route::get('/',[RecruitmentController::class, 'index'])->name('recruitment.index');  
-            Route::get('/{submission_id}/details',[RecruitmentController::class, 'show'])->name('recruitment.show'); 
-            
-            Route::get('/submit/{submission_id}',[RecruitmentController::class, 'submit'])->name('recruitment.submit');
-            Route::post('/custom-upload/{submission_id}',[RecruitmentController::class, 'customUpload'])->name('recruitment.custom_upload');
-            Route::get('/download-attachment/{fileName}/{origFilename}',[RecruitmentController::class, 'downloadAttachment'])->name('recruitment.download_attachment');
-        });
-
-    });
     // Ajax Routes
     Route::prefix('get')->group(function () {
         // Customer Route
@@ -154,26 +130,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
     Route::get('/fetch-applicant',[RecruitmentController::class, 'getListData'])->name('fetch_applicant');
     
-    //Machine Request
-    Route::prefix('machine-request')->group(function (){
-        //Create request form
-        Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
-        Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
-        //Pending machine request
-        Route::prefix('pending')->group(function (){
-            Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
-            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
-        });
-        //Completed machine request
-        Route::prefix('completed')->group(function (){
-            Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
-            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
-        });
-        //View request details
-        Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
-        //mark as completed
-        Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
-    });
     //Sales
     Route::prefix('sales')->group(function (){
         //Machine Request
@@ -228,6 +184,51 @@ Route::middleware(['auth'])->group(function () {
         });
     });
     
+    //HR
+    Route::prefix('hr')->group(function (){
+        //HR Calendar
+        Route::prefix('calendar')->group(function (){
+            Route::get('/',[HrCalendarController::class, 'index'])->name('hr_calendar');
+            //Events
+            Route::get('/fetch-events',[HrCalendarController::class,'fetchEvents'])->name('hr_calendar.fetch_events');
+            Route::post('/store-event',[HrCalendarController::class, 'storeEvent'])->name('hr_calendar.store_event');
+            Route::post('/view-event/{event}',[HrCalendarController::class, 'viewEvent'])->name('hr_calendar.view_event');
+            //Holidays
+            Route::get('/fetch-holidays',[HrCalendarController::class,'fetchHolidays'])->name('hr_calendar.fetch_holidays');
+            Route::post('/store-holiday',[HrCalendarController::class,'storeHoliday'])->name('hr_calendar.store_holiday');
+            Route::post('/view-holiday/{holiday}',[HrCalendarController::class, 'viewHoliday'])->name('hr_calendar.view_holiday');
+        });
+        //Recruitment
+        Route::prefix('recruitment')->group(function (){
+            Route::get('/',[RecruitmentController::class, 'index'])->name('recruitment.index');  
+            Route::get('/{submission_id}/details',[RecruitmentController::class, 'show'])->name('recruitment.show'); 
+            
+            Route::get('/submit/{submission_id}',[RecruitmentController::class, 'submit'])->name('recruitment.submit');
+            Route::post('/custom-upload/{submission_id}',[RecruitmentController::class, 'customUpload'])->name('recruitment.custom_upload');
+            Route::get('/download-attachment/{fileName}/{origFilename}',[RecruitmentController::class, 'downloadAttachment'])->name('recruitment.download_attachment');
+        });
+        //Wii
+        Route::prefix('wii')->group(function (){
+            //Submit Wii
+            Route::get('/',[WiiController::class, 'create'])->name('wii.create');
+            Route::post('/store',[WiiController::class, 'store'])->name('wii.store');
+            //My Wii
+            Route::get('/my-wii',[WiiController::class, 'myWiiIndex'])->name('wii.my_wii');
+            //Completed Wii
+            Route::get('/completed-wii',[WiiController::class, 'completedWiiIndex'])->name('wii.completed_wii');
+            //All Wii - For HR only
+            Route::get('/all-wii',[WiiController::class, 'allWiiIndex'])->name('wii.all_wii');
+            //Actions
+            Route::get('/view-details/{wii}',[WiiController::class, 'show'])->name('wii.show');
+            Route::get('/edit/{wii}',[WiiController::class, 'edit'])->name('wii.edit');
+            Route::put('/update/{wii}',[WiiController::class, 'update'])->name('wii.update');
+            Route::delete('/destroy/{wii}',[WiiController::class, 'destroy'])->name('wii.destroy');
+            //Update by Management
+            Route::put('/updateStatus/{wii}',[WiiController::class, 'updateStatus'])->name('wii.update_status');
+        });
+
+    });
+
 });
 
 /**
@@ -249,10 +250,7 @@ Route::middleware(['guest'])->group(function () {
         Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
         Route::get('/callback', [socialiteController::class, 'callBack']);
     });
-    // Machine Request Routes
-    Route::prefix('machine-request/request-details')->group(function () {
-        
-    });
+
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
