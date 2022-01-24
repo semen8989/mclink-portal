@@ -33,7 +33,8 @@ class KpiVariable extends Model
         'target_date',
         'result',
         'feedback',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     /**

@@ -454,6 +454,51 @@ return [
             ]
         ]
     ],
+    'auth' => [
+        'title' => [
+            'otp_form' => 'OTP'
+        ],
+        'email' => [
+            'otp_sent' => [
+                'message_header' => 'Verify your login',
+                'message_subheader' => 'Below is your one time password:',
+                'message_notice' => 'Please use the code before it expires in 15 minutes.',
+                'subject' => 'One Time Password'
+            ],
+            'password_sent' => [
+                'message_header' => 'Update your password',
+                'message_subheader' => 'Below is your temporary password:',
+                'message_notice' => 'You can use the temporary password to login in the portal login page. Once you successfully logged in, please update immediately your password.',
+                'subject' => 'Temporary Password'
+            ]
+        ],
+        'form' => [
+            'label' => [
+                '2fa_main_title' => 'One Time Password',
+                '2fa_sec_title' => 'Enter the OTP code'
+            ]
+        ],
+        'response' => [
+            'error' => [
+                'token_error' => 'The OTP code is invalid or expired.'
+            ]
+        ]
+    ],
+    'setting' => [
+        'title' => [
+            'form' => 'Setting'
+        ],
+        'form' => [
+            'label' => [
+                'priv_sec_title' => 'Privacy and Security',
+                'priv_sec_desc' => "Configuration to help in protecting the user's account and privacy",
+                '2fa_title' => 'Enable Two-Factor Authentication'
+            ]
+        ],
+        'response' => [
+            'success' => 'Updated Setting'
+        ]
+    ],
     'service_report' => [
         'title' => [
             'index' => 'Service Reports',

@@ -14,7 +14,7 @@ class KpiRatingController extends Controller
      */
     public function index()
     {
-        //
+        //TODO check if this function still needed (paul)
     }
 
     /**
