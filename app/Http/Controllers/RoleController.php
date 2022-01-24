@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Ability;
 use Illuminate\Http\Request;
 use App\DataTables\RoleDataTable;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreRoleRequest;
 
 class RoleController extends Controller
@@ -30,7 +32,9 @@ class RoleController extends Controller
     {
         $title = 'Add New Role';
 
-        return view('role.create',compact('title'));
+        $abilities = Ability::all();
+
+        return view('role.create',compact('title','abilities'));
     }
 
     /**
@@ -41,10 +45,12 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        $role = new Role;
-        $role->name = $request['name'];
-        $role->label = $request['label'];
-        $role->save();
+        $role = Role::create($request->all());
+
+        foreach($request['abilities'] as $ability)
+        {
+            $role->allowTo($ability);
+        }
 
         return session()->flash('success','New Role Record Added Successfully!');
     }
@@ -70,7 +76,15 @@ class RoleController extends Controller
     {
         $title = 'Edit Role Details';
 
-        return view('role.edit',compact('role','title'));
+        $abilities = Ability::all();
+
+        $selectedAbility = array();
+
+        foreach($role->abilities as $ability){
+            array_push($selectedAbility,$ability->id);
+        }
+
+        return view('role.edit',compact('role','title','abilities','selectedAbility'));
     }
 
     /**
@@ -82,9 +96,16 @@ class RoleController extends Controller
      */
     public function update(StoreRoleRequest $request, Role $role)
     {
-        $role->name = $request['name'];
-        $role->label = $request['label'];
-        $role->save();
+        $role->update($request->all());
+
+        if(count($request['abilities']) != count($role->abilities)){
+            DB::table('ability_role')->where('role_id', $role->id)->delete();
+
+            foreach($request['abilities'] as $ability){
+                $role->allowTo($ability);
+            }
+            
+        }
 
         return session()->flash('success','Role Record Updated Successfully!');
     }

@@ -10,7 +10,7 @@ class Role extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','label'];
 
     public function abilities()
     {
@@ -19,9 +19,9 @@ class Role extends Model
 
     public function allowTo($ability)
     {
-        if (is_string($ability)) {
+        /*if (is_string($ability)) {
             $ability = Ability::whereName($ability)->firstOrFail();
-        }
+        }*/
 
         $this->abilities()->sync($ability, false);
     }

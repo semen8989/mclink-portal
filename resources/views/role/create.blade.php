@@ -6,12 +6,20 @@
         @csrf
         <div class="card-body">
             <div class="form-group">
-                <label for="department_name">Role Name</label>
+                <label for="role_name">Role Name</label>
                 <input class="form-control" name="name" id="name" type="text">
             </div>
             <div class="form-group">
-                <label for="department_name">Label</label>
+                <label for="label">Label</label>
                 <input class="form-control" name="label" id="label" type="text">
+            </div>
+            <div class="form-group">
+                <label for="abilities">Abilities</label>
+                <select class="form-control" name="abilities[]" id="abilities" multiple>
+                    @foreach($abilities as $ability)
+                        <option value="{{ $ability->id }}">{{ $ability->name }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="card-footer text-right">
@@ -20,9 +28,24 @@
     </form>
 @stop
 
+@push('stylesheet')
+    <!-- select2 css dependency -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugin/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+    <!-- select2 js dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function(){
+
+             //Select2
+             $('#abilities').select2({
+                placeholder: '{{ __('label.choose') }}',
+                allowClear: true
+            });
 
             $('#role_form').submit(function (e){
                 e.preventDefault();
