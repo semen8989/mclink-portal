@@ -7,7 +7,9 @@
     <div class="card-body">
         @include('components.handbook.nav-tabs')
         <div class="tab-content mt-3" id="phHandbook">
-            <iframe src="{{ asset('storage/handbook/PH_Handbook_Revised_Version_2.0_2021.pdf') }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe>
+            @if(!empty($latestRecord))
+                <iframe src="{{ asset('storage/handbook/ph_handbook/'.$latestRecord->file_name) }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe>
+            @endif
         </div>
     </div>
 @stop

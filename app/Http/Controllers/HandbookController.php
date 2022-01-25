@@ -4,42 +4,81 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Handbook;
-use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreHandbookRequest;
 
 class HandbookController extends Controller
 {
     public function indoctrinationIndex()
     {
-        // $latestRecord = Handbook::latest()->first();
-        // $files = Handbook::where('id','!=',$latestRecord->id)->orderBy('id','DESC')->get();
+        $title = 'Indoctrination';
+        $data = [];
+        $latestRecord = Handbook::where('type','=',1)->latest()->first();
+        
+        if($latestRecord){
+            $files = Handbook::where([
+                                ['id','!=',$latestRecord->id],
+                                ['type','=',1],
+                            ])
+                            ->orderBy('id','DESC')
+                            ->get();
+            $data['latestRecord'] = $latestRecord;
+            
+            if($files->IsNotEmpty()){
+                $data['files'] = $files;
+            }
+        }
         // return view('handbook.indoctrination',compact('files','latestRecord'));
-        return view('handbook.indoctrination');
+        return view('handbook.indoctrination',compact('title','data'));
     }
 
     public function phHandbookIndex()
     {
-        return view('handbook.ph_handbook');
+        $title = 'PH Handbook';
+
+        $latestRecord = Handbook::where('type','=',2)->latest()->first();
+
+        return view('handbook.ph_handbook',compact('title','latestRecord'));
     }
 
     public function chHandbookIndex()
     {
-        return view('handbook.ch_handbook');
+        $title = 'CH Handbook';
+
+        $latestRecord = Handbook::where('type','=',3)->latest()->first();
+
+        return view('handbook.ch_handbook',compact('title','latestRecord'));
     }
 
     public function uploadHandbookIndex()
     {
-        return view('handbook.upload_handbook');
+        $title = 'Upload Handbook';
+
+        return view('handbook.upload_handbook',compact('title'));
     }
 
-    public function upload(Request $request)
+    public function upload(StoreHandbookRequest $request)
     {
-
         if($request->hasFile('pdf_file')){
             
-            $storagePath = Storage::putFile('handbook', $request->file('pdf_file'));
+            switch($request['type']){
+
+                case 1:
+                    $folder = 'indoctrination';
+                    break;
+                case 2:
+                    $folder = 'ph_handbook';
+                    break;
+                case 3:
+                    $folder = 'ch_handbook';
+                    break;
+                default:
+                    $folder = '';
+        
+            }
+            
+            $storagePath = Storage::putFile('handbook/'.$folder, $request->file('pdf_file'));
             $fileName = basename($storagePath);
             
             $upload = new Handbook;
@@ -48,7 +87,7 @@ class HandbookController extends Controller
             $upload->type = $request['type'];
             $upload->save();
 
-            return back()->with('success','Custom Files Uploaded Successfully');
+            return session()->flash('success','Custom Files Uploaded Successfully');
 
         }
     }

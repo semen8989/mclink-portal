@@ -7,12 +7,16 @@
     <div class="card-body">
         @include('components.handbook.nav-tabs')
         <div class="tab-content mt-3" id="indoctrination">
-            {{-- <iframe src="{{ asset('storage/handbook/indoctrination/'.$latestRecord->file_name) }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe> --}}
+            @if(!empty($data['latestRecord']))
+                <iframe src="{{ asset('storage/handbook/indoctrination/'.$data['latestRecord']->file_name) }}#toolbar=0" style="width:100%; height:600px;" frameborder="0"></iframe>
+            @endif
             <h4>Old Version Of Indoctrination</h4>
             <ul>
-                {{-- @foreach($files as $item)
-                    <li><a href="{{ asset('storage/handbook/indoctrination/'.$item->file_name) }}" target="_blank">{{ $item->orig_filename }}</a></li>
-                @endforeach --}}
+                @if(!empty($data['files']))
+                    @foreach($data['files'] as $item)
+                        <li><a href="{{ asset('storage/handbook/indoctrination/'.$item->file_name) }}" target="_blank">{{ $item->orig_filename }}</a></li>
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
