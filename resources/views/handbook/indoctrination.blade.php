@@ -16,6 +16,8 @@
                     @foreach($data['files'] as $item)
                         <li><a href="{{ asset('storage/handbook/indoctrination/'.$item->file_name) }}" target="_blank">{{ $item->orig_filename }}</a></li>
                     @endforeach
+                @else
+                    <li>No Files Available</li>
                 @endif
             </ul>
         </div>

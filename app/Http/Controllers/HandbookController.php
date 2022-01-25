@@ -36,19 +36,47 @@ class HandbookController extends Controller
     public function phHandbookIndex()
     {
         $title = 'PH Handbook';
-
+        $data = [];
         $latestRecord = Handbook::where('type','=',2)->latest()->first();
 
-        return view('handbook.ph_handbook',compact('title','latestRecord'));
+        if($latestRecord){
+            $files = Handbook::where([
+                                ['id','!=',$latestRecord->id],
+                                ['type','=',2],
+                            ])
+                            ->orderBy('id','DESC')
+                            ->get();
+            $data['latestRecord'] = $latestRecord;
+            
+            if($files->IsNotEmpty()){
+                $data['files'] = $files;
+            }
+        }
+
+        return view('handbook.ph_handbook',compact('title','data'));
     }
 
     public function chHandbookIndex()
     {
         $title = 'CH Handbook';
-
+        $data = [];
         $latestRecord = Handbook::where('type','=',3)->latest()->first();
 
-        return view('handbook.ch_handbook',compact('title','latestRecord'));
+        if($latestRecord){
+            $files = Handbook::where([
+                                ['id','!=',$latestRecord->id],
+                                ['type','=',3],
+                            ])
+                            ->orderBy('id','DESC')
+                            ->get();
+            $data['latestRecord'] = $latestRecord;
+            
+            if($files->IsNotEmpty()){
+                $data['files'] = $files;
+            }
+        }
+
+        return view('handbook.ch_handbook',compact('title','data'));
     }
 
     public function uploadHandbookIndex()
