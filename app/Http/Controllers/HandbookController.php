@@ -106,8 +106,8 @@ class HandbookController extends Controller
         
             }
             
-            $storagePath = Storage::putFile('handbook/'.$folder, $request->file('pdf_file'));
-            $fileName = basename($storagePath);
+            $fileName = date('Y-m-d').'_'.time().'_'.$request->file('pdf_file')->getClientOriginalName();
+            $path = $request->file('pdf_file')->storeAs('handbook/'.$folder,$fileName);
             
             $upload = new Handbook;
             $upload->orig_filename = $request->file('pdf_file')->getClientOriginalName();
