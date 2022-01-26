@@ -28,8 +28,11 @@ class SalesLeadController extends Controller
 
     public function create()
     {
+        $title = 'Create Sales Lead';
+
         $users = User::all('id','name');
-        return view('sales_lead.create',compact('users'));
+
+        return view('sales_lead.create',compact('users','title'));
     }
 
     public function store(StoreSalesLeadRequest $request)
@@ -74,17 +77,22 @@ class SalesLeadController extends Controller
 
     public function showLead(SalesLead $salesLead)
     {
+        $title = 'View Sales Lead';
+        
         $users = User::all('id','name');
 
-        return view('sales_lead.show',compact('salesLead','users'));
+        return view('sales_lead.show',compact('salesLead','users','title'));
     }
 
     public function edit(SalesLead $salesLead)
     {
+        $title = 'Edit Sales Lead';
+
         $users = User::all('id','name');
+
         $status = SalesLead::STATUS;
         
-        return view('sales_lead.edit',compact('salesLead','users','status'));
+        return view('sales_lead.edit',compact('salesLead','users','status','title'));
     }
 
     public function update(StoreSalesLeadRequest $request, SalesLead $salesLead)
@@ -116,6 +124,7 @@ class SalesLeadController extends Controller
     public function assignIndex(AssignSalesLeadDataTable $dataTable)
     {
         $title = 'Assign';
+
         return $dataTable->render('sales_lead.assign.index',compact('title'));
     }
 
@@ -141,9 +150,11 @@ class SalesLeadController extends Controller
 
     public function showAssignedLead(SalesLead $salesLead)
     {
+        $title = 'View Sales Lead';
+
         $users = User::all('id','name');
 
-        return view('sales_lead.show',compact('salesLead','users'));
+        return view('sales_lead.show',compact('salesLead','users','title'));
     }
 
     public function assignedToMeIndex(AssignedToMeDataTable $dataTable)
