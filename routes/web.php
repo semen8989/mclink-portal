@@ -12,6 +12,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HandbookController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SocialiteController;
@@ -191,27 +192,15 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/updateStatus/{wii}',[WiiController::class, 'updateStatus'])->name('wii.update_status');
         });
 
-    });
+        //Handbook
+        Route::prefix('handbook')->group(function (){
+            Route::get('/mca-indoctrination',[HandbookController::class, 'indoctrinationIndex'])->name('handbook.mca_indoctrination'); 
+            Route::get('/ph-handbook',[HandbookController::class, 'phHandbookIndex'])->name('handbook.ph_handbook');
+            Route::get('/ch-handbook',[HandbookController::class, 'chHandbookIndex'])->name('handbook.ch_handbook');
+            Route::get('/upload-handbook',[HandbookController::class, 'uploadHandbookIndex'])->name('handbook.upload_handbook');
+            Route::post('/upload',[HandbookController::class, 'upload'])->name('handbook.upload');   
+        });
     
-    //Machine Request
-    Route::prefix('machine-request')->group(function (){
-        //Create request form
-        Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
-        Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
-        //Pending machine request
-        Route::prefix('pending')->group(function (){
-            Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
-            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
-        });
-        //Completed machine request
-        Route::prefix('completed')->group(function (){
-            Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
-            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
-        });
-        //View request details
-        Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
-        //mark as completed
-        Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
     });
 
 });
@@ -235,10 +224,7 @@ Route::middleware(['guest'])->group(function () {
         Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
         Route::get('/callback', [socialiteController::class, 'callBack']);
     });
-    // Machine Request Routes
-    Route::prefix('machine-request/request-details')->group(function () {
-        
-    });
+    
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

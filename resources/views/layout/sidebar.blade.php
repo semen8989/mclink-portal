@@ -43,7 +43,27 @@
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == strtolower(__('label.expenses'))) ? 'c-active c-show' : '' }}" href="{{ route('expenses.index') }}"><span
                         class="c-sidebar-nav-icon"></span> {{ __('label.expense') }}</a></li>
                 </ul>
-            </li>  
+            </li>
+            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == 'hr') ? 'c-active c-show' : '' }}"">
+                <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-globe-alt') }}"></use>
+                </svg> HR</a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'calendar') ? 'c-active c-show' : '' }}" href="{{ route('hr_calendar') }}">
+                        <span class="c-sidebar-nav-icon"></span> {{ __('label.hr_calendar') }}</a>
+                    </li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'recruitment') ? 'c-active c-show' : '' }}" href="{{ route('recruitment.index') }}">
+                        <span class="c-sidebar-nav-icon"></span> Recruitment</a>
+                    </li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'wii') ? 'c-active c-show' : '' }}" href="{{ route('wii.create') }}">
+                        <span class="c-sidebar-nav-icon"></span> Wii</a>
+                    </li>
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'handbook') ? 'c-active c-show' : '' }}" href="{{ route('handbook.mca_indoctrination') }}">
+                        <span class="c-sidebar-nav-icon"></span> Handbook</a>
+                    </li>
+                </ul>
+            </li>
             <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == 'machine-request') ? 'c-active c-show' : ''}}"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-dollar') }}"></use>
@@ -63,23 +83,6 @@
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == __('label.global.module.kpi_report.url_segment')) ? 'c-active' : ''}}" href="{{ route('kpi-reports.index') }}">
                     <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.kpi_report.title') }}</a></li>
               </ul>
-            </li>
-            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ (request()->segment(1) == 'hr') ? 'c-active c-show' : '' }}"">
-                <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-                <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-globe-alt') }}"></use>
-                </svg> HR</a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'calendar') ? 'c-active c-show' : '' }}" href="{{ route('hr_calendar') }}">
-                        <span class="c-sidebar-nav-icon"></span> {{ __('label.hr_calendar') }}</a>
-                    </li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'recruitment') ? 'c-active c-show' : '' }}" href="{{ route('recruitment.index') }}">
-                        <span class="c-sidebar-nav-icon"></span> Recruitment</a>
-                    </li>
-                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(2) == 'wii') ? 'c-active c-show' : '' }}" href="{{ route('wii.create') }}">
-                        <span class="c-sidebar-nav-icon"></span> Wii</a>
-                    </li>
-                </ul>
             </li>
         </ul>
         
