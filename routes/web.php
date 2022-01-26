@@ -12,6 +12,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HandbookController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
 use App\Http\Controllers\SalesLeadController;
@@ -227,6 +228,15 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/updateStatus/{wii}',[WiiController::class, 'updateStatus'])->name('wii.update_status');
         });
 
+        //Handbook
+        Route::prefix('handbook')->group(function (){
+            Route::get('/mca-indoctrination',[HandbookController::class, 'indoctrinationIndex'])->name('handbook.mca_indoctrination'); 
+            Route::get('/ph-handbook',[HandbookController::class, 'phHandbookIndex'])->name('handbook.ph_handbook');
+            Route::get('/ch-handbook',[HandbookController::class, 'chHandbookIndex'])->name('handbook.ch_handbook');
+            Route::get('/upload-handbook',[HandbookController::class, 'uploadHandbookIndex'])->name('handbook.upload_handbook');
+            Route::post('/upload',[HandbookController::class, 'upload'])->name('handbook.upload');   
+        });
+    
     });
 
 });
@@ -250,7 +260,7 @@ Route::middleware(['guest'])->group(function () {
         Route::get('/google', [SocialiteController::class, 'index'])->name('socialite.index');
         Route::get('/callback', [socialiteController::class, 'callBack']);
     });
-
+    
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
