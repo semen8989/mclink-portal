@@ -15,6 +15,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HandbookController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
+use App\Http\Controllers\SalesLeadController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
@@ -105,26 +106,6 @@ Route::middleware(['auth'])->group(function () {
             'expenses' => ExpenseController::class
         ]); 
     });
-    //Machine Request
-    Route::prefix('machine-request')->group(function (){
-        //Create request form
-        Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
-        Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
-        //Pending machine request
-        Route::prefix('pending')->group(function (){
-            Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
-            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
-        });
-        //Completed machine request
-        Route::prefix('completed')->group(function (){
-            Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
-            Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
-        });
-        //View request details
-        Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
-        //mark as completed
-        Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
-    });
     // Ajax Routes
     Route::prefix('get')->group(function () {
         // Customer Route
@@ -149,6 +130,61 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/fetch-user', [FetchController::class,'fetchUser'])->name('fetch_user');
     Route::get('/expenses/downloadFile/{expense}', [ExpenseController::class,'downloadFile'])->name('downloadFile');
     Route::get('/fetch-applicant',[RecruitmentController::class, 'getListData'])->name('fetch_applicant');
+    
+    //Sales
+    Route::prefix('sales')->group(function (){
+        //Machine Request
+        Route::prefix('machine-request')->group(function (){
+            //Create request form
+            Route::get('/create-request',[MachineRequestController::class, 'create'])->name('machine_request.create');
+            Route::post('/store',[MachineRequestController::class, 'store'])->name('machine_request.store');
+            //Pending machine request
+            Route::prefix('pending')->group(function (){
+                Route::get('/',[MachineRequestController::class, 'pendingRequestIndex'])->name('machine_request.pending_index');
+                Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.pending');
+            });
+            //Completed machine request
+            Route::prefix('completed')->group(function (){
+                Route::get('/',[MachineRequestController::class, 'completedRequestIndex'])->name('machine_request.completed_index');
+                Route::get('/{machineRequest}',[MachineRequestController::class, 'show'])->name('machine_request.completed');
+            });
+            //View request details
+            Route::get('/request-details/{machineRequest}',[MachineRequestController::class, 'requestDetails'])->name('machine_request.request_details');
+            //mark as completed
+            Route::get('/mark/{machineRequest}',[MachineRequestController::class, 'mark'])->name('machine_request.mark');
+        });
+        //Sales Lead
+        Route::prefix('sales-lead')->group(function (){
+            
+            Route::get('/',[SalesLeadController::class, 'index'])->name('sales_lead.index');
+            Route::get('/create',[SalesLeadController::class, 'create'])->name('sales_lead.create');
+            Route::post('/store',[SalesLeadController::class, 'store'])->name('sales_lead.store');
+            Route::get('/edit/{salesLead}',[SalesLeadController::class, 'edit'])->name('sales_lead.edit');
+            Route::get('/details/{salesLead}',[SalesLeadController::class, 'showLead'])->name('sales_lead.show_lead');
+            Route::put('/update/{salesLead}',[SalesLeadController::class, 'update'])->name('sales_lead.update');
+            Route::delete('/delete/{salesLead}',[SalesLeadController::class, 'destroy'])->name('sales_lead.destroy');
+            //Assign
+            Route::prefix('assign')->group(function (){
+                Route::get('/',[SalesLeadController::class, 'assignIndex'])->name('sales_lead.assign_index');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'showAssignedLead'])->name('sales_lead.show_assigned_lead');
+                Route::put('/assign-sales-man/{salesLead}',[SalesLeadController::class, 'assignSalesMan'])->name('sales_lead.assign_salesman');
+            });
+            //Assign To Me
+            Route::prefix('assigned-to-me')->group(function (){
+                Route::get('/',[SalesLeadController::class, 'assignedToMeIndex'])->name('sales_lead.assigned_to_me_index');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'assignedToMeDetails'])->name('sales_lead.lead_details');
+                Route::put('/update-lead-details/{salesLead}',[SalesLeadController::class, 'updateLeadDetails'])->name('sales_lead.update_lead');
+            });
+            //Approval
+            Route::prefix('approval')->group(function (){
+                Route::get('/',[SalesLeadController::class, 'approvalIndex'])->name('sales_lead.approval');
+                Route::get('/details/{salesLead}',[SalesLeadController::class, 'approvalDetails'])->name('sales_lead.approval_details');
+                Route::put('/approve/{salesLead}',[SalesLeadController::class, 'approve'])->name('sales_lead.approve');
+            });
+
+        });
+    });
+    
     //HR
     Route::prefix('hr')->group(function (){
         //HR Calendar
