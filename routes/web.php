@@ -42,9 +42,7 @@ Auth::routes(['register' => false]);
  */
 Route::middleware(['auth'])->group(function () {
     // Dashboard Route
-    Route::get('/', function () {
-        return view('dashboard', ['title'=>__('label.dashboard')]);
-    })->name('dashboard');
+    Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     // Profile
     Route::resource('profile', ProfileController::class)->only(['index', 'update']);
@@ -264,3 +262,4 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/content/{id}', [App\Http\Controllers\HomeController::class, 'content'])->name('home.content');
