@@ -35,8 +35,9 @@ class HomeController extends Controller
     {
         $get = Http::get('https://newsletter.mclinkgroup.com/wp-json/wp/v2/posts/'.$id.'?_embed');
         $post = json_decode($get,true);
+        $title = mb_convert_encoding($post['title']['rendered'],'UTF-8','HTML-ENTITIES');
         
-        return view('newsletter.show',compact('post'));
+        return view('newsletter.show',compact('post','title'));
     }
 
     

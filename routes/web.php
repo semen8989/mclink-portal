@@ -41,8 +41,9 @@ Auth::routes(['register' => false]);
  * Authenticated Routes
  */
 Route::middleware(['auth'])->group(function () {
-    // Dashboard Route
-    Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    // Dashboard / Newsletter Route
+    Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/newsletter/{id}', [App\Http\Controllers\HomeController::class, 'content'])->name('home.content');
 
     // Profile
     Route::resource('profile', ProfileController::class)->only(['index', 'update']);
@@ -261,5 +262,5 @@ Route::middleware(['guest'])->group(function () {
     
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home/content/{id}', [App\Http\Controllers\HomeController::class, 'content'])->name('home.content');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//
