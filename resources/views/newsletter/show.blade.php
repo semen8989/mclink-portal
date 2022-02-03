@@ -5,7 +5,7 @@
     <div class="card-body">
         <img src="{{ $post['_embedded']['wp:featuredmedia']['0']['source_url'] }}" alt="Card image cap" width="100%">
         <hr>
-        <div class="content text-center">
+        <div class="container-fluid text-center">
             {!! $post['content']['rendered'] !!}
         </div>
     </div>
@@ -13,9 +13,11 @@
 
 @push('stylesheet')
     <style>
-        .content figure{
-            max-width: 100%;
-            max-height: 100%;
-        }
+        @media only screen and (max-width: 768px) {
+            .container-fluid figure img {
+                width: 100%;
+                height: auto;
+            }
+        }   
     </style>
 @endpush
