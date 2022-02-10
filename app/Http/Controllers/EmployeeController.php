@@ -39,6 +39,7 @@ class EmployeeController extends Controller
         $title = 'Add New Employee';
 
         $data = [
+            'users' => User::all(),
             'companies' => Company::all(),
             'departments' => Department::all(),
             'designations' => Designation::all(),
@@ -67,6 +68,7 @@ class EmployeeController extends Controller
         $user->department_id = $request['department_id'];
         $user->designation_id = $request['designation_id'];
         $user->contact_number = $request['contact_number'];
+        $user->report_to = $request['report_to'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
@@ -114,6 +116,7 @@ class EmployeeController extends Controller
             'designations' => Designation::all(),
             'officeShifts' => OfficeShift::all(),
             'roles' => Role::all(),
+            'users' => User::all(),
             'selectedRole' => $selectedRole
         ];
         
@@ -139,6 +142,7 @@ class EmployeeController extends Controller
         $user->department_id = $request['department_id'];
         $user->designation_id = $request['designation_id'];
         $user->contact_number = $request['contact_number'];
+        $user->report_to = $request['report_to'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
 

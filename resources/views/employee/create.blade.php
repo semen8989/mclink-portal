@@ -87,8 +87,13 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="contact_number">Contact Number</label>
-                            <input class="form-control" name="contact_number" id="contact_number" type="text">
+                            <label for="report_to">Report To</label>
+                            <select class="form-control custom-select" name="report_to" id="report_to">
+                                <option></option>
+                                @foreach ($data['users'] as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label for="role_id">Shift</label>
@@ -101,8 +106,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Email</label>
-                    <input class="form-control" name="email" id="email" type="text">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="email">Email</label>
+                            <input class="form-control" name="email" id="email" type="text">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="contact_number">Contact Number</label>
+                            <input class="form-control" name="contact_number" id="contact_number" type="text">
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="row">

@@ -35,7 +35,8 @@ class UpdateEmployeeRequest extends FormRequest
             'contact_number' => 'required',
             'shift_id' => 'required',
             'email' => 'required',
-            'role' => 'required'
+            'role' => 'required',
+            'report_to' => 'required'
         ];
     }
 }

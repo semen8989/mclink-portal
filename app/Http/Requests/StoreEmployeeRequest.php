@@ -36,7 +36,8 @@ class StoreEmployeeRequest extends FormRequest
             'shift_id' => 'required',
             'email' => 'required',
             'password' => 'required|confirmed',
-            'role' => 'required'
+            'role' => 'required',
+            'report_to' => 'required'
         ];
     }
 }
