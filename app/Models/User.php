@@ -74,6 +74,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the report person that owns the user.
+     */
+    public function reportToUser()
+    {
+        return $this->belongsTo(User::class,'report_to');
+    }
+
+    /**
      * Get the department that owns the user.
      */
     public function department()
