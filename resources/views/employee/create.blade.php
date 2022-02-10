@@ -11,123 +11,145 @@
                     <label for="name">Name</label>
                     <input class="form-control" name="name" id="name" type="text">
                 </div>
+            </div>
+            <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="employee_id">Employee ID</label>
-                            <input class="form-control" name="employee_id" id="employee_id" type="text">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="joining_date">Joining Date</label>
-                            <input class="form-control date" name="joining_date" id="joining_date" type="text" readonly>
-                        </div>
-                    </div>
+                    <label for="email">Email</label>
+                    <input class="form-control" name="email" id="email" type="text">
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="gender">Gender</label>
-                            <select class="form-control custom-select" name="gender" id="gender">
-                                <option></option>
-                                <option value="male"> Male</option>
-                                <option value="female"> Female</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="birth_date">Date of Birth</label>
-                            <input class="form-control date" name="birth_date" id="birth_date" type="text" readonly>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="company_id">Company</label>
-                            <select class="form-control custom-select" name="company_id" id="company_id">
-                                <option></option>
-                                @foreach ($data['companies'] as $company)
-                                    <option value="{{ $company->id }}">{{ $company->company_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="department_id">Department</label>
-                            <select class="form-control custom-select" name="department_id" id="department_id">
-                                <option></option>
-                                @foreach ($data['departments'] as $department)
-                                    <option value="{{ $department->id }}">{{ $department->department_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                    <label for="company_id">Company</label>
+                    <select class="form-control custom-select" name="company_id" id="company_id">
+                        <option></option>
+                        @foreach ($data['companies'] as $company)
+                            <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="designation_id">Designation</label>
-                            <select class="form-control custom-select" name="designation_id" id="designation_id">
-                                <option></option>
-                                @foreach ($data['designations'] as $designation)
-                                    <option value="{{ $designation->id }}">{{ $designation->designation_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="role_id">Role</label>
-                            <select class="form-control" name="role[]" id="role" multiple>
-                                @foreach($data['roles'] as $role)
-                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                    <label for="department_id">Department</label>
+                    <select class="form-control custom-select" name="department_id" id="department_id">
+                        <option></option>
+                        @foreach ($data['departments'] as $department)
+                            <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="report_to">Report To</label>
-                            <select class="form-control custom-select" name="report_to" id="report_to">
-                                <option></option>
-                                @foreach ($data['users'] as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="role_id">Shift</label>
-                            <select class="form-control custom-select" name="shift_id" id="shift_id">
-                                @foreach($data['officeShifts'] as $officeShift)
-                                    <option value="{{ $officeShift->id }}">{{ $officeShift->shift_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                    <label for="designation_id">Designation</label>
+                    <select class="form-control custom-select" name="designation_id" id="designation_id">
+                        <option></option>
+                        @foreach ($data['designations'] as $designation)
+                            <option value="{{ $designation->id }}">{{ $designation->designation_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
+            </div>
+            <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="email">Email</label>
-                            <input class="form-control" name="email" id="email" type="text">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="contact_number">Contact Number</label>
-                            <input class="form-control" name="contact_number" id="contact_number" type="text">
-                        </div>
-                    </div>
+                    <label for="role_id">Role</label>
+                    <select class="form-control" name="role[]" id="role" multiple>
+                        @foreach($data['roles'] as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="password">Password</label>
-                            <input class="form-control" name="password" id="password" type="password">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="password2">Confirm Password</label>
-                            <input class="form-control" name="password_confirmation" id="password_confirmation" type="password">
-                        </div>
-                    </div>
+                    <label for="employee_id">Employee ID</label>
+                    <input class="form-control" name="employee_id" id="employee_id" type="text">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="joining_date">Joining Date</label>
+                    <input class="form-control date" name="joining_date" id="joining_date" type="text" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control custom-select" name="gender" id="gender">
+                        <option></option>
+                        <option value="male"> Male</option>
+                        <option value="female"> Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="birth_date">Date of Birth</label>
+                    <input class="form-control date" name="birth_date" id="birth_date" type="text" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="contact_number">Contact Number</label>
+                    <input class="form-control" name="contact_number" id="contact_number" type="text">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="role_id">Shift</label>
+                    <select class="form-control custom-select" name="shift_id" id="shift_id">
+                        @foreach($data['officeShifts'] as $officeShift)
+                            <option value="{{ $officeShift->id }}">{{ $officeShift->shift_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="report_to">Report To</label>
+                    <select class="form-control custom-select" name="report_to" id="report_to">
+                        <option></option>
+                        @foreach ($data['users'] as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gender">Status</label>
+                    <select class="form-control custom-select" name="status" id="status">
+                        <option></option>
+                        <option value="1"> Active</option>
+                        <option value="2"> Inactive</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" name="password" id="password" type="password">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input class="form-control" name="password_confirmation" id="password_confirmation" type="password">
                 </div>
             </div>
         </div>
