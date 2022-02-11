@@ -136,9 +136,11 @@
                             <label for="gender">Status</label>
                             <select class="form-control custom-select" name="status" id="status">
                                 <option></option>
-                                <option value="1" {{ $user->status == '1' ? 'selected' : '' }}> Active</option>
-                                <option value="0" {{ $user->status == '0' ? 'selected' : '' }}> Inactive</option>
+                                @foreach (App\Models\User::STATUS as $key => $status)
+                                    <option value="{{ $status }}" {{ ($status == $user->status) ? 'selected' : '' }}>{{ ucfirst($key) }}</option>
+                                @endforeach
                             </select>
+
                         </div>
                     </div>
                 </div>

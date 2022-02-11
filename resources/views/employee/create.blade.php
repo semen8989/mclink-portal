@@ -133,8 +133,9 @@
                     <label for="status">Status</label>
                     <select class="form-control custom-select" name="status" id="status">
                         <option></option>
-                        <option value="1"> Active</option>
-                        <option value="0"> Inactive</option>
+                        @foreach (App\Models\User::STATUS as $key => $status)
+                            <option value="{{ $status }}"> {{ ucfirst($key) }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
