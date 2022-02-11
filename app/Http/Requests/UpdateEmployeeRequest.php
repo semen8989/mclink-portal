@@ -36,7 +36,15 @@ class UpdateEmployeeRequest extends FormRequest
             'shift_id' => 'required',
             'email' => 'required',
             'role' => 'required',
-            'report_to' => 'required'
+            'report_to' => 'required',
+            'status' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'status.required' => 'The status field is required.'
         ];
     }
 }

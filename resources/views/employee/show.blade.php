@@ -68,6 +68,10 @@
             <p class="guest-form-label font-weight-bold mb-1">Report To</p>
             <p class="guest-form-data mb-4">{{ $user->reportToUser->name }}</p>
         </div>
+        <div class="col-md-6">
+            <p class="guest-form-label font-weight-bold mb-1">Status</p>
+            <p class="guest-form-data mb-4">{{ $status }}</p>
+        </div>
     </div>
 </div>
 @stop

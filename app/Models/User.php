@@ -14,6 +14,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
 
+    const STATUS = [
+        "inactive" => 0,
+        "active" => 1
+    ];
     /**
      * The attributes that are mass assignable.
      *

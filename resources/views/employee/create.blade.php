@@ -130,11 +130,11 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="gender">Status</label>
+                    <label for="status">Status</label>
                     <select class="form-control custom-select" name="status" id="status">
                         <option></option>
                         <option value="1"> Active</option>
-                        <option value="2"> Inactive</option>
+                        <option value="0"> Inactive</option>
                     </select>
                 </div>
             </div>

@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\OfficeShift;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -71,6 +72,7 @@ class EmployeeController extends Controller
         $user->report_to = $request['report_to'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
+        $user->status = $request['status'];
         $user->password = Hash::make($request['password']);
         $user->save();
 
@@ -90,8 +92,9 @@ class EmployeeController extends Controller
     public function show(User $user)
     {
         $title = 'View Employee Details';
+        $status = Str::ucfirst(array_search($user->status, User::STATUS));
         
-        return view('employee.show',compact('title','user'));
+        return view('employee.show',compact('title','user','status'));
     }
 
     /**
@@ -145,6 +148,7 @@ class EmployeeController extends Controller
         $user->report_to = $request['report_to'];
         $user->shift_id = $request['shift_id'];
         $user->email = $request['email'];
+        $user->status = $request['status'];
 
         if(!empty($request['password'])){
             $user->password = Hash::make($request['password']);

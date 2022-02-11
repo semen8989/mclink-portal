@@ -37,7 +37,15 @@ class StoreEmployeeRequest extends FormRequest
             'email' => 'required',
             'password' => 'required|confirmed',
             'role' => 'required',
-            'report_to' => 'required'
+            'report_to' => 'required',
+            'status' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'status.required' => 'The status field is required.'
         ];
     }
 }
