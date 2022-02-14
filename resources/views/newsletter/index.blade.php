@@ -1,13 +1,13 @@
 @extends('layout.master')
 
 @section('content')
-  <div class="card-header">{{ __('label.dashboard') }}</div>
+  <div class="card-header">Newsletter</div>
     <div class="card-body">
       <div class="row">
         @foreach ($posts as $post)
-        <div class="col-sm-6 col-md-4">
-          <div class="card text-center" style="width: 18rem;">
-            <img class="card-img-top" src="{{ $post['_embedded']['wp:featuredmedia']['0']['source_url'] }}" alt="Card image cap">
+        <div class="col-md-3 col-sm-12 mb-3">
+          <div class="card text-center h-100">
+            <a href="{{ route('newsletter.show',$post['id']) }}"><img class="card-img-top" src="{{ $post['_embedded']['wp:featuredmedia']['0']['source_url'] }}" alt="Card image cap"></a>
             <div class="card-body">
               <h5 class="card-title">{{ mb_convert_encoding($post['title']['rendered'],'UTF-8','HTML-ENTITIES') }}</h5>
               <h6 class="card-subtitle mb-2 text-muted"><em>By <b>{{ ucfirst($post['_embedded']['author']['0']['name']) }}</b></em></h6>
