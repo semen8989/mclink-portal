@@ -19,6 +19,7 @@ use App\Http\Controllers\SalesLeadController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\KpiMaingoalController;
 use App\Http\Controllers\KpiVariableController;
@@ -43,8 +44,8 @@ Auth::routes(['register' => false]);
 Route::middleware(['auth'])->group(function () {
     // Dashboard / Newsletter Route
     Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/newsletter/{id}', [App\Http\Controllers\HomeController::class, 'content'])->name('home.content');
-
+    //Newsletter
+    Route::resource('newsletter',NewsletterController::class)->only(['index','show']);
     // Profile
     Route::resource('profile', ProfileController::class)->only(['index', 'update']);
     
