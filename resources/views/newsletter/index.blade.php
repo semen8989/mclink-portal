@@ -22,11 +22,11 @@
       </div>
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item {{ ($data['currentPage'] <= 1) ? 'disabled' : '' }}"><a class="page-link" href="{{ route('newsletter.index',['page' => $data['currentPage'] - 1]) }}">Previous</a></li>
           @for ($i = 1; $i <= $data['totalPages']; $i++)
               <li class="page-item {{ ($data['currentPage'] == $i) ? 'active' : '' }}"><a class="page-link" href="{{ route('newsletter.index',['page' => $i]) }}">{{ $i }}</a></li>  
           @endfor
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <li class="page-item {{ ($data['currentPage'] == $data['totalPages']) ? 'disabled' : '' }}"><a class="page-link" href="{{ route('newsletter.index',['page' => $data['currentPage'] + 1]) }}">Next</a></li>
         </ul>
       </nav>
     </div>  
