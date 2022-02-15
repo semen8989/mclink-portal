@@ -12,13 +12,29 @@ class NewsletterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('page')){
+            
+            $page = $request->query('page');
+        
+        }else{
+
+            $page = 1;
+        }
+
         $title = 'Newsletter';
-        $get = Http::get('https://newsletter.mclinkgroup.com/wp-json/wp/v2/posts?_embed');
+
+        $get = Http::get('https://newsletter.mclinkgroup.com/wp-json/wp/v2/posts?per_page=1&page='.$page.'&_embed');
+        
         $posts = json_decode($get,true);
         
-        return view('newsletter.index', compact('title','posts'));
+        $data = [
+            'totalPages' => (int)$get->header('X-WP-TotalPages'),
+            'currentPage' => $page
+        ];
+        
+        return view('newsletter.index', compact('title','posts','data'));
     }
 
     /**
