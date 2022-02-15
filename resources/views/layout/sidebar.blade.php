@@ -7,11 +7,17 @@
                 alt="McLink Logo">
         </div>
         <ul class="c-sidebar-nav">
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('home') }}">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link {{ (request()->segment(1) == '') ? 'c-active c-show' : '' }}" href="{{ route('home') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-speedometer') }}"></use>
                 </svg> {{ __('label.dashboard') }}</a></li>
-            </li>   
+            </li> 
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link {{ (request()->segment(1) == 'newsletter') ? 'c-active' : ''}}" href="{{ route('newsletter.index') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-newspaper') }}"></use>
+                </svg> Newsletter</a>
+            </li>
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ (request()->segment(1) == __('label.global.module.service_report.url_segment')) ? 'c-active' : ''}}" href="{{ route('service.form.index') }}">
                 <svg class="c-sidebar-nav-icon">
