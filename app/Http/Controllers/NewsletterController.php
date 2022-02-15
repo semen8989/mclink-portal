@@ -25,7 +25,7 @@ class NewsletterController extends Controller
 
         $title = 'Newsletter';
 
-        $get = Http::get('https://newsletter.mclinkgroup.com/wp-json/wp/v2/posts?per_page=1&page='.$page.'&_embed');
+        $get = Http::get('https://newsletter.mclinkgroup.com/wp-json/wp/v2/posts?per_page=8&page='.$page.'&_embed');
         
         $posts = json_decode($get,true);
         
