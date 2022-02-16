@@ -91,6 +91,12 @@
                     <span class="c-sidebar-nav-icon"></span> {{ __('label.global.module.kpi_report.title') }}</a></li>
               </ul>
             </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link {{ (request()->segment(1)) == 'file-manager' ? 'c-active' : ''}}" href="{{ route('file-manager.index') }}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-file') }}"></use>
+                </svg> File Manager</a>
+            </li>
         </ul>
         
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"

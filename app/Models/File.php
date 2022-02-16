@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ExpenseType extends Model
+class File extends Model
 {
-    use HasFactory, c;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'company_id',
-        'expense_type'
+    const CATEGORY = [
+        "weekly report" => 1,
+        "overseas report" => 2
     ];
 }

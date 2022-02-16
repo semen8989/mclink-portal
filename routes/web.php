@@ -21,6 +21,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrCalendarController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\KpiMaingoalController;
 use App\Http\Controllers\KpiVariableController;
 use App\Http\Controllers\OfficeShiftController;
@@ -46,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //Newsletter
     Route::resource('newsletter',NewsletterController::class)->only(['index','show']);
+    //File Manager
+    Route::resource('file-manager',FileManagerController::class);
     // Profile
     Route::resource('profile', ProfileController::class)->only(['index', 'update']);
     
