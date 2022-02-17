@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Ability extends Model
+class Handbook extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name','label'];
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class)->withTimestamps();
-    }
+    protected $fillable = [
+        'orig_filename',
+        'file_name',
+        'type',
+    ];
 }
