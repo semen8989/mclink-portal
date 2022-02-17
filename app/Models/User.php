@@ -106,7 +106,7 @@ class User extends Authenticatable
      */
     public function officeShift()
     {
-        return $this->belongsTo(officeShift::class,'shift_id');
+        return $this->belongsTo(OfficeShift::class,'shift_id');
     }
 
     /**
