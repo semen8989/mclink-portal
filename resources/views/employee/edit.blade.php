@@ -197,6 +197,48 @@
                 placeholder: '{{ __('label.choose') }}',
                 allowClear: true
             });
+
+            $('#company_id').change(function(){
+                var value = $('#company_id').val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ route('fetch_department') }}",
+                    method: "POST",
+                    data: {
+                        value: value,
+                        _token:_token
+                    },
+                    dataType: 'json',
+                    success:function(result){
+                        $('#department_id').empty();
+                        $('#department_id').append('<option></option>');
+                        $.each(result, function (key, value) {
+                            $('#department_id').append('<option value="' + value['id'] + '">' + value['department_name'] + '</option>');
+                        });
+                    }
+                })
+            })
+
+            $('#department_id').change(function(){
+                var value = $('#department_id').val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ route('fetch_designation') }}",
+                    method: "POST",
+                    data: {
+                        value: value,
+                        _token:_token
+                    },
+                    dataType: 'json',
+                    success:function(result){
+                        $('#designation_id').empty();
+                        $('#designation_id').append('<option></option>');
+                        $.each(result, function (key, value) {
+                            $('#designation_id').append('<option value="' + value['id'] + '">' + value['designation_name'] + '</option>');
+                        });
+                    }
+                })
+            })
             //Employee form submit
             $('#employee_form').submit(function (e){
                 e.preventDefault();
