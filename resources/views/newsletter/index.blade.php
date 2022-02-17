@@ -11,7 +11,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ mb_convert_encoding($post['title']['rendered'],'UTF-8','HTML-ENTITIES') }}</h5>
               <h6 class="card-subtitle mb-2 text-muted"><em>By <b>{{ ucfirst($post['_embedded']['author']['0']['name']) }}</b></em></h6>
-              <h6 class="card-subtitle mb-2 text-muted"><em>{{ date("F j, Y",strtotime($post['date'])); }}</em></h6>
+              <h6 class="card-subtitle mb-2 text-muted"><em>{{ date("F j, Y", strtotime($post['date'])) }}</em></h6>
             </div>
             <div class="card-footer">
               <a href="{{ route('newsletter.show',$post['id']) }}" class="btn btn-primary">View Details</a>
