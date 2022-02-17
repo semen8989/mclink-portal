@@ -3,15 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WiiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HandbookController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\KpiReportController;
@@ -91,7 +94,14 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('kpi-reports', KpiReportController::class)->only(['index']);
         Route::get('kpi-reports/download', [KpiReportController::class, 'download'])->name('kpi-reports.download');
     });
-    
+    // Staff Routes
+    Route::prefix('staff')->group(function () {
+        Route::resource('employees', EmployeeController::class)->parameters([
+            'employees' => 'user',
+        ]);
+        Route::resource('roles', RoleController::class);
+        Route::resource('abilities', AbilityController::class);
+    });
     // Organizations
     Route::prefix('organizations')->group(function () {
         Route::resources([

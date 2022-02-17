@@ -5,14 +5,19 @@ namespace App\Models;
 use App\Models\ServiceReport;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
 
+    const STATUS = [
+        "inactive" => 0,
+        "active" => 1
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -65,11 +70,43 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the company that owns the user.
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * Get the report person that owns the user.
+     */
+    public function reportToUser()
+    {
+        return $this->belongsTo(User::class,'report_to');
+    }
+
+    /**
      * Get the department that owns the user.
      */
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * Get the designation that owns the user.
+     */
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
+
+    /**
+     * Get the office shift that owns the user.
+     */
+    public function officeShift()
+    {
+        return $this->belongsTo(officeShift::class,'shift_id');
     }
 
     /**
@@ -87,9 +124,9 @@ class User extends Authenticatable
 
     public function assignRole($role)
     {
-        if (is_string($role)) {
+        /*if (is_string($role)) {
             $role = Role::whereName($role)->firstOrFail();
-        }
+        }*/
 
         $this->roles()->sync($role, false); //add new records but won't drop anything
     }
@@ -121,5 +158,10 @@ class User extends Authenticatable
     public function variableKpi()
     {
         return $this->hasMany(KpiVariable::class);
+    }
+
+    public function getUserStatus()
+    {
+        return self::STATUS;
     }
 }
