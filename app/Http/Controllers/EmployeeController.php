@@ -42,8 +42,6 @@ class EmployeeController extends Controller
         $data = [
             'users' => User::all(),
             'companies' => Company::all(),
-            'departments' => Department::all(),
-            'designations' => Designation::all(),
             'officeShifts' => OfficeShift::all(),
             'roles' => Role::all()
         ];
@@ -115,8 +113,8 @@ class EmployeeController extends Controller
 
         $data = [
             'companies' => Company::all(),
-            'departments' => Department::all(),
-            'designations' => Designation::all(),
+            'departments' => Company::find($user->company_id)->departments,
+            'designations' => Department::find($user->department_id)->designations,
             'officeShifts' => OfficeShift::all(),
             'roles' => Role::all(),
             'users' => User::all(),
